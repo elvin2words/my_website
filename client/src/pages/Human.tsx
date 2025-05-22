@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Heart, Music, Book, Globe, Camera } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Heart, Music, Book, Globe, Camera } from 'lucide-react';
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,22 +13,33 @@ const Human: React.FC = () => {
       <div className="relative z-10">
         <main className="pt-24 pb-16 px-4 md:px-0 flex flex-col items-center min-h-screen">
           <div className="container mx-auto max-w-7xl">
-            <div className="mb-8">
-              <Link href="/">
-                <Button variant="ghost" className="flex items-center text-accent5 hover:text-accent5">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Home
-                </Button>
-              </Link>
-            </div>
-            
-            <div className="mb-10">
-              <h1 className="text-4xl md:text-5xl font-poppins font-bold mb-4 text-accent5">
-                Human Being
-              </h1>
-              <p className="text-xl opacity-80 mb-8">
-                Personal & Reflective Side
-              </p>
+            <div className="flex items-center justify-between mb-8">
+              <div className="w-1/3 text-left">
+                <Link href="/">
+                  <Button variant="ghost" className="text-accent5 hover:text-accent5 flex items-center gap-2">
+                    <ArrowLeft className="h-5 w-5" />
+                    Home
+                  </Button>
+                </Link>
+              </div>
+
+              <div className="w-1/3 text-center">
+                <h1 className="text-2xl md:text-3xl font-poppins font-bold text-accent5">
+                  Human Being
+                </h1>
+                <p className="text-sm md:text-base opacity-80 mt-1">
+                  Personal & Reflective Side
+                </p>
+              </div>
+
+              <div className="w-1/3 text-right">
+                <Link href="/engineer">
+                  <Button variant="ghost" className="text-accent1 hover:text-accent1 flex items-center gap-2 ml-auto">
+                    Engineer
+                    <ArrowRight className="h-5 w-5" />
+                  </Button>
+                </Link>
+              </div>
             </div>
             
             <div className="mb-12">

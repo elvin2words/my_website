@@ -19,14 +19,14 @@ const Footer: React.FC = () => {
           </Link>
         </div>
       </div>
-      
+
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start">
           <div className="mb-6 md:mb-0 order-1 md:order-1 text-center md:text-left">
             <h3 className="text-xl font-poppins font-semibold mb-2">Elvin Mazwimairi</h3>
             <p className="text-white text-opacity-70 text-sm">Portfolio & Personal Brand</p>
           </div>
-          
+
           <div className="flex flex-col items-center md:items-end order-2 md:order-2">
             <div className="flex space-x-6 mb-3">
               <a 
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
               >
                 <Linkedin className="w-5 h-5" />
               </a>
-              
+
               <a 
                 href="https://github.com" 
                 target="_blank" 
@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
               >
                 <Github className="w-5 h-5" />
               </a>
-              
+
               <a 
                 href="https://twitter.com" 
                 target="_blank" 
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
               >
                 <Twitter className="w-5 h-5" />
               </a>
-              
+
               <a 
                 href="mailto:contact@example.com" 
                 className="text-white text-opacity-70 hover:text-opacity-100 transition"
@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
                 <Mail className="w-5 h-5" />
               </a>
             </div>
-            
+
             {/* IqalInc attribution */}
             <div className="flex items-center text-white text-opacity-50 text-xs">
               <span>Made by</span>
@@ -76,19 +76,19 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="mt-8 pt-6 border-t border-white border-opacity-10 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white text-opacity-50 text-sm text-center md:text-left">© {new Date().getFullYear()} Elvin Mazwimairi. All rights reserved.</p>
-          
+
           <div className="mt-4 md:mt-0 flex flex-wrap justify-center space-x-6">
             <Link href="#" className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition">
               Privacy Policy
             </Link>
-            
+
             <Link href="#" className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition">
               Terms of Service
             </Link>
-            
+
             <Link href="#" className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition">
               Contact
             </Link>

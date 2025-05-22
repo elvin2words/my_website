@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { Separator } from '@/components/ui/separator';
 
 export default function Admin() {
   const { toast } = useToast();
@@ -41,33 +42,47 @@ export default function Admin() {
   };
 
   return (
-    <div className="container mx-auto py-10">
-      <Card>
+    <div className="container mx-auto py-10 max-w-5xl">
+      <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
         <CardHeader>
-          <CardTitle>Content Management</CardTitle>
+          <CardTitle className="text-2xl font-poppins">Content Management</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div>
-            <label className="block mb-2">Intro Text</label>
+        <CardContent className="space-y-6">
+          <div className="space-y-4">
+            <label className="text-lg font-semibold text-accent2">Introduction</label>
             <Textarea 
               value={content.intro}
               onChange={(e) => setContent({...content, intro: e.target.value})}
+              className="min-h-[100px] bg-white bg-opacity-5"
+              placeholder="Enter introduction text..."
             />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <Separator className="my-6 bg-white bg-opacity-10" />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Object.entries(content).map(([key, value]) => (
               key !== 'intro' && (
-                <div key={key}>
-                  <label className="block mb-2">{key.replace(/([A-Z])/g, ' $1').trim()}</label>
+                <div key={key} className="space-y-2">
+                  <label className="text-lg font-semibold text-accent3">
+                    {key.replace(/([A-Z])/g, ' $1').trim()}
+                  </label>
                   <Textarea
                     value={value}
                     onChange={(e) => setContent({...content, [key]: e.target.value})}
+                    className="min-h-[150px] bg-white bg-opacity-5"
+                    placeholder={`Enter ${key.toLowerCase()} content...`}
                   />
                 </div>
               )
             ))}
           </div>
-          <Button onClick={handleSave}>Save Changes</Button>
+          
+          <div className="flex justify-end pt-4">
+            <Button onClick={handleSave} size="lg" className="bg-accent2 hover:bg-accent2/90">
+              Save Changes
+            </Button>
+          </div>
         </CardContent>
       </Card>
     </div>

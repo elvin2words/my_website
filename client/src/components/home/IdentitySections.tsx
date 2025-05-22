@@ -8,7 +8,7 @@ const IdentitySections: React.FC = () => {
       <div className="hidden md:block absolute top-0 left-1/2 w-px h-24 bg-white bg-opacity-20"></div>
       
       {/* Identity cards container - full width on mobile, grid on larger screens */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8 relative">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 relative">
         <div className="h-full w-full flex">
           <IdentityCard identity="engineer" />
         </div>
@@ -32,9 +32,6 @@ const IdentitySections: React.FC = () => {
           />
         </div>
       </div>
-      
-      {/* SVG connections between cards - only visible on larger screens */}
-      <SVGConnections />
     </section>
   );
 };

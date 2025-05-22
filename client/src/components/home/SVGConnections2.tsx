@@ -1,149 +1,57 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { useDrag } from '@/context/DragContext';
-import { generatePath, getCardPosition, identityDescriptions, identityColors } from '@/lib/utils';
+import React, { useEffect, useState, useCallback } from 'react';
 
 const SVGConnections: React.FC = () => {
-  const [paths, setPaths] = useState<JSX.Element[]>([]);
-  const svgRef = useRef<SVGSVGElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { getDraggableRef } = useDrag();
-  const requestRef = useRef<number>();
-  
-  const identities = ['engineer', 'developer', 'designer', 'technopreneur', 'human'];
+  const [paths, setPaths] = useState<string[]>([]);
 
-  // Define updateConnections as a memoized callback to prevent infinite loops
-  const updateConnections = useCallback(() => {
-    if (!svgRef.current || !containerRef.current) return;
+  const calculatePaths = useCallback(() => {
+    const cards = document.querySelectorAll('#identityCards .flex');
+    const newPaths: string[] = [];
 
-    // Only show connections on larger screens
-    if (window.innerWidth < 1024) {
-      setPaths([]);
-      return;
-    }
+    cards.forEach((card, index) => {
+      if (index < cards.length - 1) {
+        const rect1 = card.getBoundingClientRect();
+        const rect2 = cards[index + 1].getBoundingClientRect();
 
-    // Find the heading element in the new design
-    const primaryStatementEl = document.querySelector('h1.text-3xl');
-    if (!primaryStatementEl) return;
+        const x1 = rect1.left + rect1.width / 2;
+        const y1 = rect1.top + rect1.height / 2;
+        const x2 = rect2.left + rect2.width / 2;
+        const y2 = rect2.top + rect2.height / 2;
 
-    const primaryBox = primaryStatementEl.getBoundingClientRect();
-    const svgRect = containerRef.current.getBoundingClientRect();
-
-    // Calculate the center position of the primary statement
-    const primaryCenterX = primaryBox.left + primaryBox.width / 2 - svgRect.left;
-    const primaryCenterY = primaryBox.top + primaryBox.height - svgRect.top;
-
-    const newPaths: JSX.Element[] = [];
-
-    identities.forEach((identity, index) => {
-      const cardRef = getDraggableRef(`identity-${identity}`);
-      if (!cardRef || !cardRef.current) return;
-
-      const cardPosition = getCardPosition(cardRef.current, containerRef.current);
-      if (!cardPosition) return;
-
-      const cardTopCenterX = cardPosition.x;
-      const cardTopCenterY = cardPosition.y;
-
-      // Create path from primary to card
-      const pathD = generatePath(
-        primaryCenterX,
-        primaryCenterY,
-        cardTopCenterX,
-        cardTopCenterY
-      );
-
-      // Create a slightly different path for the text
-      const midX = (primaryCenterX + cardTopCenterX) / 2;
-      const midY = (primaryCenterY + cardTopCenterY) / 2;
-      const textPathD = `M ${primaryCenterX + 20} ${primaryCenterY + 20} Q ${midX} ${midY + 10}, ${cardTopCenterX - 20} ${cardTopCenterY + 10}`;
-
-      const { role } = identityDescriptions[identity];
-      const { color } = identityColors[identity] || { color: 'text-white' };
-      // Extract the color class name to get just the identity-specific part
-      const colorClass = color.replace('text-', '');
-
-      newPaths.push(
-        <g key={`path-${identity}`}>
-          <path
-            d={pathD}
-            fill="none"
-            stroke={`hsl(var(--${colorClass}))`}
-            strokeWidth="1.5"
-            strokeDasharray="5,5"
-            data-identity={identity}
-          />
-          <path
-            d={textPathD}
-            id={`text-path-${index}`}
-            fill="none"
-            style={{ display: 'none' }}
-          />
-          <text fontSize="14" fontWeight="bold" fill={`hsl(var(--${colorClass}))`} opacity="0.9">
-            <textPath
-              href={`#text-path-${index}`}
-              startOffset="50%"
-              textAnchor="middle"
-            >
-              {role}
-            </textPath>
-          </text>
-        </g>
-      );
+        const path = `M ${x1} ${y1} L ${x2} ${y2}`;
+        newPaths.push(path);
+      }
     });
 
     setPaths(newPaths);
-  }, [getDraggableRef, identities]);
+  }, []);
 
-  // Use this effect to handle initial setup and cleanup
   useEffect(() => {
     const handleResize = () => {
-      // Cancel any pending animation frame
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
-      }
-      
-      // Schedule an update in the next animation frame
-      requestRef.current = requestAnimationFrame(updateConnections);
+      requestAnimationFrame(calculatePaths);
     };
 
-    // Run once on mount
-    updateConnections();
-    
-    // Add resize listener
+    // Initial calculation after a brief delay to ensure DOM is ready
+    const timer = setTimeout(calculatePaths, 100);
     window.addEventListener('resize', handleResize);
-    
-    // Schedule a few updates with decreasing frequency to handle animations settling
-    const timeouts = [
-      setTimeout(updateConnections, 500),
-      setTimeout(updateConnections, 1000),
-      setTimeout(updateConnections, 2000)
-    ];
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
-      }
-      timeouts.forEach(clearTimeout);
+      clearTimeout(timer);
     };
-  }, [updateConnections]);
+  }, []); // Remove calculatePaths from dependencies
 
   return (
-    <div 
-      ref={containerRef} 
-      className="hidden lg:block absolute inset-0 pointer-events-none" 
-      aria-hidden="true"
-    >
-      <svg 
-        ref={svgRef}
-        id="connections" 
-        width="100%" 
-        height="100%" 
-        className="absolute top-0 left-0" 
-      >
-        {paths}
-      </svg>
-    </div>
+    <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+      {paths.map((path, index) => (
+        <path
+          key={index}
+          d={path}
+          stroke="rgba(255,255,255,0.1)"
+          strokeWidth="2"
+          fill="none"
+        />
+      ))}
+    </svg>
   );
 };
 

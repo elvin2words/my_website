@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Palette, Layout, Monitor, Film } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Palette, Layout, Monitor, Film } from 'lucide-react';
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,22 +13,33 @@ const Designer: React.FC = () => {
       <div className="relative z-10">
         <main className="pt-24 pb-16 px-4 md:px-0 flex flex-col items-center min-h-screen">
           <div className="container mx-auto max-w-7xl">
-            <div className="mb-8">
-              <Link href="/">
-                <Button variant="ghost" className="flex items-center text-accent3 hover:text-accent3">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Home
-                </Button>
-              </Link>
-            </div>
-            
-            <div className="mb-10">
-              <h1 className="text-4xl md:text-5xl font-poppins font-bold mb-4 text-accent3">
-                Artistic Designer
-              </h1>
-              <p className="text-xl opacity-80 mb-8">
-                Creative & UI/UX Design
-              </p>
+            <div className="flex items-center justify-between mb-8">
+              <div className="w-1/3 text-left">
+                <Link href="/">
+                  <Button variant="ghost" className="text-accent3 hover:text-accent3 flex items-center gap-2">
+                    <ArrowLeft className="h-5 w-5" />
+                    Home
+                  </Button>
+                </Link>
+              </div>
+
+              <div className="w-1/3 text-center">
+                <h1 className="text-2xl md:text-3xl font-poppins font-bold text-accent3">
+                  Artistic Designer
+                </h1>
+                <p className="text-sm md:text-base opacity-80 mt-1">
+                  Creative & UI/UX Design
+                </p>
+              </div>
+
+              <div className="w-1/3 text-right">
+                <Link href="/technopreneur">
+                  <Button variant="ghost" className="text-accent4 hover:text-accent4 flex items-center gap-2 ml-auto">
+                    Technopreneur
+                    <ArrowRight className="h-5 w-5" />
+                  </Button>
+                </Link>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
