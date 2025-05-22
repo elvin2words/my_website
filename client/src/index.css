@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 240 20% 14%; /* Deep navy blue for primary background */
+  --primary-foreground: 0 0% 100%; /* White text */
+  --secondary: 240 15% 18%; /* Slightly lighter navy for secondary */
+  --secondary-foreground: 0 0% 100%;
+  --accent1: 340 80% 55%; /* Electric Engineer - Bright red */
+  --accent2: 195 80% 55%; /* Systems Developer - Bright blue */
+  --accent3: 135 70% 50%; /* Artistic Designer - Bright green */
+  --accent4: 275 70% 55%; /* Technopreneur - Bright purple */
+  --accent5: 25 80% 55%; /* Human Being - Bright orange */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 20 14.3% 4.1%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 240 20% 14%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 15% 18%;
+  --secondary-foreground: 0 0% 100%;
+  --accent1: 340 80% 55%;
+  --accent2: 195 80% 55%;
+  --accent3: 135 70% 50%;
+  --accent4: 275 70% 55%;
+  --accent5: 25 80% 55%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  
+  /* Identity specific colors */
+  .text-accent1 {
+    color: hsl(var(--accent1));
+  }
+  
+  .text-accent2 {
+    color: hsl(var(--accent2));
+  }
+  
+  .text-accent3 {
+    color: hsl(var(--accent3));
+  }
+  
+  .text-accent4 {
+    color: hsl(var(--accent4));
+  }
+  
+  .text-accent5 {
+    color: hsl(var(--accent5));
+  }
+  
+  .bg-accent1 {
+    background-color: hsl(var(--accent1));
+  }
+  
+  .bg-accent2 {
+    background-color: hsl(var(--accent2));
+  }
+  
+  .bg-accent3 {
+    background-color: hsl(var(--accent3));
+  }
+  
+  .bg-accent4 {
+    background-color: hsl(var(--accent4));
+  }
+  
+  .bg-accent5 {
+    background-color: hsl(var(--accent5));
+  }
+}
+
+/* Custom cloud shape for Who Am I section */
+.cloud-shape {
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+/* Hide scrollbars but keep functionality */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+* {
+  scrollbar-width: none;
+}
