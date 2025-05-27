@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
             {/* IqalInc attribution */}
             <div className="flex items-center text-white text-opacity-50 text-xs">
               <span>Made by</span>
-              <span className="mx-1 font-semibold">@young_mazwi × IqalInc.</span>
+              <span className="mx-1 font-semibold"> @ <a href="https://instagram.com/young_mazwi" color='blue' target="_blank">young_mazwi</a> × <a href="https://iqalinc.co.zw/" color='blue' target="_blank" >IqalInc</a>.</span>
               {/* <Code className="w-3 h-3 ml-1" /> */}
             </div>
           </div>
