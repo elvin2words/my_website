@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Developer Portfolio - Showcasing web development projects and technical expertise">
+    <meta name="keywords" content="web developer, portfolio, projects, full-stack, frontend, backend">
+    <title>Developer Portfolio | Code Circle</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader">
+            <div class="code-lines">
+                <span>&lt;/&gt;</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo" data-aos="fade-right">
+                <span class="logo-icon">&lt;/&gt;</span>
+                <span class="logo-text">CodeCircle</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="code-rain"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="hero-title">
+                    <span class="typing-text">Full-Stack Developer</span>
+                    <span class="cursor">|</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Crafting digital experiences with clean code and innovative solutions
+                </p>
+                <div class="hero-stats">
+                    <div class="stat" data-aos="fade-up" data-aos-delay="100">
+                        <!-- <h3 id="projectCount">8+</h3>
+                        <p>Projects</p> -->
+                    </div>
+                    <div class="stat" data-aos="fade-up" data-aos-delay="200">
+                        <!-- <h3>3+</h3>
+                        <p>Years Experience</p> -->
+                    </div>
+                    <div class="stat" data-aos="fade-up" data-aos-delay="300">
+                        <!-- <h3>50+</h3>
+                        <p>Happy Clients</p> -->
+                    </div>
+                </div>
+                <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Passionate developer with expertise in modern web technologies</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <p>
+                        I'm a passionate full-stack developer with expertise in creating robust, scalable web applications. 
+                        My journey in web development spans across various technologies and frameworks, with a focus on 
+                        delivering exceptional user experiences and clean, maintainable code.
+                    </p>
+                    <p>
+                        From corporate websites to e-commerce platforms, admin dashboards to mobile applications, 
+                        I enjoy tackling diverse challenges and bringing ideas to life through code.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight">
+                            <i class="fas fa-code"></i>
+                            <span>Clean, efficient code</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Mobile-first approach</span>
+                        </div>
+                        <div class="highlight">
+                            <i class="fas fa-rocket"></i>
+                            <span>Performance optimized</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-visual" data-aos="fade-left">
+                    <div class="code-preview">
+                        <div class="code-header">
+                            <div class="dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="file-name">developer.js</span>
+                        </div>
+                        <div class="code-content">
+                            <pre><code class="language-javascript">
+const developer = {
+  name: "Elvin E. Mazwimairi",
+  role: "Full-Stack Systems Developer",
+  skills: [
+    "JavaScript", "Python", "React",
+    "Node.js", "MongoDB", "PostgreSQL"
+  ],
+  passion: "Creating amazing digital experiences",
+  
+  getCurrentFocus() {
+    return "Building scalable web applications";
+  }
+};
+
+console.log(developer.getCurrentFocus());
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">A collection of my recent work and contributions</p>
+            </div>
+            
+            <!-- Project Filters -->
+            <div class="project-filters" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="corporate">Corporate</button>
+                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+                <button class="filter-btn" data-filter="dashboard">Dashboards</button>
+                <button class="filter-btn" data-filter="portfolio">Portfolio</button>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="projects-grid" id="projects-grid">
+                <!-- CodeBlue - Corporate -->
+                <div class="project-card" data-category="corporate" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="CodeBlue Corporate Website">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../CodeBlue/index.html" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link github-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">CodeBlue</h3>
+                        <p class="project-description">Modern corporate website with 9 color themes, responsive design, and portfolio showcase</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Bootstrap</span>
+                            <span class="tech-tag">jQuery</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fas fa-eye"></i> Live Demo</span>
+                            <span><i class="fas fa-star"></i> Featured</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PremiumCars - E-commerce -->
+                <div class="project-card" data-category="ecommerce" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="PremiumCars Car Platform">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../PremiumCars/index.html" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link github-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">PremiumCars</h3>
+                        <p class="project-description">Comprehensive car dealership platform with inventory management and contact integration</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fas fa-car"></i> Automotive</span>
+                            <span><i class="fas fa-shopping-cart"></i> E-commerce</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BuildCorp - Corporate -->
+                <div class="project-card" data-category="corporate" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BuildCorp Construction">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../BuildCorp/index.html" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link github-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">BuildCorp</h3>
+                        <p class="project-description">Professional construction company website with project galleries and service showcases</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">AOS</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fas fa-building"></i> Construction</span>
+                            <span><i class="fas fa-award"></i> Professional</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DataFlow - Dashboard -->
+                <div class="project-card" data-category="dashboard" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="DataFlow Analytics">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../DataFlow/index.html" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link github-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">DataFlow</h3>
+                        <p class="project-description">IoT and analytics platform with real-time data visualization and industry solutions</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Charts.js</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fas fa-chart-line"></i> Analytics</span>
+                            <span><i class="fas fa-wifi"></i> IoT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AdminPro - Dashboard -->
+                <div class="project-card" data-category="dashboard" data-aos="fade-up" data-aos-delay="500">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AdminPro Dashboard">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../AdminPro/index.html" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link github-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AdminPro</h3>
+                        <p class="project-description">Professional admin dashboard with multiple themes and comprehensive management features</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fas fa-tachometer-alt"></i> Dashboard</span>
+                            <span class="tech-tag">Multi-theme</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Portfolio -->
+                <div class="project-card" data-category="portfolio" data-aos="fade-up" data-aos-delay="600">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Personal Portfolio">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="../elvinmazwi/pages/index.html" class="project-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="project-link github-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Personal Portfolio</h3>
+                        <p class="project-description">Personal portfolio website with blog system and project showcase</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Gatsby</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">GraphQL</span>
+                            <span class="tech-tag">PWA</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fas fa-user"></i> Personal</span>
+                            <span><i class="fas fa-blog"></i> Blog</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="projects-cta" data-aos="fade-up">
+                <a href="https://github.com/yourusername" class="btn btn-outline" target="_blank">
+                    <i class="fab fa-github"></i>
+                    View All on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-subtitle">Technologies and tools I work with</p>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Frontend</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js-square"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-bootstrap"></i>
+                            <span>Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Backend</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <i class="fab fa-node-js"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                        <!-- <div class="skill-item">
+                            <i class="fab fa-php"></i>
+                            <span>PHP</span>
+                        </div> -->
+                        <div class="skill-item">
+                            <i class="fas fa-database"></i>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Tools & Others</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <i class="fab fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-code"></i>
+                            <span>VS Code</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-figma"></i>
+                            <span>Figma</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-cloud"></i>
+                            <span>Replit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's discuss your next project</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>elvinmazwimairi@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+263 71 210 4928</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Remeote, Global</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/elvin2words" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/elvin-mazwimairi/" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/young_mazwi" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/young_mazwi/" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" data-aos="fade-left">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" required>
+                        <label for="subject">Subject</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <label for="message">Your Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2025 CodeCircle. IqalInc. young_mazwi. All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

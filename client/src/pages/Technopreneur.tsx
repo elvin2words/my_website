@@ -41,7 +41,7 @@ const Technopreneur: React.FC = () => {
                 </Link>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader className="flex flex-row items-center">
@@ -50,30 +50,15 @@ const Technopreneur: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Problem-Solving Approach</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Innovation-Driven Thinking</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Risk Assessment & Management</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Market Opportunity Identification</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Resilience & Adaptability</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Systems Thinking & Innovation</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Lean Startup Methodology</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Market Gap Identification</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Strategic Ideation & Planning</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Growth Mindset & Resilience</span></li>
                   </ul>
                 </CardContent>
               </Card>
-              
+
               <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader className="flex flex-row items-center">
                   <TrendingUp className="h-6 w-6 text-accent4 mr-2" />
@@ -81,31 +66,16 @@ const Technopreneur: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Business Model Development</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Financial Planning & Analysis</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Go-to-Market Strategy</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Product-Market Fit Analysis</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Investment & Funding Knowledge</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Business Modeling & Strategy</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Pitch Decks & Market Validation</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Funding Pathways & Partnerships</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Product-Market Fit Analysis</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Revenue Stream Exploration</span></li>
                   </ul>
                 </CardContent>
               </Card>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader className="flex flex-row items-center">
@@ -114,30 +84,15 @@ const Technopreneur: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Team Building & Development</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Project & Product Management</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Strategic Planning</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Decision Making</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Stakeholder Communication</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Cross-functional Team Building</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Agile Project Leadership</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Vision & Mission Alignment</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Collaboration & Delegation</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Strategic Partnerships</span></li>
                   </ul>
                 </CardContent>
               </Card>
-              
+
               <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader className="flex flex-row items-center">
                   <BarChart className="h-6 w-6 text-accent4 mr-2" />
@@ -145,31 +100,16 @@ const Technopreneur: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Technology Trend Analysis</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Product Development Cycles</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Technical Feasibility Assessment</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Technology Stack Selection</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
-                      <span>Intellectual Property Strategy</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Systems Architecture & Integration</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>IoT & Automation Platforms</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Prototyping & Validation</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Data-Driven Optimization</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div><span>Sustainable Tech Solutions</span></li>
                   </ul>
                 </CardContent>
               </Card>
             </div>
-            
+
             <div className="mb-12">
               <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader>
@@ -178,24 +118,39 @@ const Technopreneur: React.FC = () => {
                 <CardContent>
                   <ul className="space-y-6">
                     <li>
-                      <h3 className="font-semibold text-accent4">Smart Home Automation Startup</h3>
+                      <h3 className="font-semibold text-accent4">Mazenel Industries</h3>
                       <p className="text-sm mt-1">
-                        Co-founded a venture focused on developing affordable and accessible smart home solutions
-                        for energy efficiency and convenience. Currently in seed funding stage.
+                        Founder of an innovation-driven company providing intelligent, sustainable, and integrated solutions across industries. Operates through AI-powered platforms like MAAS & MAAP for automation and collaboration.
                       </p>
                     </li>
                     <li>
-                      <h3 className="font-semibold text-accent4">EdTech Platform Concept</h3>
+                      <h3 className="font-semibold text-accent4">IQAL Inc.</h3>
                       <p className="text-sm mt-1">
-                        Developing an innovative education technology platform that uses AI to personalize 
-                        learning experiences for STEM subjects. Currently in prototype and validation phase.
+                        Co-founded a data-intelligent platform offering solutions in business intelligence, security, agriculture, and automation by leveraging intelligent systems and data analytics.
                       </p>
                     </li>
                     <li>
-                      <h3 className="font-semibold text-accent4">Sustainability Innovation Challenge Winner</h3>
+                      <h3 className="font-semibold text-accent4">Youth STEM 2030 & Enactus UZ</h3>
                       <p className="text-sm mt-1">
-                        Led a team that won a regional sustainability innovation challenge with a concept for 
-                        urban waste management using IoT and data analytics to optimize collection routes.
+                        Key contributor to sustainable and tech-driven youth initiatives. Focused on problem-solving, leadership, and community empowerment through innovation and entrepreneurship.
+                      </p>
+                    </li>
+                     <li>
+                      <h3 className="font-semibold text-accent4">IQAL Inc.</h3>
+                      <p className="text-sm mt-1">
+                        Co-founded a platform specializing in intelligent algorithm-driven solutions for automation, data analytics, and systems integration across agriculture, manufacturing, and security sectors.
+                      </p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent4">Telqon Technologies</h3>
+                      <p className="text-sm mt-1">
+                        A rising-edge R&D lab focused on futuristic consumer and industrial technologies, including embedded AI, smart devices, and connectivity frameworks.
+                      </p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent4">Usorvax</h3>
+                      <p className="text-sm mt-1">
+                        An exploratory venture focusing on experimental innovation, merging biotechnology, energy, and digital ecosystems to reimagine how humans interact with advanced tech.
                       </p>
                     </li>
                   </ul>

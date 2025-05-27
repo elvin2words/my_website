@@ -41,7 +41,7 @@ const Human: React.FC = () => {
                 </Link>
               </div>
             </div>
-            
+
             <div className="mb-12">
               <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader className="flex flex-row items-center">
@@ -49,6 +49,14 @@ const Human: React.FC = () => {
                   <CardTitle>What Makes Me Tick</CardTitle>
                 </CardHeader>
                 <CardContent>
+                  <p className="mb-6 leading-relaxed">
+                    I'm a curious mind drawn to meaningful innovation, creative thinking, and building a better world through intentional technology. Life, to me, is an iterative project—where purpose, progress, and perspective merge. I'm motivated by the spark of new ideas, shared growth, and the beauty in both structure and spontaneity.
+                  </p>
+                  <p className="leading-relaxed">
+                    I navigate the world with compassion, creativity, and calculated courage. At the core, I value authenticity, balance, and the quiet moments that shape the loudest truths. My journey is about building not just what works—but what matters.
+                  </p>
+                </CardContent>
+                                <CardContent>
                   <p className="mb-6 leading-relaxed">
                     Beyond the professional titles and technical skills, I'm driven by curiosity and a desire to create meaningful 
                     impact through the intersection of technology and human experience. I believe in continuous growth, both personally 
@@ -62,13 +70,29 @@ const Human: React.FC = () => {
                 </CardContent>
               </Card>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader className="flex flex-row items-center">
                   <Music className="h-6 w-6 text-accent5 mr-2" />
                   <CardTitle>Hobbies & Interests</CardTitle>
                 </CardHeader>
+                <CardContent>
+                  <ul className="space-y-4">
+                    <li>
+                      <h3 className="font-semibold text-accent5">Music Production</h3>
+                      <p className="text-sm mt-1">Crafting lo-fi, ambient, and experimental sounds. Inspired by soundscapes that blend emotion with rhythm.</p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent5">Anime & Cinematics</h3>
+                      <p className="text-sm mt-1">Fascinated by storytelling through anime and sci-fi; captivated by world-building, symbolism, and soundtracks.</p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent5">Swimming & Movement</h3>
+                      <p className="text-sm mt-1">Exploring movement, especially in water—recently drawn to swimming as both a meditative and strengthening routine.</p>
+                    </li>
+                  </ul>
+                </CardContent>
                 <CardContent>
                   <ul className="space-y-4">
                     <li>
@@ -95,13 +119,29 @@ const Human: React.FC = () => {
                   </ul>
                 </CardContent>
               </Card>
-              
+
               <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader className="flex flex-row items-center">
                   <Book className="h-6 w-6 text-accent5 mr-2" />
                   <CardTitle>Learning & Growth</CardTitle>
                 </CardHeader>
                 <CardContent>
+                  <ul className="space-y-4">
+                    <li>
+                      <h3 className="font-semibold text-accent5">Philosophy & Psychology</h3>
+                      <p className="text-sm mt-1">Deeply interested in how people think, decide, and grow. Often reading about cognitive science, ethics, and introspection.</p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent5">Personal Development</h3>
+                      <p className="text-sm mt-1">Practicing clarity, journaling, and goal-setting. Reflecting on growth with both structure and spontaneity.</p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent5">Public Speaking & Expression</h3>
+                      <p className="text-sm mt-1">Learning how to speak with clarity and connection. Toastmasters and poetic expression have been key to this path.</p>
+                    </li>
+                  </ul>
+                </CardContent>
+                                <CardContent>
                   <ul className="space-y-4">
                     <li>
                       <h3 className="font-semibold text-accent5">Continuous Education</h3>
@@ -128,13 +168,29 @@ const Human: React.FC = () => {
                 </CardContent>
               </Card>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader className="flex flex-row items-center">
                   <Globe className="h-6 w-6 text-accent5 mr-2" />
                   <CardTitle>Causes I Support</CardTitle>
                 </CardHeader>
+                <CardContent>
+                  <ul className="space-y-4">
+                    <li>
+                      <h3 className="font-semibold text-accent5">Youth Empowerment</h3>
+                      <p className="text-sm mt-1">Mentoring youth in STEM and design through hands-on innovation projects that promote skills and leadership.</p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent5">Mental Health & Expression</h3>
+                      <p className="text-sm mt-1">Supporting open conversations around emotional resilience, vulnerability, and artistic coping mechanisms.</p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent5">Sustainable Innovation</h3>
+                      <p className="text-sm mt-1">Advocating for green tech, climate-conscious design, and ethical decision-making in technology development.</p>
+                    </li>
+                  </ul>
+                </CardContent>
                 <CardContent>
                   <ul className="space-y-4">
                     <li>
@@ -161,12 +217,28 @@ const Human: React.FC = () => {
                   </ul>
                 </CardContent>
               </Card>
-              
+
               <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader className="flex flex-row items-center">
                   <Camera className="h-6 w-6 text-accent5 mr-2" />
                   <CardTitle>Creative Expression</CardTitle>
                 </CardHeader>
+                <CardContent>
+                  <ul className="space-y-4">
+                    <li>
+                      <h3 className="font-semibold text-accent5">Photography</h3>
+                      <p className="text-sm mt-1">Capturing moments and mood. Mostly urban textures, faces in motion, light in unusual places.</p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent5">Poetry & Prose</h3>
+                      <p className="text-sm mt-1">Writing reflective and metaphor-rich verses exploring identity, connection, and perception.</p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent5">Generative Art</h3>
+                      <p className="text-sm mt-1">Playing with algorithms to explore randomness, symmetry, and expression through digital patterns.</p>
+                    </li>
+                  </ul>
+                </CardContent>
                 <CardContent>
                   <ul className="space-y-4">
                     <li>

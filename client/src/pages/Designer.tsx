@@ -50,26 +50,11 @@ const Designer: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>UI/UX Design</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Visual Identity & Branding</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Interaction Design</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Design Systems</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Conceptual Design</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>UI/UX Design for Web & Mobile</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Visual Identity & Branding Systems</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Interaction & Experience Design</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Component Libraries & Design Systems</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Conceptual Design Thinking</span></li>
                   </ul>
                 </CardContent>
               </Card>
@@ -81,26 +66,11 @@ const Designer: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Figma & Adobe XD</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Adobe Creative Suite</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Sketch & InVision</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>3D Modeling Software</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Motion Graphics Tools</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Figma, Adobe XD</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Illustrator, Photoshop, Lightroom</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Canva, Inkscape</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Blender & SketchUp (3D Modeling)</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>DaVinci Resolve, CapCut</span></li>
                   </ul>
                 </CardContent>
               </Card>
@@ -114,26 +84,11 @@ const Designer: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Mobile App Design</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Web Interface Design</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Dashboard & Data Visualization</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Design Systems & Component Libraries</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Responsive & Adaptive Design</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Responsive Web Interfaces</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Mobile-First App Design</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Data Dashboards & Analytics UI</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Interactive & Immersive Experiences</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Cross-Platform Design Assets</span></li>
                   </ul>
                 </CardContent>
               </Card>
@@ -145,26 +100,10 @@ const Designer: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Brand Identity Development</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Visual Storytelling</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Art Direction</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Content Strategy</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div>
-                      <span>Visual Communication</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Brand Communication & Messaging</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Visual & Narrative Storytelling</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Content Planning & Campaigns</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent3 mr-2"></div><span>Design Mentorship & Team Leadership</span></li>
                   </ul>
                 </CardContent>
               </Card>
@@ -178,24 +117,21 @@ const Designer: React.FC = () => {
                 <CardContent>
                   <ul className="space-y-6">
                     <li>
-                      <h3 className="font-semibold text-accent3">Fintech App Redesign</h3>
+                      <h3 className="font-semibold text-accent3">Transit System UX Interface</h3>
                       <p className="text-sm mt-1">
-                        Completely redesigned the user interface and experience for a financial technology 
-                        application, resulting in a 40% increase in user engagement and improved conversion rates.
+                        Designed a clean and intuitive UI for the smart transit web app, improving usability and reducing friction for first-time users.
                       </p>
                     </li>
                     <li>
-                      <h3 className="font-semibold text-accent3">Corporate Brand Identity</h3>
+                      <h3 className="font-semibold text-accent3">Mazenel Brand System</h3>
                       <p className="text-sm mt-1">
-                        Developed comprehensive brand guidelines and visual identity system for a tech startup,
-                        including logo design, color palette, typography, and marketing materials.
+                        Developed a brand identity system for Mazenel Industries, including logo design, iconography, and internal documentation templates.
                       </p>
                     </li>
                     <li>
-                      <h3 className="font-semibold text-accent3">Interactive Data Dashboard</h3>
+                      <h3 className="font-semibold text-accent3">FPGA AOI GUI & Animations</h3>
                       <p className="text-sm mt-1">
-                        Designed an intuitive and visually appealing data dashboard for complex analytics,
-                        making information easily digestible while maintaining visual hierarchy and user flow.
+                        Created real-time interface and feedback animations for the FPGA AOI system, enhancing user control and visibility into sorting events.
                       </p>
                     </li>
                   </ul>

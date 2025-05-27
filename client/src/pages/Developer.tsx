@@ -50,26 +50,10 @@ const Developer: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>React & Next.js</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>Vue.js</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>TypeScript</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>Tailwind CSS</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>Animation Libraries</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>React & Next.js</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>Node.js + Express UI & Tailwind</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>Python (Flask UI)</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>HTML, CSS, JavaScript, Bootstrap</span></li>
                   </ul>
                 </CardContent>
               </Card>
@@ -81,26 +65,10 @@ const Developer: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>Node.js & Express</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>Python & Django</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>RESTful API Design</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>GraphQL</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>Serverless Architecture</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>Python (Django, FastAPI)</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>Node.js & Express</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>REST APIs & WebSocket Servers</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>AI & ML Integrations (YOLO, TensorFlow)</span></li>
                   </ul>
                 </CardContent>
               </Card>
@@ -114,26 +82,9 @@ const Developer: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>PostgreSQL</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>MongoDB</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>Redis</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>Firebase</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>AWS S3 & DynamoDB</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>MongoDB, Firebase</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>MySQL & PostgreSQL</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>Realtime Cloud Sync & LocalStorage</span></li>
                   </ul>
                 </CardContent>
               </Card>
@@ -145,26 +96,9 @@ const Developer: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>Docker & Kubernetes</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>CI/CD Pipelines</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>AWS & Azure</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>Terraform</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div>
-                      <span>Monitoring & Logging</span>
-                    </li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>Docker & Raspberry Pi Deployment</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>GitHub Actions & Bash Scripting</span></li>
+                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent2 mr-2"></div><span>Custom Linux Server Setup</span></li>
                   </ul>
                 </CardContent>
               </Card>
@@ -177,7 +111,7 @@ const Developer: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-6">
-                    <li>
+                                        <li>
                       <h3 className="font-semibold text-accent2">Interactive Data Visualization Platform</h3>
                       <p className="text-sm mt-1">
                         Built a real-time data visualization dashboard using React, D3.js, and WebSockets to display
@@ -192,10 +126,21 @@ const Developer: React.FC = () => {
                       </p>
                     </li>
                     <li>
-                      <h3 className="font-semibold text-accent2">Automated CI/CD Pipeline</h3>
+                      <h3 className="font-semibold text-accent2">Transit Optimization System</h3>
                       <p className="text-sm mt-1">
-                        Designed and implemented an end-to-end CI/CD pipeline using GitHub Actions, Jest, and 
-                        automated deployment to cloud infrastructure, reducing deployment time by 80%.
+                        Developed a web-based platform using Python, React, and Node.js for real-time route planning and schedule optimization with ML-based dispatch.
+                      </p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent2">FPGA Optical Inspection System</h3>
+                      <p className="text-sm mt-1">
+                        Engineered a defect detection and rejection system using YOLOv5, Raspberry Pi + FPGA board integration, with real-time GUI and auto-sorting.
+                      </p>
+                    </li>
+                    <li>
+                      <h3 className="font-semibold text-accent2">M.A.A.S & M.A.A.P Systems</h3>
+                      <p className="text-sm mt-1">
+                        Built intelligent B2B systems to connect manufacturers, service providers, and innovators using a dynamic recommendation and collaboration engine.
                       </p>
                     </li>
                   </ul>

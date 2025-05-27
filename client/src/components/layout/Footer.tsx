@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col items-center md:items-end order-2 md:order-2">
             <div className="flex space-x-6 mb-3">
               <a 
-                href="https://linkedin.com" 
+                href="https://linkedin.com/in/elvin-mazwimairi/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-white text-opacity-70 hover:text-opacity-100 transition"
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
               </a>
 
               <a 
-                href="https://github.com" 
+                href="https://github.com/elvin2words" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-white text-opacity-70 hover:text-opacity-100 transition"
@@ -50,7 +50,7 @@ const Footer: React.FC = () => {
               </a>
 
               <a 
-                href="https://twitter.com" 
+                href="https://x.com/young_mazwi" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-white text-opacity-70 hover:text-opacity-100 transition"
@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
               </a>
 
               <a 
-                href="mailto:contact@example.com" 
+                href="mailto:elvinmazwimairi@gmail.com" 
                 className="text-white text-opacity-70 hover:text-opacity-100 transition"
                 aria-label="Email"
               >
@@ -71,14 +71,14 @@ const Footer: React.FC = () => {
             {/* IqalInc attribution */}
             <div className="flex items-center text-white text-opacity-50 text-xs">
               <span>Made by</span>
-              <span className="mx-1 font-semibold">IqalInc</span>
-              <Code className="w-3 h-3 ml-1" />
+              <span className="mx-1 font-semibold">@young_mazwi × IqalInc.</span>
+              {/* <Code className="w-3 h-3 ml-1" /> */}
             </div>
           </div>
         </div>
 
         <div className="mt-8 pt-6 border-t border-white border-opacity-10 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-white text-opacity-50 text-sm text-center md:text-left">© {new Date().getFullYear()} Elvin Mazwimairi. All rights reserved.</p>
+          <p className="text-white text-opacity-50 text-sm text-center md:text-left">© {new Date().getFullYear()} Elvin E. Mazwimairi. All rights reserved.</p>
 
           <div className="mt-4 md:mt-0 flex flex-wrap justify-center space-x-6">
             <Link href="#" className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition">
