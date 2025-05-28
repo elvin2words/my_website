@@ -5,3 +5,7 @@ server/public
 vite.config.ts.*
 *.tar.gz
 desFlow
+attached_assets
+notes
+steps
+run
