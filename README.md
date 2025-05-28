@@ -1,6 +1,6 @@
 # Elvin Mazwimairi Portfolio Site
 
-## Overview
+## Overview 
 
 This project is a personal portfolio website for Elvin Mazwimairi, showcasing different aspects of his professional identity. It's built as a single-page application with React on the frontend and a minimal Express backend. The site has multiple sections that represent different facets of the individual's identity: Electrical Engineer, Systems Developer, Artistic Designer, Technopreneur, and Human Being.
 
@@ -32,7 +32,6 @@ The application follows a modern web application architecture:
 
 1. **Deployment** :
 
-* Configuration for Replit deployment via the `.replit` file
 * Set up to build the frontend and serve it from the backend
 
 ## Key Components
@@ -160,9 +159,6 @@ The application is configured for deployment on Replit:
 ---
 
 ---
-
-
-
 
 This is a personal portfolio website built as a modern full-stack application. Here's the comprehensive breakdown:
 

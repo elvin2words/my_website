@@ -29,7 +29,7 @@ const Home: React.FC = () => {
                   , who also dabbles in
                 </p>
                 <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight mb-5"> */}
-                  <span className="text-accent3"> Systems Development</span>, <span className="text-accent4"> Arts & Design</span>, 
+                  <span className="text-accent3"> Systems Development</span>, <span className="text-accent4"> Design</span>, 
                   <span className="text-accent2"> Technopreneurship</span> and <span className="text-accent3"> Others</span>.
                 </h1>
 

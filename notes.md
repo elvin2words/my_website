@@ -1,4 +1,4 @@
-# **Modern full-stack TypeScript React application**
+# **Modern full-stack TypeScript React application** 
 
 Part of a **monorepo** or **full-stack web application** using libraries such as:
 
@@ -657,7 +657,6 @@ project-root/
 ---
 
 ---
-
 
 # **Complete backend setup guide** from scratch using:
 

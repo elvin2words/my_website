@@ -9,10 +9,6 @@ mkdir src/{pages,components,hooks,lib}
 npm install react-router-dom
 npm run dev
 
-cd ..
-git --version
-git init
-
 mkdir backend
 cd backend
 npm init -y
@@ -31,12 +27,9 @@ npm run dev
 git init
 
 git add .
-git commit -m "messy"
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
+git commit -m "Updates"
 git config --global user.email eemazwi2@gmail.com
 git config --global user.name "Elvin Mazwimairi"
-git commit -m "messy"
 git remote add origin https://github.com/elvin2words/my_website.git
 git branch -M main
 git push -u origin main

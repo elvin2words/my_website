@@ -10,6 +10,7 @@
 
 - Search - AI powered referencing to the site and everything else
 - PortfolioCC Integration for CodeCircle Portfolio
+- Make identity cards clickable anywhere
 
 
 # Bugs
