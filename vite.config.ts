@@ -28,4 +28,8 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
+    server: {
+    host: true, // Bind to 0.0.0.0 for external access
+    // allowedHosts: ["3e11-102-213-42-248.ngrok-free.app"], // Allow ngrok host
+  }, 
 });

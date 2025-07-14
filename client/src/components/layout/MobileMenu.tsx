@@ -37,11 +37,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       </Button>
       
       <Link 
-        href="/developer" 
+        href="/codeCircle" 
         className="text-xl font-medium py-3 px-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition"
         onClick={onClose}
       >
-        <span className={location === '/developer' ? 'text-accent2' : ''}>
+        <span className={location === '/codeCircle' ? 'text-accent2' : ''}>
           CodeCircle
         </span>
       </Link>

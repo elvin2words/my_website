@@ -14,6 +14,11 @@ import Technopreneur from "@/pages/Technopreneur";
 import Human from "@/pages/Human";
 import NotFound from "@/pages/not-found";
 import Admin from './pages/Admin';
+import CodeCirclePage from "./pages/CodeCircle";
+// import BizCircle from "./pages/BusinessCircle";
+// import DesCircle from "./pages/DesignCircle";
+// import ViewAll from "./pages/ProjectShowcase";
+
 
 // Layout
 import Header from "@/components/layout/Header";
@@ -32,6 +37,10 @@ function Router() {
           <Route path="/technopreneur" component={Technopreneur} />
           <Route path="/human" component={Human} />
           <Route path="/admin" component={Admin} />
+          <Route path="/codecircle" component={CodeCirclePage} />
+          {/* <Route path="/bizcircle" component={BizCircle} /> */}
+          {/* <Route path="/descircle" component={DesCircle} /> */}
+          {/* <Route path="/projects" component={ViewAll} /> */}
           <Route component={NotFound} />
         </Switch>
       </div>

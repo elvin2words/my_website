@@ -1,9 +1,17 @@
 import React from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Link } from 'wouter';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import BackgroundEffect from '@/components/home/BackgroundEffect';
+
+const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.6 }
+};
 
 const Engineer: React.FC = () => {
   return (
@@ -11,9 +19,14 @@ const Engineer: React.FC = () => {
       <BackgroundEffect />
 
       <div className="relative z-10">
-        <main className="pt-24 pb-16 px-4 md:px-0 flex flex-col items-center min-h-screen">
+        <main id="engineer" className="pt-24 pb-2 px-4 md:px-0 flex flex-col items-center min-h-screen">
           <div className="container mx-auto max-w-7xl">
-            <div className="flex items-center justify-between mb-8">
+
+            {/* Nav + Title */}
+            <motion.div 
+              {...fadeUp}
+              className="flex items-center justify-between mb-12"
+            >
               <Link href="/" className="w-1/3 text-left">
                 <Button variant="ghost" className="text-accent1 hover:text-accent1 flex items-center gap-2">
                   <ArrowLeft className="h-5 w-5" />
@@ -22,12 +35,10 @@ const Engineer: React.FC = () => {
               </Link>
 
               <div className="w-1/3 text-center">
-                <h1 className="text-2xl md:text-3xl font-poppins font-bold text-accent1">
+                <h1 className="text-3xl md:text-4xl font-bold font-poppins text-accent1">
                   Electrical Engineer
                 </h1>
-                <p className="text-sm md:text-base opacity-80 mt-1">
-                  Technical & Academic Identity
-                </p>
+                <p className="text-base md:text-lg opacity-80 mt-1">Technical & Academic Identity</p>
               </div>
 
               <div className="w-1/3 text-right">
@@ -38,10 +49,11 @@ const Engineer: React.FC = () => {
                   </Button>
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+            {/* Education & Skills */}
+            <motion.div {...fadeUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader>
                   <CardTitle>Education</CardTitle>
                 </CardHeader>
@@ -49,105 +61,125 @@ const Engineer: React.FC = () => {
                   <ul className="space-y-4">
                     <li>
                       <h3 className="font-semibold">BSc (Hons) in Electrical Engineering</h3>
-                      <p className="opacity-70">University of Zimbabwe, 2019-2024</p>
-                      <p className="text-sm mt-1 text-white/70">Upper Second Class – Focused on Power Systems, Renewable Energy, and Embedded Systems</p>
+                      <p className="opacity-70">University of Zimbabwe, 2019–2024</p>
+                      <p className="text-sm mt-1 text-white/70">
+                        Upper Second Class Honours - with a concentration in Power Systems, Renewable Energy Integration, and Embedded Control Systems.
+                      </p>
                     </li>
                   </ul>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+              <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader>
                   <CardTitle>Technical Skills</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent1 mr-2"></div><span>Power Systems & Control Design</span></li>
-                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent1 mr-2"></div><span>MATLAB/Simulink, AutoCAD Electrical, ETAP, PowerFactory</span></li>
-                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent1 mr-2"></div><span>Embedded Systems & FPGA (Vivado, VHDL)</span></li>
-                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent1 mr-2"></div><span>Python, C/C++, Altium Designer</span></li>
-                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent1 mr-2"></div><span>Renewable Energy Integration & BESS</span></li>
-                    <li className="flex items-center"><div className="h-2 w-2 rounded-full bg-accent1 mr-2"></div><span>Project Management & Technical Documentation</span></li>
+                    {[
+                      "Electrical Power Systems Design & Control (Grid + Microgrid)",
+                      "Simulation Tools: MATLAB/Simulink, PowerFactory, ETAP, AutoCAD Electrical",
+                      "Embedded Systems Design: STM32, VHDL, Vivado, Altium Designer, KiCAD",
+                      "Programming: Python, C/C++, TypeScript, React, Node.js",
+                      "Battery Management Systems (BMS) & Renewable Integration",
+                      "Project Execution: Technical Docs, Standards Compliance (IEEE/NEC)"
+                    ].map((skill, index) => (
+                      <li key={index} className="flex items-center">
+                        <div className="h-4 w-2 rounded-full bg-accent1 mr-2" />
+                        <span>{skill}</span>
+                      </li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
 
-            <div className="mb-12">
-              <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+            {/* Projects */}
+            <motion.div {...fadeUp} className="mb-12">
+              <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader>
                   <CardTitle>Notable Projects</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-6">
-                    <li>
-                      <h3 className="font-semibold text-accent1">BESS Optimization for Grid Stability</h3>
-                      <p className="text-sm mt-1 text-white/70">
-                        Designed and simulated an FPGA-based control system to optimize battery energy storage system (BESS) performance in renewables-integrated grids using MATLAB/Simulink and DIgSILENT PowerFactory.
-                      </p>
-                    </li>
-                    <li>
-                      <h3 className="font-semibold text-accent1">Portable Off-Grid Power System</h3>
-                      <p className="text-sm mt-1 text-white/70">
-                        Developed a solar + AC charged power backup system with integrated BMS and user interfaces using Altium and KiCAD.
-                      </p>
-                    </li>
-                    <li>
-                      <h3 className="font-semibold text-accent1">Automated Optical Inspection System</h3>
-                      <p className="text-sm mt-1 text-white/70">
-                        Created a YOLOv5+FPGA-based defect detection and rejection system with GUI and servo motor-driven sorting mechanism for packaging quality control.
-                      </p>
-                    </li>
-                    <li>
-                      <h3 className="font-semibold text-accent1">Transit Optimization System</h3>
-                      <p className="text-sm mt-1 text-white/70">
-                        Built a real-time smart public transportation system using Python, Node.js, and React with ML-based dispatch optimization.
-                      </p>
-                    </li>
+                    {[
+                      {
+                        title: "BESS Optimization for Grid Stability",
+                        description:
+                          "Engineered an FPGA-based real-time controller for battery energy storage systems (BESS) to enhance grid frequency and voltage stability in renewables-integrated environments, simulated using MATLAB/Simulink and PowerFactory."
+                      },
+                      {
+                        title: "Portable Off-Grid Power System",
+                        description:
+                          "Designed a compact solar-AC hybrid off-grid power system with integrated battery management, PCB layouts in Altium/KiCAD, and user-centric interface elements for field deployment."
+                      },
+                      {
+                        title: "Automated Optical Inspection System",
+                        description:
+                          "Built a real-time FPGA-assisted optical inspection system leveraging YOLOv5 for defect classification, integrated with servo-based rejection hardware and a custom GUI for packaging quality assurance."
+                      },
+                      {
+                        title: "Transit Optimization System",
+                        description:
+                          "Developed a smart city-ready public transportation platform using Python, Node.js, and React with machine-learning-driven dispatch and routing optimization."
+                      }
+                    ].map((proj, i) => (
+                      <li key={i}>
+                        <h3 className="font-semibold text-accent1">{proj.title}</h3>
+                        <p className="text-sm mt-1 text-white/70">{proj.description}</p>
+                      </li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
 
-            <div className="mb-8">
-              <Card className="bg-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+            {/* Experience */}
+            <motion.div {...fadeUp} className="mb-10">
+              <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader>
                   <CardTitle>Professional Experience</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-6">
-                    <li>
-                      <h3 className="font-semibold">Systems Design Engineer</h3>
-                      <p className="opacity-70">Mazenel Industries, Oct 2024 – Present</p>
-                      <p className="text-sm mt-1 text-white/70">
-                        Designed and implemented renewable energy systems, PV array layouts, and battery storage integration compliant with IEEE, NEC, and local standards.
-                      </p>
-                    </li>
-                    <li>
-                      <h3 className="font-semibold">Electrical Engineering Intern</h3>
-                      <p className="opacity-70">Delta Beverages, Mar 2023 – Aug 2023</p>
-                      <p className="text-sm mt-1 text-white/70">
-                        Supported power system maintenance, fault diagnostics, and plant equipment reporting in a fast-paced industrial environment.
-                      </p>
-                    </li>
-                    <li>
-                      <h3 className="font-semibold">Motor Rewinding Technician Assistant</h3>
-                      <p className="opacity-70">Elgen Electrical, Jan 2023 – Mar 2023</p>
-                      <p className="text-sm mt-1 text-white/70">
-                        Carried out diagnostic testing, assisted in motor/generator dismantling and rewinding, and ensured precision insulation.
-                      </p>
-                    </li>
-                    <li>
-                      <h3 className="font-semibold">Projects R&D Officer</h3>
-                      <p className="opacity-70">Enactus UZ, Aug 2021 – Aug 2022</p>
-                      <p className="text-sm mt-1 text-white/70">
-                        Researched, designed, and supported community impact projects through feasibility assessments and prototype development.
-                      </p>
-                    </li>
+                    {[
+                      {
+                        title: "Systems Design Engineer",
+                        org: "Mazenel Industries",
+                        time: "Oct 2024 – Present",
+                        desc: "Spearheading design and deployment of renewable energy systems — including PV array layouts, BESS integration, and regulatory-compliant implementations (IEEE, NEC) — for commercial and industrial clients."
+                      },
+                      {
+                        title: "Electrical Engineering Intern",
+                        org: "Delta Beverages",
+                        time: "Mar 2023 – Aug 2023",
+                        desc: "Assisted in power system diagnostics, predictive maintenance, and operational reporting in a high-demand industrial manufacturing facility."
+                      },
+                      {
+                        title: "Motor Rewinding Technician Assistant",
+                        org: "Elgen Electrical",
+                        time: "Jan 2023 – Mar 2023",
+                        desc: "Supported motor/generator rewinding operations with precision testing, coil assembly, and insulation verification under mentorship of senior technicians."
+                      },
+                      {
+                        title: "Projects R&D Officer",
+                        org: "Enactus UZ",
+                        time: "Aug 2021 – Aug 2022",
+                        desc: "Led research and rapid prototyping efforts for sustainable community solutions, applying systems thinking to social innovation and environmental resilience."
+                      }
+                      
+                    ].map((job, i) => (
+                      <li key={i}>
+                        <h3 className="font-semibold">{job.title}</h3>
+                        <p className="opacity-70">{job.org}, {job.time}</p>
+                        <p className="text-sm mt-1 text-white/70">{job.desc}</p>
+                      </li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
+
           </div>
         </main>
       </div>

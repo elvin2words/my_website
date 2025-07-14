@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { Linkedin, Github, Twitter, Mail, Code } from 'lucide-react';
+import ContactPopupWrapper from '@/pages/ContactPopupWrapper';
+
 
 const Footer: React.FC = () => {
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer className="bg-secondary bg-opacity-70 backdrop-blur-md py-8 px-6 md:px-12 mt-auto relative z-10">
       {/* Mobile Navigation Links (only visible on small screens) */}
@@ -87,14 +104,46 @@ const Footer: React.FC = () => {
 
             <Link href="#" className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition">
               Terms of Service
-            </Link>
+            </Link> 
 
-            <Link href="#" className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition">
+            {isPopupOpen && 
+              <ContactPopupWrapper onClose={
+                () => setIsPopupOpen(false)} />}
+            <Link  
+              className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsPopupOpen(true);
+                }}
+                >
               Contact
             </Link>
           </div>
         </div>
       </div>
+
+      {/* Scroll to Top Button */}
+      {/* <button
+        onClick={scrollToTop}
+        className={`fixed bottom-20 sm:bottom-4 right-4 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50 ${
+          showScrollTop ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        aria-label="Scroll to top"
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 10l7-7m0 0l7 7m-7-7v18"
+          />
+        </svg>
+      </button> */}
     </footer>
   );
 };
