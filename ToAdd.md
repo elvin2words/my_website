@@ -30,6 +30,7 @@
 - Page for Design Circle
 - Page for Biz Circle
 - SeeMyWork Page - All Circles
+- 
 
 # Features
 
@@ -51,6 +52,7 @@
   - Include links to live demos / GitHub / Behance in future version.
   - Add mini  **"status chips"** : `beta`, `shipped`, `R&D`, `in prototype`
   - Make project cards **collapsible or modal-powered**
+  - 
 
 # Bugs
 
@@ -60,3 +62,4 @@
 - Review info on each Identity Card
 - Fix contact popup leftmost margin in footer
 - Fix components rendering in the pages, make them smoother - Animate the Section Entrances : Add `framer-motion` to animate cards on scroll.
+-
