@@ -38,6 +38,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       
       <Link 
         href="/codeCircle" 
+        // onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} 
         className="text-xl font-medium py-3 px-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition"
         onClick={onClose}
       >
@@ -48,6 +49,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       
       <Link 
         href="/designer" 
+        // onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} 
         className="text-xl font-medium py-3 px-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition"
         onClick={onClose}
       >
@@ -58,6 +60,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       
       <Link 
         href="/technopreneur" 
+        // onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} 
         className="text-xl font-medium py-3 px-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition"
         onClick={onClose}
       >

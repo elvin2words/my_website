@@ -8,7 +8,7 @@ const ContactPopup = ({ onLinkClick }: { onLinkClick: () => void }) => {
   const divider = <hr className="border-t border-gray-300 dark:border-gray-700" />;
   return (
     <div className="bg-white dark:bg-zinc-900 text-black text-center justify-center dark:text-white rounded-lg shadow-lg p-4 w-64 z-50">
-      <a href="https://wa.me/263712104928" target="_blank" rel="noopener noreferrer"   
+      <a href="https://wa.me/263783074722" target="_blank" rel="noopener noreferrer"   
         onClick={onLinkClick} className={`${linkStyle} text-green-600`} >
         <MessageSquare size={18} />
         WhatsApp
@@ -20,7 +20,7 @@ const ContactPopup = ({ onLinkClick }: { onLinkClick: () => void }) => {
         Email Me
       </a>
       {divider}
-      <a href="tel:+263712104928" onClick={onLinkClick}
+      <a href="tel:+263783074722" onClick={onLinkClick}
         className={`${linkStyle} text-gray-700 dark:text-gray-300`} >
         <Phone size={18} />
         Call Me

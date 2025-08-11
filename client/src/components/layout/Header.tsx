@@ -126,7 +126,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center w-full md:hidden">
           {/* Logo and text */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center text-xl font-poppins font-bold tracking-wide">
+            <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center text-xl font-poppins font-bold tracking-wide">
               <Cat className="w-5 h-5 mr-2" />
               <span>{displayText}</span>
               <span className={`ml-1 ${isTyping ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}>|</span>
@@ -170,7 +170,7 @@ const Header: React.FC = () => {
         <div className="hidden md:grid grid-cols-3 items-center w-full mx-auto max-w-7xl relative">
           {/* Column 1: Logo (Left aligned) */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center text-xl font-poppins font-bold tracking-wide">
+            <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center text-xl font-poppins font-bold tracking-wide">
               <Cat className="w-6 h-6 mr-2" />
               <span>{displayText}</span>
               <span className={`ml-1 ${isTyping ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}>|</span>
@@ -191,10 +191,10 @@ const Header: React.FC = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-primary border border-white border-opacity-20 p-2">
                   <DropdownMenuItem className="text-white hover:text-accent2 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/developer/codecircle">Portfolio</Link>
+                    <Link href="/developer/codecircle" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Portfolio</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="text-white hover:text-accent2 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/developer/journey">Journey</Link>
+                    <Link href="/developer/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Journey</Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -213,10 +213,10 @@ const Header: React.FC = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-primary border border-white border-opacity-20 p-2">
                   <DropdownMenuItem className="text-white hover:text-accent3 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/designer/portfolio">Portfolio</Link>
+                    <Link href="/designer/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Portfolio</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="text-white hover:text-accent3 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/designer/journey">Journey</Link>
+                    <Link href="/designer/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Journey</Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -235,10 +235,10 @@ const Header: React.FC = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="bg-primary border border-white border-opacity-20 p-2">
                   <DropdownMenuItem className="text-white hover:text-accent4 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/technopreneur/portfolio">Portfolio</Link>
+                    <Link href="/technopreneur/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Portfolio</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="text-white hover:text-accent4 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/technopreneur/journey">Journey</Link>
+                    <Link href="/technopreneur/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Journey</Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

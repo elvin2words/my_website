@@ -19,10 +19,39 @@ import CodeCirclePage from "./pages/CodeCircle";
 // import DesCircle from "./pages/DesignCircle";
 // import ViewAll from "./pages/ProjectShowcase";
 
+import React, { useRef, useState, useEffect } from 'react';
+import { ArrowUp } from 'lucide-react';
 
 // Layout
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+
+
+// Smooth scroll to top button
+const ScrollToTop = () => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => setVisible(window.scrollY > 300);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  return visible ? (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      className=" z-50 fixed bottom-14 right-6 bg-accent2 text-white p-3 rounded-full shadow-md hover:scale-105 transition will-change-transform translate-z-0 backface-hidden"
+    >
+      <ArrowUp className="h-5 w-5" />
+      {/* <span className="sr-only">Scroll to top</span> */}
+    </button>
+  ) : null;
+};
+
 
 function Router() {
   return (
@@ -45,6 +74,8 @@ function Router() {
         </Switch>
       </div>
       <Footer />
+            {/* Scroll to top button */}
+      <ScrollToTop />   
     </div>
   );
 }
