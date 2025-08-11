@@ -126,7 +126,7 @@ const Human: React.FC = () => {
               </motion.div>
 
               {/* Learning & Growth */}
-              <motion.div variants={fadeUpItem}>
+              {/* <motion.div variants={fadeUpItem}> */}
                 <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                   <CardHeader className="flex flex-row items-center">
                     <Book className="h-6 w-6 text-accent5 mr-2" />
@@ -149,7 +149,7 @@ const Human: React.FC = () => {
                     ))}
                   </CardContent>
                 </Card>
-              </motion.div>
+              {/* </motion.div> */}
             </motion.div>
 
             <motion.div
@@ -160,7 +160,7 @@ const Human: React.FC = () => {
               viewport={{ once: true }}
             >
               {/* Causes I Support */}
-              <motion.div variants={fadeUpItem}>
+              {/* <motion.div variants={fadeUpItem}> */}
                 <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                   <CardHeader className="flex flex-row items-center">
                     <Globe className="h-6 w-6 text-accent5 mr-2" />
@@ -183,7 +183,7 @@ const Human: React.FC = () => {
                     ))}
                   </CardContent>
                 </Card>
-              </motion.div>
+              {/* </motion.div> */}
 
               {/* Creative Expression */}
               <motion.div variants={fadeUpItem}>

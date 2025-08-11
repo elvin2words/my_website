@@ -91,7 +91,7 @@ const Designer: React.FC = () => {
               </motion.div>
 
               {/* Tools & Visual Systems */}
-              <motion.div variants={fadeUpItem}>
+              {/* <motion.div variants={fadeUpItem}> */}
                 <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                   <CardHeader className="flex flex-row items-center">
                     <Layout className="h-6 w-6 text-accent3 mr-2" />
@@ -114,7 +114,7 @@ const Designer: React.FC = () => {
                     </motion.ul>
                   </CardContent>
                 </Card>
-              </motion.div>
+              {/* </motion.div> */}
             </motion.div>
             
             <motion.div

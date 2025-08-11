@@ -14,7 +14,7 @@ const ContactPopup = ({ onLinkClick }: { onLinkClick: () => void }) => {
         WhatsApp
       </a>
       {divider}
-      <a href="mailto:eemazwi2@gmail.com" onClick={onLinkClick}
+      <a href="mailto:elvinmazwimairi@gmail.com" onClick={onLinkClick}
         className={`${linkStyle} text-blue-600`} >
         <Mail size={18} />
         Email Me
