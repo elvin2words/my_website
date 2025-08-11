@@ -124,6 +124,31 @@ const IdentityCard: React.FC<IdentityCardProps> = ({
 export default IdentityCard;
 
 
+// import React from "react";
+
+// interface IdentityCardProps {
+//   identity: string;
+//   bulletPoints: string[];
+// }
+
+// const IdentityCard: React.FC<IdentityCardProps> = ({ identity, bulletPoints }) => {
+//   return (
+//     <div className="bg-white dark:bg-neutral-900 shadow-lg rounded-2xl p-4 flex flex-col justify-between w-full h-full">
+//       <h3 className="text-xl font-bold capitalize mb-2">{identity}</h3>
+//       <ul className="list-disc pl-5 space-y-1 text-sm text-neutral-700 dark:text-neutral-300">
+//         {bulletPoints.map((point, i) => (
+//           <li key={i}>{point}</li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+
+// export default IdentityCard;
+
+
+
+
 // import React, { useRef, useEffect, useState } from 'react';
 // import { Link } from 'wouter';
 // import { ArrowRight } from 'lucide-react';
@@ -274,6 +299,50 @@ export default IdentityCard;
 //         )}
 //       </motion.div>
 //     </Link>
+//   );
+// };
+
+// export default IdentityCard;
+
+
+
+
+
+// import React from "react";
+// import { motion } from "framer-motion";
+
+// interface IdentityCardProps {
+//   identity: string;
+//   bulletPoints: string[];
+//   delay?: number;
+// }
+
+// const IdentityCard: React.FC<IdentityCardProps> = ({ identity, bulletPoints, delay = 0 }) => {
+//   return (
+//     <motion.div
+//       className="bg-white dark:bg-neutral-900 shadow-lg rounded-2xl p-4 flex flex-col justify-between w-full h-full"
+//       initial={{ opacity: 0, y: 30 }}
+//       animate={{ opacity: 1, y: 0 }}
+//       exit={{ opacity: 0, y: 30 }}
+//       transition={{ type: "spring", stiffness: 300, damping: 20, delay }}
+//       whileHover={{
+//         scale: 1.05,
+//         boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)"
+//       }}
+//       whileTap={{
+//         scale: 0.98
+//       }}
+//       drag={typeof window !== "undefined" && window.innerWidth > 1024 ? "x" : false}
+//       dragConstraints={{ left: -10, right: 10 }}
+//       dragElastic={0.1}
+//     >
+//       <h3 className="text-xl font-bold capitalize mb-2">{identity}</h3>
+//       <ul className="list-disc pl-5 space-y-1 text-sm text-neutral-700 dark:text-neutral-300">
+//         {bulletPoints.map((point, i) => (
+//           <li key={i}>{point}</li>
+//         ))}
+//       </ul>
+//     </motion.div>
 //   );
 // };
 

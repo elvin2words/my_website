@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import ContactPopupWrapper from './ContactPopupWrapper';
 import SkillPills from '@/components/home/SkillPills';
 import { Link } from 'wouter';
-import { Download, ArrowUp } from 'lucide-react';
+import { Download, ArrowUp, FolderOpen, } from 'lucide-react';
 
 
 // Lazy loader for heavy sections
@@ -88,6 +88,7 @@ const Home: React.FC = () => {
               {/* See My Work – always visible */}
               <Link to="/projects" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="w-full sm:w-1/2">
                 <button className="w-full bg-accent2 text-white px-5 py-2 rounded-lg shadow hover:scale-105  hover:text-black transition will-change-transform translate-z-0">
+                  {/* <FolderOpen className="mr-2 h-5 w-5" /> */}
                   See My Work
                 </button>
               </Link>
@@ -110,7 +111,7 @@ const Home: React.FC = () => {
 
               {/* PDF Resume */}
               <Link
-                to="/cv/elvin-mazwimairi-cv.pdf"
+                to="/assets/resume.pdf"
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} 
                 className="w-full sm:w-1/2"
               >
@@ -118,6 +119,7 @@ const Home: React.FC = () => {
                   className="w-full border border-white bg-green-500 px-5 py-2 rounded-lg text-black hover:bg-cyan-600 hover:text-black transition will-change-transform translate-z-0"
                 >
                   {/* <Document className="mr-2" size={18} /> */}
+                  {/* <FileText className="mr-2 h-5 w-5" />  */}
                   PDF Resume
                 </button>
               </Link>
