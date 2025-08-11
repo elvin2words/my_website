@@ -41,7 +41,15 @@ const LazySection: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 const Home: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [isSmallPopupVisible, setIsSmallPopupVisible] = React.useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
+  // Close modal when clicking outside popup content
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      setIsPopupOpen(false);
+    }
+  };
   return (
     <>
       {/* Background effect isolated to its own layer */}
@@ -136,18 +144,16 @@ const Home: React.FC = () => {
                   Contact Elvin
                 </button>
               </a> */}
-              {isPopupOpen && 
-                <ContactPopupWrapper onClose={() => setIsPopupOpen(false)} />}
-              <button 
-                className="w-full sm:hidden border  border-white px-5 py-2 rounded-lg shadow text-white hover:bg-white hover:scale-105 hover:text-black transition will-change-transform translate-z-0"
-                  // className="w-full bg-accent2 text-white px-5 py-2 rounded-lg shadow hover:scale-105  hover:text-black transition"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setIsPopupOpen(true);
-                }}
+              
+              {/* Contact Me button - only on small screens */}
+              <button
+                className="w-full sm:hidden border border-white px-5 py-2 rounded-lg shadow text-white hover:bg-white hover:scale-105 hover:text-black transition will-change-transform translate-z-0"
+                onClick={() => setIsPopupOpen(true)}
+                ref={buttonRef}
               >
                 Contact Me
               </button>
+
               {/* Hire Me – only visible on medium+ screens */}
               <Link to="/hire" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="hidden sm:block w-full sm:w-1/2">
                 <button className="w-full border border-white bg-slate-400 px-5 py-2 rounded-lg text-black hover:bg-white hover:text-black transition will-change-transform translate-z-0">
@@ -169,6 +175,16 @@ const Home: React.FC = () => {
                 </button>
               </Link>
             </div>
+
+            {/* Popup modal overlay & content */}
+            {/* {isPopupOpen && (
+              <div
+                onClick={handleOverlayClick}
+                className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center p-4"
+              >
+                <ContactPopupWrapper onClose={() => setIsPopupOpen(false)} />
+              </div>
+            )} */}
 
 
             {/* <motion.div
