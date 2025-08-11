@@ -96,9 +96,10 @@ const Footer: React.FC = () => {
 
               {/* IqalInc attribution */}
               <div className="flex items-center text-white text-opacity-50 text-xs">
+                {/* <Code className="w-3 h-3" /> */}
                 <span>Made by</span>
-                <span className="mx-1 font-semibold"> @ <a href="https://instagram.com/young_mazwi" color='blue' target="_blank">young_mazwi</a> × <a href="https://iqal.co.zw/" color='blue' target="_blank" >IqalInc</a>.</span>
-                {/* <Code className="w-3 h-3 ml-1" /> */}
+                <span className="mx-1 font-semibold text-cyan-400"><a href="https://iqal.co.zw/" color='blue' target="_blank" >IqalInc</a></span> @ <span className="mx-1 font-semibold text-cyan-400"><a href="https://instagram.com/young_mazwi" color='blue' target="_blank">young_mazwi</a></span>
+                {/* <Code className="w-3 h-3" /> */}
               </div>
             </div>
           </div>
@@ -117,7 +118,6 @@ const Footer: React.FC = () => {
                 Terms of Service
               </Link> 
 
-              {/* ake the following open a proper popup in the window  */}
               <Link
                   href="#"
                   onClick={(e) => {
@@ -131,53 +131,14 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Scroll to Top Button */}
-        {/* <button
-          onClick={scrollToTop}
-          className={`fixed bottom-20 sm:bottom-4 right-4 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-50 ${
-            showScrollTop ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-          aria-label="Scroll to top"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
-          </svg>
-        </button> */}
       </footer>
-      {/* Modal popup overlay */}
+
       {isPopupOpen && (
         <div
           onClick={handleBackdropClick}
-          className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"
-          aria-modal="true"
-          role="dialog"
-          tabIndex={-1}
+          className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center p-4"
         >
-          <div
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
-            className="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative"
-          >
-            <button
-              aria-label="Close modal"
-              onClick={() => setIsPopupOpen(false)}
-              className="absolute top-3 right-3 text-gray-700 hover:text-gray-900"
-            >
-              &#x2715;
-            </button>
-            {/* Render your contact popup content */}
-            <ContactPopupWrapper onClose={() => setIsPopupOpen(false)} />
-          </div>
+          <ContactPopupWrapper onClose={() => setIsPopupOpen(false)} />
         </div>
       )}
     </>
