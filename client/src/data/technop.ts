@@ -1,5 +1,8 @@
 // src/data/technop.ts
 
+import { ArrowLeft, ArrowRight, Lightbulb, TrendingUp, Users,
+  BarChart, Target, } from 'lucide-react';
+
 export const role = {
   title: "Budding Technopren",
   subtitle: "Innovation & Venture Building",
@@ -9,6 +12,17 @@ export const visionStatement =
   "Driving forward purposeful innovation through smart systems, creative engineering, and human-centered technology across energy, AI, automation, and digital ecosystems.";
 
 export const coreCapabilities = {
+    // {
+  //   icon: <Lightbulb className="h-6 w-6 text-accent4 mr-2" />,
+  //   title: 'Entrepreneurial Mindset',
+  //   items: [
+  //     'Systems Thinking & Innovation',
+  //     'Lean Startup Methodology',
+  //     'Venture Design Across Energy, AI, and AgTech',
+  //     'Strategic Ideation & Planning',
+  //     'Experimentation + Prototyping Culture',
+  //   ],
+  // },
   entrepreneurialMindset: [
     "Systems Thinking & Innovation",
     "Lean Startup Methodology",
@@ -67,6 +81,7 @@ export const ventures = [
       "Co-led youth-centered innovation projects fostering sustainable tech, social entrepreneurship, and community transformation through hands-on initiatives.",
   },
 ];
+
 export const notableProjects = [
   {
     title: "PowerHive",

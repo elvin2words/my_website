@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, Share2, QrCode } from 'lucide-react';
-import QRCode from 'qrcode.react'; // npm install qrcode.react
+import { QRCodeCanvas } from 'qrcode.react'; // npm install qrcode.react
 import { saveAs } from 'file-saver'; // install file-saver
 
 const contactInfo = {
   engineer: {
-    name: 'Your Name',
-    phone: '+1234567890',
-    email: 'engineer@example.com',
+    name: 'Elvin E. Mazwimairi',
+    phone: '+263783074722',
+    email: 'elvinmazwimairi@gmail.com',
     linkedin: 'https://linkedin.com/in/engineer',
   },
   designer: {
@@ -32,13 +32,14 @@ const contactInfo = {
 };
 
 function generateVCard(info) {
-  return `BEGIN:VCARD
-VERSION:3.0
-FN:${info.name}
-TEL;TYPE=CELL:${info.phone || ''}
-EMAIL:${info.email}
-URL:${info.website || info.portfolio || ''}
-END:VCARD`;
+  return `
+    BEGIN:VCARD
+    VERSION:3.0
+    FN:${info.name}
+    TEL;TYPE=CELL:${info.phone || ''}
+    EMAIL:${info.email}
+    URL:${info.website || info.portfolio || ''}
+    END:VCARD`;
 }
 
 const ContactCardDownload: React.FC = () => {
@@ -98,7 +99,7 @@ const ContactCardDownload: React.FC = () => {
 
       {showQR && (
         <div className="mt-6 flex justify-center">
-          <QRCode value={qrValue} size={150} bgColor="transparent" fgColor="#fff" />
+          <QRCodeCanvas value={qrValue} size={150} bgColor="transparent" fgColor="#fff" />
         </div>
       )}
     </section>

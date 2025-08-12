@@ -26,6 +26,8 @@ import { ArrowUp } from 'lucide-react';
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
+import ContactProfilePage from "./pages/ContactProfilePage";
+import ResumePage from "./pages/ResumePage";
 
 // Smooth scroll to top button
 const ScrollToTop = () => {
@@ -66,6 +68,8 @@ function Router() {
           <Route path="/technopreneur" component={Technopreneur} />
           <Route path="/human" component={Human} />
           <Route path="/admin" component={Admin} />
+          <Route path="/contact-profile-card" component={ContactProfilePage} />
+          <Route path="/resume" component={ResumePage} />
           <Route path="/codecircle" component={CodeCirclePage} />
           {/* <Route path="/bizcircle" component={BizCircle} /> */}
           {/* <Route path="/descircle" component={DesCircle} /> */}

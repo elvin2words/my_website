@@ -11,6 +11,45 @@ import { fadeUp, fadeUpParent, fadeUpItem,} from "@/utils/animations";
 import { role, designExpertise, tools, digitalInterfaces, creativeDirection, portfolioHighlights, designEthos,} from "@/data/designer";
 
 
+// const BulletItem: React.FC<{ text: string }> = ({ text }) => (
+//   <li className="flex items-center">
+//     <span className="h-2 w-2 rounded-full bg-accent3 mr-2" aria-hidden="true" />
+//     <span>{text}</span>
+//   </li>
+// );
+
+// const InfoCard: React.FC<{
+//   icon: React.ReactNode;
+//   title: string;
+//   items: string[];
+// }> = ({ icon, title, items }) => (
+//   <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+//     <CardHeader className="flex flex-row items-center">
+//       {icon}
+//       <CardTitle>{title}</CardTitle>
+//     </CardHeader>
+//     <CardContent>
+//       <ul className="space-y-2">
+//         {items.map((item, i) => (
+//           <BulletItem key={i} text={item} />
+//         ))}
+//       </ul>
+//     </CardContent>
+//   </Card>
+// );
+
+{/* <InfoCard
+  icon={<Layout className="h-6 w-6 text-accent3 mr-2" />}
+  title="Tools & Visual Systems"
+  items={[
+    "Figma, Adobe XD, Framer Motion",
+    "Illustrator, Photoshop, Lightroom",
+    "Canva, CapCut, Blender",
+    "React + SVG-based Interactive Interfaces",
+  ]}
+/> */}
+
+
 const Designer: React.FC = () => {
   return (
     <>

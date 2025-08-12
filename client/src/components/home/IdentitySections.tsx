@@ -3,10 +3,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import IdentityCard from './IdentityCard';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import { Cpu , Code ,PenTool, FolderOpen,  } from 'lucide-react';
 
 const identities = [
-  { identity: "engineer", bulletPoints: ["Power systems design & control", "Embedded hardware development", "Energy automation & optimization"] },
+  { identity: "engineer", bulletPoints: ["Power systems design & control", "Embedded hardware development", "Energy automation & optimization"], icon: <Cpu className="h-8 w-8" /> },
   { identity: "developer", bulletPoints: ["Python, React, Node.js, TypeScript", "RESTful APIs & database architecture", "Progressive UI/UX design systems"] },
   { identity: "designer", bulletPoints: ["Figma + Framer Motion workflows", "Systems thinking & human-centered design", "Responsive layout & accessibility"] },
   { identity: "technopreneur", bulletPoints: ["MVP design & market fit testing", "Lean startup & value proposition design", "Social entrepreneurship"] },

@@ -111,9 +111,10 @@ const Home: React.FC = () => {
 
               {/* PDF Resume */}
               <Link
-                to="/assets/resume.pdf"
+                to="/resume"
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} 
                 className="w-full sm:w-1/2"
+                target="_blank" rel="noopener noreferrer"
               >
                 <button 
                   className="w-full border border-white bg-green-500 px-5 py-2 rounded-lg text-black hover:bg-cyan-600 hover:text-black transition will-change-transform translate-z-0"
@@ -131,14 +132,15 @@ const Home: React.FC = () => {
             </LazySection>
 
             <section className="flex flex-col items-center justify-center mt-8 md:mb-4 relative text-center">
-              <a 
-                href="/cv/elvin-mazwimairi-cv.pdf"
-                download
-                className="inline-flex items-center px-5 py-2 border border-white text-white rounded-lg hover:bg-white hover:text-black transition will-change-transform translate-z-0"
+              <motion.a
+                href="/contact.vcf"
+                download="EngElvin.vcf"
+                whileHover={{ scale: 1.05, boxShadow: "0px 4px 20px rgba(0,0,0,0.3)" }}
+                className="inline-flex items-center px-5 py-2 border border-white text-white rounded-lg hover:bg-white hover:text-black transition"
               >
                 <Download className="mr-2" size={18} />
                 Download My Contact Card
-              </a>
+              </motion.a>
             </section>
 
           </div>
