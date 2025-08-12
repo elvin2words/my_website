@@ -1,3 +1,5 @@
+// client/src/pages/Admin.tsx
+// Admin Page for Content Management
 
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

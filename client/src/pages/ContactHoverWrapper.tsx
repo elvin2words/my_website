@@ -1,3 +1,6 @@
+// client/src/pages/ContactHoverWrapper.tsx
+// ContactHoverWrapper Component for displaying contact popup on hover
+
 import React, { useState, useRef } from 'react';
 import ContactPopup from './ContactPopup';
 import { Button } from '@/components/ui/button';

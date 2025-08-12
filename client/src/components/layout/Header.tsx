@@ -8,7 +8,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem,
 import { useTheme  } from '@/hooks/use-theme';
 import ContactPopup from '@/pages/ContactPopup';
 import ContactHoverWrapper from '@/pages/ContactHoverWrapper';
-
+import { QrCode } from 'lucide-react';
+import { QRCodeCanvas } from 'qrcode.react';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,6 +21,8 @@ const Header: React.FC = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { theme, toggleTheme } = useTheme(); 
   const typingRef = useRef(false);
+
+  const qrDialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,6 +96,21 @@ const Header: React.FC = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleSearchBar = () => setShowSearchBar(!showSearchBar);
+
+  
+  const openQrDialog = () => {
+    if (qrDialogRef.current) {
+      qrDialogRef.current.showModal();
+    }
+  };
+
+  const closeQrDialog = () => {
+    if (qrDialogRef.current) {
+      qrDialogRef.current.close();
+    }
+  };
+
+  const profileUrl = "https://elvinmazwi.me/contact-profile-card";
 
   return (
     <>
@@ -249,6 +267,13 @@ const Header: React.FC = () => {
           {/* Column 3: Right Action Buttons (Right aligned) */}
           <div className="flex items-center justify-end space-x-4">
             <Button
+              // className="p-2 bg-white rounded-full shadow hover:scale-105 transition"
+              className="text-white dark:text-gray-200 p-2 hover:bg-white/10 rounded shadow "
+              onClick={openQrDialog}
+            >
+              <QrCode className="text-gray-600" />
+            </Button>
+            <Button
               onClick={toggleTheme}
               className="text-white dark:text-gray-200 p-2 hover:bg-white/10 rounded"
               aria-label="Toggle theme"
@@ -285,6 +310,34 @@ const Header: React.FC = () => {
           <div className="border-b border-white border-opacity-20"></div>
         </div>
       </header>
+
+      {/* QR Code Modal */}
+      <dialog
+        id="qrPopup"
+        ref={qrDialogRef}
+        className="rounded-lg p-6 bg-primary border border-white border-opacity-30 shadow-lg max-w-xs w-full"
+        onClick={(e) => {
+          // Close when clicking outside the modal content
+          if (e.target === qrDialogRef.current) {
+            closeQrDialog();
+          }
+        }}
+      >
+        <div className="flex flex-col items-center space-y-4">
+          <button
+            className="self-end text-white hover:text-accent2"
+            onClick={closeQrDialog}
+            aria-label="Close QR code popup"
+          >
+            ✕
+          </button>
+          {/* Replace this with your actual QR code component or image */}
+          <div className="bg-white p-4 rounded shadow">
+            <QRCodeCanvas value={profileUrl} size={200} />
+          </div>
+          <p className="text-white text-center">Scan this QR code to connect</p>
+        </div>
+      </dialog>
 
       <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </>

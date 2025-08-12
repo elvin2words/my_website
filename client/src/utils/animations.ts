@@ -1,4 +1,6 @@
 //utils/animations
+
+
 // Motion variant
 export const fadeUp = {
   initial: { opacity: 0, y: 30 },

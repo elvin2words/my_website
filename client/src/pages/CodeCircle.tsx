@@ -1,3 +1,6 @@
+// client/src/pages/CodeCircle.tsx
+// CodeCircle Page with enhanced animations and interactions
+
 import React, { useEffect, useRef } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';

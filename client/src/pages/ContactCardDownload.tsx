@@ -1,3 +1,6 @@
+// client/src/pages/ContactCardDownload.tsx
+// ContactCardDownload Component for downloading contact information as vCard
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, Share2, QrCode } from 'lucide-react';
@@ -12,13 +15,13 @@ const contactInfo = {
     linkedin: 'https://linkedin.com/in/engineer',
   },
   designer: {
-    name: 'Your Name',
-    phone: '+1234567890',
-    email: 'designer@example.com',
-    portfolio: 'https://designerportfolio.com',
+    name: 'Elvin E Mazwimairi',
+    phone: '+263783074722',
+    email: 'design@elvinmazwi.mail',
+    portfolio: 'https://elvinmazwi.me/designCircle',
   },
   technopreneur: {
-    name: 'Your Name',
+    name: 'Elvin E Mazwimairi',
     email: 'tech@example.com',
     website: 'https://technopreneur.com',
   },
@@ -78,7 +81,7 @@ const ContactCardDownload: React.FC = () => {
       </div>
 
       <div className="text-center mb-6">
-        <p className="mb-1 font-semibold">{info.name || 'Your Name'}</p>
+        <p className="mb-1 font-semibold">{info.name || 'Elvin E Mazwimairi'}</p>
         <p>{info.email}</p>
         {info.phone && <p>{info.phone}</p>}
         {(info.website || info.portfolio) && <a href={info.website || info.portfolio} target="_blank" rel="noreferrer" className="underline">{info.website || info.portfolio}</a>}

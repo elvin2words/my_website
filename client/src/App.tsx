@@ -5,6 +5,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { queryClient } from "./lib/queryClient";
 import { DragProvider } from "./context/DragContext";
 
+import React, { useRef, useState, useEffect } from 'react';
+import { ArrowUp } from 'lucide-react';
+
 // Pages
 import Home from "@/pages/Home";
 import Engineer from "@/pages/Engineer";
@@ -19,15 +22,13 @@ import CodeCirclePage from "./pages/CodeCircle";
 // import DesCircle from "./pages/DesignCircle";
 // import ViewAll from "./pages/ProjectShowcase";
 
-import React, { useRef, useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react';
+import ContactProfilePage from "./pages/ContactProfileCard";
+import ResumePage from "./pages/ResumePage";
 
 // Layout
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-import ContactProfilePage from "./pages/ContactProfilePage";
-import ResumePage from "./pages/ResumePage";
 
 // Smooth scroll to top button
 const ScrollToTop = () => {

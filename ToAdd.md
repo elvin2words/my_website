@@ -59,7 +59,7 @@
 - ~~Fix the blurrty overlay for sidepanel which only happens for hero section veiw lookin~~
 - Redo readme file
 - ~~Review IdentitySections data and run through ChatGPT~~
-- Review info on each Identity Card
-- Fix contact popup leftmost margin in footer
-- Fix components rendering in the pages, make them smoother - Animate the Section Entrances : Add `framer-motion` to animate cards on scroll.
+- ~~Review info on each Identity Card~~
+- ~~Fix contact popup leftmost margin in footer~~
+- ~~Fix components rendering in the pages, make them smoother - Animate the Section Entrances : Add `framer-motion` to animate cards on scroll.~~
 -
