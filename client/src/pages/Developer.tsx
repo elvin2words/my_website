@@ -1,4 +1,5 @@
 // src/pages/Developer.tsx
+
 import React from "react";
 import { ArrowLeft, ArrowRight, Code, Database, Globe, Server, Settings } from "lucide-react";
 import { Link } from "wouter";
@@ -19,8 +20,7 @@ const BackgroundEffect: React.FC = React.memo(() => {
   const circles = [
     { className: "top-0 right-0 bg-accent1", size: "w-1/3 h-1/3" },
     { className: "bottom-0 left-0 bg-accent2", size: "w-1/3 h-1/3" },
-    {
-      className:
+    { className:
         "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent4",
       size: "w-1/3 h-1/3",
     },
@@ -51,52 +51,6 @@ const Developer: React.FC = () => {
         >
           <div className="container mx-auto max-w-7xl">
             
-            {/* Header */}
-            {/* <div className="flex items-center justify-between mb-6">
-              <div className="w-1/3 text-left">
-                <Link
-                  href="/"
-                  onClick={() =>
-                    window.scrollTo({ top: 0, behavior: "smooth" })
-                  }
-                >
-                  <Button
-                    variant="ghost"
-                    className="text-accent2 hover:text-accent2 flex items-center gap-2"
-                  >
-                    <ArrowLeft className="h-5 w-5" />
-                    Home
-                  </Button>
-                </Link>
-              </div>
-
-              <div className="w-1/3 text-center">
-                <h1 className="text-2xl md:text-3xl font-poppins font-bold text-accent2">
-                  Developer & Systems Architect
-                </h1>
-                <p className="text-sm md:text-base opacity-80 mt-1">
-                  Software & Systems Design
-                </p>
-              </div>
-
-              <div className="w-1/3 text-right">
-                <Link
-                  href="/designer"
-                  onClick={() =>
-                    window.scrollTo({ top: 0, behavior: "smooth" })
-                  }
-                > 
-                 <Button
-                    variant="ghost"
-                    className="text-accent3 hover:text-accent3 flex items-center gap-2 ml-auto"
-                  >
-                    Designer
-                    <ArrowRight className="h-5 w-5" />
-                  </Button>
-                </Link>
-              </div>
-            </div> */}
-
             <motion.div
               variants={fadeUpParent}
               initial="hidden"

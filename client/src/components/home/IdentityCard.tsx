@@ -71,12 +71,12 @@ const IdentityCard: React.FC<IdentityCardProps> = ({
         <div className={`identity-marker uppercase text-xs tracking-wider font-semibold ${color} mb-2`}>
           {role}
         </div>
-{/* 
-<div
-                className={`${color} rounded-full w-20 h-20 flex items-center justify-center text-white shadow-md`}
-              >
-                {icon}
-              </div> */}
+        {/* 
+        <div
+          className={`${color} rounded-full w-20 h-20 flex items-center justify-center text-white shadow-md`}
+        >
+          {icon}
+        </div> */}
         <h3 className="text-xl md:text-2xl font-bold mb-4">
           {title} <span className={`${color} text-sm`}>✦</span>
         </h3>
