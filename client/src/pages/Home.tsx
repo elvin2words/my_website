@@ -137,6 +137,7 @@ const Home: React.FC = () => {
                   to="/contact-profile-card"
                   onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} 
                   target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center"
                 >
                   <Download className="mr-2" size={18} />
                   My Contact Card
