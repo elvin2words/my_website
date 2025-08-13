@@ -129,7 +129,7 @@ const Home: React.FC = () => {
             </LazySection>
 
             <section className="flex flex-col items-center justify-center mt-8 md:mb-4 relative text-center">
-              <motion.a
+              <motion.div
                 whileHover={{ scale: 1.05, boxShadow: "0px 4px 20px rgba(0,0,0,0.3)" }}
                 className="inline-flex items-center px-5 py-2 border border-white text-white rounded-lg hover:bg-white hover:text-black transition"
               >
@@ -141,7 +141,7 @@ const Home: React.FC = () => {
                   <Download className="mr-2" size={18} />
                   My Contact Card
                 </Link>
-              </motion.a>
+              </motion.div>
             </section>
 
           </div>
