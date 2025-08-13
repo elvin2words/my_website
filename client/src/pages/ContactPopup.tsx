@@ -17,7 +17,8 @@ const ContactPopup = ({ onLinkClick }) => {
   const divider = <hr className="border-t border-gray-300 dark:border-gray-700" />;
 
   const handleShare = () => {
-    const vcardUrl = window.location.origin + vCardUrl;
+    // const vcardUrl = window.location.origin + profileCardUrl;
+    const vcardUrl = profileCardUrl;
     if (navigator.share) {
       navigator.share({
         title: "Elvin E Mazwimairi's Contact",

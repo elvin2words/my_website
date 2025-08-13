@@ -94,7 +94,7 @@ export default function ContactProfilePage() {
             {/* Profile Picture */}
             <div className="flex justify-center">
               <img
-                  src="src/public/prof.jpg"
+                  src="/prof.jpg"
                   alt="Profile"
                   className="w-24 h-24 rounded-full border-4 border-white shadow-md"
               />
@@ -114,10 +114,10 @@ export default function ContactProfilePage() {
                   href="tel:+263783074722"
                   className="flex items-center justify-center gap-3 bg-blue-500 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition"
               >
-                  <Phone size={18} /> Call Me - 263783074722
+                  <Phone size={18} /> Call Me +263783074722
               </a>
               <a
-                  href="mailto:email@example.com"
+                  href="mailto:elvinmazwimairi@gmail.com"
                   className="flex items-center justify-center gap-3 bg-green-500 text-white py-2 px-4 rounded-lg shadow hover:bg-green-600 transition"
               >
                   <Mail size={18} /> elvinmazwimairi@gmail.com
@@ -128,15 +128,15 @@ export default function ContactProfilePage() {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-3 bg-emerald-500 text-white py-2 px-4 rounded-lg shadow hover:bg-emerald-600 transition"
               >
-                  <MessageSquare size={18} /> WhatsApp - 263783074722
+                  <MessageSquare size={18} /> WhatsApp +263783074722
               </a>
               <a
-                  href="https://linkedin.com/in/username"
+                  href="https://linkedin.com/in/elvin-mazwimairi"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-3 bg-indigo-500 text-white py-2 px-4 rounded-lg shadow hover:bg-indigo-600 transition"
               >
-                  <Linkedin size={18} /> LinkedIn - elvin-mazwimairi
+                  <Linkedin size={18} /> LinkedIn @ elvin-mazwimairi
               </a>
             </div>
 

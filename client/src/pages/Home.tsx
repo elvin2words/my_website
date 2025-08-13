@@ -130,13 +130,12 @@ const Home: React.FC = () => {
 
             <section className="flex flex-col items-center justify-center mt-8 md:mb-4 relative text-center">
               <motion.a
-                href="/contact.vcf"
-                download="EngElvin.vcf"
+                href="/contact-profile-card"
                 whileHover={{ scale: 1.05, boxShadow: "0px 4px 20px rgba(0,0,0,0.3)" }}
                 className="inline-flex items-center px-5 py-2 border border-white text-white rounded-lg hover:bg-white hover:text-black transition"
               >
                 <Download className="mr-2" size={18} />
-                Download My Contact Card
+                My Contact Card
               </motion.a>
             </section>
 
