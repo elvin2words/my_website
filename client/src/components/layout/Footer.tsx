@@ -1,3 +1,5 @@
+// src/components/layout/Footer.tsx
+
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { Linkedin, Github, Twitter, Mail, Code } from 'lucide-react';
