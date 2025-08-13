@@ -1,4 +1,5 @@
 // src/data/developer.ts
+// This file contains data related to the Developer role, including skills, projects, and development philosophy.
 
 export const skills = [
   "Frontend Development: React, TypeScript, GSAP, Framer Motion",

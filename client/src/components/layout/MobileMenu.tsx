@@ -1,3 +1,6 @@
+// src/components/layout/MobileMenu.tsx
+// This component renders a mobile menu for navigation, allowing users to switch between different sections of the
+
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { X } from 'lucide-react';
@@ -6,6 +9,8 @@ import { Button } from '@/components/ui/button';
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  // onClose : {() => window.scrollTo({ top: 0, behavior: "smooth" })} 
+
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
@@ -17,7 +22,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
     } else {
       document.body.style.overflow = '';
     }
-
     return () => {
       document.body.style.overflow = '';
     };
@@ -31,16 +35,22 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
         variant="ghost" 
         size="icon"
         className="absolute top-6 right-6 text-white focus:outline-none" 
-        onClick={onClose}
+        // onClick={onClose}
+        onClick={() => {
+          onClose();
+          // window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
       >
         <X className="w-6 h-6" />
       </Button>
       
       <Link 
         href="/codeCircle" 
-        // onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} 
         className="text-xl font-medium py-3 px-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition"
-        onClick={onClose}
+        onClick={() => {
+          onClose();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
       >
         <span className={location === '/codeCircle' ? 'text-accent2' : ''}>
           CodeCircle
@@ -49,9 +59,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       
       <Link 
         href="/designer" 
-        // onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} 
         className="text-xl font-medium py-3 px-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition"
-        onClick={onClose}
+        onClick={() => {
+          onClose();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
       >
         <span className={location === '/designer' ? 'text-accent3' : ''}>
           DesignCircle
@@ -60,9 +72,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       
       <Link 
         href="/technopreneur" 
-        // onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} 
         className="text-xl font-medium py-3 px-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition"
-        onClick={onClose}
+        onClick={() => {
+          onClose();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
       >
         <span className={location === '/technopreneur' ? 'text-accent4' : ''}>
           BizCircle

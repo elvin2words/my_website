@@ -2,12 +2,11 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { Linkedin, Github, Twitter, Mail, Code } from 'lucide-react';
 import ContactPopupWrapper from '@/pages/ContactPopupWrapper';
-
+ 
 
 const Footer: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-
 
   // This handler closes the modal when clicking on backdrop
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {

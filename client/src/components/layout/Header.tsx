@@ -1,15 +1,19 @@
+// client/src/components/layout/Header.tsx
+// This component renders the header of the application, including navigation links, search functionality, and theme
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'wouter';
 import MobileMenu from './MobileMenu';
 import { Menu, Search, ChevronDown, Moon, Sun, Cat, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, 
-  DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useTheme  } from '@/hooks/use-theme';
 import ContactPopup from '@/pages/ContactPopup';
 import ContactHoverWrapper from '@/pages/ContactHoverWrapper';
 import { QrCode } from 'lucide-react';
 import { QRCodeCanvas } from 'qrcode.react';
+import { motion, AnimatePresence } from "framer-motion";
+
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,6 +27,8 @@ const Header: React.FC = () => {
   const typingRef = useRef(false);
 
   const qrDialogRef = useRef<HTMLDialogElement>(null);
+
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,7 +103,6 @@ const Header: React.FC = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleSearchBar = () => setShowSearchBar(!showSearchBar);
 
-  
   const openQrDialog = () => {
     if (qrDialogRef.current) {
       qrDialogRef.current.showModal();
@@ -197,8 +202,12 @@ const Header: React.FC = () => {
 
           {/* Column 2: Navigation Links (Center aligned) */}
           <nav className="flex justify-center space-x-8">
-            <div className="relative group">
-              <DropdownMenu>
+
+            {/* <div className="relative group"
+              onMouseEnter={() => setOpenMenu("code")}
+              onMouseLeave={() => setOpenMenu(null)}
+            >
+              <DropdownMenu open={openMenu === "code"} onOpenChange={(open) => setOpenMenu(open ? "code" : null)}>
                 <DropdownMenuTrigger asChild>
                   <button className="flex items-center font-medium text-lg text-white hover:text-accent2 focus:outline-none">
                     <span className={location === '/codecircle' ? 'text-accent2' : ''}>
@@ -218,9 +227,67 @@ const Header: React.FC = () => {
               </DropdownMenu>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent2 transition-all duration-300 group-hover:w-full"></span>
             </div>
+            */}
 
-            <div className="relative group">
-              <DropdownMenu>
+            <div 
+              className="relative group"
+              onMouseEnter={() => setOpenMenu("code")}
+              onMouseLeave={() => setOpenMenu(null)}
+            >
+              {/* Trigger */}
+              <button 
+                onClick={() => setOpenMenu(openMenu === "code" ? null : "code")}
+                className="flex items-center font-medium text-lg text-white hover:text-accent2 focus:outline-none"
+              >
+                <span className={location === '/codecircle' ? 'text-accent2' : ''}>
+                  CodeCircle
+                </span>
+                <ChevronDown 
+                  className={`ml-1 w-4 h-4 transform transition-transform duration-300 ${
+                    openMenu === "code" ? "rotate-180" : "rotate-0"
+                  }`} 
+                />
+              </button>
+              {/* Animated Dropdown */}
+              <AnimatePresence>
+                {openMenu === "code" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute top-full left-0 mt-2 bg-primary border border-white border-opacity-20 rounded-lg shadow-lg p-2 z-50"
+                  >
+                    <Link 
+                      href="/developer/codecircle"
+                      className="block px-4 py-2 text-white hover:text-accent2 hover:bg-white/10 rounded"
+                      onClick={() => {
+                        setOpenMenu(null);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                    >
+                      Portfolio
+                    </Link>
+                    <Link 
+                      href="/developer/journey"
+                      className="block px-4 py-2 text-white hover:text-accent2 hover:bg-white/10 rounded"
+                      onClick={() => {
+                        setOpenMenu(null);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                    >
+                      Journey
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              {/* Underline animation */}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent2 transition-all duration-300 group-hover:w-full"></span>
+            </div>
+            
+
+            {/* <div className="relative group">
+              <DropdownMenu open={openMenu === "des"} onOpenChange={(open) => setOpenMenu(open ? "des" : null)}>
                 <DropdownMenuTrigger asChild>
                   <button className="flex items-center font-medium text-lg text-white hover:text-accent3 focus:outline-none">
                     <span className={location === '/designer' ? 'text-accent3' : ''}>
@@ -239,10 +306,68 @@ const Header: React.FC = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent3 transition-all duration-300 group-hover:w-full"></span>
+            </div> */}
+
+            
+            <div 
+              className="relative group"
+              onMouseEnter={() => setOpenMenu("des")}
+              onMouseLeave={() => setOpenMenu(null)}
+            >
+              {/* Trigger */}
+              <button 
+                onClick={() => setOpenMenu(openMenu === "des" ? null : "des")}
+                className="flex items-center font-medium text-lg text-white hover:text-accent3 focus:outline-none"
+              >
+                <span className={location === '/designer' ? 'text-accent3' : ''}>
+                  DesignCircle
+                </span>
+                <ChevronDown 
+                  className={`ml-1 w-4 h-4 transform transition-transform duration-300 ${
+                    openMenu === "des" ? "rotate-180" : "rotate-0"
+                  }`} 
+                />
+              </button>
+              {/* Animated Dropdown */}
+              <AnimatePresence>
+                {openMenu === "des" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute top-full left-0 mt-2 bg-primary border border-white border-opacity-20 rounded-lg shadow-lg p-2 z-50"
+                  >
+                    <Link 
+                      href="/designer/portfolio"
+                      className="block px-4 py-2 text-white hover:text-accent3 hover:bg-white/10 rounded"
+                      onClick={() => {
+                        setOpenMenu(null);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                    >
+                      Portfolio
+                    </Link>
+                    <Link 
+                      href="/designer/journey"
+                      className="block px-4 py-2 text-white hover:text-accent3 hover:bg-white/10 rounded"
+                      onClick={() => {
+                        setOpenMenu(null);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                    >
+                      Journey
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              {/* Underline animation */}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent3 transition-all duration-300 group-hover:w-full"></span>
             </div>
 
-            <div className="relative group">
-              <DropdownMenu>
+
+            {/* <div className="relative group">
+              <DropdownMenu open={openMenu === "biz"} onOpenChange={(open) => setOpenMenu(open ? "biz" : null)}>
                 <DropdownMenuTrigger asChild>
                   <button className="flex items-center font-medium text-lg text-white hover:text-accent4 focus:outline-none">
                     <span className={location === '/technopreneur' ? 'text-accent4' : ''}>
@@ -261,7 +386,64 @@ const Header: React.FC = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent4 transition-all duration-300 group-hover:w-full"></span>
+            </div> */}
+
+            <div 
+              className="relative group"
+              onMouseEnter={() => setOpenMenu("biz")}
+              onMouseLeave={() => setOpenMenu(null)}
+            >
+              {/* Trigger */}
+              <button 
+                onClick={() => setOpenMenu(openMenu === "biz" ? null : "biz")}
+                className="flex items-center font-medium text-lg text-white hover:text-accent4 focus:outline-none"
+              >
+                <span className={location === '/technopreneur' ? 'text-accent4' : ''}>
+                  BizCircle
+                </span>
+                <ChevronDown 
+                  className={`ml-1 w-4 h-4 transform transition-transform duration-300 ${
+                    openMenu === "biz" ? "rotate-180" : "rotate-0"
+                  }`} 
+                />
+              </button>
+              {/* Animated Dropdown */}
+              <AnimatePresence>
+                {openMenu === "biz" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute top-full left-0 mt-2 bg-primary border border-white border-opacity-20 rounded-lg shadow-lg p-2 z-50"
+                  >
+                    <Link 
+                      href="/technopreneur/portfolio"
+                      className="block px-4 py-2 text-white hover:text-accent4 hover:bg-white/10 rounded"
+                      onClick={() => {
+                        setOpenMenu(null);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                    >
+                      Portfolio
+                    </Link>
+                    <Link 
+                      href="/technopreneur/portfolio"
+                      className="block px-4 py-2 text-white hover:text-accent4 hover:bg-white/10 rounded"
+                      onClick={() => {
+                        setOpenMenu(null);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                    >
+                      Journey
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              {/* Underline animation */}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent4 transition-all duration-300 group-hover:w-full"></span>
             </div>
+
           </nav>
 
           {/* Column 3: Right Action Buttons (Right aligned) */}
@@ -281,18 +463,6 @@ const Header: React.FC = () => {
             >
               {theme === 'light' ? <Moon/> : <Sun/>}
             </Button>
-            {/* <div className="relative group">
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="mr-2 bg-transparent text-white border border-white border-opacity-30 rounded-full px-4 hover:bg-white hover:bg-opacity-10 hover:border-opacity-100 transition-all"
-              >
-                CONTACT
-              </Button>
-              <div className="absolute top-full right-0 hidden group-hover:block mt-2">
-                <ContactPopup />
-              </div>
-            </div> */}
             <ContactHoverWrapper />
             <Button 
               variant="ghost" 
@@ -310,19 +480,27 @@ const Header: React.FC = () => {
           <div className="border-b border-white border-opacity-20"></div>
         </div>
       </header>
+      
+      <div 
+        // className="container mx-auto max-w-7xl pt-16 md:pt-20"
+        // className="fixed inset-0 bg-black bg-opacity-90 z-50 flex justify-center items-center p-4"
 
-      {/* QR Code Modal */}
-      <dialog
-        id="qrPopup"
-        ref={qrDialogRef}
-        className="rounded-lg p-6 bg-primary border border-white border-opacity-30 shadow-lg max-w-xs w-full"
-        onClick={(e) => {
-          // Close when clicking outside the modal content
-          if (e.target === qrDialogRef.current) {
-            closeQrDialog();
-          }
-        }}
       >
+        {/* QR Code Modal */}
+        <dialog
+          id="qrPopup"
+          ref={qrDialogRef}
+          className="rounded-lg p-6 bg-primary border border-white border-opacity-30 shadow-lg max-w-xs w-full"
+          // className="fixed inset-0 w-full h-full bg-black/70 z-50 flex justify-center items-center p-4"
+          // className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center p-4"
+          onClick={(e) => {
+            // Close when clicking outside the modal content
+            if (e.target === qrDialogRef.current) {
+              closeQrDialog();
+            }
+          }}
+        >
+      {/* <div className="bg-primary rounded-lg p-6 border border-white border-opacity-30 shadow-lg max-w-xs w-full"> */}
         <div className="flex flex-col items-center space-y-4">
           <button
             className="self-end text-white hover:text-accent2"
@@ -331,13 +509,14 @@ const Header: React.FC = () => {
           >
             ✕
           </button>
-          {/* Replace this with your actual QR code component or image */}
           <div className="bg-white p-4 rounded shadow">
             <QRCodeCanvas value={profileUrl} size={200} />
           </div>
           <p className="text-white text-center">Scan this QR code to connect</p>
         </div>
-      </dialog>
+      {/* </div> */}
+        </dialog>
+      </div>
 
       <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </>

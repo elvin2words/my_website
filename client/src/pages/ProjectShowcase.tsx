@@ -1,3 +1,5 @@
+// client/src/pages/ProjectShowcase.tsx
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import projectData from '@/data/projects'; // All projects array

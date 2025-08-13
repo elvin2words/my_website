@@ -1,3 +1,6 @@
+// src/context/DragContext.tsx
+// This file provides a context for managing drag-and-drop functionality in the application.
+
 import React, { createContext, useContext, useState, ReactNode, useRef, useCallback } from 'react';
 
 interface DragContextType {

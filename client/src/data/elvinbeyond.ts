@@ -1,4 +1,5 @@
 // src/data/elvinbeyond.ts
+// This file contains personal and reflective data about Elvin, including role, interests, and creative expressions.
 
 export const role = {
   title: "Human Being",

@@ -55,9 +55,6 @@ const Home: React.FC = () => {
       <BackgroundEffect />
 
       <div className="relative z-10 overflow-x-hidden" style={{ scrollBehavior: 'smooth', WebkitFontSmoothing: 'antialiased' }}>
-      {/* <div className="relative z-10 overflow-x-hidden" > */}
-        {/* <BackgroundEffect /> */}
-            
         {/* <main className="bg-black pt-24 sm:pt-24 md:pt-28 pb-8 sm:pb-12 px-4 sm:px-4 md:px-6 flex flex-col items-center min-h-screen"> */}
         <main className=" pt-24 sm:pt-24 md:pt-28 pb-8 sm:pb-12 px-4 sm:px-4 md:px-6 flex flex-col items-center min-h-screen">
           <BackgroundEffect />

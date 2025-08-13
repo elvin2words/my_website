@@ -1,3 +1,6 @@
+// hooks/use-toast.ts
+// This file provides a custom hook for managing toast notifications in a React application.
+
 import * as React from "react"
 
 import type {

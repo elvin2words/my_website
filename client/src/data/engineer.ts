@@ -1,9 +1,10 @@
 // src/data/engineer.ts
+// This file contains data related to the Engineer role, including expertise, projects, and professional philosophy.
 
 export const education = [
   {
     degree: "BSc (Hons) in Electrical Engineering",
-    school: "University of Zimbabwe, 2019–2024",
+    school: "University of Zimbabwe, 2019 – 2024",
     details:
       "Upper Second Class Honours - with a concentration in Power Systems, Renewable Energy Integration, and Embedded Control Systems.",
   },

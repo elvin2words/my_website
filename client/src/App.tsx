@@ -1,3 +1,5 @@
+// src/App.tsx
+
 import { Switch, Route } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -8,7 +10,6 @@ import { DragProvider } from "./context/DragContext";
 import React, { useRef, useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 
-// Pages
 import Home from "@/pages/Home";
 import Engineer from "@/pages/Engineer";
 import Developer from "@/pages/Developer";
@@ -25,7 +26,6 @@ import CodeCirclePage from "./pages/CodeCircle";
 import ContactProfilePage from "./pages/ContactProfileCard";
 import ResumePage from "./pages/ResumePage";
 
-// Layout
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
@@ -64,22 +64,21 @@ function Router() {
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/engineer" component={Engineer} />
-          <Route path="/developer" component={Developer} />
-          <Route path="/designer" component={Designer} />
-          <Route path="/technopreneur" component={Technopreneur} />
+          <Route path="/developer" component={Designer} />
+          <Route path="/technopreneur" component={Developer} />
+          <Route path="/designer" component={Technopreneur} />
           <Route path="/human" component={Human} />
           <Route path="/admin" component={Admin} />
           <Route path="/contact-profile-card" component={ContactProfilePage} />
           <Route path="/resume" component={ResumePage} />
-          <Route path="/codecircle" component={CodeCirclePage} />
+          {/* <Route path="/projects" component={ViewAll} /> */}
+          {/* <Route path="/codecircle" component={CodeCircle} /> */}
           {/* <Route path="/bizcircle" component={BizCircle} /> */}
           {/* <Route path="/descircle" component={DesCircle} /> */}
-          {/* <Route path="/projects" component={ViewAll} /> */}
           <Route component={NotFound} />
         </Switch>
       </div>
       <Footer />
-            {/* Scroll to top button */}
       <ScrollToTop />   
     </div>
   );

@@ -1,4 +1,5 @@
 // src/components/Technopreneur.tsx
+      
 import React from "react";
 import { ArrowLeft, ArrowRight, Lightbulb, TrendingUp, Users, BarChart, Target } from "lucide-react";
 import { Link } from "wouter";

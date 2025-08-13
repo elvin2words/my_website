@@ -1,4 +1,5 @@
 // src/data/technop.ts
+// This file contains data related to the Technopreneur role, including vision, capabilities, ventures, and notable projects.
 
 import { ArrowLeft, ArrowRight, Lightbulb, TrendingUp, Users,
   BarChart, Target, } from 'lucide-react';
@@ -12,7 +13,7 @@ export const visionStatement =
   "Driving forward purposeful innovation through smart systems, creative engineering, and human-centered technology across energy, AI, automation, and digital ecosystems.";
 
 export const coreCapabilities = {
-    // {
+  // {
   //   icon: <Lightbulb className="h-6 w-6 text-accent4 mr-2" />,
   //   title: 'Entrepreneurial Mindset',
   //   items: [

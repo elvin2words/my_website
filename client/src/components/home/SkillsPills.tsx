@@ -1,3 +1,4 @@
+// src/components/SkillsPills.tsx
 
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';

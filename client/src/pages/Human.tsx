@@ -1,3 +1,5 @@
+// src/pages/Human.tsx
+
 import React from "react";
 import { ArrowLeft, ArrowRight, Heart, Music, Book, Globe, Camera } from "lucide-react";
 import { Link } from "wouter";
@@ -9,6 +11,7 @@ import BackgroundEffect from "@/components/home/BackgroundEffect";
 
 import { role, introNarrative, hobbiesInterests, learningGrowth, causesISupport, creativeExpression, } from "@/data/elvinbeyond";
 import { fadeUp, fadeUpParent, fadeUpItem } from "@/utils/animations";
+
 
 const Human: React.FC = () => {
   return (
@@ -58,7 +61,6 @@ const Human: React.FC = () => {
                 </Link>
               </div>
             </motion.div>
-
 
             {/* Intro Narrative */}
             <motion.div

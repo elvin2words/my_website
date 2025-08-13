@@ -1,3 +1,6 @@
+// hooks/use-theme.ts
+// This file provides a custom hook for managing the theme (light/dark) in a React
+
 import { useState, useEffect } from 'react';
 
 export const useTheme = () => {
