@@ -160,16 +160,34 @@ export default function ChatbotModal({ onClose }) {
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    // 🚫 Lock background scroll when modal is open
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "auto"; // ✅ Restore scroll on close
+    };
   }, [onClose]);
 
+
+  const [vh, setVh] = useState(window.innerHeight);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setVh(window.visualViewport?.height || window.innerHeight);
+    };
+    window.visualViewport?.addEventListener("resize", handleResize);
+    return () => window.visualViewport?.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="fixed inset-0 bg-black/65 flex items-center justify-center z-50">
+    <div className="fixed inset-0 p-3 bg-black/65 flex items-center justify-center z-50">
       <div 
         ref={modalRef}
-        className="bg-gradient-to-b w-full max-w-md h-[500px] rounded-2xl shadow-xl flex flex-col overflow-hidden ">
+        style={{ height: vh * 0.77, maxHeight: vh - 32 }} // 70% of available viewport
+        className="bg-gradient-to-b from-gray-900 to-gray-800 w-full max-w-md  rounded-2xl shadow-xl flex flex-col overflow-hidden ">
         {/* Header */}
-        <div className="flex justify-between items-center px-4 py-3 border-b">
+        <div className="flex justify-between items-center px-4 py-3 border-b shrink-0">
         {/* <div className="flex justify-between items-center px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white"> */}
           <h2 className="font-semibold text-lg">Ask ElvinBot 🤖</h2>
           <button onClick={onClose} >
@@ -186,7 +204,7 @@ export default function ChatbotModal({ onClose }) {
         </div>
 
         {/* Input */}
-        <div className="flex items-center p-3 border-t">
+        <div className="flex items-center p-3 border-t shrink-0">
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
