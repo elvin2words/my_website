@@ -22,6 +22,7 @@ import CodeCirclePage from "./pages/CodeCircle";
 // import BizCircle from "./pages/BusinessCircle";
 // import DesCircle from "./pages/DesignCircle";
 // import ViewAll from "./pages/ProjectShowcase";
+import ChatbotButton from "@/components/home/ChatbotButton";
 
 import ContactProfilePage from "./pages/ContactProfileCard";
 import ResumePage from "./pages/ResumePage";
@@ -47,7 +48,7 @@ const ScrollToTop = () => {
   return visible ? (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className=" z-50 fixed bottom-14 right-6 bg-accent2 text-white p-3 rounded-full shadow-md hover:scale-105 transition will-change-transform translate-z-0 backface-hidden"
+      className=" z-50 fixed bottom-20 right-6 bg-accent2 text-white p-3 rounded-full shadow-md hover:scale-105 transition will-change-transform translate-z-0 backface-hidden"
     >
       <ArrowUp className="h-5 w-5" />
       {/* <span className="sr-only">Scroll to top</span> */}
@@ -78,6 +79,7 @@ function Router() {
           <Route component={NotFound} />
         </Switch>
       </div>
+      <ChatbotButton />
       <Footer />
       <ScrollToTop />   
     </div>
