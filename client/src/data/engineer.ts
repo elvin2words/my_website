@@ -6,7 +6,7 @@ export const education = [
     degree: "BSc (Hons) in Electrical Engineering",
     school: "University of Zimbabwe, 2019 – 2024",
     details:
-      "Upper Second Class Honours - with a concentration in Power Systems, Renewable Energy Integration, and Embedded Control Systems.",
+      "Honours with a concentration in Power Systems, Renewable Energy Integration, and Embedded Control Systems.",
   },
 ];
 
