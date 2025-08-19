@@ -67,12 +67,12 @@ const Home: React.FC = () => {
                 <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight mb-5">
                   Hi, I’m Elvin, an <span className="text-accent2">Electrical Engineer</span>,{' '}
                   <span className="text-accent3">Systems Developer</span>, and{' '}
-                  <span className="text-accent4">Design-Driven Technopreneur</span>.
+                  <span className="text-accent4">Creative Technologist</span>.
                 </h1>
 
                 <p className="text-base md:text-xl text-white text-opacity-90 mb-6">
                   I design smart systems and seamless digital experiences - 
-                  from power and energy solutions to intuitive web platforms - 
+                  from power and energy solutions to intuitive digital platforms - 
                   across EVs, power systems and industrial control. 
                   <br />Explore the complementary sides to what i do below:
                 </p>
