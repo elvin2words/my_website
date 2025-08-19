@@ -65,9 +65,9 @@ function Router() {
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/engineer" component={Engineer} />
-          <Route path="/developer" component={Designer} />
-          <Route path="/technopreneur" component={Developer} />
-          <Route path="/designer" component={Technopreneur} />
+          <Route path="/designer" component={Designer} />
+          <Route path="/developer" component={Developer} />
+          <Route path="/technopreneur" component={Technopreneur} />
           <Route path="/human" component={Human} />
           <Route path="/admin" component={Admin} />
           <Route path="/contact-profile-card" component={ContactProfilePage} />
