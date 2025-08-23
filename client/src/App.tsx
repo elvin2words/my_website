@@ -51,7 +51,7 @@ const ScrollToTop = () => {
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       className=" z-50 fixed bottom-20 right-6 bg-accent2 text-white p-3 rounded-full shadow-md hover:scale-105 transition will-change-transform translate-z-0 backface-hidden"
     >
-      <ArrowUp className="h-5 w-5" />
+      <ArrowUp className="h-4 w-4" />
       {/* <span className="sr-only">Scroll to top</span> */}
     </button>
   ) : null;
