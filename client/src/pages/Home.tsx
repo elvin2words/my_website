@@ -6,6 +6,9 @@ import ContactPopupWrapper from './ContactPopupWrapper';
 import SkillPills from '@/components/home/SkillPills';
 import { Link } from 'wouter';
 import { Download, ArrowUp, FolderOpen, } from 'lucide-react';
+import HireMePopup from "@/components/home/HireMePopup";
+import HireMeHoverWrapper from './HireMeHoverWrapper';
+import { Button } from '@/components/ui/button';
 
 
 // Lazy loader for heavy sections
@@ -42,11 +45,48 @@ const LazySection: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 const Home: React.FC = () => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const [showHirePopup, setShowHirePopup] = useState(false);
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [isHireMeModalOpen, setIsHireMeModalOpen] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  //  Detect screen size for mobile vs desktop behavior
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (!isMobile) {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      setShowPopup(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobile) {
+      timeoutRef.current = setTimeout(() => {
+        setShowPopup(false);
+      }, 300);
+    }
+  };
 
   // Close modal when clicking outside popup content
-  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  // const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  //   if (e.target === e.currentTarget) {
+  //     setIsPopupOpen(false);
+  //   }
+  // };
+  // Close modal when clicking outside popup content
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>, closeFn: () => void) => {
     if (e.target === e.currentTarget) {
-      setIsPopupOpen(false);
+      closeFn();
     }
   };
   
@@ -100,11 +140,76 @@ const Home: React.FC = () => {
               </button>
 
               {/* Hire Me – only visible on medium+ screens */}
-              <Link to="/hire" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="hidden sm:block w-full sm:w-1/2">
+              {/* <Link to="/hire" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="hidden sm:block w-full sm:w-1/2">
                 <button className="w-full border border-white bg-slate-400 px-5 py-2 rounded-lg text-black hover:bg-white hover:text-black transition will-change-transform translate-z-0">
                   Hire Me
                 </button>
-              </Link>
+              </Link> */}
+
+              {/* Hire Me button – Desktop */}
+              {/* <div 
+                className="relative hidden sm:block w-full sm:w-1/2"
+                onMouseEnter={() => setShowHirePopup(true)}
+                onMouseLeave={() => setShowHirePopup(false)}
+              >
+                <Link to="/hire" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="hidden sm:block w-full sm:w-1/2">
+                  <button className="w-full border border-white bg-slate-400 px-5 py-2 rounded-lg text-black hover:bg-white transition">
+                    Hire Me
+                  </button>
+                </Link>
+                {showHirePopup && <HireMePopup />}
+              </div> */}
+
+              {/* <HireMeHoverWrapper /> */}
+              <div 
+                className="relative w-full md:w-auto"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+
+                {isMobile ? (
+                  <Button 
+                    className="w-full md:w-auto text-white border border-white/30 rounded-full px-4 hover:bg-white/10"
+                    onClick={() => setIsHireMeModalOpen(true)}
+                  >
+                    HireMe
+                  </Button>
+                ) : (
+                  <Link href="/hire">
+                    <Button 
+                      className="w-full md:w-auto text-white border border-white/30 rounded-full px-4 hover:bg-white/10"
+                    >
+                      HireMe
+                    </Button>
+                  </Link>
+                )}
+
+                {/* Popup for desktop */}
+                {showPopup && !isMobile && (
+                  // <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 z-50">
+                  <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 z-50">
+                    <HireMePopup />
+                  </div>
+                )}
+
+                {/* Modal for mobile */}
+                {/* <Dialog open={isModalOpen} onOpenChange={setShowModal}>
+                  <DialogContent className="p-0 bg-transparent border-none shadow-none">
+                    <HireMePopup />
+                  </DialogContent>
+                </Dialog> */}
+              </div>   
+              
+
+              {/* Hire Me button – Mobile (modal) */}
+              {/* <Link to="/hire" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="hidden sm:block w-full sm:w-1/2">
+                <button
+                  className="w-full sm:hidden border border-white px-5 py-2 rounded-lg shadow text-white hover:bg-white hover:text-black transition"
+                  onClick={() => setIsPopupOpen(true)}
+                >
+                  Hire Me
+                </button>
+              </Link> */}
 
               {/* PDF Resume */}
               <Link
@@ -151,10 +256,20 @@ const Home: React.FC = () => {
       {/* Contact Popup Modal */}
       {isPopupOpen && (
         <div
-          onClick={handleOverlayClick}
+          onClick={(e) => handleOverlayClick(e, () => setIsPopupOpen(false))}
           className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center p-4"
         >
           <ContactPopupWrapper onClose={() => setIsPopupOpen(false)} />
+        </div>
+      )}
+
+      {/* HireMe Modal on mobile */}
+      {isHireMeModalOpen && (
+        <div
+          onClick={(e) => handleOverlayClick(e, () => setIsHireMeModalOpen(false))}
+          className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center p-4"
+        >
+          <HireMePopup />
         </div>
       )}
     </>

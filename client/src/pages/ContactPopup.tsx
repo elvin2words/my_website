@@ -1,6 +1,5 @@
 // src/pages/ContactPopup.tsx
 
-
 import React, { useState } from 'react';
 import { Mail, Phone, Linkedin, Instagram, Download, MessageSquare, Share2, QrCode, X, Text } from 'lucide-react';
 import { QRCodeCanvas } from "qrcode.react";

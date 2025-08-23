@@ -29,6 +29,7 @@ import ResumePage from "./pages/ResumePage";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import ServicesPage from "./pages/Services";
 
 
 // Smooth scroll to top button
@@ -72,6 +73,7 @@ function Router() {
           <Route path="/admin" component={Admin} />
           <Route path="/contact-profile-card" component={ContactProfilePage} />
           <Route path="/resume" component={ResumePage} />
+          <Route path="/hire" component={ServicesPage} />
           {/* <Route path="/projects" component={ViewAll} /> */}
           {/* <Route path="/codecircle" component={CodeCircle} /> */}
           {/* <Route path="/bizcircle" component={BizCircle} /> */}
