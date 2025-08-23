@@ -614,3 +614,710 @@ const ServicesPage: React.FC = () => {
 export default ServicesPage;
 
 
+
+
+
+
+<motion.article
+  whileHover={{ scale: 1.03, boxShadow: "0 15px 35px rgba(0,0,0,0.2)" }}
+  transition={{ type: "spring", stiffness: 300 }}
+>
+  ...
+</motion.article>
+
+
+<motion.div whileHover={{ rotate: 20, scale: 1.2 }} transition={{ duration: 0.3 }}>
+  {s.icon}
+</motion.div>
+
+<div className="bg-white/10 rounded-full h-2 w-full overflow-hidden">
+  <motion.div initial={{ width: 0 }} animate={{ width: `${skillLevel}%` }} className="bg-accent2 h-full rounded-full" />
+</div>
+
+
+import React from "react";
+import { motion } from "framer-motion";
+import { Mail } from "lucide-react";
+import { Link } from "wouter";
+
+const FloatingCTA: React.FC = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="fixed bottom-8 right-8 z-50"
+    >
+      <Link to="/contact">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center gap-2 px-5 py-3 bg-accent2 text-white font-semibold rounded-full shadow-lg hover:shadow-2xl transition"
+        >
+          <Mail className="h-5 w-5" />
+          Contact Me
+        </motion.button>
+      </Link>
+    </motion.div>
+  );
+};
+
+export default FloatingCTA;
+
+
+
+
+import { motion } from "framer-motion";
+import { useState } from "react";
+
+const ServiceCard = ({ service }) => {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <motion.div
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
+      className="w-full md:w-80 h-64 perspective"
+    >
+      <motion.div
+        animate={{ rotateY: flipped ? 180 : 0 }}
+        className="relative w-full h-full rounded-2xl shadow-lg cursor-pointer transform-style-preserve-3d transition-transform duration-500"
+      >
+        {/* Front */}
+        <div className="absolute backface-hidden w-full h-full bg-white/5 text-white p-6 rounded-2xl flex flex-col justify-center items-start">
+          <div className="mb-3">{service.icon}</div>
+          <h3 className="text-xl font-semibold">{service.title}</h3>
+          <p className="text-sm mt-1">{service.subtitle}</p>
+        </div>
+
+        {/* Back */}
+        <div className="absolute backface-hidden rotate-y-180 w-full h-full bg-accent2 p-6 rounded-2xl flex flex-col justify-center items-start text-white">
+          <h3 className="text-lg font-semibold mb-2">Tools & Skills</h3>
+          <div className="flex flex-wrap gap-2">
+            {service.tools.map((tool, idx) => (
+              <span key={idx} className="bg-white/20 px-2 py-1 rounded text-xs">{tool}</span>
+            ))}
+          </div>
+          <a
+            href={service.workLinkTo}
+            className="mt-4 inline-flex items-center gap-2 text-sm font-medium underline"
+          >
+            See My Work
+          </a>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+
+for home:
+
+
+{!isMobile && (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    className="fixed bottom-8 right-8 z-50"
+  >
+    <button
+      onClick={() => setShowHirePopup(true)}
+      className="bg-accent2 text-black px-5 py-3 rounded-full shadow-lg hover:scale-105 transition"
+    >
+      Hire Me
+    </button>
+  </motion.div>
+)}
+
+
+
+<div className="fixed top-0 left-0 h-1 bg-accent2 z-50" style={{ width: `${scrollPercent}%` }} />
+
+
+Perfect! Let’s break down the implementation plan for your **Home page enhancements** and integrate them cleanly with your current React setup.
+
+---
+
+## **1. Hero Typing Effect**
+
+We'll replace the static role spans with a **cycling typing animation**. Using `react-typed` or a simple custom hook with `framer-motion`:
+
+```bash
+npm install react-typed
+```
+
+**Hero Section snippet:**
+
+```tsx
+import Typed from 'react-typed';
+
+<h1 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight mb-5">
+  Hi, I’m Elvin, a{' '}
+  <span className="text-accent2">
+    <Typed
+      strings={["Electrical Engineer", "Systems Developer", "Creative Technologist"]}
+      typeSpeed={80}
+      backSpeed={50}
+      loop
+    />
+  </span>.
+</h1>
+```
+
+✨ This will **cycle the roles continuously** in the hero, giving a dynamic first impression.
+
+---
+
+## **2. Interactive Floating Background Effects**
+
+Enhance your existing `BackgroundEffect` with:
+
+* **Particle connections reacting to cursor**
+* **Glow or subtle movement on CTA hover**
+
+**Example using particles.js (or similar custom canvas effect):**
+
+```tsx
+import { useEffect, useRef } from 'react';
+
+const ParticleBackground: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!ctx || !canvas) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = Array.from({ length: 50 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+    }));
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, i) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,0.7)';
+        ctx.fill();
+
+        // Lines
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = p.x - particles[j].x;
+          const dy = p.y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if(dist < 100) {
+            ctx.strokeStyle = `rgba(255,255,255,${1 - dist/100})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      });
+      requestAnimationFrame(draw);
+    };
+
+    draw();
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return <canvas ref={canvasRef} className="fixed inset-0 -z-20" />;
+};
+
+export default ParticleBackground;
+```
+
+* Place `<ParticleBackground />` **behind your hero/content** like `BackgroundEffect`.
+* Hover glow on CTA: just add `hover:shadow-lg hover:scale-105 transition` (you already have this).
+
+---
+
+## **3. Lazy-loaded Flip Cards for Services/Portfolio**
+
+* Use your existing `LazySection` wrapper.
+* Flip cards show **front: service title/icon**, **back: tools + “View Project” CTA**.
+* CSS transform for flip effect:
+
+```tsx
+const FlipCard: React.FC<{
+  title: string;
+  icon: React.ReactNode;
+  tools: string[];
+  link: string;
+}> = ({ title, icon, tools, link }) => {
+  return (
+    <div className="group perspective w-full md:w-1/3">
+      <div className="relative w-full h-64 duration-700 transform-style preserve-3d group-hover:rotate-y-180">
+        {/* Front */}
+        <div className="absolute w-full h-full backface-hidden bg-white/5 rounded-xl p-5 flex flex-col items-center justify-center">
+          {icon}
+          <h3 className="mt-4 font-semibold text-lg">{title}</h3>
+        </div>
+        {/* Back */}
+        <div className="absolute w-full h-full backface-hidden bg-white/10 rounded-xl p-5 flex flex-col items-center justify-center rotate-y-180">
+          <h4 className="font-semibold mb-2">Tools</h4>
+          <div className="flex flex-wrap gap-2 mb-3">
+            {tools.map((t) => <Badge key={t}>{t}</Badge>)}
+          </div>
+          <Link to={link} className="text-accent2 hover:underline">View Project</Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+```
+
+**Usage with `LazySection`:**
+
+```tsx
+<LazySection>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {services.map((s) => (
+      <FlipCard 
+        key={s.id} 
+        title={s.title} 
+        icon={s.icon} 
+        tools={s.tools} 
+        link={s.workLinkTo} 
+      />
+    ))}
+  </div>
+</LazySection>
+```
+
+✅ This creates **interactive flip cards** that lazy-load for performance.
+
+---
+
+If you want, I can **rewrite your Home page fully** with these three features integrated:
+
+* Hero typing animation
+* Interactive floating particles
+* Lazy-loaded flip cards for services
+
+It will be fully ready for React + Tailwind + Framer Motion.
+
+Do you want me to do that next?
+
+
+
+
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'wouter';
+import { motion } from 'framer-motion';
+import { Bolt, Cpu, Code2, PenTool, Home, ExternalLink, Mail, ChevronRight } from 'lucide-react';
+
+// ==========================
+// Helper Components
+// ==========================
+const Badge: React.FC<{ className?: string }> = ({ children, className }) => (
+  <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs border border-white/20 bg-white/5 ${className}`}>
+    {children}
+  </span>
+);
+
+const SectionHead: React.FC<{ icon: React.ReactNode; title: string; subtitle: string; id?: string }> = ({ icon, title, subtitle, id }) => (
+  <div id={id} className="flex items-start gap-3 mb-6">
+    <div className="shrink-0 rounded-2xl p-2 bg-white/10 border border-white/10">{icon}</div>
+    <div>
+      <h2 className="text-xl md:text-2xl font-semibold leading-tight">{title}</h2>
+      <p className="text-white/70 text-sm md:text-base">{subtitle}</p>
+    </div>
+  </div>
+);
+
+const CTA: React.FC<{ to: string; variant?: "primary" | "ghost"; className?: string }> = ({ to, children, variant = "primary", className }) => (
+  <Link to={to} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+    <button className={`${variant === "primary" ? "bg-accent2 text-white" : "border border-white/20 text-white"} inline-flex items-center gap-2 px-4 py-2 rounded-xl hover:opacity-90 transition shadow ${className}`}>
+      {children} <ChevronRight className="h-4 w-4" />
+    </button>
+  </Link>
+);
+
+// ==========================
+// Typing Hero Effect
+// ==========================
+const useTypingEffect = (words: string[], speed = 150, pause = 1500) => {
+  const [displayed, setDisplayed] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [typing, setTyping] = useState(true);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    const currentWord = words[wordIndex];
+
+    if (typing) {
+      if (displayed.length < currentWord.length) {
+        timeout = setTimeout(() => setDisplayed(currentWord.slice(0, displayed.length + 1)), speed);
+      } else {
+        timeout = setTimeout(() => setTyping(false), pause);
+      }
+    } else {
+      if (displayed.length > 0) {
+        timeout = setTimeout(() => setDisplayed(currentWord.slice(0, displayed.length - 1)), speed / 2);
+      } else {
+        setWordIndex((prev) => (prev + 1) % words.length);
+        setTyping(true);
+      }
+    }
+    return () => clearTimeout(timeout);
+  }, [displayed, typing, wordIndex, words, speed, pause]);
+
+  return displayed;
+};
+
+// ==========================
+// Lazy-loaded Section
+// ==========================
+const LazySection: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '100px' }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+  return <div ref={ref}>{visible ? children : null}</div>;
+};
+
+// ==========================
+// Particle Background
+// ==========================
+const ParticleBackground: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    const particles: { x: number; y: number; vx: number; vy: number }[] = [];
+    const num = 60;
+    for (let i = 0; i < num; i++) {
+      particles.push({ x: Math.random() * width, y: Math.random() * height, vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5 });
+    }
+
+    const draw = () => {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, width, height);
+      for (let p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,0.7)';
+        ctx.fill();
+      }
+      // Lines
+      for (let i = 0; i < num; i++) {
+        for (let j = i + 1; j < num; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(255,255,255,${1 - dist / 120})`;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Move
+      for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+      }
+
+      requestAnimationFrame(draw);
+    };
+    draw();
+
+    const handleResize = () => { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return <canvas ref={canvasRef} className="fixed inset-0 -z-20" />;
+};
+
+// ==========================
+// Flip Card for Services
+// ==========================
+const FlipCard: React.FC<{ title: string; subtitle: string; whatIDo: string[]; tools: string[]; icon: React.ReactNode; link: string }> = ({ title, subtitle, whatIDo, tools, icon, link }) => (
+  <motion.div whileHover={{ rotateY: 180 }} className="relative w-full h-64 perspective">
+    <div className="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d">
+      {/* Front */}
+      <div className="absolute w-full h-full backface-hidden rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col justify-between">
+        <div className="flex items-center gap-2">{icon}<h3 className="text-lg font-semibold">{title}</h3></div>
+        <p className="text-sm text-white/70 mt-2">{subtitle}</p>
+      </div>
+      {/* Back */}
+      <div className="absolute w-full h-full backface-hidden rotate-y-180 rounded-2xl border border-white/10 bg-white/10 p-5 flex flex-col justify-between">
+        <div>
+          <h4 className="font-semibold mb-2">Tools & Skills</h4>
+          <div className="flex flex-wrap gap-1">
+            {tools.map((t) => <Badge key={t}>{t}</Badge>)}
+          </div>
+        </div>
+        <CTA to={link}>View Project</CTA>
+      </div>
+    </div>
+  </motion.div>
+);
+
+// ==========================
+// Main Home Page
+// ==========================
+const Home: React.FC = () => {
+  const roles = ["Electrical Engineer", "Systems Developer", "Creative Technologist"];
+  const typedRole = useTypingEffect(roles);
+
+  const services = [
+    { id: "energy", icon: <Bolt />, title: "Renewable Energy & Power Systems", subtitle: "Solar, storage & microgrids", whatIDo: ["Hybrid PV + BESS design", "Grid-tied/off-grid microgrids"], tools: ["MATLAB", "DIgSILENT"], link: "/projects?tag=energy" },
+    { id: "embedded", icon: <Cpu />, title: "Embedded & IoT", subtitle: "Smart devices & firmware", whatIDo: ["STM32 firmware", "IoT telemetry"], tools: ["C/C++", "FreeRTOS"], link: "/projects?tag=embedded" },
+    { id: "software", icon: <Code2 />, title: "Software Development", subtitle: "Full-stack apps & dashboards", whatIDo: ["React dashboards", "API integration"], tools: ["React", "Node.js"], link: "/projects?tag=software" },
+  ];
+
+  return (
+    <div className="relative text-white min-h-screen">
+      <ParticleBackground />
+
+      {/* Hero */}
+      <section className="relative flex flex-col items-center justify-center text-center pt-32 pb-16">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          Hi, I’m Elvin — <span className="text-accent2">{typedRole}</span><span className="blink">|</span>
+        </h1>
+        <p className="max-w-2xl text-white/70 mb-6">
+          I design smart systems and seamless digital experiences – from energy solutions to intuitive digital platforms.
+        </p>
+        <div className="flex gap-4 flex-wrap justify-center">
+          <CTA to="/projects">See My Work</CTA>
+          <CTA to="/contact" variant="ghost">Contact Me</CTA>
+        </div>
+      </section>
+
+      {/* Services Flip Cards */}
+      <section className="px-4 py-16 container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {services.map((s) => (
+          <LazySection key={s.id}>
+            <FlipCard {...s} />
+          </LazySection>
+        ))}
+      </section>
+
+      {/* Floating Contact Button */}
+      <motion.div
+        className="fixed bottom-8 right-8 z-50"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <Link to="/contact">
+          <button className="px-5 py-3 rounded-full bg-accent2 text-black shadow-lg hover:shadow-2xl transition-all">
+            Contact Me
+          </button>
+        </Link>
+      </motion.div>
+    </div>
+  );
+};
+
+export default Home;
+
+
+
+
+
+
+import React, { useState, Suspense, useRef, useEffect } from "react";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { OrbitControls, Html, useTexture } from "@react-three/drei";
+import { motion } from "framer-motion";
+import { Link } from "wouter";
+import * as THREE from "three";
+import LazySection from "@/components/home/LazySection"; // Your LazySection wrapper
+
+// Sample projects
+const projects = [
+  {
+    id: 1,
+    title: "Solar Microgrid",
+    identity: "Engineer",
+    thumbnail: "/images/microgrid.jpg",
+    video: "/videos/microgrid.mp4",
+    tools: ["MATLAB", "DIgSILENT"],
+  },
+  {
+    id: 2,
+    title: "IoT Smart Meter",
+    identity: "Developer",
+    thumbnail: "/images/iot.jpg",
+    video: "/videos/iot.mp4",
+    tools: ["C/C++", "FreeRTOS"],
+  },
+  {
+    id: 3,
+    title: "Portfolio Web App",
+    identity: "Technopreneur",
+    thumbnail: "/images/webapp.jpg",
+    video: "/videos/webapp.mp4",
+    tools: ["React", "Node.js"],
+  },
+  // Add more projects here
+];
+
+// 3D Project Card Component
+const ProjectCard3D = ({ project, position }) => {
+  const [hovered, setHovered] = useState(false);
+  const texture = useTexture(project.thumbnail);
+
+  const meshRef = useRef();
+
+  // Subtle floating animation
+  useFrame(({ clock }) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = Math.sin(clock.getElapsedTime() / 2) * 0.1;
+      meshRef.current.rotation.x = Math.sin(clock.getElapsedTime() / 3) * 0.05;
+    }
+  });
+
+  return (
+    <mesh
+      ref={meshRef}
+      position={position}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+    >
+      <planeBufferGeometry args={[2.5, 3.5]} />
+      <meshStandardMaterial map={texture} toneMapped={false} />
+      {hovered && (
+        <Html center distanceFactor={1.5}>
+          <div className="bg-black/80 text-white p-2 rounded-md text-center w-40 shadow-lg">
+            <h3 className="font-bold">{project.title}</h3>
+            <p className="text-sm mt-1">{project.identity}</p>
+            <div className="flex flex-wrap justify-center gap-1 mt-1">
+              {project.tools.map((t, i) => (
+                <span key={i} className="px-1 text-xs bg-white/20 rounded">{t}</span>
+              ))}
+            </div>
+          </div>
+        </Html>
+      )}
+    </mesh>
+  );
+};
+
+// Particle background component
+const Particles = () => {
+  const points = useRef();
+  const particleCount = 150;
+  const positions = new Float32Array(particleCount * 3);
+
+  for (let i = 0; i < particleCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 40;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 40;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
+  }
+
+  useFrame(({ mouse }) => {
+    if (points.current) {
+      points.current.rotation.y = mouse.x * 0.5;
+      points.current.rotation.x = -mouse.y * 0.5;
+    }
+  });
+
+  return (
+    <points ref={points}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" count={positions.length / 3} array={positions} itemSize={3} />
+      </bufferGeometry>
+      <pointsMaterial color="#ffffff" size={0.1} />
+    </points>
+  );
+};
+
+// Main Projects Showcase Page
+const ProjectsShowcase: React.FC = () => {
+  const [filter, setFilter] = useState<string | null>(null);
+
+  const filteredProjects = filter
+    ? projects.filter((p) => p.identity === filter)
+    : projects;
+
+  return (
+    <div className="relative w-full h-screen bg-black text-white overflow-hidden">
+      {/* Identity Filters */}
+      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 flex gap-4 z-20">
+        {["Engineer", "Developer", "Technopreneur", "Creative Technologist"].map((id) => (
+          <button
+            key={id}
+            className={`px-4 py-2 rounded-full border ${filter === id ? "bg-accent2 text-black" : "border-white/30"}`}
+            onClick={() => setFilter(filter === id ? null : id)}
+          >
+            {id}
+          </button>
+        ))}
+      </div>
+
+      {/* 3D Canvas with lazy-loading */}
+      <LazySection>
+        <Canvas camera={{ position: [0, 0, 12], fov: 50 }}>
+          <ambientLight intensity={0.6} />
+          <pointLight position={[10, 10, 10]} intensity={1.2} />
+          <Suspense fallback={null}>
+            {filteredProjects.map((proj, i) => {
+              const angle = (i / filteredProjects.length) * Math.PI * 2;
+              return <ProjectCard3D key={proj.id} project={proj} position={[Math.cos(angle) * 6, Math.sin(angle) * 2, Math.sin(angle) * 6]} />;
+            })}
+            <Particles />
+          </Suspense>
+          <OrbitControls enableZoom={true} enablePan={false} />
+        </Canvas>
+      </LazySection>
+
+      {/* Floating Contact CTA */}
+      <motion.div className="fixed bottom-8 right-8 z-50" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+        <Link to="/contact">
+          <button className="px-6 py-3 rounded-full bg-accent2 text-black shadow-lg hover:shadow-2xl transition-all">
+            Contact Me
+          </button>
+        </Link> 
+      </motion.div>
+    </div>
+  );
+};
+
+export default ProjectsShowcase;
+
