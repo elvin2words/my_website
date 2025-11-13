@@ -1,5 +1,5 @@
 // src/data/designer.ts
-// This file contains data related to the Designer role, including expertise, tools, and design philosophy.
+// This file contains data related to the Crreative Technologist role, including...
  
 export const role = {
   title: "Creative Technologist",

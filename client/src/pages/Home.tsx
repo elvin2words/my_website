@@ -279,7 +279,18 @@ const Home: React.FC = () => {
             {/* across EVs, utility grids and industrial automation.  */}
             {/* <br /> */}
             Building with depth, designing with empathy, and creating for impact.
-            {/* <br /> */}
+            <br />
+            <span className="text-sm sm:text-xs md:text-xs text-accent2">
+              As an Electrical Engineer, I design and optimize the physical systems that power our world.
+            </span>
+            <br />
+            <span className="text-sm sm:text-xs md:text-xs text-accent1">
+              As a Systems Developer, I build the digital intelligence that connects those systems to people and data.
+            </span>
+            <br />
+            <span className="text-sm sm:text-xs md:text-xs text-accent5">
+              As a Creative Technologist, I explore new ways of thinking about what technology can be — expressive, adaptive, and humane.
+            </span>.
             {/* Explore the complementary sides to what i do below: */}
           </p>
         </div>
