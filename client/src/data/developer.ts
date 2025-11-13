@@ -1,30 +1,49 @@
 // src/data/developer.ts
 // This file contains data related to the Developer role, including skills, projects, and development philosophy.
 
-export const skills = [
-  "Frontend Development: React, TypeScript, GSAP, Framer Motion",
-  "UI/UX Systems: Next.js, Tailwind CSS, Chakra UI, HTML5, SVG, Bootstrap",
-  "Design to Code Pipelines: Figma → React",
-  "Backend Development: Django, Flask, FastAPI, Node.js, Express",
-  "AI/ML Integrations: Custom Python-based models",
+export const coreIdentity1 = 
+  "I build software systems the way I approach core engineering - as a living system designed to evolve, communicate, and solve real problems.";
+
+export const coreIdentity2 = 
+  "From embedded devices to enterprise-scale digital platforms, my work explores how intelligence, design, and infrastructure converge into seamless, human-centered systems.";
+
+export const stack = [
+  "Languages: TypeScript, JS, Python, C/C++, SQL",
+  "Frameworks & Tools: React, RN, Node.js, Tailwind CSS, Express, Flask, Django",
+  "Embedded & Control: STM32, Vivado HDL, firmware design, serial comms",
+  "UI/UX Design: Figma to code workflows, responsive design, motion UI",
+  "Databases: mySQL, PostgreSQL, MongoDB, Supabase",
+];
+
+export const backend = [
+  "AI/ML: Custom models, OpenAI API, LangChain",
   "Systems Integration: Control logic bridging physical systems and UI",
-  "APIs & Protocols: REST APIs, WebSockets, MQTT pipelines",
+  "APIs & Protocols: REST APIs, payment gateways, OAuth, WebSockets, MQTT",
+  "DevOps & CI/CD: Git, Docker, GitHub Actions, automated testing",
+  "Data: IoT pipelines, real-time telemetry, fault diagnostics, and data visualization",
 ];
 
 export const projects = [
   {
-    title: "UFMS (Utility Grid Fault Management System)",
+    title: "Utility Field Deployment & Fault Management System",
     description:
-      "Full-stack outage monitoring platform with live grid fault detection, automated technician dispatch, GIS-integrated mobile apps, and analytics backend.",
-    tech: ["React", "Node.js", "PostgreSQL", "Python", "Leaflet", "WebSockets"],
-    architecture: ["REST APIs", "Real-time Streams", "Microservices", "MVC"],
+      "A cross-platform field operations platform for utility networks integrating real-time faults, jobs, outage coordination, and analytics, streamlined workflows across distributed field operations teams.",
+    tech: ["ReactNative", "Node.js", "PostgreSQL", "Python", "Expo", "WebSockets"],
+    architecture: ["REST APIs", "Real-time Streams", "Microservices", "GridOperations Integration"],
   },
   {
-    title: "M.A.A.S / M.A.A.P Platforms",
+    title: "C.A.S.S.I.E - Candidate Assesment & Selection System with Intelligence Evaluation",
     description:
-      "Early-stage modular collaboration platforms for dynamic matchmaking, task pipelines, and creative community discovery.",
-    tech: ["React", "TypeScript", "Node.js", "PostgreSQL", "Socket.io"],
+      "A Human-Centered, AI-Augmented Hiring Intelligence Platform designed to revolutionize talent acquisition by merging advanced AI technologies with inclusive, recruiter-friendly design. It manages the entire lifecycle of recruitment: from multi-channel application intake, intelligent resume parsing, semantic matching, to interview assistance and post-hire analysis.",
+    tech: ["React", "TypeScript", "PostgreSQL", "Socket.io", "Gemini API", "Flask"],
     architecture: ["REST + Event-Driven State", "Role-based Microservices"],
+  },
+  {
+    title: "EDDY AI (Lab Rats Inspired)",
+    description:
+      "Interactive generative AI assistant powered by emotion-aware expressions and dialogue, bridges different appications for specialised use-cases.",
+    tech: ["React", "GSAP", "SVG", "WebSocket", "Express"],
+    architecture: ["SPA", "SVG Motion Layer", "Chat socket layer"],
   },
   {
     title: "Horizon: Travel UX for Africa",
@@ -36,21 +55,30 @@ export const projects = [
   {
     title: "FPGA AOI Vision System",
     description:
-      "Vision + inspection software with GUI + control logic for mechanical rejector systems; YOLOv5 + sorting animations + Pi integration.",
+      "Vision inspection software with GUI + control logic for mechanical rejector systems; YOLOv5 + sorting animations + Pi integration.",
     tech: ["Python", "OpenCV", "React", "Raspberry Pi", "C++"],
     architecture: ["Local Event System", "Hardware-Synced MVC"],
   },
   {
-    title: "EDDY (Lab Rats Inspired)",
+    title: "Transit Optimization System",
     description:
-      "Interactive web-native assistant powered by emotion-aware expressions and dialogue, bridging frontend motion and contextual UX.",
-    tech: ["React", "GSAP", "SVG", "WebSocket", "Express"],
-    architecture: ["SPA", "SVG Motion Layer", "Chat socket layer"],
+      "Developed a smart public transportation platform using Python, Node.js, and React with machine-learning-driven dispatch and routing optimization.",
+    tech: ["Python", "Node.js", "React", "PostgreSQL", "Scikit-learn"],
+    architecture: ["Microservices", "ML Integration", "REST APIs"],
+  },
+  {
+    title: "Portfolio Web Platforms & Interactive Experiences",
+    description:
+      "Digital infrastructure for different ventures (UI/UX + backend architecture) and companies requiring digital presence and/or distributed asset monitoring; \
+      Adaptive Monitoring Dashboards; Embedded Device - Cloud DB Data Pipelines; Aggregation, Control and Visualisation Systems; \
+      Focusing on interoperability and low-latency event handling.",
+    tech: ["React", "Html", "JS", "CSS", "Node.js", "TypeScript", "Tailwind CSS", "Figma", "Web3", "MQTT"],
+    architecture: ["Web Dev", "REST APIs"],
   },
 ];
 
 export const philosophy = `
-    My development mindset blends systems thinking with creative software architecture, bridging control theory with modern web-native tools.
-    I’m focused on building software ecosystems with essence of intelligence, modularity, resilience, expression, and purpose.
-    All grounded in: performance, clarity, and thoughtful interaction.
+    Software should do more than function - it should extend human capability. \
+    Every system begins with a question: What interaction are we trying to improve - between people, data, or devices? \
+    Each service, device, and data flow should communicate meaningfully, creating systems that adapt intelligently and feel natural to use.
 `;

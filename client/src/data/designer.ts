@@ -1,9 +1,9 @@
 // src/data/designer.ts
 // This file contains data related to the Designer role, including expertise, tools, and design philosophy.
-
+ 
 export const role = {
   title: "Creative Technologist",
-  subtitle: "Storytelling, UI Systems & Expressive Design",
+  subtitle: "Design is how people emotionally understand complex systems.",
 };
 
 export const designExpertise = [
@@ -48,7 +48,7 @@ export const portfolioHighlights = [
   },
   {
     title: "Brand Identity",
-    description:
+    description: 
       "Mazenel Industries: Minimalist & Industrial Elegance; Usorvax Travel: Vibrant, Pan-African Identity; Iqal Inc",
   },
 ];

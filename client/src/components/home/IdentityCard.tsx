@@ -123,12 +123,12 @@ const IdentityCard: React.FC<IdentityCardProps> = ({
           <div className="text-sm text-white font-medium">{description}</div>
         </div>
 
-        <div
+        {/* <div
           className={`inline-flex items-center ${color} text-sm font-medium border border-opacity-30 border-white px-3 py-1.5 rounded-lg hover:bg-opacity-10 hover:bg-white transition-all mt-2`}
         >
           Click to Explore
           <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-        </div>
+        </div> */}
 
         {bulletPoints.length > 0 && (
           <div className="mt-4 pt-4 border-t border-white border-opacity-20">

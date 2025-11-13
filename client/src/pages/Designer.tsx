@@ -77,7 +77,7 @@ const Designer: React.FC = () => {
                   </Button>
                 </Link>
               </div>
-
+ 
               <div className="w-1/3 text-center">
                 <h1 className="text-2xl md:text-3xl font-poppins font-bold text-accent3">
                   {role.title}
@@ -100,7 +100,7 @@ const Designer: React.FC = () => {
             {/* Sections Grid */}
             <motion.div
               className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
-              variants={fadeUpParent}
+              variants={fadeUpParent} 
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}

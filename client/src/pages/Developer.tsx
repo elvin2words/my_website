@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // Animations
 import { fadeUp, fadeUpParent, fadeUpItem } from "@/utils/animations";
 //import data
-import { skills, projects, philosophy } from "@/data/developer";
+import { stack, backend, projects, philosophy, coreIdentity1, coreIdentity2 } from "@/data/developer";
 
 // import BackgroundEffect from '@/components/home/BackgroundEffect';
 
@@ -77,10 +77,10 @@ const Developer: React.FC = () => {
 
               <div className="w-1/3 text-center">
                 <h1 className="text-2xl md:text-3xl font-poppins font-bold text-accent2">
-                  Developer & Systems Architect
+                  Full Stack Developer 
                 </h1>
                 <p className="text-sm md:text-base opacity-80 mt-1">
-                  Software & Systems Design
+                  Crafting systems That Think, Adapt, and Connect
                 </p>
               </div>
 
@@ -100,7 +100,21 @@ const Developer: React.FC = () => {
                   </Button>
                 </Link>
               </div>
-            </motion.div>            
+            </motion.div>         
+            
+            <motion.div {...fadeUp} className="mb-10">
+              <Card className="bg-white bg-opacity-5 text-white backdrop-blur-sm border border-white border-opacity-10 col-span-2">
+                <CardHeader className="flex flex-row items-center justify-center">
+                  <CardTitle>Core</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-row items-start justify-start">
+                  <p className="text-sm md:text-base leading-relaxed">{coreIdentity1}</p>
+                </CardContent>
+                <CardContent className="flex flex-row items-endjustify-end">
+                  <p className="text-sm md:text-base leading-relaxed">{coreIdentity2}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
 
             {/* Skills */}
             <motion.div
@@ -115,7 +129,7 @@ const Developer: React.FC = () => {
                 <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                   <CardHeader className="flex flex-row items-center">
                     <Code className="h-6 w-6 text-accent2 mr-2" />
-                    <CardTitle>Frontend & UI Systems</CardTitle>
+                    <CardTitle>Stack & Tools</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <motion.ul
@@ -125,7 +139,7 @@ const Developer: React.FC = () => {
                       viewport={{ once: true }}
                       className="space-y-2"
                     >
-                      {skills.filter((_, idx) => idx < 4).map((skill, idx) => (
+                      {stack.map((skill, idx) => (
                         <motion.li key={idx} variants={fadeUpItem}   className="flex items-center text-sm md:text-base">
                           <div className="h-2 w-2 rounded-full bg-accent2 mr-2" />
                           <span>{skill}</span>
@@ -151,7 +165,8 @@ const Developer: React.FC = () => {
                       viewport={{ once: true }}
                       className="space-y-2"
                     >
-                      {skills.filter((_, idx) => idx >= 4).map((skill, idx) => (
+                      {backend.map((skill, idx) => (
+                      // {backend.filter((_, idx) => idx).map((skill, idx) => (
                         <motion.li key={idx} variants={fadeUpItem}  className="flex items-center text-sm md:text-base" >
                           <div className="h-2 w-2 rounded-full bg-accent2 mr-2" />
                           <span>{skill}</span>
@@ -237,7 +252,7 @@ const Developer: React.FC = () => {
                           {p.architecture.join(" • ")}
                         </div>
                       </motion.li>
-                    </motion.ul>                                        
+                    </motion.ul>  
                   ))}               
                 </CardContent>
               </Card>

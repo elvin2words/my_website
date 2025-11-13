@@ -4,7 +4,7 @@
 import { ArrowLeft, ArrowRight, Lightbulb, TrendingUp, Users,
   BarChart, Target, } from 'lucide-react';
 
-export const role = {
+export const role = { 
   title: "Budding Technopren",
   subtitle: "Innovation & Venture Building",
 };

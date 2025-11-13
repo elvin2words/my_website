@@ -1,23 +1,24 @@
 // src/pages/Engineer.tsx
-
+ 
 import React from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Pencil, Target } from 'lucide-react';
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, } from '@/components/ui/card';
 import BackgroundEffect from '@/components/home/BackgroundEffect';
 
 // Animations
 import { fadeUp, fadeUpParent, fadeUpItem } from '@/utils/animations';
 // Import data
-import { education, skills, projects, experience } from "@/data/engineer";
+import { coreIdentity1, coreIdentity2, education, skills, projects, experience, philosophy } from "@/data/engineer";
+
 
 // Shared styles
 const cardBase =
   'bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10';
   // "bg-white/5 text-white backdrop-blur-sm border border-white/10";
-
+  
 
 // ===== Component =====
 const Engineer: React.FC = () => {
@@ -58,7 +59,7 @@ const Engineer: React.FC = () => {
                   Electrical Engineer
                 </h1>
                 <p className="text-base md:text-lg opacity-80 mt-1">
-                  Technical & Academic Identity
+                  The Systems Mind
                 </p>
               </div>
 
@@ -74,6 +75,28 @@ const Engineer: React.FC = () => {
                   </Button>
                 </Link>
               </div>
+            </motion.div>
+
+            <motion.div {...fadeUp} className="mb-10">
+              <Card className="bg-white bg-opacity-5 text-white backdrop-blur-sm border border-white border-opacity-10">
+                <CardHeader className="flex flex-row items-center justify-center">
+                  <CardTitle>Core</CardTitle>
+                </CardHeader>
+
+                {/* Responsive 2-column content layout */}
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Left column */}
+                    <div className="flex flex-col justify-start">
+                      <p className="text-sm md:text-base leading-relaxed">{coreIdentity1}</p>
+                    </div>
+                    {/* Right column */}
+                    <div className="flex flex-col justify-start">
+                      <p className="text-sm md:text-base leading-relaxed">{coreIdentity2}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
 
             {/* ===== Education & Skills ===== */}
@@ -117,6 +140,9 @@ const Engineer: React.FC = () => {
                   <CardHeader>
                     <CardTitle>Technical Skills</CardTitle>
                   </CardHeader>
+                  {/* <span className="mb-4 text-white/80">
+                      My toolkit blends traditional engineering with modern computation:
+                    </span> */}
                   <CardContent>
                     <motion.ul
                       variants={fadeUpParent}
@@ -189,7 +215,7 @@ const Engineer: React.FC = () => {
             >
               <Card className={cardBase}>
                 <CardHeader>
-                  <CardTitle>Professional Experience</CardTitle>
+                  <CardTitle>Professional Path</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <motion.ul
@@ -211,6 +237,27 @@ const Engineer: React.FC = () => {
                       </motion.li>
                     ))}
                   </motion.ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Philosophy */}
+            <motion.div
+              variants={fadeUp}
+              initial="initial"
+              whileInView="whileInView"
+              // viewport="viewport"
+              className="mb-10"
+            >
+              <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+                <CardHeader className="flex items-center">
+                  <Pencil className="h-6 w-6 text-accent2 mr-2" />
+                  <CardTitle>Dev Philosophy</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-white/90 leading-relaxed text-sm md:text-base">
+                    {philosophy}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
