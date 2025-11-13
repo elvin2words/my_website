@@ -10,7 +10,7 @@ import BackgroundEffect from '@/components/home/BackgroundEffect';
 import { motion } from "framer-motion";
 
 import { fadeUp, fadeUpParent, fadeUpItem,} from "@/utils/animations";
-import { role, designExpertise, tools, digitalInterfaces, creativeDirection, portfolioHighlights, designEthos,} from "@/data/designer";
+import { coreIdentity1, coreIdentity2, role, designExpertise, tools, digitalInterfaces, creativeDirection, portfolioHighlights, designEthos,} from "@/data/designer";
 
 
 const BulletItem: React.FC<{ text: string }> = ({ text }) => (
@@ -96,6 +96,20 @@ const Designer: React.FC = () => {
                 </Link>
               </div>
             </motion.div>
+
+            <motion.div {...fadeUp} className="mb-10">
+              <Card className="bg-white bg-opacity-5 text-white backdrop-blur-sm border border-white border-opacity-10 col-span-2">
+                <CardHeader className="flex flex-row items-center justify-center">
+                  <CardTitle>Core</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-row items-start justify-start">
+                  <p className="text-sm md:text-base leading-relaxed">{coreIdentity1}</p>
+                </CardContent>
+                <CardContent className="flex flex-row items-endjustify-end">
+                  <p className="text-sm md:text-base leading-relaxed">{coreIdentity2}</p>
+                </CardContent>
+              </Card>
+            </motion.div>            
             
             {/* Sections Grid */}
             <motion.div
@@ -166,7 +180,7 @@ const Designer: React.FC = () => {
               viewport={{ once: true }}
             >
               {/* Digital System Interfaces */}
-              <motion.div variants={fadeUpItem}>
+              {/* <motion.div variants={fadeUpItem}>
                 <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                   <CardHeader className="flex flex-row items-center">
                     <Monitor className="h-6 w-6 text-accent3 mr-2" />
@@ -189,7 +203,7 @@ const Designer: React.FC = () => {
                     </motion.ul>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </motion.div> */}
 
               {/* Creative Direction */}
               <motion.div variants={fadeUpItem}>

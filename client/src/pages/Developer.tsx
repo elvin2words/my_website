@@ -95,7 +95,7 @@ const Developer: React.FC = () => {
                     variant="ghost"
                     className="text-accent3 hover:text-accent3 flex items-center gap-2 ml-auto"
                   >
-                    Designer
+                    Creative
                     <ArrowRight className="h-5 w-5" />
                   </Button>
                 </Link>

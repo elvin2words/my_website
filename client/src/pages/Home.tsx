@@ -110,13 +110,21 @@ const Home: React.FC = () => {
                   <span className="text-accent4">Creative Technologist</span>.
                 </h1>
 
+                {/* <p className="text-base md:text-xl text-white text-opacity-90 mb-6">
+                  I design smart systems and seamless digital experiences - 
+                  from energy and electrical power systems to embedded and control systems - 
+                  across EVs, utility grids and industrial automation. 
+                  <br />Explore the complementary sides to what i do below:
+                </p> */}
+
                 <p className="text-base md:text-xl text-white text-opacity-90 mb-6">
                   I design smart systems and seamless digital experiences - 
                   from power and energy solutions to intuitive digital platforms - 
-                  across EVs, power systems and industrial control. 
-                  <br />Explore the complementary sides to what i do below:
+                  across EVs, power systems and embedded control.
+                  <br />
+                  Explore the complementary sides to what i do below:
                 </p>
-
+                
               </div>
             </section>
 
@@ -262,6 +270,20 @@ const Home: React.FC = () => {
           <ContactPopupWrapper onClose={() => setIsPopupOpen(false)} />
         </div>
       )}
+
+      <section className="flex flex-col items-center justify-center mb-2 md:mb-4 relative text-center will-change-transform translate-z-0">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-base text-accent3 md:text-xl text-white text-opacity-90 mb-6">
+            {/* I design smart systems and intuitive digital platfors -  */}
+            {/* from energy and electrical power systems to intelligent software, and creative technology, -  */}
+            {/* across EVs, utility grids and industrial automation.  */}
+            {/* <br /> */}
+            Building with depth, designing with empathy, and creating for impact.
+            {/* <br /> */}
+            {/* Explore the complementary sides to what i do below: */}
+          </p>
+        </div>
+      </section>      
 
       {/* HireMe Modal on mobile */}
       {isHireMeModalOpen && (

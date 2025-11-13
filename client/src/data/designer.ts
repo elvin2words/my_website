@@ -6,51 +6,44 @@ export const role = {
   subtitle: "Design is how people emotionally understand complex systems.",
 };
 
+export const coreIdentity1 = 
+  "Applying core engineering, design, and systems thinking to deliver innovative, \
+  human-centered solutions - intuitive digital experiences, interactive prototypes, \
+  and connected systems, balancing aesthetic design, usability, and technical feasibility \
+  to drive impactful product development.";
+
+export const coreIdentity2 = 
+  "Technology is a creative medium - not just a set of tools, but a language for expression, experimentation, and impact.\
+  I’m interested in how technology shapes behavior, perception, and sustainability - \
+  how every interface, device, or process carries a message about how we live and connect.";
+
 export const designExpertise = [
-  "UI/UX Design for Web & Mobile",
-  "Visual Identity & Branding Systems",
-  "Interactive & Inclusive Digital Aesthetics",
-  "Component Libraries & Design Systems",
+  "Human-Centered Design",
   "Conceptual Design Thinking",
+  "Experimental Prototyping",
+  "Visual Identity & Branding Systems",
+  "Interactive Systems Design"
 ];
 
 export const tools = [
   "Figma, Adobe XD, Framer Motion",
   "Illustrator, Photoshop, Lightroom",
-  "Canva, CapCut, Blender",
-  "React + SVG-based Interactive Interfaces",
-];
-
-export const digitalInterfaces = [
-  "Web UI & Landing Pages (React, GSAP)",
-  "Mobile-First App Design",
-  "Custom Dashboards & Analytics UI",
-  "Interactive & Immersive Experiences",
+  "Notion, Otter, Blender",
 ];
 
 export const creativeDirection = [
-  "Brand architecture & iconography",
-  "Visual communication & storytelling",
-  "Creative system architecture for digital products",
-  "Experimental motion and expression design",
+  "Innovation & Prototype Design: Concept-to-MVP development, design thinking methodologies.",
+  "Experimental motion and expression design.",
+  "Strategic Innovation: Identifying opportunities for applied technology in energy, mobility, industrial automation, and digital services."
+
 ];
 
 export const portfolioHighlights = [
   {
-    title: "Horizon Travel App UI",
+    title: "The Mazenel Ignite Sphere",
     description:
-      "Designed a mobile-first travel discovery platform for African destinations, emphasizing cultural vibrancy and adaptive UI patterns with Ursovax.",
-  },
-  {
-    title: "Transit System UX Interface",
-    description:
-      "Designed a clean and intuitive UI for the smart transit web app, improving usability and reducing friction for first-time users.",
-  },
-  {
-    title: "Brand Identity",
-    description: 
-      "Mazenel Industries: Minimalist & Industrial Elegance; Usorvax Travel: Vibrant, Pan-African Identity; Iqal Inc",
+      "",
   },
 ];
 
-export const designEthos = `I approach design as both 'system and story' - blending expressive visual language with functional clarity. Whether building responsive dashboards for technical systems or crafting soft motion for human-centered platforms, I strive to bring out the *soul of the product*. My creative process is rooted in **designing with intent**, prototyping rapidly, and shaping products that feel alive and intuitive.`;
+export const designEthos = `Creativity is not separate from engineering — it’s the imagination that makes engineering human.So to prototyping possibilities, to test the edge between what exists and what could exist and to make innovation accessible, relatable, and meaningful. with motion, intent, and purpose`;
