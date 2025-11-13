@@ -95,8 +95,8 @@ export const identityDescriptions: Record<string, { title: string, role: string,
     description: "Venture Building",
   },
   human: {
-    title: "Human Being",
-    role: "As A",
-    description: "Personal & Reflective",
+    title: "Elvin - Beyond All Else",
+    role: "As Just",
+    description: "The Reflective Soul",
   },
 };

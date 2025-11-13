@@ -1,7 +1,7 @@
 // src/components/Technopreneur.tsx
       
 import React from "react";
-import { ArrowLeft, ArrowRight, Lightbulb, TrendingUp, Users, BarChart, Target } from "lucide-react";
+import { ArrowLeft, ArrowRight, Lightbulb, TrendingUp, Users, BarChart, Target, Settings } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 
 import { fadeUp, fadeUpParent, fadeUpItem, } from "@/utils/animations";
 
-import { role, visionStatement, coreCapabilities, leadershipAndTech, ventures, } from "@/data/technop";
+import { role, visionStatement, coreCapabilities, leadershipAndTech, ventures, coreIdentity, whyItMatters, } from "@/data/technop";
 
 
 const Technopreneur: React.FC = () => {
@@ -32,7 +32,7 @@ const Technopreneur: React.FC = () => {
             >
             {/* <motion.div
               variants={fadeUpParent}
-              initial="hidden"
+              initial="hidden"  
               whileInView="show"
               viewport={{ once: true }}
               className="flex items-center justify-between mb-6"
@@ -79,6 +79,9 @@ const Technopreneur: React.FC = () => {
                 <CardContent>
                   <p className="text-sm md:text-base leading-relaxed">{visionStatement}</p>
                 </CardContent>
+                <CardContent className="flex flex-row items-endjustify-end">
+                  <p className="text-sm md:text-base leading-relaxed">{coreIdentity}</p>
+                </CardContent>                
               </Card>
             </motion.div>
 
@@ -119,7 +122,7 @@ const Technopreneur: React.FC = () => {
                 <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                   <CardHeader className="flex flex-row items-center">
                     <TrendingUp className="h-6 w-6 text-accent4 mr-2" />
-                    <CardTitle>Business Acumen</CardTitle>
+                    <CardTitle>Focus Domains</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <motion.ul
@@ -129,7 +132,7 @@ const Technopreneur: React.FC = () => {
                       viewport={{ once: true }}
                       className="space-y-2"
                     >
-                      {coreCapabilities.businessAcumen.map((item) => (
+                      {coreCapabilities.focusAreas.map((item) => (
                         <motion.li key={item} variants={fadeUpItem}  className="flex items-center text-sm md:text-base">
                           <div className="h-2 w-2 rounded-full bg-accent4 mr-2"></div>
                           {item}
@@ -204,7 +207,7 @@ const Technopreneur: React.FC = () => {
             <motion.div {...fadeUp} className="mb-10">
               <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                 <CardHeader>
-                  <CardTitle>Venture Portfolio</CardTitle>
+                  <CardTitle>Venture Portfolio, Ecosystem, and StartUp Engineering Work</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <motion.ul
@@ -221,6 +224,27 @@ const Technopreneur: React.FC = () => {
                       </motion.li>
                     ))} 
                   </motion.ul>            
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Philosophy */}
+            <motion.div
+              variants={fadeUp}
+              initial="initial"
+              whileInView="whileInView"
+              viewport="viewport"
+              className="mb-10"
+            >
+              <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+                <CardHeader className="flex items-center">
+                  <Settings className="h-6 w-6 text-accent2 mr-2" />
+                  <CardTitle>Why It Matters</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-white/90 leading-relaxed text-sm md:text-base">
+                    {whyItMatters}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>

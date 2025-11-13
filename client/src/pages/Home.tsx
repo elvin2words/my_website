@@ -290,7 +290,7 @@ const Home: React.FC = () => {
             <br />
             <span className="text-sm sm:text-xs md:text-xs text-accent5">
               As a Creative Technologist, I explore new ways of thinking about what technology can be — expressive, adaptive, and humane.
-            </span>.
+            </span>
             {/* Explore the complementary sides to what i do below: */}
           </p>
         </div>

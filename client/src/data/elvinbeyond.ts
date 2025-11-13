@@ -1,37 +1,38 @@
-// src/data/elvinbeyond.ts
+// src/data/elvinbeyond.ts 
 // This file contains personal and reflective data about Elvin, including role, interests, and creative expressions.
 
 export const role = {
-  title: "Human Being",
-  subtitle: "Personal & Reflective Side",
+  title: "Elvin - Beyond All Else",
+  subtitle: "Curiosity, Growth, and Meaningful Work",
 };
 
 export const introNarrative = [
-  "At the intersection of the Engineer, the Designer, and the Technopreneur lives someone always reaching for more. My journey blends a technical grounding that has rooted passion in smart grids, EV tech, embedded systems, and real-time solutions - with a heart wired for curiosity, creativity, and collective growth.",
-  "Life, to me, is like a multidimensional project - constantly being iterated through thoughtful design, reflective learning, and a deep desire to harmonize human experience with technological innovation. I seek not just to solve problems but to understand their emotional gravity, crafting meaningful systems that respect both logic and soul.",
-  "Whether I’m prototyping a Fault Management System, sketching ideas for an EVSE platform, composing ambient tracks, or meditating on systems design, my focus is clear: build what matters, remain curious, and always leave space for awe.",
+  "At the intersection of the Engineer, the Creative Technologist, and the Technopreneur lives someone always reaching for more; \
+  A a person who’s always exploring — not just systems, but people, culture, and ideas. \
+  This life needs that, being some system in motion as it is,... constantly iterating through creativity, exploration, and connection. \
+  I try to build what matters, remain curious, and always leave space for awe."
 ];
 
 export const hobbiesInterests = [
   {
-    title: "Music Production",
+    title: "Music",
     description:
-      "Creating lo-fi and experimental sounds, blending digital instruments and field samples into emotional atmospheres.",
+      "Discovery and Creation - vocal, instrumental, lo-fi and experimental sounds.",
   },
   {
-    title: "Anime & Symbolic Storytelling",
+    title: "Storytelling & Media",
     description:
-      "Exploring visual and philosophical themes through anime, sci-fi, and cinematics that inspire design and innovation.",
+      "Anime, sci-fi, and narrative-driven experiences that inspire design, creativity, and innovation, but also massage the brain too.",
   },
   {
-    title: "Travel & Movement",
+    title: "Photography & Visual Expression",
     description:
-      "Swimming, hiking, and exploring new cultures—all as ways to reconnect, reflect, and draw inspiration from nature and people.",
+      "Capturing urban, industrial, and natural landscapes with intention and emotion… coined Capturing the Moment.",
   },
   {
-    title: "Culinary Play",
+    title: "Culinary Experimentation",
     description:
-      "Fusing culinary traditions, experimenting with textures and flavor profiles—another creative outlet with sensory rewards.",
+      "Who doesnt love food right - but heyyy, let's explore new textures, flavors, and cultural fusions — a hands-on creative outlet with sensory rewards.",
   },
 ];
 
@@ -42,14 +43,16 @@ export const learningGrowth = [
       "Deeply interested in how people think, decide, and grow. Often reading about cognitive science, ethics, and introspection.",
   },
   {
-    title: "Personal Development",
+    title: "Continuous Skill & Personal Development",
     description:
-      "Practicing clarity, journaling, and goal-setting. Reflecting on growth with both structure and spontaneity.",
+      "Defaultly being intentional, journaling, and goal-setting. Reflecting on growth with both structure and spontaneity.\
+      Podcasts, research, and experiential learning inform both personal and professional growth",
   },
   {
     title: "Public Speaking & Expression",
     description:
-      "Learning how to speak with clarity and connection. Toastmasters and poetic expression have been key to this path.",
+      "Learning how to speak with clarity and connection. Toastmasters and poetic expression have been key to this path.\
+      And today, hwo about digital content creation, so much to share, beyond the skits and vines.",
   },
 ];
 
@@ -57,12 +60,12 @@ export const causesISupport = [
   {
     title: "Youth & STEM Empowerment",
     description:
-      "Mentoring emerging engineers, designers, and creatives—especially from underrepresented communities.",
+      "Mentorship and accessible pathways towards design and implementation for the next generation of engineers, technologists and enthusiasts.",
   },
   {
     title: "Mental Health & Expression",
     description:
-      "Promoting emotional literacy, safe spaces, and creative outlets for healing and self-awareness.",
+      "Promoting emotional literacy, safe spaces, and creative outlets for healing and self-recovery - A lot happens that derail us all daily.",
   },
   {
     title: "Sustainable & Ethical Tech",

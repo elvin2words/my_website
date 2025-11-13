@@ -1,4 +1,4 @@
-// src/pages/Human.tsx
+// src/pages/Human.tsx 
 
 import React from "react";
 import { ArrowLeft, ArrowRight, Heart, Music, Book, Globe, Camera } from "lucide-react";
@@ -106,7 +106,7 @@ const Human: React.FC = () => {
                 <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                   <CardHeader className="flex flex-row items-center">
                     <Music className="h-6 w-6 text-accent5 mr-2" />
-                    <CardTitle>Hobbies & Interests</CardTitle>
+                    <CardTitle>Creative & Explorative</CardTitle>
                   </CardHeader>
                   <CardContent>
                     {hobbiesInterests.map(({ title, description }, i) => (
@@ -132,7 +132,7 @@ const Human: React.FC = () => {
                 <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                   <CardHeader className="flex flex-row items-center">
                     <Book className="h-6 w-6 text-accent5 mr-2" />
-                    <CardTitle>Learning & Growth</CardTitle>
+                    <CardTitle>Mindset Development & Growth</CardTitle>
                   </CardHeader>
                   <CardContent>
                     {learningGrowth.map(({ title, description }, i) => (
@@ -166,7 +166,7 @@ const Human: React.FC = () => {
                 <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
                   <CardHeader className="flex flex-row items-center">
                     <Globe className="h-6 w-6 text-accent5 mr-2" />
-                    <CardTitle>Causes I Support</CardTitle>
+                    <CardTitle>Causes I Care About</CardTitle>
                   </CardHeader>
                   <CardContent>
                     {causesISupport.map(({ title, description }, i) => (
