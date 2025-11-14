@@ -17,32 +17,35 @@ export const coreIdentity2 =
   I’m interested in how technology shapes behavior, perception, and sustainability - \
   how every interface, device, or process carries a message about how we live and connect.";
 
-export const designExpertise = [
-  "Human-Centered Design",
-  "Conceptual Design Thinking",
-  "Experimental Prototyping",
-  "Visual Identity & Branding Systems",
-  "Interactive Systems Design"
-];
-
-export const tools = [
-  "Figma, Adobe XD, Framer Motion",
-  "Illustrator, Photoshop, Lightroom",
-  "Notion, Otter, Blender",
-];
-
 export const creativeDirection = [
-  "Innovation & Prototype Design: Concept-to-MVP development, design thinking methodologies.",
-  "Experimental motion and expression design.",
-  "Strategic Innovation: Identifying opportunities for applied technology in energy, mobility, industrial automation, and digital services."
+  "Prototype → refine → prototype → learn",
+  "Innovation & Prototype Design — concept-to-MVP workflows using design thinking.",
+  "Experimental motion and expression design for digital experiences.",
+  "Strategic Innovation — identifying applied technology opportunities in energy, mobility, automation, and digital services."
+];
 
+export const processPhilosophy = [
+  "Iterative exploration — prototyping as a thinking tool.",
+  "Knowledge synthesis — connecting ideas across domains.",
+  "Creative workflow loops for disciplined experimentation.",
+  "Reflective practices that drive intentional decision-making.",
+  "Personal innovation OS — structured processes for ideation and execution.",
+];
+
+export const creativeDimensions = [
+  "Cross-disciplinary reasoning across engineering, design, society, and communication.",
+  "Speculative thinking and conceptual exploration of futures, possibilities, and narratives.",
+  "Creative engineering — blending aesthetic intent with technical precision.",
+  "Human-centered system design that respects cognition, emotion, and context.",
+  "Ethical and societal awareness in shaping meaningful technological impact.",
+  "Aesthetic sensitivity to motion, behavior, and interaction — not just visuals.",
 ];
 
 export const portfolioHighlights = [
   {
     title: "The Mazenel Ignite Sphere",
     description:
-      "",
+      "A multidisciplinary innovation platform exploring the intersection of education, technology, and social impact. Blending systems design, creative research, and startup incubation models.",
   },
 ];
 

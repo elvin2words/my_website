@@ -10,7 +10,7 @@ import BackgroundEffect from '@/components/home/BackgroundEffect';
 import { motion } from "framer-motion";
 
 import { fadeUp, fadeUpParent, fadeUpItem,} from "@/utils/animations";
-import { coreIdentity1, coreIdentity2, role, designExpertise, tools, digitalInterfaces, creativeDirection, portfolioHighlights, designEthos,} from "@/data/designer";
+import { coreIdentity1, coreIdentity2, role, creativeDirection, creativeDimensions, portfolioHighlights, designEthos, processPhilosophy,} from "@/data/designer";
 
 
 const BulletItem: React.FC<{ text: string }> = ({ text }) => (
@@ -111,127 +111,6 @@ const Designer: React.FC = () => {
               </Card>
             </motion.div>            
             
-            {/* Sections Grid */}
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
-              variants={fadeUpParent} 
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-            >
-              {/* Creative Design Foundations */}
-              <motion.div variants={fadeUpItem}>
-                <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
-                  <CardHeader className="flex flex-row items-center">
-                    <Palette className="h-6 w-6 text-accent3 mr-2" />
-                    <CardTitle>Creative Design Foundations</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <motion.ul
-                      variants={fadeUpParent}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
-                      className="space-y-2"
-                    > 
-                      {designExpertise.map((item, i) => (
-                        <motion.li key={i} variants={fadeUpItem}  className="flex items-center text-sm md:text-base"               >
-                          <div className="h-2 w-2 rounded-full bg-accent3 mr-2" />
-                          <span>{item}</span>
-                          </motion.li>
-                      ))}
-                    </motion.ul> 
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              {/* Tools & Visual Systems */}
-              {/* <motion.div variants={fadeUpItem}> */}
-                <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
-                  <CardHeader className="flex flex-row items-center">
-                    <Layout className="h-6 w-6 text-accent3 mr-2" />
-                    <CardTitle>Tools & Visual Systems</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <motion.ul
-                      variants={fadeUpParent}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
-                      className="space-y-2"
-                    >
-                      {tools.map((item, i) => (
-                        <motion.li key={i} variants={fadeUpItem} className="flex items-center text-sm md:text-base">
-                          <div className="h-2 w-2 rounded-full bg-accent3 mr-2" />
-                          <span>{item}</span>
-                        </motion.li>
-                      ))}                     
-                    </motion.ul>
-                  </CardContent>
-                </Card>
-              {/* </motion.div> */}
-            </motion.div>
-            
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
-              variants={fadeUpParent}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-            >
-              {/* Digital System Interfaces */}
-              {/* <motion.div variants={fadeUpItem}>
-                <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
-                  <CardHeader className="flex flex-row items-center">
-                    <Monitor className="h-6 w-6 text-accent3 mr-2" />
-                    <CardTitle>Digital System Interfaces</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <motion.ul
-                      variants={fadeUpParent}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
-                      className="space-y-2"
-                    >
-                      {digitalInterfaces.map((item, i) => (
-                        <motion.li key={i} variants={fadeUpItem} className="flex items-center text-sm md:text-base">
-                          <div className="h-2 w-2 rounded-full bg-accent3 mr-2" />
-                          <span>{item}</span>
-                        </motion.li>
-                      ))}
-                    </motion.ul>
-                  </CardContent>
-                </Card>
-              </motion.div> */}
-
-              {/* Creative Direction */}
-              <motion.div variants={fadeUpItem}>
-                <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
-                  <CardHeader className="flex flex-row items-center">
-                    <Film className="h-6 w-6 text-accent3 mr-2" />
-                    <CardTitle>Creative Direction</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <motion.ul
-                      variants={fadeUpParent}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
-                      className="space-y-2"
-                    >
-                      {creativeDirection.map((item, i) => (
-                        <motion.li key={i} variants={fadeUpItem}  className="flex items-center text-sm md:text-base">
-                          <div className="h-2 w-2 rounded-full bg-accent3 mr-2" />
-                          <span>{item}</span>
-                        </motion.li>
-                      ))}
-                    </motion.ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </motion.div>
-            
             {/* Portfolio Highlights */}
             <motion.div
               className="mb-12"
@@ -262,6 +141,128 @@ const Designer: React.FC = () => {
                 </CardContent>
               </Card>
             </motion.div>
+            
+            {/* Sections Grid */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
+              variants={fadeUpParent} 
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              {/* Creative Design Foundations */}
+              <motion.div variants={fadeUpItem}>
+                <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+                  <CardHeader className="flex flex-row items-center">
+                    <Palette className="h-6 w-6 text-accent3 mr-2" />
+                    <CardTitle>Creative Direction</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <motion.ul
+                      variants={fadeUpParent}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true }}
+                      className="space-y-2"
+                    > 
+                      {creativeDirection.map((item, i) => (
+                        <motion.li key={i} variants={fadeUpItem}  className="flex items-center text-sm md:text-base"               >
+                          <div className="h-2 w-2 rounded-full bg-accent3 mr-2" />
+                          <span>{item}</span>
+                          </motion.li>
+                      ))}
+                    </motion.ul> 
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Tools & Visual Systems */}
+              {/* <motion.div variants={fadeUpItem}> */}
+                <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+                  <CardHeader className="flex flex-row items-center">
+                    <Layout className="h-6 w-6 text-accent3 mr-2" />
+                    <CardTitle>Process Flow</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <motion.ul
+                      variants={fadeUpParent}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true }}
+                      className="space-y-2"
+                    >
+                      {processPhilosophy.map((item, i) => (
+                        <motion.li key={i} variants={fadeUpItem} className="flex items-center text-sm md:text-base">
+                          <div className="h-2 w-2 rounded-full bg-accent3 mr-2" />
+                          <span>{item}</span>
+                        </motion.li>
+                      ))}                     
+                    </motion.ul>
+                  </CardContent>
+                </Card>
+              {/* </motion.div> */}
+            </motion.div>
+            
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-1 gap-8 mb-12"
+              variants={fadeUpParent}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+            >
+              {/* Digital System Interfaces */}
+              <motion.div variants={fadeUpItem}>
+                <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+                  <CardHeader className="flex flex-row items-center">
+                    <Monitor className="h-6 w-6 text-accent3 mr-2" />
+                    <CardTitle>Dimensions</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <motion.ul
+                      variants={fadeUpParent}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true }}
+                      className="space-y-2"
+                    >
+                      {creativeDimensions.map((item, i) => (
+                        <motion.li key={i} variants={fadeUpItem} className="flex items-center text-sm md:text-base">
+                          <div className="h-2 w-2 rounded-full bg-accent3 mr-2" />
+                          <span>{item}</span>
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  </CardContent>
+                </Card>
+              </motion.div> 
+
+              {/* Creative Direction */}
+              <motion.div variants={fadeUpItem}>
+                <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+                  <CardHeader className="flex flex-row items-center">
+                    <Film className="h-6 w-6 text-accent3 mr-2" />
+                    <CardTitle>Creative Direction</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <motion.ul
+                      variants={fadeUpParent}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true }}
+                      className="space-y-2"
+                    >
+                      {creativeDirection.map((item, i) => (
+                        <motion.li key={i} variants={fadeUpItem}  className="flex items-center text-sm md:text-base">
+                          <div className="h-2 w-2 rounded-full bg-accent3 mr-2" />
+                          <span>{item}</span>
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
+            
 
             {/* Creative Design Ethos */}
             <motion.div

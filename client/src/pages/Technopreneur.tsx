@@ -85,6 +85,31 @@ const Technopreneur: React.FC = () => {
               </Card>
             </motion.div>
 
+            {/* Ventures */}
+            <motion.div {...fadeUp} className="mb-10">
+              <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
+                <CardHeader>
+                  <CardTitle>Venture Portfolio, Ecosystem, and StartUp Engineering Work</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <motion.ul
+                      variants={fadeUpParent}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true }}
+                      className="space-y-2"
+                    >
+                      {ventures.map(({ title, description }) => (
+                      <motion.li variants={fadeUpItem} key={title}>
+                        <h3 className="font-semibold text-accent4">{title}</h3>
+                        <p className="text-sm md:text-base mt-1">{description}</p>
+                      </motion.li>
+                    ))} 
+                  </motion.ul>            
+                </CardContent>
+              </Card>
+            </motion.div>
+
             {/* Core Capabilities */}
             <motion.div
               className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
@@ -203,30 +228,7 @@ const Technopreneur: React.FC = () => {
               </motion.div>
             </motion.div>
 
-            {/* Ventures */}
-            <motion.div {...fadeUp} className="mb-10">
-              <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
-                <CardHeader>
-                  <CardTitle>Venture Portfolio, Ecosystem, and StartUp Engineering Work</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <motion.ul
-                      variants={fadeUpParent}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
-                      className="space-y-2"
-                    >
-                      {ventures.map(({ title, description }) => (
-                      <motion.li variants={fadeUpItem} key={title}>
-                        <h3 className="font-semibold text-accent4">{title}</h3>
-                        <p className="text-sm md:text-base mt-1">{description}</p>
-                      </motion.li>
-                    ))} 
-                  </motion.ul>            
-                </CardContent>
-              </Card>
-            </motion.div>
+            
 
             {/* Philosophy */}
             <motion.div
