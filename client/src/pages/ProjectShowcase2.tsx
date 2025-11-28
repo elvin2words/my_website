@@ -320,7 +320,7 @@ import { Link } from "wouter";
 import * as THREE from "three";
 
 // Identity Data
-import { role as designerRole, portfolioHighlights as designerPortfolio, tools as designerTools } from "@/data/designer";
+import { role as designerRole, portfolioHighlights as designerPortfolio, tools as designerTools } from "@/data/creative";
 import { skills as developerSkills, projects as developerProjects } from "@/data/developer";
 import { education, projects as engineerProjects } from "@/data/engineer";
 import { role as technopRole, notableProjects as technopProjects } from "@/data/technop";

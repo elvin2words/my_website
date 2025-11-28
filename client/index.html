@@ -1,21 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Elvin Mazwimairi - Portfolio</title>
-    <meta name="description" content="Explore the multifaceted identity of Elvin Mazwimairi - Electrical Engineer, Systems Developer, Artistic Designer, Technopreneur, and Human Being." />
-    
-    <!-- Open Graph tags -->
-    <meta property="og:title" content="Elvin Mazwimairi - Portfolio" />
-    <meta property="og:description" content="Engineer • Creator • Problem Solver" />
-    <meta property="og:type" content="website" />
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Viewport for responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
+  <!-- Primary Meta -->
+  <title>Elvin Mazwimairi - Portfolio</title>
+  <meta name="description" content="Explore the multifaceted work of Elvin Mazwimairi — Electrical Engineer, Systems Developer, Technopreneur, and Creative Problem Solver.">
+
+  <!-- SEO Keywords -->
+  <meta name="keywords" content="Elvin Mazwimairi, Electrical Engineer Zimbabwe, Systems Developer, Embedded Systems, Renewable Energy, Digital Engineer, Technopreneur, Portfolio">
+
+  <!-- Browser Theme -->
+  <meta name="apple-mobile-web-app-status-bar" content="#08090f">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#08090f" />
+
+
+  <!-- Open Graph (Preview on WhatsApp / LinkedIn / Facebook) -->
+  <meta property="og:title" content="Elvin Mazwimairi - Portfolio">
+  <meta property="og:description" content="Engineer • Developer • Technopreneur">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/preview.png">
+  <meta property="og:url" content="https://www.elvinmazwi.me">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Elvin Mazwimairi - Portfolio">
+  <meta name="twitter:description" content="Engineer • Developer • Technopreneur">
+  <meta name="twitter:image" content="/preview.png">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.webmanifest">
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Faster Google Font Loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+
+<body class="bg-accent2 flex items-center justify-center h-screen w-screen">
+<!-- <body class="bg-accent4 flex items-center justify-center"> -->
+  <!-- Fallback content until React loads -->
+  <!-- <div id="root" class="loading-screen flex flex-col items-center justify-center h-full w-full"> -->
+  <div id="root" class="loading-screen items-center justify-center h-full w-full">
+    <lottie-player src="/lottie/loading.json" background="transparent" speed="1" style="width: 200px; height: 200px;" autoplay loop></lottie-player>
+    <p class="mt-4 text-foreground text-center">Loading Elvin’s Portfolio...</p>
+  </div>
+
+  <!-- React App -->
+  <script type="module" src="/src/main.tsx"></script>
+</body>
 </html>

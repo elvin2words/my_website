@@ -13,7 +13,7 @@ import { ArrowUp } from 'lucide-react';
 import Home from "@/pages/Home";
 import Engineer from "@/pages/Engineer";
 import Developer from "@/pages/Developer";
-import Designer from "@/pages/Designer";
+import Designer from "@/pages/Creative";
 import Technopreneur from "@/pages/Technopreneur";
 import Human from "@/pages/Human";
 import NotFound from "@/pages/not-found";
@@ -75,7 +75,7 @@ function Router() {
           <Route path="/resume" component={ResumePage} />
           <Route path="/hire" component={ServicesPage} />
           {/* <Route path="/projects" component={ViewAll} /> */}
-          {/* <Route path="/codecircle" component={CodeCircle} /> */}
+          {/* <Route path="/codecircle" component={CodeCirclePage} /> */}
           {/* <Route path="/bizcircle" component={BizCircle} /> */}
           {/* <Route path="/descircle" component={DesCircle} /> */}
           <Route component={NotFound} />
