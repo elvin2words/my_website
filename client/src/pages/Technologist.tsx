@@ -1,4 +1,4 @@
-//src/pages/Creative.tsx
+//src/pages/CreativeTechnologist.tsx
 
 import React from 'react';
 import { ArrowLeft, ArrowRight, Lightbulb, TrendingUp, Users, BarChart, 
@@ -10,7 +10,7 @@ import BackgroundEffect from '@/components/home/BackgroundEffect';
 import { motion } from "framer-motion";
 
 import { fadeUp, fadeUpParent, fadeUpItem,} from "@/utils/animations";
-import { coreIdentity1, coreIdentity2, role, creativeDirection, creativeDimensions, portfolioHighlights, designEthos, processPhilosophy,} from "@/data/creative";
+import { coreIdentity1, coreIdentity2, role, creativeDirection, creativeDimensions, portfolioHighlights, designEthos, processPhilosophy,} from "@/data/technologist";
 
 
 const BulletItem: React.FC<{ text: string }> = ({ text }) => (

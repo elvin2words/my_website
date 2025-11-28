@@ -286,6 +286,62 @@ const Header: React.FC = () => {
             </div>
             
 
+            <div 
+              className="relative group"
+              onMouseEnter={() => setOpenMenu("biz")}
+              onMouseLeave={() => setOpenMenu(null)}
+            >
+              {/* Trigger */}
+              <button 
+                onClick={() => setOpenMenu(openMenu === "biz" ? null : "biz")}
+                className="flex items-center font-medium text-lg text-white hover:text-accent4 focus:outline-none"
+              >
+                <span className={location === '/technopreneur' ? 'text-accent4' : ''}>
+                  BizCircle
+                </span>
+                <ChevronDown 
+                  className={`ml-1 w-4 h-4 transform transition-transform duration-300 ${
+                    openMenu === "biz" ? "rotate-180" : "rotate-0"
+                  }`} 
+                />
+              </button>
+              {/* Animated Dropdown */}
+              <AnimatePresence>
+                {openMenu === "biz" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute top-full left-0 mt-2 bg-primary border border-white border-opacity-20 rounded-lg shadow-lg p-2 z-50"
+                  >
+                    <Link 
+                      href="/technopreneur/portfolio"
+                      className="block px-4 py-2 text-white hover:text-accent4 hover:bg-white/10 rounded"
+                      onClick={() => {
+                        setOpenMenu(null);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                    >
+                      Portfolio
+                    </Link>
+                    <Link 
+                      href="/technopreneur/portfolio"
+                      className="block px-4 py-2 text-white hover:text-accent4 hover:bg-white/10 rounded"
+                      onClick={() => {
+                        setOpenMenu(null);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                    >
+                      Journey
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              {/* Underline animation */}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent4 transition-all duration-300 group-hover:w-full"></span>
+            </div>            
+
             {/* <div className="relative group">
               <DropdownMenu open={openMenu === "des"} onOpenChange={(open) => setOpenMenu(open ? "des" : null)}>
                 <DropdownMenuTrigger asChild>
@@ -320,7 +376,7 @@ const Header: React.FC = () => {
                 className="flex items-center font-medium text-lg text-white hover:text-accent3 focus:outline-none"
               >
                 <span className={location === '/designer' ? 'text-accent3' : ''}>
-                  DesignCircle
+                  CreativeCircle
                 </span>
                 <ChevronDown 
                   className={`ml-1 w-4 h-4 transform transition-transform duration-300 ${
@@ -387,62 +443,6 @@ const Header: React.FC = () => {
               </DropdownMenu>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent4 transition-all duration-300 group-hover:w-full"></span>
             </div> */}
-
-            <div 
-              className="relative group"
-              onMouseEnter={() => setOpenMenu("biz")}
-              onMouseLeave={() => setOpenMenu(null)}
-            >
-              {/* Trigger */}
-              <button 
-                onClick={() => setOpenMenu(openMenu === "biz" ? null : "biz")}
-                className="flex items-center font-medium text-lg text-white hover:text-accent4 focus:outline-none"
-              >
-                <span className={location === '/technopreneur' ? 'text-accent4' : ''}>
-                  BizCircle
-                </span>
-                <ChevronDown 
-                  className={`ml-1 w-4 h-4 transform transition-transform duration-300 ${
-                    openMenu === "biz" ? "rotate-180" : "rotate-0"
-                  }`} 
-                />
-              </button>
-              {/* Animated Dropdown */}
-              <AnimatePresence>
-                {openMenu === "biz" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute top-full left-0 mt-2 bg-primary border border-white border-opacity-20 rounded-lg shadow-lg p-2 z-50"
-                  >
-                    <Link 
-                      href="/technopreneur/portfolio"
-                      className="block px-4 py-2 text-white hover:text-accent4 hover:bg-white/10 rounded"
-                      onClick={() => {
-                        setOpenMenu(null);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
-                    >
-                      Portfolio
-                    </Link>
-                    <Link 
-                      href="/technopreneur/portfolio"
-                      className="block px-4 py-2 text-white hover:text-accent4 hover:bg-white/10 rounded"
-                      onClick={() => {
-                        setOpenMenu(null);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
-                    >
-                      Journey
-                    </Link>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              {/* Underline animation */}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent4 transition-all duration-300 group-hover:w-full"></span>
-            </div>
 
           </nav>
 

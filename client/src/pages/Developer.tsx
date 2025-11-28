@@ -86,7 +86,7 @@ const Developer: React.FC = () => {
 
               <div className="w-1/3 text-right">
                 <Link
-                  href="/designer"
+                  href="/creative"
                   onClick={() =>
                     window.scrollTo({ top: 0, behavior: "smooth" })
                   }

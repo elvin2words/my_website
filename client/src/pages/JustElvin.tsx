@@ -1,4 +1,4 @@
-// src/pages/Human.tsx 
+// src/pages/JustElvin.tsx 
 
 import React from "react";
 import { ArrowLeft, ArrowRight, Heart, Music, Book, Globe, Camera } from "lucide-react";
@@ -13,7 +13,7 @@ import { role, introNarrative, hobbiesInterests, learningGrowth, causesISupport,
 import { fadeUp, fadeUpParent, fadeUpItem } from "@/utils/animations";
 
 
-const Human: React.FC = () => {
+const JustElvin: React.FC = () => {
   return (
     <>
       <BackgroundEffect />
@@ -228,4 +228,4 @@ const Human: React.FC = () => {
   );
 };
 
-export default Human;
+export default JustElvin;
