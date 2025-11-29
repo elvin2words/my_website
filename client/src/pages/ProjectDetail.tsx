@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ExternalLink, Github } from "lucide-react";
-import { projects } from "@shared/projects";
+import { projects } from "../../../shared/projects";
 
 export default function ProjectDetail() {
   const [, params] = useRoute("/project/:id");
@@ -13,7 +13,7 @@ export default function ProjectDetail() {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center px-4">
+      <div className="min-h-screen bg-accent1/5 flex items-center justify-center px-4">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Project not found</h1>
           <Button onClick={() => setLocation("/")} data-testid="button-back-home">
@@ -26,8 +26,8 @@ export default function ProjectDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
+    <div className="min-h-screen bg-accent1/5">
+      <div className="sticky top-0 z-50 bg-accent1/5/80 backdrop-blur-lg border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <Button 
             variant="ghost" 

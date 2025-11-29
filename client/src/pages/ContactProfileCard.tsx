@@ -6,6 +6,11 @@ import { Phone, Mail, Linkedin, MessageSquare, Share2, Download, QrCode } from "
 import { Helmet } from 'react-helmet';
 import {QRCodeCanvas} from 'qrcode.react';
 import { motion } from 'framer-motion';
+import BackgroundEffect from "@/components/home/BackgroundEffect";
+
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+
 
 export default function ContactProfilePage() {
   const cardRef = useRef(null);
@@ -55,6 +60,9 @@ export default function ContactProfilePage() {
 
   return (
     <>
+
+      <Header />
+
       <Helmet>
         <title>Elvin Mazwi - Digital Business Card</title>
 
@@ -73,6 +81,7 @@ export default function ContactProfilePage() {
 
       
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-300 p-4 md:pt-24">
+        {/* <BackgroundEffect / > */}
         <motion.div
             ref={cardRef}
             className="bg-accent5 shadow-xl rounded-2xl py-4 max-w-sm w-full relative overflow-hidden"
@@ -163,7 +172,9 @@ export default function ContactProfilePage() {
               </button>
             </div>
           </motion.div>
-       </div>
+      </div>
+
+      <Footer />
     </>
   );
 }

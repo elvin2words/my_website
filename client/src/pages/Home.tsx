@@ -10,6 +10,9 @@ import HireMePopup from "@/components/home/HireMePopup";
 import HireMeHoverWrapper from './HireMeHoverWrapper';
 import { Button } from '@/components/ui/button';
 
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { Head } from 'react-day-picker';
 
 // Lazy loader for heavy sections
 const LazySection: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -93,6 +96,8 @@ const Home: React.FC = () => {
   return (
     <>
       <BackgroundEffect />
+
+      <Header />
 
       <div className="relative z-10 overflow-x-hidden" style={{ scrollBehavior: 'smooth', WebkitFontSmoothing: 'antialiased' }}>
         {/* <main className="bg-black pt-24 sm:pt-24 md:pt-28 pb-8 sm:pb-12 px-4 sm:px-4 md:px-6 flex flex-col items-center min-h-screen"> */}
@@ -302,9 +307,11 @@ const Home: React.FC = () => {
           onClick={(e) => handleOverlayClick(e, () => setIsHireMeModalOpen(false))}
           className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center p-4"
         >
-          <HireMePopup />
+          <HireMePopup onLinkClick={() => setIsHireMeModalOpen(false)} />
         </div>
       )}
+
+      <Footer />
     </>
   );
 };

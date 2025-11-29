@@ -42,7 +42,7 @@ const Header: React.FC = () => {
   useEffect(() => {
     // Function to handle the typing animation
     const animateTyping = async () => {
-      const fullName = "ELVIN MAZWIMAIRI";
+      const fullName = "ELVIN E MAZWIMAIRI";
       // Skip animation if already typing
       // if (isTyping) return;
       if (typingRef.current) return;
@@ -202,33 +202,6 @@ const Header: React.FC = () => {
 
           {/* Column 2: Navigation Links (Center aligned) */}
           <nav className="flex justify-center space-x-8">
-
-            {/* <div className="relative group"
-              onMouseEnter={() => setOpenMenu("code")}
-              onMouseLeave={() => setOpenMenu(null)}
-            >
-              <DropdownMenu open={openMenu === "code"} onOpenChange={(open) => setOpenMenu(open ? "code" : null)}>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center font-medium text-lg text-white hover:text-accent2 focus:outline-none">
-                    <span className={location === '/codecircle' ? 'text-accent2' : ''}>
-                      CodeCircle
-                    </span>
-                    <ChevronDown className="ml-1 w-4 h-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-primary border border-white border-opacity-20 p-2">
-                  <DropdownMenuItem className="text-white hover:text-accent2 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/developer/codecircle" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Portfolio</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="text-white hover:text-accent2 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/developer/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Journey</Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent2 transition-all duration-300 group-hover:w-full"></span>
-            </div>
-            */}
-
             <div 
               className="relative group"
               onMouseEnter={() => setOpenMenu("code")}
@@ -285,7 +258,6 @@ const Header: React.FC = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent2 transition-all duration-300 group-hover:w-full"></span>
             </div>
             
-
             <div 
               className="relative group"
               onMouseEnter={() => setOpenMenu("biz")}
@@ -342,29 +314,6 @@ const Header: React.FC = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent4 transition-all duration-300 group-hover:w-full"></span>
             </div>            
 
-            {/* <div className="relative group">
-              <DropdownMenu open={openMenu === "des"} onOpenChange={(open) => setOpenMenu(open ? "des" : null)}>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center font-medium text-lg text-white hover:text-accent3 focus:outline-none">
-                    <span className={location === '/designer' ? 'text-accent3' : ''}>
-                      DesignCircle
-                    </span>
-                    <ChevronDown className="ml-1 w-4 h-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-primary border border-white border-opacity-20 p-2">
-                  <DropdownMenuItem className="text-white hover:text-accent3 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/designer/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Portfolio</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="text-white hover:text-accent3 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/designer/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Journey</Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent3 transition-all duration-300 group-hover:w-full"></span>
-            </div> */}
-
-            
             <div 
               className="relative group"
               onMouseEnter={() => setOpenMenu("des")}
@@ -420,29 +369,6 @@ const Header: React.FC = () => {
               {/* Underline animation */}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent3 transition-all duration-300 group-hover:w-full"></span>
             </div>
-
-
-            {/* <div className="relative group">
-              <DropdownMenu open={openMenu === "biz"} onOpenChange={(open) => setOpenMenu(open ? "biz" : null)}>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center font-medium text-lg text-white hover:text-accent4 focus:outline-none">
-                    <span className={location === '/technopreneur' ? 'text-accent4' : ''}>
-                      BizCircle
-                    </span>
-                    <ChevronDown className="ml-1 w-4 h-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-primary border border-white border-opacity-20 p-2">
-                  <DropdownMenuItem className="text-white hover:text-accent4 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/technopreneur/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Portfolio</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="text-white hover:text-accent4 hover:bg-white hover:bg-opacity-10 cursor-pointer">
-                    <Link href="/technopreneur/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Journey</Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent4 transition-all duration-300 group-hover:w-full"></span>
-            </div> */}
 
           </nav>
 

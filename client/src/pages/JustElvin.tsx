@@ -12,11 +12,16 @@ import BackgroundEffect from "@/components/home/BackgroundEffect";
 import { role, introNarrative, hobbiesInterests, learningGrowth, causesISupport, creativeExpression, } from "@/data/elvinbeyond";
 import { fadeUp, fadeUpParent, fadeUpItem } from "@/utils/animations";
 
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+
 
 const JustElvin: React.FC = () => {
   return (
     <>
       <BackgroundEffect />
+
+      <Header />
 
       <div className="relative z-10">
         <main className="pt-24 pb-2 px-4 md:px-0 flex flex-col items-center min-h-screen">
@@ -224,6 +229,8 @@ const JustElvin: React.FC = () => {
           </div>
         </main>
       </div>
+
+      <Footer />
     </>
   );
 };

@@ -12,6 +12,9 @@ import { motion } from "framer-motion";
 import { fadeUp, fadeUpParent, fadeUpItem,} from "@/utils/animations";
 import { coreIdentity1, coreIdentity2, role, creativeDirection, creativeDimensions, portfolioHighlights, designEthos, processPhilosophy,} from "@/data/creative";
 
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+
 
 const BulletItem: React.FC<{ text: string }> = ({ text }) => (
   <li className="flex items-center">
@@ -57,6 +60,9 @@ const CreativeTechnologist: React.FC = () => {
     <>
       <BackgroundEffect />
       
+      <Header />
+
+
       <div className="relative z-10">
         <main id="designer" className="pt-24 pb-2 px-4 md:px-0 flex flex-col items-center min-h-screen">
           <div className="container mx-auto max-w-7xl">
@@ -293,6 +299,9 @@ const CreativeTechnologist: React.FC = () => {
           </div>
         </main>
       </div>
+
+      <Footer />  
+      
     </>
   );
 };

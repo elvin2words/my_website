@@ -13,6 +13,9 @@ import { fadeUp, fadeUpParent, fadeUpItem } from '@/utils/animations';
 // Import data
 import { coreIdentity1, coreIdentity2, education, skills, projects, experience, philosophy } from "@/data/engineer";
 
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+
 
 // Shared styles
 const cardBase =
@@ -25,6 +28,8 @@ const Engineer: React.FC = () => {
   return (
     <>
       <BackgroundEffect />
+
+      <Header />
 
       <div className="relative z-10">
         <main
@@ -264,6 +269,8 @@ const Engineer: React.FC = () => {
           </div>
         </main>
       </div>
+
+      <Footer />
     </>
   );
 };

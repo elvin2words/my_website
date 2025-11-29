@@ -19,6 +19,7 @@ import JustElvin from "@/pages/JustElvin";
 import NotFound from "@/pages/not-found";
 import Admin from './pages/Admin';
 import CodeCircle from "./pages/CodeCircle";
+import ProjectDetail from "./pages/ProjectDetail";
 // import BizCircle from "./pages/BusinessCircle";
 // import DesCircle from "./pages/DesignCircle";
 // import ViewAll from "./pages/ProjectShowcase";
@@ -72,7 +73,7 @@ const ScrollToTop = () => {
 // Memoized Router so layout does NOT re-mount
 const Router = React.memo(() => (
   <div className="flex flex-col min-h-screen">
-    <Header />
+    {/* <Header /> */}
 
     <div className="flex-grow">
       <Switch>
@@ -90,7 +91,7 @@ const Router = React.memo(() => (
 
         <Route path="/developer/codecircle" component={CodeCircle} />
         {/* <Route path="/projects" component={ViewAll} /> */}
-        {/* <Route path="/project/:id" component={ProjectDetail} /> */}
+        <Route path="/project/:id" component={ProjectDetail} />
         {/* <Route path="/bizcircle" component={BizCircle} /> */}
         {/* <Route path="/descircle" component={DesCircle} /> */}
 
@@ -99,7 +100,7 @@ const Router = React.memo(() => (
     </div>
 
     <ChatbotButton />
-    <Footer />
+    {/* <Footer /> */}
     <ScrollToTop />
   </div>
 ));

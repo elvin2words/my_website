@@ -1,7 +1,7 @@
 // src/pages/Developer.tsx
 
 import React from "react";
-import { ArrowLeft, ArrowRight, Code, Database, Globe, Server, Settings } from "lucide-react";
+import { ArrowLeft, ArrowRight, Code, Database, Globe, Headset, Server, Settings } from "lucide-react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,8 @@ import { stack, backend, projects, philosophy, coreIdentity1, coreIdentity2 } fr
 
 // import BackgroundEffect from '@/components/home/BackgroundEffect';
 
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 // Optimized Background Effect
 const BackgroundEffect: React.FC = React.memo(() => {
@@ -43,6 +45,8 @@ const Developer: React.FC = () => {
   return (
     <>
       <BackgroundEffect />
+
+      <Header />
 
       <div className="relative z-10">
         <main
@@ -281,6 +285,8 @@ const Developer: React.FC = () => {
           </div>
         </main>
       </div>
+
+      <Footer />
     </>
   );
 };

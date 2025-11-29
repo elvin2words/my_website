@@ -13,11 +13,16 @@ import { fadeUp, fadeUpParent, fadeUpItem, } from "@/utils/animations";
 
 import { role, visionStatement, coreCapabilities, leadershipAndTech, ventures, coreIdentity, whyItMatters, } from "@/data/technop";
 
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+
 
 const Technopreneur: React.FC = () => {
   return (
     <>
       <BackgroundEffect />
+
+      <Header />
 
       <div className="relative z-10">
         <main
@@ -62,7 +67,7 @@ const Technopreneur: React.FC = () => {
                     variant="ghost"
                     className="text-accent5 hover:text-accent5 flex items-center gap-2 ml-auto"
                   >
-                    Human
+                    ElvinFiltered
                     <ArrowRight className="h-5 w-5" />
                   </Button>
                 </Link>
@@ -253,6 +258,8 @@ const Technopreneur: React.FC = () => {
           </div>
         </main>
       </div>
+
+      <Footer />
     </>
   );
 };
