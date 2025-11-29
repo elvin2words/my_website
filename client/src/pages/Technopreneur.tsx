@@ -13,7 +13,7 @@ import { fadeUp, fadeUpParent, fadeUpItem, } from "@/utils/animations";
 
 import { role, visionStatement, coreCapabilities, leadershipAndTech, ventures, coreIdentity, whyItMatters, } from "@/data/technop";
 
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/HomeHeader";
 import Footer from "@/components/layout/Footer";
 
 

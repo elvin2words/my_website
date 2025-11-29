@@ -28,7 +28,7 @@ import ContactProfilePage from "./pages/ContactProfileCard";
 import ResumePage from "./pages/ResumePage";
 import ServicesPage from "./pages/Services";
 
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/NavHeader";
 import Footer from "@/components/layout/Footer";
 import ChatbotButton from "@/components/home/ChatbotButton";
 
@@ -89,9 +89,9 @@ const Router = React.memo(() => (
         <Route path="/resume" component={ResumePage} />
         <Route path="/hire" component={ServicesPage} />
 
-        <Route path="/developer/codecircle" component={CodeCircle} />
+        <Route path="/codecircle/portfolio" component={CodeCircle} />
         {/* <Route path="/projects" component={ViewAll} /> */}
-        <Route path="/project/:id" component={ProjectDetail} />
+        <Route path="/codecircle/portfolio/project/:id" component={ProjectDetail} />
         {/* <Route path="/bizcircle" component={BizCircle} /> */}
         {/* <Route path="/descircle" component={DesCircle} /> */}
 

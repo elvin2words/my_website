@@ -6,7 +6,7 @@ import { ChevronLeft, ExternalLink, Github } from "lucide-react";
 import { projects } from "../../../shared/projects";
 
 export default function ProjectDetail() {
-  const [, params] = useRoute("/project/:id");
+  const [, params] = useRoute("/codecircle/portfolio/project/:id");
   const [, setLocation] = useLocation();
   
   const project = projects.find(p => p.id === params?.id);

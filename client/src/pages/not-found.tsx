@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import BackgroundEffect from "@/components/home/BackgroundEffect";
 
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/HomeHeader";
 import Footer from "@/components/layout/Footer";
 
 
@@ -16,14 +16,16 @@ export default function NotFound() {
 
       <Header />
 
-      <div className="min-h-screen w-full flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
+      {/* <div className="min-h-screen w-full flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-4"> */}
+      <div className="min-h-screen w-full flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="w-full max-w-md"
         >
-          <Card className="shadow-xl border-0 rounded-2xl bg-white dark:bg-gray-800">
+          {/* <Card className="shadow-xl border-0 rounded-2xl bg-white dark:bg-gray-800"> */}
+          <Card className="shadow-xl border-0 rounded-2xl">
             <CardContent className="pt-8 pb-8 px-6">
               <div className="flex items-center gap-3 mb-4">
                 <AlertCircle className="h-10 w-10 text-red-500" />

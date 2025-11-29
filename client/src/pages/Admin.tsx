@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
 
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/NavHeader";
 import Footer from "@/components/layout/Footer";
 
 export default function Admin() {

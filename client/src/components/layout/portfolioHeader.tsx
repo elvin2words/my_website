@@ -1,38 +1,59 @@
+// client/src/components/layout/potfolioHeader.tsx
+
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { ArrowLeft, ChevronDown, Sun, Moon, Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
+import ReactTooltip from "react-tooltip";
+import MobileMenu from './MobileMenu';
+import { useTheme  } from '@/hooks/use-theme';
+
+
+interface StickyHeaderProps {
+  scrollY: number;
+  activeSection: string;
+  scrollToSection: (sectionId: string) => void;
+}
 
 export default function PortfolioNav() {
+// const PortfolioNav: React.FC<StickyHeaderProps> = ({ scrollY, activeSection, scrollToSection }) => {
+//   const [shadowOpacity, setShadowOpacity] = useState(0);
+
   const [scrollY, setScrollY] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [location, navigate] = useLocation();
+  const { theme, toggleTheme } = useTheme(); 
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  
+  // Track last visited page to enable "Back"
+  const lastPageRef = useRef<string | null>(null);
 
   // ---- Scroll Tracking ----
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
       setScrollY(y);
-
       const totalHeight =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
       const progress = (y / totalHeight) * 100;
       setScrollProgress(progress);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ---- Section Tracking (for active highlight) ----
+  // ---- Section Tracking ----
   useEffect(() => {
     const sections = ["hero", "about", "projects", "skills", "contact"];
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -41,36 +62,41 @@ export default function PortfolioNav() {
       },
       { threshold: 0.35 }
     );
-
     sections.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
-
     return () => observer.disconnect();
   }, []);
 
-  // ---- Scroll to Anchor ----
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
-
     window.scrollTo({
       top: el.offsetTop - 80,
       behavior: "smooth",
     });
   };
 
+  const handleBackClick = () => {
+    // if (lastPageRef.current) navigate(lastPageRef.current);
+    if (window) window.history.back();
+    else navigate('/');
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
     <motion.nav
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
-      className="sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border transition-all duration-300"
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      className="fixed top-0 left-0 right-0 z-50 bg-primary/60 backdrop-blur-lg  border-border transition-all duration-300"
       style={{
         boxShadow:
           scrollY > 50
-            ? `0 8px 32px rgba(139, 92, 246, ${Math.min(
+            ? `0 8px 64px rgba(139, 92, 246, ${Math.min(
                 scrollY / 500,
                 0.15
               )})`
@@ -87,14 +113,25 @@ export default function PortfolioNav() {
 
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <button
-            onClick={() => scrollToSection("hero")}
-            className="text-xl font-bold bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent"
-            data-testid="button-logo"
-          >
-            EM
-          </button>
+          {/* Logo + Back Button */}
+          <div className="flex items-center hover:text-accent2 gap-2">
+            <Button
+              variant="ghost"
+              size="default"
+              onClick={handleBackClick}
+              className="p-0"
+            >
+              <ArrowLeft className="h-5 w-5" />
+              Back to Main Site
+            </Button>
+            {/* <button
+              onClick={() => scrollToSection("hero")}
+              className="text-lg font-bold bg-gradient-to-r from-primary to-chart-2 bg-clip-text "
+              data-testid="button-logo"
+            >
+              Code Circle
+            </button> */}
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
@@ -104,8 +141,8 @@ export default function PortfolioNav() {
                 onClick={() => scrollToSection(sec)}
                 className={`text-sm transition-all duration-300 relative capitalize ${
                   activeSection === sec
-                    ? "text-foreground font-semibold"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-white font-semibold"
+                    : "text-muted hover:text-accent2"
                 }`}
                 data-testid={`link-${sec}`}
               >
@@ -115,22 +152,21 @@ export default function PortfolioNav() {
                     <motion.div
                       layoutId="active-underline"
                       className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-chart-2"
-                      initial={{ opacity: 0, scaleX: 0.5 }}
+                      initial={{ opacity: 0, scaleX: 0.8 }}
                       animate={{ opacity: 1, scaleX: 1 }}
-                      exit={{ opacity: 0, scaleX: 0.5 }}
+                      exit={{ opacity: 0, scaleX: 0.8 }}
                       transition={{ duration: 0.25 }}
                     />
                   )}
                 </AnimatePresence>
               </button>
             ))}
-
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
           </div>
 
           {/* Mobile Toggle */}
           <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <Button
               variant="ghost"
               size="icon"
@@ -138,9 +174,9 @@ export default function PortfolioNav() {
               data-testid="button-mobile-menu"
             >
               {mobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
+                <X className="h-6 w-6 animate-in fade-in duration-200" />
+               ) : (
+                <Menu className="w-6 h-6 animate-in fade-in duration-200" />
               )}
             </Button>
           </div>
@@ -185,6 +221,14 @@ export default function PortfolioNav() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Full-width border line under header that spans from cat icon to search/menu icon */}
+      {/* <div className="absolute bottom-0 left-0 right-0">
+        <div className="border-b border-white border-opacity-20"></div>
+      </div> */}
     </motion.nav>
   );
 }
+
+
+// export default PortfolioNav;

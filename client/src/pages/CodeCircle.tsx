@@ -19,7 +19,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import {roles, skills} from "../data/codecircle";
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/NavHeader";
 import PortfolioNav from "@/components/layout/portfolioHeader";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SiGithub, SiLinkedin, SiWhatsapp } from "react-icons/si";
@@ -311,7 +311,7 @@ export default function CodeCircle() {
         </nav> */}
 
         {/* <PortfolioNav /> */}
-        <Header />
+        <PortfolioNav />
 
         <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
           {/* Title */}
@@ -503,7 +503,7 @@ export default function CodeCircle() {
                   className="group relative h-full cursor-pointer transform transition-all duration-300 hover:scale-105"
                   onClick={() => {
                     window.scrollTo(0, 0);
-                    setLocation(`/project/${project.id}`);
+                    setLocation(`/codecircle/portfolio/project/${project.id}`);
                   }}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >

@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import { fadeUp, fadeUpParent, fadeUpItem,} from "@/utils/animations";
 import { coreIdentity1, coreIdentity2, role, creativeDirection, creativeDimensions, portfolioHighlights, designEthos, processPhilosophy,} from "@/data/technologist";
 
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/HomeHeader";
 import Footer from "@/components/layout/Footer";
 
 

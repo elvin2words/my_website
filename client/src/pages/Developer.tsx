@@ -14,7 +14,7 @@ import { stack, backend, projects, philosophy, coreIdentity1, coreIdentity2 } fr
 
 // import BackgroundEffect from '@/components/home/BackgroundEffect';
 
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/HomeHeader";
 import Footer from "@/components/layout/Footer";
 
 // Optimized Background Effect

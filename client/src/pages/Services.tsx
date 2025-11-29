@@ -13,7 +13,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/NavHeader";
 import Footer from "@/components/layout/Footer";
 
 
@@ -103,7 +103,7 @@ const ServicesPage: React.FC = () => {
     <>
 
       <Header />
-      
+
       <div className="relative min-h-screen text-white">
         {/* Hero */}
         <section className="pt-28 md:pt-32 pb-8 px-4 text-center">

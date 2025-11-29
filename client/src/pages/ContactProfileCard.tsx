@@ -8,7 +8,7 @@ import {QRCodeCanvas} from 'qrcode.react';
 import { motion } from 'framer-motion';
 import BackgroundEffect from "@/components/home/BackgroundEffect";
 
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/NavHeader";
 import Footer from "@/components/layout/Footer";
 
 

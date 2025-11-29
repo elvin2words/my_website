@@ -13,7 +13,7 @@ import { fadeUp, fadeUpParent, fadeUpItem } from '@/utils/animations';
 // Import data
 import { coreIdentity1, coreIdentity2, education, skills, projects, experience, philosophy } from "@/data/engineer";
 
-import Header from "@/components/layout/Header";
+import Header from "@/components/layout/HomeHeader";
 import Footer from "@/components/layout/Footer";
 
 
