@@ -314,6 +314,20 @@ export default function CodeCircle() {
         <PortfolioNav />
 
         <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute text-4xl font-bold text-primary/5 animate-falling-code"
+                style={{
+                  left: `${(i * 5) % 100}%`,
+                  animationDelay: `${i * 0.2}s`,
+                }}
+              >
+                01
+              </div>
+            ))}
+          </div>
           {/* Title */}
           {/* <div className="max-w-3xl w-full text-center"> */}
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -321,7 +335,7 @@ export default function CodeCircle() {
           </h1>
 
           {/* Typing Effect */}
-          <p className="text-xl md:text-2xl h-10 font-mono text-accent2 mb-8">
+          <p className="text-2xl md:text-2xl h-10 font-mono text-accent2 mb-8">
             {displayedText}
             <span className="animate-pulse">|</span>
           </p>
@@ -343,20 +357,7 @@ export default function CodeCircle() {
         
         <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-4 py-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-background pointer-events-none" />
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <div
-                key={i}
-                className="absolute text-4xl font-bold text-primary/5 animate-falling-code"
-                style={{
-                  left: `${(i * 5) % 100}%`,
-                  animationDelay: `${i * 0.2}s`,
-                }}
-              >
-                01
-              </div>
-            ))}
-          </div>
+          
           <div className="relative z-10 text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-primary via-chart-2 to-primary bg-clip-text text-black">
