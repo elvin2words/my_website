@@ -836,7 +836,7 @@ export default function CodeCircle() {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-white">Phone</p>
-                    <p className="text-slate-400">+263 71 210 4928</p>
+                    <p className="text-slate-400">+263 78 307 4722</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">

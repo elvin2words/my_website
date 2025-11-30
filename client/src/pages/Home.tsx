@@ -186,7 +186,7 @@ const Home: React.FC = () => {
                     className="w-full md:w-auto text-white border border-white/30 rounded-full px-4 hover:bg-white/10"
                     onClick={() => setIsHireMeModalOpen(true)}
                   >
-                    HireMe
+                    What I can Do for You
                   </Button>
                 ) : (
                   <Link href="/hire">

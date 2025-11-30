@@ -5,7 +5,6 @@ server/public
 vite.config.ts.*
 *.tar.gz
 .env
-.replit
 desFlow.md
 nodejs.md
 notes.md

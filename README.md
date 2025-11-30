@@ -1,8 +1,8 @@
 # Elvin Mazwimairi Portfolio Site
 
-## Overview 
+## Overview
 
-This project is a personal portfolio website for Elvin Mazwimairi, showcasing different aspects of his professional identity. It's built as a single-page application with React on the frontend and a minimal Express backend. The site has multiple sections that represent different facets of the individual's identity: Electrical Engineer, Systems Developer, Artistic Designer, Technopreneur, and Human Being.
+This project is a personal portfolio website for Elvin Mazwimairi, showcasing different aspects of my professional identity. It's built as a single-page application with React on the frontend and a minimal Express backend. The site has multiple sections that represent different facets of the individual's identity: Electrical Engineer, Systems Developer, Artistic Designer, Technopreneur, and Human Being.
 
 ## User Preferences
 

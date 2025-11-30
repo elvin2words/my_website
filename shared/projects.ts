@@ -7,7 +7,8 @@ export const projects: Project[] = [
     title: "CodeBlue",
     description: "Modern corporate website with 9 color themes, responsive design, and portfolio showcase",
     fullDescription: "CodeBlue is a comprehensive corporate website solution featuring a dynamic theme system that allows users to personalize their experience with 9 distinct color schemes. Built with modern web technologies, it provides a fully responsive design that adapts seamlessly across all devices.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "../client/public/projects/codecircle.png",
+    // image: "C:/Users/ElvinOfTheMazwiClan/Documents/GitHub/MPS/client/public/projects/codecircle.png",
     gallery: [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",

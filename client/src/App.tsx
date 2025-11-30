@@ -1,10 +1,11 @@
 // src/App.tsx
 
 import { Switch, Route } from "wouter";
+import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip"; 
-import { queryClient } from "./lib/queryClient";
+import { ThemeProvider } from "@/components/theme-provider";
 import { DragProvider } from "./context/DragContext";
 
 import React, { useRef, useState, useEffect } from 'react';
@@ -110,14 +111,16 @@ const Router = React.memo(() => (
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider delayDuration={100}>
-        <DragProvider>
-          <div className="bg-gradient-to-br from-primary to-secondary min-h-screen text-white font-inter overflow-x-hidden">
-            <Toaster />
-            <Router />
-          </div>
-        </DragProvider>
-      </TooltipProvider>
+      <ThemeProvider defaultTheme="dark">
+        <TooltipProvider delayDuration={20}>
+          <DragProvider>
+            <div className="bg-gradient-to-br from-primary to-secondary min-h-screen text-white font-inter overflow-x-hidden">
+              <Toaster />
+              <Router />
+            </div>
+          </DragProvider>
+        </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };

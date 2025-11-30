@@ -393,7 +393,7 @@ const Header: React.FC = () => {
                       Portfolio
                     </Link>
                     <Link 
-                      href="/biz/portfolio"
+                      href="/biz/journey"
                       className="block px-4 py-2 text-white hover:text-accent4 hover:bg-white/10 rounded"
                       onClick={() => {
                         setOpenMenu(null);
