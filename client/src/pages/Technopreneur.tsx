@@ -62,7 +62,7 @@ const Technopreneur: React.FC = () => {
               </div>
 
               <div className="w-1/3 text-right">
-                <Link href="/human" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                <Link href="/beyond" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                   <Button
                     variant="ghost"
                     className="text-accent5 hover:text-accent5 flex items-center gap-2 ml-auto"
