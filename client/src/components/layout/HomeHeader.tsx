@@ -44,7 +44,7 @@ const Header: React.FC = () => {
   useEffect(() => {
     // Function to handle the typing animation
     const animateTyping = async () => {
-      const fullName = "ELVIN E. MAZWIMAIRI";
+      const fullName = "ELVIN MAZWIMAIRI";
       // Skip animation if already typing
       // if (isTyping) return;
       if (typingRef.current) return;

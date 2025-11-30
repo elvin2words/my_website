@@ -82,7 +82,7 @@ const Router = React.memo(() => (
         <Route path="/creative" component={CreativeTechnologist} />
         <Route path="/developer" component={Developer} />
         <Route path="/technopreneur" component={Technopreneur} />
-        <Route path="/human" component={JustElvin} />
+        <Route path="/beyond" component={JustElvin} />
         <Route path="/admin" component={Admin} />
 
         <Route path="/contact-profile-card" component={ContactProfilePage} />

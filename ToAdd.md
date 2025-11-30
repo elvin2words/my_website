@@ -61,4 +61,5 @@
 - ~~Review info on each Identity Card~~
 - ~~Fix contact popup leftmost margin in footer~~
 - ~~Fix components rendering in the pages, make them smoother - Animate the Section Entrances : Add `framer-motion` to animate cards on scroll.~~
--
+- Optimise the headers for medium sized screens liek tablets, currently just moviles and web
+- Update IdentiySections Identities BulletPoints

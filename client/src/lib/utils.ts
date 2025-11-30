@@ -49,7 +49,7 @@ export const identityColors: Record<string, { color: string; bgColor: string }> 
     color: 'text-accent2',
     bgColor: 'bg-accent2',
   },
-  designer: {
+  creative: {
     color: 'text-accent3',
     bgColor: 'bg-accent3',
   },
@@ -57,7 +57,7 @@ export const identityColors: Record<string, { color: string; bgColor: string }> 
     color: 'text-accent4',
     bgColor: 'bg-accent4',
   },
-  human: {
+  beyond: {
     color: 'text-accent5',
     bgColor: 'bg-accent5',
   },
@@ -67,9 +67,9 @@ export const identityColors: Record<string, { color: string; bgColor: string }> 
 export const identityIcons: Record<string, string> = {
   engineer: 'zap',
   developer: 'code',
-  designer: 'pen-tool',
+  creative: 'pen-tool',
   technopreneur: 'trending-up',
-  human: 'heart',
+  beyond: 'heart',
 };
 
 // Identity descriptions
@@ -84,7 +84,7 @@ export const identityDescriptions: Record<string, { title: string, role: string,
     role: "As A",
     description: "Software & Systems",
   },
-  designer: {
+  creative: {
     title: "Creative Technologist",
     role: "As A",
     description: "Engineering X Imagination",
@@ -94,7 +94,7 @@ export const identityDescriptions: Record<string, { title: string, role: string,
     role: "As A",
     description: "Venture Building",
   },
-  human: {
+  beyond: {
     title: "Elvin - Beyond All Else",
     role: "As Just",
     description: "The Reflective Soul",
