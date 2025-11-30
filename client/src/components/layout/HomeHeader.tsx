@@ -267,7 +267,7 @@ const Header: React.FC = () => {
               accentClass="text-accent2"
               active={location.includes("codecircle")}
               links={[
-                { href: "/developer/codecircle", label: "Portfolio" },
+                { href: "/codecircle/portfolio", label: "Portfolio" },
                 { href: "/developer/journey", label: "Journey" },
               ]}
             />
@@ -276,10 +276,10 @@ const Header: React.FC = () => {
               id="biz"
               label="BizCircle"
               accentClass="text-accent4"
-              active={location.includes("technopreneur")}
+              active={location.includes("biz")}
               links={[
-                { href: "/technopreneur/portfolio", label: "Portfolio" },
-                { href: "/technopreneur/journey", label: "Journey" },
+                { href: "/biz/portfolio", label: "Portfolio" },
+                { href: "/biz/journey", label: "Journey" },
               ]}
             />
 
@@ -287,10 +287,10 @@ const Header: React.FC = () => {
               id="des"
               label="CreativeCircle"
               accentClass="text-accent3"
-              active={location.includes("designer")}
+              active={location.includes("creative")}
               links={[
-                { href: "/designer/portfolio", label: "Portfolio" },
-                { href: "/designer/journey", label: "Journey" },
+                { href: "/creative/portfolio", label: "Portfolio" },
+                { href: "/creative/journey", label: "Journey" },
               ]}
             />
           </nav> */}
@@ -363,7 +363,7 @@ const Header: React.FC = () => {
                 onClick={() => setOpenMenu(openMenu === "biz" ? null : "biz")}
                 className="flex items-center font-medium text-lg text-white hover:text-accent4 focus:outline-none"
               >
-                <span className={location === '/biz' ? 'text-accent4' : ''}>
+                <span className={location === '/biz/portfolio' ? 'text-accent4' : ''}>
                   BizCircle
                 </span>
                 <ChevronDown 
@@ -419,7 +419,7 @@ const Header: React.FC = () => {
                 onClick={() => setOpenMenu(openMenu === "des" ? null : "des")}
                 className="flex items-center font-medium text-lg text-white hover:text-accent3 focus:outline-none"
               >
-                <span className={location === '/creative' ? 'text-accent3' : ''}>
+                <span className={location === '/creative/portfolio' ? 'text-accent3' : ''}>
                   CreativeCircle
                 </span>
                 <ChevronDown 

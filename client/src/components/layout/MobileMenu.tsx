@@ -45,7 +45,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       </Button>
       
       <Link 
-        href="/developer/codeCircle" 
+        href="/codecircle/portfolio" 
         className="text-xl font-medium py-3 px-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition"
         onClick={() => {
           onClose();
@@ -58,27 +58,27 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       </Link>
       
       <Link 
-        href="/creative" 
+        href="/creative/portfolio" 
         className="text-xl font-medium py-3 px-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition"
         onClick={() => {
           onClose();
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
       >
-        <span className={location === '/creative' ? 'text-accent3' : ''}>
+        <span className={location === '/creative/portfolio' ? 'text-accent3' : ''}>
          CreativeCircle
         </span>
       </Link>
       
       <Link 
-        href="/technopreneur" 
+        href="/biz/portfolio" 
         className="text-xl font-medium py-3 px-6 rounded-lg hover:bg-white hover:bg-opacity-10 transition"
         onClick={() => {
           onClose();
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
       >
-        <span className={location === '/technopreneur' ? 'text-accent4' : ''}>
+        <span className={location === '/biz/portfolio' ? 'text-accent4' : ''}>
           BizCircle
         </span>
       </Link>

@@ -35,13 +35,13 @@ const Footer: React.FC = () => {
         {/* Mobile Navigation Links (only visible on small screens) */}
         <div className="sm:hidden w-full mb-6">
           <div className="flex justify-center items-center space-x-4">
-            <Link href="/developer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-accent2 text-sm font-medium px-2 py-1">
+            <Link href="/codecircle/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-accent2 text-sm font-medium px-2 py-1">
               CodeCircle
             </Link>
-            <Link href="/designer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-accent3 text-sm font-medium px-2 py-1">
+            <Link href="/creative/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-accent3 text-sm font-medium px-2 py-1">
               DesignCircle
             </Link>
-            <Link href="/technopreneur" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-accent4 text-sm font-medium px-2 py-1">
+            <Link href="/biz/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-accent4 text-sm font-medium px-2 py-1">
               BizCircle
             </Link>
           </div>
