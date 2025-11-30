@@ -79,8 +79,8 @@ export default function PortfolioNav() {
   };
 
   const handleBackClick = () => {
-    // if (lastPageRef.current) navigate(lastPageRef.current);
-    if (window) window.history.back();
+    if (lastPageRef.current) navigate(lastPageRef.current);
+    // if (window) window.history.back();
     else navigate('/');
     window.scrollTo({ top: 0, behavior: "smooth" });
   };

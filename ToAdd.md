@@ -45,14 +45,13 @@
 - Light and Dark Mode Support
 - Scroll To Top across all Pages
 - For Developer, Designer, Technopreneur
-
   - Use startup logos/icons if available;
   - Add "Live Projects" or "Launches in Progress" status tags.
   - Add download or showcase buttons for each project preview.
   - Include links to live demos / GitHub / Behance in future version.
   - Add mini  **"status chips"** : `beta`, `shipped`, `R&D`, `in prototype`
   - Make project cards **collapsible or modal-powered**
-  - 
+- A way to connect github to the website, such that new public type projects or all projects can be auto added to the site.
 
 # Bugs
 

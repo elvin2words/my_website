@@ -11,14 +11,26 @@ export default function ProjectDetail() {
   
   const project = projects.find(p => p.id === params?.id);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   if (!project) {
     return (
       <div className="min-h-screen bg-accent1/5 flex items-center justify-center px-4">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Project not found</h1>
-          <Button onClick={() => setLocation("/")} data-testid="button-back-home">
+          <Button onClick={() => 
+            {
+              setLocation("/codecircle/portfolio");
+              scrollToSection("projects")
+            }} data-testid="button-back-home">
+            {/* Extend eith a scroll to Projects section */}
             <ChevronLeft className="h-4 w-4 mr-2" />
-            Back to Home
+            Back to Portfolio
           </Button>
         </div>
       </div>
@@ -31,7 +43,10 @@ export default function ProjectDetail() {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <Button 
             variant="ghost" 
-            onClick={() => setLocation("/")}
+            onClick={() => {
+              setLocation("/codecircle/portfolio");
+              window.scrollTo(1325,1325)
+            }}
             data-testid="button-back"
           >
             <ChevronLeft className="h-4 w-4 mr-2" />
@@ -52,7 +67,7 @@ export default function ProjectDetail() {
           <h1 className="text-4xl md:text-6xl font-bold mb-4" data-testid="text-project-title">
             {project.title}
           </h1>
-          <p className="text-xl text-muted-foreground mb-6">
+          <p className="text-xl text-slate-400 mb-6">
             {project.description}
           </p>
           <div className="flex flex-wrap gap-4">
@@ -63,7 +78,7 @@ export default function ProjectDetail() {
               </Button>
             )}
             {project.githubUrl && (
-              <Button variant="outline" size="lg" data-testid="button-github">
+              <Button variant="outline" size="lg" className="bg-inherit" data-testid="button-github">
                 <Github className="h-4 w-4 mr-2" />
                 View Code
               </Button>
@@ -80,10 +95,10 @@ export default function ProjectDetail() {
             />
 
             {project.fullDescription && (
-              <Card className="mb-8 border-card-border">
+              <Card className="mb-8 bg-inherit border-card-border">
                 <CardContent className="pt-6">
-                  <h2 className="text-2xl font-bold mb-4">About This Project</h2>
-                  <p className="text-lg leading-relaxed text-muted-foreground">
+                  <h2 className="text-2xl text-white font-bold mb-4">About This Project</h2>
+                  <p className="text-lg leading-relaxed text-slate-400">
                     {project.fullDescription}
                   </p>
                 </CardContent>
@@ -91,16 +106,16 @@ export default function ProjectDetail() {
             )}
 
             {project.features && (
-              <Card className="mb-8 border-card-border">
+              <Card className="mb-8 bg-inherit border-card-border">
                 <CardContent className="pt-6">
-                  <h2 className="text-2xl font-bold mb-4">Key Features</h2>
+                  <h2 className="text-2xl text-white font-bold mb-4">Key Features</h2>
                   <ul className="space-y-3">
                     {project.features.map((feature, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <div className="h-2 w-2 rounded-full bg-primary" />
+                        <div className="h-6 w-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <div className="h-2 w-2 text-white  rounded-full bg-primary" />
                         </div>
-                        <span className="text-foreground">{feature}</span>
+                        <span className="text-slate-400">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -109,10 +124,10 @@ export default function ProjectDetail() {
             )}
 
             {project.challenges && (
-              <Card className="mb-8 border-card-border">
+              <Card className="mb-8 bg-inherit border-card-border">
                 <CardContent className="pt-6">
-                  <h2 className="text-2xl font-bold mb-4">Challenges & Solutions</h2>
-                  <p className="text-lg leading-relaxed text-muted-foreground">
+                  <h2 className="text-2xl text-white  font-bold mb-4">Challenges & Solutions</h2>
+                  <p className="text-lg leading-relaxed text-slate-400">
                     {project.challenges}
                   </p>
                 </CardContent>
@@ -120,10 +135,10 @@ export default function ProjectDetail() {
             )}
 
             {project.outcome && (
-              <Card className="mb-8 border-card-border">
+              <Card className="mb-8 bg-inherit border-card-border">
                 <CardContent className="pt-6">
-                  <h2 className="text-2xl font-bold mb-4">Outcome & Impact</h2>
-                  <p className="text-lg leading-relaxed text-muted-foreground">
+                  <h2 className="text-2xl text-white  font-bold mb-4">Outcome & Impact</h2>
+                  <p className="text-lg leading-relaxed text-slate-400">
                     {project.outcome}
                   </p>
                 </CardContent>
@@ -149,9 +164,9 @@ export default function ProjectDetail() {
           </div>
 
           <div>
-            <Card className="sticky top-24 border-card-border">
+            <Card className="sticky top-24 bg-inherit border-card-border">
               <CardContent className="pt-6">
-                <h3 className="text-xl font-bold mb-4">Technologies Used</h3>
+                <h3 className="text-xl text-white font-bold mb-4">Technologies Used</h3>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.technologies.map((tech) => (
                     <Badge key={tech} variant="secondary">
@@ -160,7 +175,7 @@ export default function ProjectDetail() {
                   ))}
                 </div>
                 <div className="border-t border-border pt-6">
-                  <h3 className="text-xl font-bold mb-4">Category</h3>
+                  <h3 className="text-xl text-white  font-bold mb-4">Category</h3>
                   <Badge variant="outline" className="capitalize">
                     {project.category}
                   </Badge>

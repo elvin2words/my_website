@@ -20,15 +20,15 @@ export const skills = {
     { name: "GitHub", icon: SiGithub, color: "from-gray-600 to-black" },
     { name: "VS Code", icon: FileCode, color: "from-blue-400 to-purple-500" },
     { name: "Figma", icon: SiFigma, color: "from-purple-400 to-pink-500" },
-    { name: "Replit", icon: Package, color: "from-pink-400 to-rose-500" },
+    { name: "Docker", icon: Package, color: "from-pink-400 to-rose-500" },
   ],
 };
 
 
 export const roles = [
-  "Vibe Coding",
   "Full-Stack Development",
   "Backend Systems Integration",
   "UI/UX Designing",
   "Problem Solving",
+  "Vibe Coding",
 ];
