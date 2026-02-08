@@ -1,7 +1,17 @@
 // src/components/Technopreneur.tsx
       
 import React from "react";
-import { ArrowLeft, ArrowRight, Lightbulb, TrendingUp, Users, BarChart, Target, Settings } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ExternalLink,
+  Lightbulb,
+  TrendingUp,
+  Users,
+  BarChart,
+  Target,
+  Settings,
+} from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -104,10 +114,21 @@ const Technopreneur: React.FC = () => {
                       viewport={{ once: true }}
                       className="space-y-2"
                     >
-                      {ventures.map(({ title, description }) => (
+                      {ventures.map(({ title, description, weblink }) => (
                       <motion.li variants={fadeUpItem} key={title}>
                         <h3 className="font-semibold text-accent4">{title}</h3>
                         <p className="text-sm md:text-base mt-1">{description}</p>
+                        {weblink && (
+                          <a
+                            href={weblink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-sm text-blue-300 hover:text-blue-200 mt-2"
+                          >
+                            Visit initiative
+                            <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
+                          </a>
+                        )}
                       </motion.li>
                     ))} 
                   </motion.ul>            

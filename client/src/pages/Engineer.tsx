@@ -11,7 +11,16 @@ import BackgroundEffect from '@/components/home/BackgroundEffect';
 // Animations
 import { fadeUp, fadeUpParent, fadeUpItem } from '@/utils/animations';
 // Import data
-import { coreIdentity1, coreIdentity2, education, skills, projects, experience, philosophy } from "@/data/engineer";
+import {
+  coreIdentity1,
+  coreIdentity2,
+  education,
+  skills,
+  projects,
+  experience,
+  certifications,
+  philosophy,
+} from "@/data/engineer";
 
 import Header from "@/components/layout/HomeHeader";
 import Footer from "@/components/layout/Footer";
@@ -238,6 +247,38 @@ const Engineer: React.FC = () => {
                         </p>
                         <p className=" text-sm md:text-base mt-1 text-white/70">
                           {job.desc}
+                        </p>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUpParent}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              className="mb-10"
+            >
+              <Card className={cardBase}>
+                <CardHeader>
+                  <CardTitle>Certifications & Continuous Learning</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <motion.ul
+                    variants={fadeUpParent}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="space-y-4"
+                  >
+                    {certifications.map((cert) => (
+                      <motion.li key={`${cert.title}-${cert.date}`} variants={fadeUpItem}>
+                        <h3 className="font-semibold">{cert.title}</h3>
+                        <p className="opacity-70">
+                          {cert.issuer} • {cert.date}
                         </p>
                       </motion.li>
                     ))}

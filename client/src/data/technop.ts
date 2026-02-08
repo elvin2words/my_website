@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, Lightbulb, TrendingUp, Users,
   BarChart, Target, } from 'lucide-react';
 
 export const role = { 
-  title: "Budding Technopren",
+  title: "Technopreneur",
   subtitle: "Architecting Innovation, Strategy, and Systems in Motion",
 };
 
@@ -35,11 +35,15 @@ export const coreCapabilities = {
     "Venture Design Across Energy, AI, and AgTech",
     "Strategic Ideation & Planning",
     "Product-Market Fit Discovery & Impact Design",
+    "Revenue Model Validation and Unit Economics Thinking",
+    "Partnership Strategy for Scale and Distribution",
   ],
   focusAreas: [
     "Integrated Energy Solutions: Mobile power systems, BESS optimization, smart grid integration, and EV infrastructure.",
     "AI & Automation Platforms: Intelligent systems that analyze, predict, and optimize real-world operations — from transit networks to industrial workflows.",
     "Speculative Tech & Experiential Products: Immersive travel experiences, IoT-enabled networks, and exploratory R&D in communications and connectivity.",
+    "Digital Product Infrastructure: Internal tools, workflow engines, and AI-assisted systems for operations teams.",
+    "Venture Studio Execution: Building parallel prototypes with shared technical primitives and go-to-market loops.",
   ],
 };
 
@@ -49,12 +53,16 @@ export const leadershipAndTech = {
     "Agile Product Development",
     "Systems Thinking - Interdependencies & workflow optimization",
     "R&D - Feasibility Studies, Prototyping, Iterative testing & operational scaling",
+    "Program Management Across Cross-Functional Teams",
+    "Stakeholder Communication for Investors, Partners, and Operations",
   ],
   technicalExpertise: [
     "Embedded Systems, FPGA, & Automation",
     "EV Systems, BMS, and Energy Platforms",
     "AI-Driven Analytics & Control Systems",
     "Cloud/Edge Integration for Smart Grids",
+    "Data Product Architecture and Workflow Automation",
+    "Technical Discovery, Scoping, and Deployment Planning",
   ],
 };
 
@@ -63,30 +71,37 @@ export const ventures = [
     title: "Mazenel Industries",
     description:
       "Lead founder of a systems-oriented startup focused on renewable energy technologies, automation, UAV services, and systems engineering solutions. Currently prototyping mobile energy systems (the PowerHive) and embedded control platforms—targeting sectors like smart farming and industrial automation.",
-    weblink:"www.mazenel.co.zw"
+    weblink:"https://www.mazenel.co.zw"
   },
   {
     title: "IQAL Inc.",
     description:
       "A data-intelligence venture focused on automation, analytics, and smart system design, with projects spanning smart applications, industrial automation, and digital services. Core projects include CASSIE (adaptive automation platform), Horizon (AI-enhanced travel tech), EddyUI, and Utility (the Field Deployment and Fault Management System).",
-      weblink:"www.iqlal.co.zw"
+      weblink:"https://www.iqal.co.zw"
   },
   {
     title: "Telqon Technologies",
     description:
       "Exploratory R&D lab targeting next-gen communications, connectivity frameworks in IoT/IIoT, edge computing, and network-aware AI networks for industrial, residential, decentralised and autonomous  systems with secure, scalable conncectivity in both urban and rural innovation ecosystems.",
-    weblink:"www.telqon.co.zw"
+    weblink:"https://www.telqon.co.zw"
   },
   {
     title: "Usorvax",
     description:
       "Experimental venture focused on speculative tech and immersive experiences - currently leading the Usorvax Travel & Tourism platform which reimagines cultural exchange through smart, story-driven travel tech inclusion.",
-    weblink:"www.usorvax.com"
+    weblink:"https://www.usorvax.com"
   },
   {
     title: "Youth STEM 2030 & Enactus UZ",
     description:
       "Co-led youth-centered innovation projects fostering sustainable tech, social entrepreneurship, and community transformation through hands-on initiatives.",
+    weblink: "https://enactus.org",
+  },
+  {
+    title: "UtilityOps Initiative",
+    description:
+      "An operations-focused initiative to improve field deployment and fault-response workflows by combining structured playbooks, digital tooling, and telemetry-aware task management.",
+    weblink: "https://example.com/utilityops",
   },
 ];
 

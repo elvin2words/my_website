@@ -49,16 +49,114 @@
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html, body, #root {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f4f7ff;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.25), transparent 38%),
+        radial-gradient(circle at 80% 12%, rgba(74, 222, 128, 0.2), transparent 35%),
+        radial-gradient(circle at 50% 100%, rgba(236, 72, 153, 0.16), transparent 45%),
+        linear-gradient(135deg, #070b18 0%, #111827 55%, #0d1428 100%);
+      overflow:auto;
+    }
+
+    .initial-loader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .initial-loader-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 28px 32px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 80px rgba(2, 6, 23, 0.6);
+    }
+
+    .initial-loader-orb {
+      position: relative;
+      width: 132px;
+      height: 132px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      display: grid;
+      place-items: center;
+      background: rgba(10, 16, 34, 0.6);
+      overflow: hidden;
+    }
+
+    .initial-loader-spinner {
+      position: absolute;
+      width: 88px;
+      height: 88px;
+      border-radius: 999px;
+      border: 4px solid transparent;
+      border-top-color: #38bdf8;
+      border-right-color: #4ade80;
+      animation: loader-spin 1s linear infinite;
+    }
+
+    .initial-loader-title {
+      margin: 4px 0 0;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      text-align: center;
+      color: rgba(248, 250, 252, 0.95);
+    }
+
+    .initial-loader-subtitle {
+      margin: 0;
+      font-size: 12px;
+      text-align: center;
+      color: rgba(226, 232, 240, 0.74);
+    }
+
+    @keyframes loader-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 
-<body class="bg-accent2 flex items-center justify-center h-screen w-screen">
-<!-- <body class="bg-accent4 flex items-center justify-center"> -->
+<body>
   <!-- Fallback content until React loads -->
-  <!-- <div id="root" class="loading-screen flex flex-col items-center justify-center h-full w-full"> -->
-  <div id="root" class="loading-screen items-center justify-center h-full w-full">
-    <lottie-player src="/lottie/loading.json" background="transparent" speed="1" style="width: 200px; height: 200px;" autoplay loop></lottie-player>
-    <p class="mt-4 text-foreground text-center">Loading Elvin’s Portfolio...</p>
+  <div id="root">
+    <div class="initial-loader">
+      <div class="initial-loader-card">
+        <div class="initial-loader-orb">
+          <div class="initial-loader-spinner"></div>
+          <lottie-player
+            src="/lottie/loading.json"
+            background="transparent"
+            speed="1"
+            style="width: 96px; height: 96px; position: relative;"
+            autoplay
+            loop
+          ></lottie-player>
+        </div>
+        <p class="initial-loader-title">Loading Elvin's Portfolio</p>
+        <p class="initial-loader-subtitle">Preparing a smoother experience...</p>
+      </div>
+    </div>
   </div>
 
   <!-- React App -->

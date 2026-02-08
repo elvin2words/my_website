@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { Linkedin, Github, Twitter, Mail, Code } from 'lucide-react';
 import ContactPopupWrapper from '@/pages/ContactPopupWrapper';
+import { linkedInFollowUrl } from '@/data/designCircle';
  
 
 const Footer: React.FC = () => {
@@ -35,6 +36,9 @@ const Footer: React.FC = () => {
         {/* Mobile Navigation Links (only visible on small screens) */}
         <div className="sm:hidden w-full mb-6">
           <div className="flex justify-center items-center space-x-4">
+            <Link href="/engineer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-accent1 text-sm font-medium px-2 py-1">
+              EngCircle
+            </Link>
             <Link href="/codecircle/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-accent2 text-sm font-medium px-2 py-1">
               CodeCircle
             </Link>
@@ -48,13 +52,28 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="container mx-auto max-w-7xl">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-start">
-            <div className="mb-6 md:mb-0 order-1 md:order-1 text-center md:text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+            <div className="text-center md:text-left">
               <h3 className="text-xl font-poppins font-semibold mb-2">Elvin Mazwimairi</h3>
               <p className="text-white text-opacity-70 text-sm">Portfolio & Personal Brand</p>
             </div>
 
-            <div className="flex flex-col items-center md:items-end order-2 md:order-2">
+            <div className="flex flex-col items-center text-center">
+              <p className="text-xs uppercase tracking-[0.14em] text-white/55 mb-3">Stay Connected</p>
+              <a
+                href={linkedInFollowUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-md border border-blue-400/60 px-4 py-2 text-sm font-medium text-blue-100 hover:bg-blue-500/20 transition-colors"
+              >
+                Follow on LinkedIn
+              </a>
+              <p className="text-white/60 text-xs mt-3 max-w-xs">
+                Follow for updates on engineering builds, design experiments, and writing drops.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center md:items-end">
               <div className="flex space-x-6 mb-3">
                 <a 
                   href="https://linkedin.com/in/elvin-mazwimairi/" 
