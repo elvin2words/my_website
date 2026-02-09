@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, Camera, ExternalLink, Loader2, NotebookPen, RefreshCw } from "lucide-react";
+import { ArrowLeft, Brush, Camera, ExternalLink, Loader2, NotebookPen, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -89,6 +89,12 @@ const BlogWritingsPage: React.FC = () => {
                   <Button variant="outline" className="bg-transparent">
                     <Camera className="h-4 w-4 mr-2" />
                     Go to Gallery
+                  </Button>
+                </Link>
+                <Link href="/creative/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                  <Button variant="outline" className="bg-transparent">
+                    <Brush className="h-4 w-4 mr-2" />
+                    Visual Designs
                   </Button>
                 </Link>
                 <a

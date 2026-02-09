@@ -258,7 +258,7 @@ const Header: React.FC = () => {
               active={location.includes("creative")}
               links={[
                 { href: "/creative/portfolio", label: "Portfolio" },
-                { href: "/creative/journey", label: "Journey" },
+                { href: "/creative/journey", label: "Visual Designs" },
               ]}
             />
           </nav> */}
@@ -500,7 +500,7 @@ const Header: React.FC = () => {
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
                     >
-                      Journey
+                      Graphical
                     </Link>
                   </motion.div>
                 )}

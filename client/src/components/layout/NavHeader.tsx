@@ -356,7 +356,7 @@ const Header: React.FC = () => {
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
                     >
-                      Journey
+                      Visual Designs
                     </Link>
                   </motion.div>
                 )}

@@ -201,6 +201,12 @@ const DesignCircle: React.FC = () => {
                     Blog + Writings
                   </Button>
                 </Link>
+                <Link href="/creative/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                  <Button variant="outline" className="bg-transparent">
+                    <Brush className="h-4 w-4 mr-2" />
+                    Visual Designs
+                  </Button>
+                </Link>
                 <a
                   href={linkedInFollowUrl}
                   target="_blank"
@@ -376,5 +382,4 @@ const DesignCircle: React.FC = () => {
 };
 
 export default DesignCircle;
-
 

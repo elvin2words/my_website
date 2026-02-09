@@ -43,7 +43,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
         { label: "Creatives", href: "/creative/portfolio", matchPrefixes: ["/creative/portfolio"] },
         { label: "Gallery", href: "/creative/gallery", matchPrefixes: ["/creative/gallery"] },
         { label: "Blog + Writings", href: "/creative/blog", matchPrefixes: ["/creative/blog"] },
-        { label: "Journey", href: "/creative/journey", matchPrefixes: ["/creative/journey", "/creative"] },
+        {
+          label: "Visual Designs",
+          href: "/creative/journey",
+          matchPrefixes: ["/creative/journey", "/creative/visual-designs"],
+        },
       ],
     },
     {

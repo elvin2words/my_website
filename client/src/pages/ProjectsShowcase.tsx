@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Link } from "wouter";
 import {
   ArrowLeft,
+  Brush,
   Camera,
   Code2,
   Cpu,
@@ -151,6 +152,12 @@ const ProjectsShowcase: React.FC = () => {
                   <Button variant="outline" className="bg-transparent">
                     <NotebookPen className="h-4 w-4 mr-2" />
                     Blog
+                  </Button>
+                </Link>
+                <Link href="/creative/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                  <Button variant="outline" className="bg-transparent">
+                    <Brush className="h-4 w-4 mr-2" />
+                    Visual Designs
                   </Button>
                 </Link>
               </div>

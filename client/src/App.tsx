@@ -18,6 +18,7 @@ import CreativeTechnologist from "@/pages/Creative";
 import DesignCircle from "@/pages/DesignCircle";
 import GalleryPage from "@/pages/Gallery";
 import BlogWritingsPage from "@/pages/BlogWritings";
+import VisualDesignsPage from "@/pages/VisualDesigns";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicy";
 import TermsOfServicePage from "@/pages/TermsOfService";
 import Technopreneur from "@/pages/Technopreneur";
@@ -86,7 +87,8 @@ const Router = React.memo(() => (
         <Route path="/engineer/portfolio" component={Engineer} />
         <Route path="/engineer/journey" component={Engineer} />
         <Route path="/creative" component={CreativeTechnologist} />
-        <Route path="/creative/journey" component={CreativeTechnologist} />
+        <Route path="/creative/journey" component={VisualDesignsPage} />
+        <Route path="/creative/visual-designs" component={VisualDesignsPage} />
         <Route path="/creative/portfolio" component={DesignCircle} />
         <Route path="/creative/gallery" component={GalleryPage} />
         <Route path="/creative/blog" component={BlogWritingsPage} />
