@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
 import { ArrowLeft, ChevronDown, Sun, Moon, Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import ReactTooltip from "react-tooltip";
 import MobileMenu from './MobileMenu';
 import { useTheme  } from '@/hooks/use-theme';
 

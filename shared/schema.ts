@@ -49,10 +49,14 @@ export interface Project {
   technologies: string[];
   category: string;
   badges?: string[];
+  status?: "beta" | "shipped" | "r-and-d" | "in-prototype";
+  source?: "manual" | "github";
   liveDemo?: string;
   fullDescription?: string;
   gallery?: string[];
   githubUrl?: string;
+  repoName?: string;
+  repoOwner?: string;
   features?: string[];
   challenges?: string;
   outcome?: string;

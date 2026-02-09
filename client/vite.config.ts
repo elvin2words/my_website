@@ -11,7 +11,7 @@ export default defineConfig({
   // base: '/', // or '' if you run into issues
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": path.resolve(import.meta.dirname, "src"),
       // Optional: if you ensure these folders exist within client/ or via workspaces
       // "@shared": path.resolve(__dirname, "../shared"),
       // "@assets": path.resolve(__dirname, "../attached_assets"),

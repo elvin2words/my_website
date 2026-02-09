@@ -16,10 +16,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { StableMediaImage } from "@/components/ui/stable-media-image";
 import BackgroundEffect from "@/components/home/BackgroundEffect";
 import Header from "@/components/layout/HomeHeader";
 import Footer from "@/components/layout/Footer";
-import { InstagramFollowUrl, linkedInFollowUrl } from "@/data/designCircle";
+import { creativeDesigns, InstagramFollowUrl, linkedInFollowUrl } from "@/data/designCircle";
 import type { MediaItem, MediaManifest, MediaType } from "@/types/content";
 
 const emptyManifest: MediaManifest = {
@@ -39,11 +40,11 @@ function mediaTypeLabel(mediaType: MediaType) {
 function renderAssetPreview(item: MediaItem) {
   if (item.mediaType === "image") {
     return (
-      <img
+      <StableMediaImage
         src={item.url}
         alt={item.title}
-        className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-        loading="lazy"
+        containerClassName="h-full w-full bg-black/30"
+        className="object-cover transition-transform duration-500 hover:scale-105"
       />
     );
   }
@@ -137,7 +138,7 @@ const DesignCircle: React.FC = () => {
                 <span className="text-sm text-white/90">Creatives</span>
                 <Sparkles className="h-4 w-4 text-accent3" />
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold mb-4">
+              {/* <h1 className="text-3xl md:text-5xl font-bold mb-4">
                 Creative designs, visual studies, and future-ready assets
               </h1>
 
@@ -150,7 +151,17 @@ const DesignCircle: React.FC = () => {
               <p className="text-white/75 text-base md:text-lg max-w-3xl mx-auto mb-6">
                 This keeps room for Blender, Adobe, Canva, and richer design workflows as your
                 portfolio grows.
+              </p> */}
+
+              <h1 className="text-3xl md:text-5xl font-bold mb-4">
+                Creative work across design, visuals, and storytelling
+              </h1>
+
+              <p className="text-white/75 text-base md:text-lg max-w-3xl mx-auto mb-6">
+                A space for general creative design work, creative photography shots, and selected
+                writing. This is my extended visual and narrative corner on the internet.
               </p>
+              
 
               <div className="mb-6">
                 <Button
@@ -239,19 +250,19 @@ const DesignCircle: React.FC = () => {
                     <button
                       key={concept.key}
                       onClick={() => setActiveConcept(concept.key)}
-                      className={`rounded-xl border overflow-hidden text-left transition-colors ${
+                      className={`rounded-xl border overflow-hidden text-left transition-all duration-300 ease-out ${
                         activeConcept === concept.key
                           ? "border-accent3 bg-accent3/20"
-                          : "border-white/15 bg-white/5 hover:bg-white/10"
+                          : "border-white/15 bg-white/5 hover:bg-white/10 hover:-translate-y-0.5"
                       }`}
                     >
                       <div className="h-20 bg-black/40">
                         {concept.coverUrl ? (
-                          <img
+                          <StableMediaImage
                             src={concept.coverUrl}
                             alt={concept.name}
-                            loading="lazy"
-                            className="h-full w-full object-cover opacity-85"
+                            containerClassName="h-full w-full"
+                            className="object-cover opacity-90"
                           />
                         ) : (
                           <div className="h-full w-full grid place-items-center text-xs text-white/60">
@@ -280,7 +291,7 @@ const DesignCircle: React.FC = () => {
                     {visibleDesigns.map((design) => (
                       <Card
                         key={design.id}
-                        className="bg-white/5 border-white/10 overflow-hidden hover:border-accent3/50 transition-colors"
+                        className="bg-white/5 border-white/10 overflow-hidden hover:border-accent3/50 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(0,0,0,0.26)]"
                       >
                         <div className="aspect-video overflow-hidden">{renderAssetPreview(design)}</div>
                         <CardHeader className="pb-3">
@@ -315,6 +326,46 @@ const DesignCircle: React.FC = () => {
                 )}
               </section>
             )}
+
+            <section className="mb-8">
+              <div className="flex items-center gap-2 mb-5">
+                <Brush className="h-5 w-5 text-accent3" />
+                <h2 className="text-2xl md:text-3xl font-semibold">General Creative Designs</h2>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {creativeDesigns.map((design) => (
+                  <Card
+                    key={design.id}
+                    className="bg-white/5 border-white/10 overflow-hidden hover:border-accent3/50 transition-colors"
+                  >
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src={design.image}
+                        alt={design.title}
+                        className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-lg">{design.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-sm text-white/75">{design.summary}</p>
+                      <div className="text-xs text-accent3">{design.focus}</div>
+                      <div className="flex flex-wrap gap-2">
+                        {design.tools.map((tool) => (
+                          <Badge key={tool} variant="secondary" className="bg-white/10 text-white">
+                            {tool}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </section>
+
           </div>
         </main>
       </div>

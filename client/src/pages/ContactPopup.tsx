@@ -8,7 +8,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 const vCardUrl = '/contact.vcf';
 const profileCardUrl = `${window.location.origin}/contact-profile-card`;
 
-const ContactPopup = ({ onLinkClick }) => {
+interface ContactPopupProps {
+  onLinkClick?: () => void;
+}
+
+const ContactPopup = ({ onLinkClick }: ContactPopupProps) => {
   const [showQR, setShowQR] = useState(false);
 
   const linkStyle =

@@ -228,7 +228,7 @@ const Developer: React.FC = () => {
               variants={fadeUp}
               initial="initial"
               whileInView="whileInView"
-              viewport="viewport"
+              viewport={{ once: true }}
               className="mb-12"
             >
               <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">
@@ -267,7 +267,7 @@ const Developer: React.FC = () => {
               variants={fadeUp}
               initial="initial"
               whileInView="whileInView"
-              viewport="viewport"
+              viewport={{ once: true }}
               className="mb-10"
             >
               <Card className="bg-white text-white bg-opacity-5 backdrop-blur-sm border border-white border-opacity-10">

@@ -1,176 +1,77 @@
-import React, { useState, useRef, useEffect } from "react";
-import { X, Send } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { Send, X } from "lucide-react";
 import ChatMessage from "./ChatMessage";
+import { apiRequest } from "@/lib/queryClient";
+import type { AiAction, AiChatHistoryItem, AiChatResponse, AiReference } from "@/types/ai";
 
-// const mockAnswers = {
-//   hello: "Hi 👋 I’m ElvinBot! Ask me anything about Elvin.",
-//   services: "Elvin offers engineering, photography, and creative tech solutions 🚀",
-//   hire: "You can hire Elvin via the Hire Me page or reach out directly via WhatsApp or email 📩",
-//   projects: "Check out Elvin’s portfolio projects on the Projects page 🔗",
-//   default: "I’m still learning 🤔 — try asking about services, hire, or projects!"
-// };
+interface ChatbotModalProps {
+  onClose: () => void;
+}
 
-const mockAnswers = [
-  {
-    keywords: ["hello", "hi"],
-    reply: {
-      text: "Hey 👋 I’m ElvinBot. I can tell you all about Elvin — his work, ventures, and passions. and most importantly, what he can do for you.",
-      actions: [
-        { label: "📄 View Resume", link: "/resume.pdf" },
-        { label: "💼 Hire Me", link: "/hire-me" },
-      ],
-    },
-  },
-  {
-    keywords: ["services", "work", "do"],
-    reply: {
-      text: "Elvin is an engineer ⚡, creative technologist 💡, and photographer 📸. He builds sustainable energy solutions and digital tools.",
-      actions: [
-        { label: "⚡ Engineering Projects", link: "/projects/engineering" },
-        { label: "📸 Photography", link: "/projects/photography" },
-      ],
-      context: "services",      
-    },
-  },
-  {
-    keywords: ["hire", "job", "work with"],
-    reply: {
-      text: "You can hire Elvin for engineering, photography, or tech projects 🚀",
-      actions: [
-        { label: "💼 Hire Me", link: "/hire-me" },
-        { label: "📞 Contact", link: "/my-card" },
-      ],
-    },
-  },
-  {
-    keywords: ["engineering"],
-    reply: {
-      text: "Elvin works on power systems ⚡, smart grids, and solar solutions ☀️",
-      context: "engineering",
-    },
-  },
-  {
-    keywords: ["photography", "photos"],
-    reply: {
-      text: "Elvin captures stories through streets, spaces, and portraits 📸",
-      context: "photography",
-    },
-  },
-  {
-    keywords: ["resume", "cv"],
-    reply: {
-      text: "Here’s Elvin’s CV 📄",
-      actions: [{ label: "Open Resume", link: "/resume.pdf" }],
-      context: "resume",
-    },
-  },
-];
+interface ChatUiMessage {
+  id: string;
+  from: "user" | "bot";
+  text: string;
+  actions?: AiAction[];
+  references?: AiReference[];
+  pending?: boolean;
+}
 
+const createMessageId = () =>
+  `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+const STREAM_CHUNK_SIZE = 3;
+const STREAM_INTERVAL_MS = 18;
 
-export default function ChatbotModal({ onClose }) {
-  const modalRef = useRef(null);
-  const [messages, setMessages] = useState([
-    { from: "bot", text: "Hey 👋 I’m ElvinBot. Ask me anything about Elvin!" }
+export default function ChatbotModal({ onClose }: ChatbotModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+  const typingTimerRef = useRef<number | null>(null);
+  const unmountedRef = useRef(false);
+  const [messages, setMessages] = useState<ChatUiMessage[]>([
+    {
+      id: createMessageId(),
+      from: "bot",
+      text: "Ask me anything about Elvin, projects, services, or where to find things on this site.",
+    },
   ]);
   const [input, setInput] = useState("");
-  const chatEndRef = useRef(null);
-
-  const [context, setContext] = useState(null);
-
-  const sendMessage = () => {
-    if (!input.trim()) return;
-
-    const lower = input.toLowerCase();
-    const userMsg = { from: "user", text: input };
-    setMessages(prev => [...prev, userMsg]);
-
-    // Mock AI response
-    // const lower = input.toLowerCase();
-    // let reply = mockAnswers.default;
-    // if (lower.includes("hello") || lower.includes("hi")) reply = mockAnswers.hello;
-    // else if (lower.includes("service")) reply = mockAnswers.services;
-    // else if (lower.includes("hire")) reply = mockAnswers.hire;
-    // else if (lower.includes("project")) reply = mockAnswers.projects;
-
-    const match = mockAnswers.find((a) =>
-    a.keywords.some((k) => lower.includes(k))
-    );
-
-    let reply = match
-    ? match.reply
-    : { text: "I’m still learning 🤔 Try asking about services, resume, or how to hire Elvin." };
-
-    setTimeout(() => {
-    setMessages((prev) => [...prev, { from: "bot", ...reply }]);
-    }, 600);
-
-
-    setInput("");
-  };
-
-
-//   const sendMessage = () => {
-//   if (!input.trim()) return;
-//   const lower = input.toLowerCase();
-
-//   // add user message
-//   setMessages((prev) => [...prev, { from: "user", text: input }]);
-
-//   let reply;
-
-//   // look for a match
-//   const match = mockAnswers.find((a) =>
-//     a.keywords.some((k) => lower.includes(k))
-//   );
-
-//   if (match) {
-//     reply = match.reply;
-//     setContext(match.reply.context || null);
-//   } else if (["more", "tell me more"].some((k) => lower.includes(k)) && context) {
-//     if (context === "services") {
-//       reply = { text: "Would you like to explore engineering ⚡ or photography 📸 in more detail?" };
-//     } else if (context === "engineering") {
-//       reply = { text: "Elvin has worked on power distribution, control systems, and solar microgrids 🌍⚡" };
-//     } else if (context === "photography") {
-//       reply = { text: "Check out Elvin’s photography portfolio 📷", actions: [{ label: "View Photos", link: "/projects/photography" }] };
-//     } else {
-//       reply = { text: "I don’t have more details yet 🤔" };
-//     }
-//   } else {
-//     reply = { text: "I’m still learning 🤖 Try asking about services, resume, or how to hire Elvin." };
-//   }
-
-//   // simulate bot reply
-//   setTimeout(() => {
-//     setMessages((prev) => [...prev, { from: "bot", ...reply }]);
-//   }, 600);
-
-//   setInput("");
-// };
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [vh, setVh] = useState(window.innerHeight);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-  
+
+  const clearTypingTimer = () => {
+    if (typingTimerRef.current !== null) {
+      window.clearInterval(typingTimerRef.current);
+      typingTimerRef.current = null;
+    }
+  };
+
   useEffect(() => {
-    function handleClickOutside(e) {
-      if (modalRef.current && !modalRef.current.contains(e.target)) {
+    return () => {
+      unmountedRef.current = true;
+      clearTypingTimer();
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         onClose();
       }
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-    // 🚫 Lock background scroll when modal is open
     document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.body.style.overflow = "auto"; // ✅ Restore scroll on close
+      document.body.style.overflow = "";
     };
   }, [onClose]);
-
-
-  const [vh, setVh] = useState(window.innerHeight);
 
   useEffect(() => {
     const handleResize = () => {
@@ -180,41 +81,168 @@ export default function ChatbotModal({ onClose }) {
     return () => window.visualViewport?.removeEventListener("resize", handleResize);
   }, []);
 
+  const streamBotReply = async (pendingId: string, payload: AiChatResponse) => {
+    const fullReply = payload.reply?.trim() || "";
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!fullReply || prefersReducedMotion) {
+      setMessages((prev) =>
+        prev.map((message) =>
+          message.id === pendingId
+            ? {
+                id: pendingId,
+                from: "bot",
+                text: fullReply || "No response generated.",
+                actions: payload.actions,
+                references: payload.references,
+              }
+            : message,
+        ),
+      );
+      return;
+    }
+
+    clearTypingTimer();
+    let cursor = 0;
+
+    await new Promise<void>((resolve) => {
+      typingTimerRef.current = window.setInterval(() => {
+        if (unmountedRef.current) {
+          clearTypingTimer();
+          resolve();
+          return;
+        }
+
+        cursor = Math.min(fullReply.length, cursor + STREAM_CHUNK_SIZE);
+        const partial = fullReply.slice(0, cursor);
+        const done = cursor >= fullReply.length;
+
+        setMessages((prev) =>
+          prev.map((message) =>
+            message.id === pendingId
+              ? {
+                  id: pendingId,
+                  from: "bot",
+                  text: partial,
+                  pending: !done,
+                  actions: done ? payload.actions : undefined,
+                  references: done ? payload.references : undefined,
+                }
+              : message,
+          ),
+        );
+
+        if (done) {
+          clearTypingTimer();
+          resolve();
+        }
+      }, STREAM_INTERVAL_MS);
+    });
+  };
+
+  const sendMessage = async () => {
+    const userText = input.trim();
+    if (!userText || isSending) return;
+
+    const userMessage: ChatUiMessage = {
+      id: createMessageId(),
+      from: "user",
+      text: userText,
+    };
+    const pendingId = createMessageId();
+    const pendingMessage: ChatUiMessage = {
+      id: pendingId,
+      from: "bot",
+      text: "",
+      pending: true,
+    };
+
+    const history: AiChatHistoryItem[] = messages
+      .filter((message) => !message.pending)
+      .map((message) => ({
+        role: message.from === "user" ? "user" : "assistant",
+        content: message.text,
+      }));
+
+    setInput("");
+    setError(null);
+    setIsSending(true);
+    setMessages((prev) => [...prev, userMessage, pendingMessage]);
+
+    try {
+      const response = await apiRequest("POST", "/api/ai/chat", {
+        message: userText,
+        history,
+      });
+      const payload = (await response.json()) as AiChatResponse;
+      await streamBotReply(pendingId, payload);
+    } catch (chatError) {
+      const message =
+        chatError instanceof Error ? chatError.message : "AI chat is temporarily unavailable.";
+      setError(message);
+      setMessages((prev) =>
+        prev.map((entry) =>
+          entry.id === pendingId
+            ? {
+                id: pendingId,
+                from: "bot",
+                text: "I could not reach AI services right now. Please try again in a moment.",
+              }
+            : entry,
+        ),
+      );
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   return (
     <div className="fixed inset-0 p-3 bg-black/65 flex items-center justify-center z-50">
-      <div 
+      <div
         ref={modalRef}
-        style={{ height: vh * 0.77, maxHeight: vh - 32 }} // 70% of available viewport
-        className="bg-gradient-to-b from-gray-900 to-gray-800 w-full max-w-md  rounded-2xl shadow-xl flex flex-col overflow-hidden ">
-        {/* Header */}
+        style={{ height: vh * 0.77, maxHeight: vh - 32 }}
+        className="bg-gradient-to-b from-gray-900 to-gray-800 w-full max-w-md rounded-2xl shadow-xl flex flex-col overflow-hidden"
+      >
         <div className="flex justify-between items-center px-4 py-3 border-b shrink-0">
-        {/* <div className="flex justify-between items-center px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white"> */}
-          <h2 className="font-semibold text-lg">Ask ElvinBot 🤖</h2>
-          <button onClick={onClose} >
+          <h2 className="font-semibold text-lg">Ask Elvin AI</h2>
+          <button onClick={onClose}>
             <X size={22} className="text-gray-600 hover:text-white" />
           </button>
         </div>
 
-        {/* Chat messages */}
         <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2 bg-accent6">
-          {messages.map((m, idx) => (
-            <ChatMessage key={idx} from={m.from} text={m.text} />
+          {messages.map((message) => (
+            <ChatMessage
+              key={message.id}
+              from={message.from}
+              text={message.text}
+              actions={message.actions}
+              references={message.references}
+              pending={message.pending}
+            />
           ))}
           <div ref={chatEndRef} />
         </div>
 
-        {/* Input */}
+        {error && (
+          <div className="px-3 py-2 text-xs text-red-200 border-t border-white/10 bg-red-500/10">
+            {error}
+          </div>
+        )}
+
         <div className="flex items-center p-3 border-t shrink-0">
           <input
             value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+            onChange={(event) => setInput(event.target.value)}
+            onKeyDown={(event) => event.key === "Enter" && void sendMessage()}
             placeholder="Ask something..."
-            className="flex-1 rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 text-gray-800"
+            disabled={isSending}
+            className="flex-1 rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 text-gray-800 disabled:opacity-65"
           />
           <button
-            onClick={sendMessage}
-            className="ml-2 p-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600"
+            onClick={() => void sendMessage()}
+            disabled={isSending || !input.trim()}
+            className="ml-2 p-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 disabled:opacity-65 disabled:cursor-not-allowed"
           >
             <Send size={18} />
           </button>

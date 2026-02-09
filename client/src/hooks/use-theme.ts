@@ -1,19 +1,11 @@
-// hooks/use-theme.ts
-// This file provides a custom hook for managing the theme (light/dark) in a React
-
-import { useState, useEffect } from 'react';
+import { useTheme as useThemeProvider } from "@/components/theme-provider";
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (theme === 'dark') root.classList.add('dark');
-    else root.classList.remove('dark');
-  }, [theme]);
+  const { theme, setTheme } = useThemeProvider();
 
   return {
     theme,
-    toggleTheme: () => setTheme((prev) => (prev === 'light' ? 'dark' : 'light')),
+    setTheme,
+    toggleTheme: () => setTheme(theme === "light" ? "dark" : "light"),
   };
 };

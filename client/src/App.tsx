@@ -18,6 +18,8 @@ import CreativeTechnologist from "@/pages/Creative";
 import DesignCircle from "@/pages/DesignCircle";
 import GalleryPage from "@/pages/Gallery";
 import BlogWritingsPage from "@/pages/BlogWritings";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicy";
+import TermsOfServicePage from "@/pages/TermsOfService";
 import Technopreneur from "@/pages/Technopreneur";
 import JustElvin from "@/pages/JustElvin";
 import NotFound from "@/pages/not-found";
@@ -91,6 +93,8 @@ const Router = React.memo(() => (
         <Route path="/designcircle" component={DesignCircle} />
         <Route path="/gallery" component={GalleryPage} />
         <Route path="/blog" component={BlogWritingsPage} />
+        <Route path="/privacy-policy" component={PrivacyPolicyPage} />
+        <Route path="/terms-of-service" component={TermsOfServicePage} />
         <Route path="/developer" component={Developer} />
         <Route path="/technopreneur" component={Technopreneur} />
         <Route path="/beyond" component={JustElvin} />
@@ -123,25 +127,25 @@ const AppPreloader: React.FC<{ exiting: boolean }> = ({ exiting }) => (
       exiting ? "opacity-0 pointer-events-none" : "opacity-100"
     }`}
   >
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(56,189,248,0.22),transparent_38%),radial-gradient(circle_at_80%_10%,rgba(74,222,128,0.18),transparent_35%),radial-gradient(circle_at_50%_100%,rgba(236,72,153,0.15),transparent_45%),linear-gradient(135deg,#070b18_0%,#111827_55%,#0d1428_100%)]" />
+    <div className="absolute inset-0 bg-background/95 backdrop-blur-sm transition-colors duration-300" />
     <div
-      className={`relative flex flex-col items-center gap-4 rounded-3xl border border-white/20 bg-white/5 px-8 py-8 shadow-[0_20px_80px_rgba(2,6,23,0.55)] backdrop-blur-xl transition-transform duration-500 ${
+      className={`relative flex flex-col items-center gap-4 rounded-3xl border border-border bg-card/70 px-8 py-8 shadow-[0_20px_80px_rgba(2,6,23,0.35)] backdrop-blur-xl transition-transform duration-500 ${
         exiting ? "scale-95" : "scale-100"
       }`}
     >
       <div className="relative h-24 w-24">
-        <div className="absolute inset-0 rounded-full border border-white/20" />
+        <div className="absolute inset-0 rounded-full border border-border" />
         <div className="absolute inset-1 rounded-full border-4 border-transparent border-t-accent2 border-r-accent3 animate-spin" />
         <div
           className="absolute inset-4 rounded-full border-2 border-transparent border-b-accent4"
           style={{ animation: "spin 1.8s linear infinite reverse" }}
         />
-        <div className="absolute inset-[38%] rounded-full bg-white/80 shadow-[0_0_18px_rgba(255,255,255,0.45)] animate-pulse" />
+        <div className="absolute inset-[38%] rounded-full bg-foreground/80 shadow-[0_0_18px_rgba(51,65,85,0.45)] animate-pulse" />
       </div>
-      <p className="text-sm md:text-base font-medium tracking-[0.14em] uppercase text-white/90">
+      <p className="text-sm md:text-base font-medium tracking-[0.14em] uppercase text-foreground/90">
         Loading Portfolio
       </p>
-      <p className="text-xs text-white/65">Preparing a smoother experience...</p>
+      <p className="text-xs text-foreground/65">Preparing a smoother experience...</p>
     </div>
   </div>
 );
@@ -178,7 +182,7 @@ const App = () => {
       <ThemeProvider defaultTheme="dark">
         <TooltipProvider delayDuration={20}>
           <DragProvider>
-            <div className="bg-gradient-to-br from-primary to-secondary min-h-screen text-white font-inter overflow-x-hidden">
+            <div className="bg-gradient-to-br from-primary to-secondary min-h-screen text-foreground transition-colors duration-300 overflow-x-hidden">
               {showPreloader && <AppPreloader exiting={preloaderExiting} />}
               <Toaster />
               <Router />

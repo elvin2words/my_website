@@ -3,10 +3,11 @@ import { Link } from "wouter";
 import { ArrowLeft, ExternalLink, Filter, Loader2, RefreshCw, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { StableMediaImage } from "@/components/ui/stable-media-image";
 import BackgroundEffect from "@/components/home/BackgroundEffect";
 import Header from "@/components/layout/HomeHeader";
 import Footer from "@/components/layout/Footer";
-import { InstagramFollowUrl } from "@/data/designCircle";
+import { photoShots, type PhotoShot, InstagramFollowUrl } from "@/data/designCircle";
 import type { MediaManifest, MediaItem } from "@/types/content";
 
 const emptyManifest: MediaManifest = {
@@ -22,6 +23,14 @@ const GalleryPage: React.FC = () => {
   const [activeConcept, setActiveConcept] = useState<string>("all");
   const [selectedShot, setSelectedShot] = useState<MediaItem | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
+
+
+
+
+  const [activeCollection, setActiveCollection] = useState<string>("all");
+  const [selectedShot2, setSelectedShot2] = useState<PhotoShot | null>(null);
+  
+
 
   const loadGallery = useCallback(async (refresh = false) => {
     try {
@@ -59,6 +68,23 @@ const GalleryPage: React.FC = () => {
     return manifest.items.filter((shot) => shot.conceptKey === activeConcept);
   }, [activeConcept, manifest.items]);
 
+
+
+
+  const collections = useMemo(() => {
+    return ["all", ...Array.from(new Set(photoShots.map((shot) => shot.collection)))];
+  }, []);
+
+  const visibleShots2 = useMemo(() => {
+    if (activeCollection === "all") return photoShots;
+    return photoShots.filter((shot) => shot.collection === activeCollection);
+  }, [activeCollection]);
+    
+
+
+
+
+  
   return (
     <>
       <BackgroundEffect />
@@ -87,10 +113,16 @@ const GalleryPage: React.FC = () => {
 
             <section className="mb-6">
               <h1 className="text-3xl md:text-5xl font-bold mb-3">Photography Gallery</h1>
-              <p className="text-white/75 max-w-3xl">
+              {/* <p className="text-white/75 max-w-3xl">
                 Upload images into `client/public/{manifest.folder}`. Root files appear under General,
                 and subfolders become concept mini-showcases you can filter by.
+              </p> */}
+
+              <p className="text-white/75 max-w-3xl">
+                A curated set of shots from different seasons and moods. Tap any photo to view
+                it larger.
               </p>
+
               <div className="mt-4">
                 <Button
                   variant="outline"
@@ -148,19 +180,19 @@ const GalleryPage: React.FC = () => {
                       <button
                         key={concept.key}
                         onClick={() => setActiveConcept(concept.key)}
-                        className={`rounded-xl border overflow-hidden text-left transition-colors ${
+                        className={`rounded-xl border overflow-hidden text-left transition-all duration-300 ease-out ${
                           activeConcept === concept.key
                             ? "border-accent3 bg-accent3/20"
-                            : "border-white/15 bg-white/5 hover:bg-white/10"
+                            : "border-white/15 bg-white/5 hover:bg-white/10 hover:-translate-y-0.5"
                         }`}
                       >
                         <div className="h-24 bg-black/40 relative">
                           {concept.coverUrl ? (
-                            <img
+                            <StableMediaImage
                               src={concept.coverUrl}
                               alt={concept.name}
-                              loading="lazy"
-                              className="h-full w-full object-cover opacity-85"
+                              containerClassName="h-full w-full"
+                              className="object-cover opacity-90"
                             />
                           ) : (
                             <div className="h-full w-full grid place-items-center text-xs text-white/60">
@@ -182,18 +214,18 @@ const GalleryPage: React.FC = () => {
                     No images found yet. Add files into `client/public/{manifest.folder}` and refresh.
                   </div>
                 ) : (
-                  <section className="columns-1 sm:columns-2 lg:columns-3 gap-4">
+                  <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {visibleShots.map((shot) => (
                       <button
                         key={shot.id}
                         onClick={() => setSelectedShot(shot)}
-                        className="mb-4 break-inside-avoid overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-accent3/50 text-left transition-colors"
+                        className="overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-accent3/50 text-left transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(0,0,0,0.28)]"
                       >
-                        <img
+                        <StableMediaImage
                           src={shot.url}
                           alt={shot.title}
-                          loading="lazy"
-                          className="w-full h-auto object-cover"
+                          containerClassName="aspect-[4/5] bg-black/30"
+                          className="object-cover"
                         />
                         <div className="p-3">
                           <p className="font-medium">{shot.title}</p>
@@ -212,11 +244,73 @@ const GalleryPage: React.FC = () => {
                 )}
               </>
             )}
+
+
+
+
+
+
+
+
+
+            <section className="mb-8">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-2 text-sm text-white/80 mr-1">
+                  <Filter className="h-4 w-4" />
+                  Collections:
+                </span>
+                {collections.map((collection) => (
+                  <button
+                    key={collection}
+                    onClick={() => setActiveCollection(collection)}
+                    className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+                      activeCollection === collection
+                        ? "bg-accent3 text-black border-accent3"
+                        : "bg-white/5 border-white/20 text-white/80 hover:bg-white/10"
+                    }`}
+                  >
+                    {collection}
+                  </button>
+                ))}
+              </div>
+            </section>
+
+
+            <section className="columns-1 sm:columns-2 lg:columns-3 gap-4">
+              {visibleShots2.map((shot) => (
+                <button
+                  key={shot.id}
+                  onClick={() => setSelectedShot2(shot)}
+                  className="mb-4 break-inside-avoid overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-accent3/50 text-left transition-colors"
+                >
+                  <img
+                    src={shot.image}
+                    alt={shot.title}
+                    loading="lazy"
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="p-3">
+                    <p className="font-medium">{shot.title}</p>
+                    <div className="mt-2 flex items-center gap-2">
+                      <Badge variant="secondary" className="bg-white/10 text-white/90">
+                        {shot.collection}
+                      </Badge>
+                      <span className="text-xs text-white/60">{shot.year}</span>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </section>
+
+         
+
+
+
           </div>
         </main>
       </div>
 
-      {selectedShot && (
+      {/* {selectedShot && (
         <div
           className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm p-4 md:p-8 flex items-center justify-center"
           onClick={() => setSelectedShot(null)}
@@ -234,6 +328,7 @@ const GalleryPage: React.FC = () => {
             <img
               src={selectedShot.url}
               alt={selectedShot.title}
+              decoding="async"
               className="w-full max-h-[75vh] object-contain bg-black"
             />
             <div className="p-4">
@@ -244,7 +339,73 @@ const GalleryPage: React.FC = () => {
             </div>
           </div>
         </div>
+      )} */}
+
+
+
+
+
+      {/* {selectedShot && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm p-4 md:p-8 flex items-center justify-center"
+          onClick={() => setSelectedShot2(null)}
+        >
+          <div
+            className="relative max-w-5xl w-full rounded-xl border border-white/20 bg-primary/80 overflow-hidden"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedShot2(null)}
+              className="absolute top-3 right-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70"
+            >
+              <X className="h-4 w-4" />
+            </button>
+            <img
+              src={selectedShot.url}
+              alt={selectedShot.title}
+              className="w-full max-h-[75vh] object-contain bg-black"
+            />
+            <div className="p-4">
+              <h2 className="text-lg font-semibold">{selectedShot.title}</h2>
+              <p className="text-sm text-white/70 mt-1">
+                {selectedShot.conceptName} - {new Date(selectedShot.updatedAt).getFullYear()}
+              </p>
+            </div>
+          </div>
+        </div>
+      )} */}
+
+
+      {selectedShot2 && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm p-4 md:p-8 flex items-center justify-center"
+          onClick={() => setSelectedShot2(null)}
+        >
+          <div
+            className="relative max-w-5xl w-full rounded-xl border border-white/20 bg-primary/80 overflow-hidden"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedShot2(null)}
+              className="absolute top-3 right-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70"
+            >
+              <X className="h-4 w-4" />
+            </button>
+            <img
+              src={selectedShot2.image}
+              alt={selectedShot2.title}
+              className="w-full max-h-[75vh] object-contain bg-black"
+            />
+            <div className="p-4">
+              <h2 className="text-lg font-semibold">{selectedShot2.title}</h2>
+              <p className="text-sm text-white/70 mt-1">
+                {selectedShot2.collection} • {selectedShot2.year}
+              </p>
+            </div>
+          </div>
+        </div>
       )}
+
 
       <Footer />
     </>

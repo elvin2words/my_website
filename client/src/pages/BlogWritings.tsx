@@ -4,6 +4,7 @@ import { ArrowLeft, ExternalLink, Loader2, NotebookPen, RefreshCw } from "lucide
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { StableMediaImage } from "@/components/ui/stable-media-image";
 import BackgroundEffect from "@/components/home/BackgroundEffect";
 import Header from "@/components/layout/HomeHeader";
 import Footer from "@/components/layout/Footer";
@@ -102,10 +103,10 @@ const BlogWritingsPage: React.FC = () => {
               <h1 className="text-3xl md:text-5xl font-bold mb-3">
                 Ideas, reflections, and creative notes
               </h1>
-              <p className="text-white/75 max-w-3xl">
+              {/* <p className="text-white/75 max-w-3xl">
                 Drop `.md`, `.markdown`, or `.txt` files into `client/public/{manifest.folder}`.
                 Subfolders become concept collections automatically.
-              </p>
+              </p> */}
               <div className="mt-4">
                 <Button
                   variant="outline"
@@ -193,7 +194,10 @@ const BlogWritingsPage: React.FC = () => {
                 ) : (
                   <section className="grid md:grid-cols-2 gap-5">
                     {visibleEntries.map((entry) => (
-                      <Card key={entry.id} className="bg-white/5 border-white/10 h-full">
+                      <Card
+                        key={entry.id}
+                        className="bg-white/5 border-white/10 h-full transition-all duration-300 ease-out hover:border-accent3/40 hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(0,0,0,0.22)]"
+                      >
                         <CardHeader className="space-y-3">
                           <div className="flex flex-wrap gap-2">
                             <Badge variant="secondary" className="bg-white/10 text-white/90 capitalize">
@@ -227,10 +231,11 @@ const BlogWritingsPage: React.FC = () => {
 
                         <CardContent className="space-y-4">
                           {entry.coverImage && (
-                            <img
+                            <StableMediaImage
                               src={entry.coverImage}
                               alt={entry.title}
-                              className="w-full aspect-video object-cover rounded-md border border-white/10"
+                              containerClassName="w-full aspect-video rounded-md border border-white/10"
+                              className="object-cover"
                             />
                           )}
 

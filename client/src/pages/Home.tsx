@@ -3,7 +3,7 @@ import BackgroundEffect from '@/components/home/BackgroundEffect';
 import IdentitySections from '@/components/home/IdentitySections';
 import { motion } from 'framer-motion';
 import ContactPopupWrapper from './ContactPopupWrapper';
-import SkillPills from '@/components/home/SkillPills';
+import SkillPills from '@/components/home/SkillsPills';
 import { Link } from 'wouter';
 import { Download, ArrowUp, FolderOpen, } from 'lucide-react';
 import HireMePopup from "@/components/home/HireMePopup";

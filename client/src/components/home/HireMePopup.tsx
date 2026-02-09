@@ -43,7 +43,11 @@ const services = [
   },
 ];
 
-export default function HireMePopup({ onLinkClick }) {
+interface HireMePopupProps {
+  onLinkClick?: () => void;
+}
+
+export default function HireMePopup({ onLinkClick }: HireMePopupProps) {
   const itemStyle =
     "flex items-start gap-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-zinc-800 px-3 py-2 rounded transition-colors";
   const divider = <hr className="border-t border-gray-300 dark:border-gray-700" />;

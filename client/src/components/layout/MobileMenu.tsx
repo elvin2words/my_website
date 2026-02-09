@@ -75,7 +75,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-primary/70 backdrop-blur-xl z-40 md:hidden animate-in fade-in duration-300 ease-in-out">
+    <div className="fixed inset-0 bg-primary/70 backdrop-blur-xl z-40 lg:hidden animate-in fade-in duration-300 ease-in-out">
       <Button 
         variant="ghost" 
         size="icon"
@@ -89,12 +89,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
         <X className="w-6 h-6" />
       </Button>
 
-      <div className="h-full overflow-y-auto pt-20 pb-8 px-4">
-        <div className="mx-auto w-full max-w-md space-y-4">
+      <div className="h-full overflow-y-auto pt-20 pb-8 px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-2xl grid gap-4 md:grid-cols-2">
           {menuSections.map((section) => (
             <div
               key={section.id}
-              className="rounded-2xl border border-white/15 bg-white/5 p-4 shadow-[0_14px_34px_rgba(0,0,0,0.28)]"
+              className="rounded-2xl border border-white/15 bg-white/5 p-4 shadow-[0_14px_34px_rgba(0,0,0,0.28)] h-fit"
             >
               <p className={`text-lg font-semibold mb-3 ${section.accentClass}`}>
                 {section.label}

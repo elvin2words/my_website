@@ -32,10 +32,10 @@ const Footer: React.FC = () => {
 
   return (
     <>
-      <footer className="bg-secondary bg-opacity-70 backdrop-blur-md py-8 px-6 md:px-12 mt-auto relative z-10">
+      <footer className="bg-secondary bg-opacity-70 backdrop-blur-md py-8 px-4 sm:px-6 lg:px-12 mt-auto relative z-10">
         {/* Mobile Navigation Links (only visible on small screens) */}
-        <div className="sm:hidden w-full mb-6">
-          <div className="flex justify-center items-center space-x-4">
+        <div className="lg:hidden w-full mb-6">
+          <div className="flex flex-wrap justify-center items-center gap-3">
             <Link href="/engineer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-accent1 text-sm font-medium px-2 py-1">
               EngCircle
             </Link>
@@ -52,8 +52,8 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-            <div className="text-center md:text-left">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div className="text-center lg:text-left">
               <h3 className="text-xl font-poppins font-semibold mb-2">Elvin Mazwimairi</h3>
               <p className="text-white text-opacity-70 text-sm">Portfolio & Personal Brand</p>
             </div>
@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
               </p>
             </div>
 
-            <div className="flex flex-col items-center md:items-end">
+            <div className="flex flex-col items-center lg:items-end">
               <div className="flex space-x-6 mb-3">
                 <a 
                   href="https://linkedin.com/in/elvin-mazwimairi/" 
@@ -124,17 +124,17 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white border-opacity-10 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white text-opacity-50 text-sm text-center md:text-left">
+          <div className="mt-8 pt-6 border-t border-white border-opacity-10 flex flex-col lg:flex-row justify-between items-center gap-3">
+            <p className="text-white text-opacity-50 text-sm text-center lg:text-left">
               © {new Date().getFullYear()} Elvin E. Mazwimairi. All rights reserved.
             </p>
 
-            <div className="mt-4 md:mt-0 flex flex-wrap justify-center space-x-6">
-              <Link href="#" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition">
+            <div className="mt-4 lg:mt-0 flex flex-wrap justify-center gap-4 sm:gap-6">
+              <Link href="/privacy-policy" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition">
                 Privacy Policy
               </Link>
 
-              <Link href="#" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition">
+              <Link href="/terms-of-service" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition">
                 Terms of Service
               </Link> 
 

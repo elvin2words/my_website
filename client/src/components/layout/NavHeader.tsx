@@ -9,13 +9,13 @@ import { useTheme } from '@/hooks/use-theme';
 import ContactHoverWrapper from '@/pages/ContactHoverWrapper';
 import MobileMenu from './MobileMenu';
 import { QRCodeCanvas } from 'qrcode.react';
+import AISearchOverlay from "@/components/ai/AISearchOverlay";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [location, navigate] = useLocation();
   const [showSearchBar, setShowSearchBar] = useState(false);
-  const searchInputRef = useRef<HTMLInputElement>(null);
   const { theme, toggleTheme } = useTheme();
 
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -46,28 +46,17 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
   useEffect(() => {
-    if (showSearchBar && searchInputRef.current) {
-      searchInputRef.current.focus();
-      const handleClickOutside = (event: MouseEvent) => {
-        if (searchInputRef.current && !searchInputRef.current.contains(event.target as Node)) {
-          setShowSearchBar(false);
-        }
-      };
-      const handleEscapeKey = (event: KeyboardEvent) => {
-        if (event.key === 'Escape') {
-          setShowSearchBar(false);
-        }
-      };
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleEscapeKey);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-        document.removeEventListener('keydown', handleEscapeKey);
-      };
-    }
-  }, [showSearchBar]);
+    const handleSearchShortcut = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setShowSearchBar(true);
+      }
+    };
+
+    document.addEventListener("keydown", handleSearchShortcut);
+    return () => document.removeEventListener("keydown", handleSearchShortcut);
+  }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleSearchBar = () => setShowSearchBar(!showSearchBar);  
@@ -75,35 +64,12 @@ const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 py-4 md:py-5 px-6 md:px-12 flex items-center z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 py-4 lg:py-5 px-4 sm:px-6 lg:px-12 flex items-center z-50 transition-all duration-300 ${
           isScrolled ? 'bg-primary backdrop-blur-md' : 'bg-primary'
         }`}
       >
-
-        {/* Search bar overlay */}
-        {showSearchBar && (
-          <div className="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-95 backdrop-blur-md py-3 px-6 md:px-12 z-10">
-            <div className="w-full max-w-2xl relative">
-              <input
-                ref={searchInputRef}
-                type="text"
-                placeholder="Search..."
-                className="w-full py-3 px-4 bg-transparent border-b-2 border-white border-opacity-30 focus:border-opacity-100 outline-none text-white text-lg"
-                autoFocus
-              />
-              <button 
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white hover:text-accent2 transition-colors"
-                onClick={toggleSearchBar}
-              >
-                ESC
-              </button>
-            </div>
-          </div>
-        )}
-
-
         {/* Mobile Layout */}
-        <div className="flex justify-between items-center w-full md:hidden">
+        <div className="flex justify-between items-center w-full lg:hidden">
 
           <button
             onClick={goBack}
@@ -125,6 +91,15 @@ const Header: React.FC = () => {
             <Button
               variant="ghost"
               size="icon"
+              className="text-white dark:text-gray-200 hover:bg-white/10 rounded"
+              onClick={toggleSearchBar}
+            >
+              <Search className="w-5 h-5" />
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon"
               className="text-white p-0 hover:bg-white/10"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
@@ -134,7 +109,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Desktop */}
-        <div className="hidden md:grid grid-cols-3 items-center w-full max-w-7xl mx-auto relative">
+        <div className="hidden lg:grid grid-cols-3 items-center w-full max-w-7xl mx-auto relative">
           <div className="flex items-center">
             <button
               onClick={goBack}
@@ -411,6 +386,8 @@ const Header: React.FC = () => {
           </div>
         </div>
       </header>
+
+      <AISearchOverlay open={showSearchBar} onClose={() => setShowSearchBar(false)} />
 
       {/* QR Dialog */}
       <dialog

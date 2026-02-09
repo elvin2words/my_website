@@ -1,244 +1,203 @@
-# Elvin Mazwimairi Portfolio Site
+# Elvin Mazwimairi Portfolio
+
+Modern portfolio platform built with React + TypeScript on the client and Express on the server.
 
 ## Overview
 
-This project is a personal portfolio website for Elvin Mazwimairi, showcasing different aspects of my professional identity. It's built as a single-page application with React on the frontend and a minimal Express backend. The site has multiple sections that represent different facets of the individual's identity: Electrical Engineer, Systems Developer, Artistic Designer, Technopreneur, and Human Being.
+This project powers a multi-circle personal brand site:
 
-## User Preferences
+- `EngCircle` (engineering)
+- `CodeCircle` (software projects)
+- `DesignCircle` (creative work, gallery, writings)
+- `BizCircle` / technopreneur track
 
-Preferred communication style: Simple, everyday language.
+It also includes dynamic content APIs so media and writing files are automatically discovered from folders.
 
-## System Architecture
+## Tech Stack
 
-The application follows a modern web application architecture:
+- Frontend: `React`, `TypeScript`, `Wouter`, `Tailwind CSS`, `shadcn/ui`, `Framer Motion`
+- Backend: `Express`, `TypeScript`
+- Build: `Vite` (client) + `esbuild` (server bundle)
+- Data layer: currently file/folder-driven for portfolio content, with schema support in `shared/`
 
-1. **Frontend** : React-based single-page application with TypeScript
+## Project Structure
 
-* Uses Wouter for client-side routing
-* Tailwind CSS for styling with shadcn/ui components
-* React Query for data fetching
+```txt
+client/
+  public/
+    gallery/            # photo gallery source files
+    creatives/          # design/creative source files
+    writings/           # markdown/text writing files
+  src/
+    components/
+    data/
+    hooks/
+    pages/
+server/
+  routes.ts             # content discovery APIs
+shared/
+  schema.ts
+```
 
-1. **Backend** : Minimal Express.js server
+## Content Automation
 
-* Serves the static frontend files
-* Provides basic API endpoints
-* Currently using in-memory storage, with infrastructure for database integration
+### Gallery
 
-1. **Database** :
+Files dropped into:
 
-* Drizzle ORM is set up but not fully implemented
-* Database schema is defined in `shared/schema.ts`
-* Ready for PostgreSQL integration
+`client/public/gallery`
 
-1. **Deployment** :
+Behavior:
 
-* Set up to build the frontend and serve it from the backend
+- files at root -> `General` concept
+- files inside subfolders -> folder name becomes concept
+- gallery page auto-loads from `/api/content/gallery`
 
-## Key Components
+### Creatives / DesignCircle
 
-### Frontend
+Files dropped into:
 
-1. **Routing System** :
+`client/public/creatives`
 
-* Uses Wouter for lightweight client-side routing
-* Routes defined in `App.tsx` for different identity sections
+Behavior:
 
-1. **UI Components** :
+- same concept rules as gallery
+- supports current image workflows and future media growth (video / 3D / docs metadata in API)
+- design page auto-loads from `/api/content/designs`
 
-* Comprehensive set of UI components from shadcn/ui
-* Custom components for specific portfolio features
-* Responsive design for different screen sizes
+### Blog + Writings
 
-1. **State Management** :
+Files dropped into:
 
-* Uses React Query for server state
-* Custom context providers for specific functionality (e.g., DragContext)
+`client/public/writings`
 
-1. **Pages** :
+Supported extensions:
 
-* Home page with identity overview
-* Separate pages for each identity aspect (Engineer, Developer, Designer, etc.)
+- `.md`
+- `.markdown`
+- `.txt`
 
-### Backend
+Frontmatter example:
 
-1. **Server** :
-
-* Express.js based server (`server/index.ts`)
-* Serves the static frontend files
-* Minimal API routes
-
-1. **Storage** :
-
-* Current implementation uses in-memory storage (`MemStorage` class)
-* Structured to easily swap with database storage
-
-1. **Schema** :
-
-* Defined using Drizzle ORM in `shared/schema.ts`
-* Currently includes a basic user schema
-
-## Data Flow
-
-1. **Client Initialization** :
-
-* React app loads and initializes routing
-* Components fetch any necessary data via React Query
-
-1. **API Interactions** :
-
-* Frontend makes requests to backend API endpoints
-* `apiRequest` utility handles request formatting and error checking
-
-1. **Authentication** (currently minimal):
-   * Basic user schema is defined but not fully implemented
-   * Infrastructure exists to expand authentication
-2. **Server-Side Processing** :
-
-* Express routes handle API requests
-* Currently, most functionality is static content serving
-
-## External Dependencies
-
-### Frontend Dependencies
-
-* React and React DOM for UI rendering
-* Wouter for client-side routing
-* Tailwind CSS and shadcn/ui components for styling
-* React Query for data fetching
-* Lucide React for icons
-* Radix UI components for accessible UI elements
-
-### Backend Dependencies
-
-* Express for server functionality
-* Drizzle ORM for database interactions
-
-## Deployment Strategy
-
-The application is configured for deployment on Replit:
-
-1. **Development Mode** :
-
-* Run with `npm run dev` to start both frontend and backend in development mode
-* Vite manages hot reloading and development features
-
-1. **Production Build** :
-
-* Frontend is built with Vite
-* Backend is compiled with esbuild
-* Combined into a single distributable
-
-1. **Replit-Specific Configuration** :
-
-* `.replit` file defines run commands and module requirements
-* Uses Node.js 20, web module, and prepares for PostgreSQL
-
-1. **Database Deployment** :
-
-* Schema is ready for PostgreSQL integration
-* Uses Drizzle ORM for database access
-* Designed to work with Neon Serverless PostgreSQL
-
-## Future Enhancements
-
-1. **Database Integration** :
-
-* Complete PostgreSQL integration with Drizzle ORM
-* Implement proper persistence for any dynamic content
-
-1. **Authentication** :
-
-* Expand user authentication if needed for admin functionality
-* Implement session management
-
-1. **Content Management** :
-
-* Add ability to update portfolio content dynamically
-* Implement admin interface for content management
-
+```md
 ---
-
+title: Building a Living Portfolio System
+date: 2026-02-08
+kind: blog
+status: published
+tags: portfolio, systems
+collection: General
+link: https://example.com
+coverImage: /gallery/Zz4/20250623_120419.jpg
 ---
+```
 
-This is a personal portfolio website built as a modern full-stack application. Here's the comprehensive breakdown:
+Notes:
 
-**Architecture**
+- root files -> `General`
+- folder files -> concept by folder
+- `link` supports embedded external references
+- `coverImage` supports image preview (future-ready)
+- page auto-loads from `/api/content/writings`
 
-* Frontend: React with TypeScript, using Vite as the build tool
-* Backend: Express.js server with TypeScript
-* Database: Prepared for PostgreSQL with Drizzle ORM
-* Styling: Tailwind CSS with shadcn/ui components
+## Theme System (Dark / Light)
 
-**Project Structure**
+Theme support is class-based with persistence:
 
-1. **Frontend (`/client`)**
-   * Uses a component-based architecture with pages for different identities:
-     * Engineer: Showcases electrical engineering skills and projects
-     * Developer: Highlights software development capabilities
-     * Designer: Displays UI/UX and design work
-     * Technopreneur: Business and entrepreneurship ventures
-     * Human: Personal side and interests
-   * Components are organized into:
-     * UI components (shadcn/ui based)
-     * Layout components (Header, Footer)
-     * Home-specific components (IdentityCard, BackgroundEffect)
-2. **Backend (`/server`)**
-   * Express server handling API routes
-   * Set up for session management and authentication
-   * Configured for both development and production environments
-   * Runs on port 5000 with proper bindings
-3. **Shared (`/shared`)**
-   * Contains database schema definitions
-   * Shared types between frontend and backend
+- provider: `client/src/components/theme-provider.tsx`
+- hook used by headers/buttons: `client/src/hooks/use-theme.ts`
+- theme class applied on `html` element (`light` / `dark`)
+- preference stored in `localStorage` (`theme`)
 
-**Key Features**
+The app now uses shared CSS tokens so both themes render consistently.
 
-1. **Interactive Home Page**
-   * Dynamic background effects
-   * Identity sections with smooth transitions
-   * Responsive design for all screen sizes
-2. **Identity Pages**
-   * Each page represents a different professional aspect
-   * Consistent design language with unique accent colors
-   * Card-based layout showcasing skills and projects
-3. **Navigation**
-   * Smooth routing using Wouter
-   * Mobile-responsive menu
-   * Consistent back navigation
+## Routes
 
-**Technical Implementation**
+Core routes include:
 
-1. **State Management**
-   * React Query for server state
-   * Context API for drag interactions
-   * Local state for UI components
-2. **Styling System**
-   * Tailwind CSS for utility-first styling
-   * Custom animations and transitions
-   * Consistent color theming across pages
-3. **Build & Deployment**
-   * Development mode with hot reloading
-   * Production build process combining frontend and backend
-   * Configured for Replit deployment
+- `/`
+- `/engineer`
+- `/developer`
+- `/creative/portfolio`
+- `/creative/gallery`
+- `/creative/blog`
+- `/technopreneur`
+- `/privacy-policy`
+- `/terms-of-service`
 
-**Design Philosophy**
+## AI Search + Chat
 
-The project follows a modular, component-based architecture with clear separation of concerns. The design emphasizes:
+The app now includes:
 
-* Clean, minimal aesthetics
-* Smooth transitions and animations
-* Consistent branding across sections
-* Responsive and accessible interfaces
+- AI-powered search endpoint: `POST /api/ai/search`
+- AI chat endpoint: `POST /api/ai/chat`
+- AI reindex endpoint: `POST /api/ai/reindex`
+- Referenced responses (site links + citations when available)
 
-Each identity section maintains its unique character while staying within the overall design system through:
+### Eddy Backend Wiring (Optional)
 
-* Section-specific accent colors
-* Consistent card layouts
-* Unified typography
-* Shared component patterns
+To route AI responses to your Eddy backend, set:
 
-This creates a cohesive experience while allowing each professional aspect to have its own visual identity.
+```bash
+EDDY_AI_BACKEND_URL="https://your-eddy-backend.example.com/v1/chat/completions"
+EDDY_AI_API_KEY="your-key"
+EDDY_AI_AUTH_HEADER="Authorization"
+EDDY_AI_MODEL="your-model-id"
+EDDY_AI_MODE="openai" # or "generic"
+EDDY_AI_TIMEOUT_MS="20000"
+EDDY_AI_SYSTEM_PROMPT="Your assistant behavior instructions"
+```
 
-The project is built to be maintainable and scalable, with clear separation between server and client code, type safety throughout, and a robust component library for consistent UI development.
+If `EDDY_AI_BACKEND_URL` is not set, APIs fall back to local site-index retrieval and still return referenced results.
 
----
+## Legal Pages
+
+Added:
+
+- `Privacy Policy` page
+- `Terms of Service` page
+
+Footer links now route to those pages.
+
+## Scripts
+
+```bash
+npm run dev
+npm run build
+npm run start
+```
+
+## Local Development
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start dev server:
+
+```bash
+npm run dev
+```
+
+3. Open local URL shown by Vite/Express.
+
+## Deployment
+
+Production build bundles:
+
+- client assets to `dist/public`
+- server entry to `dist/index.js`
+
+Use:
+
+```bash
+npm run build
+npm run start
+```
+
+## Notes
+
+- Some large chunk warnings may appear in production builds due to rich UI dependencies.
+- If folder content is updated while app is open, use in-page refresh buttons on gallery/design/writings pages.
