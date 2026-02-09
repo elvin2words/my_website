@@ -3,7 +3,6 @@
 import React, { useRef, useState } from "react";
 import html2canvas from "html2canvas";
 import { Phone, Mail, Linkedin, MessageSquare, Share2, Download, QrCode } from "lucide-react";
-import { Helmet } from 'react-helmet';
 import {QRCodeCanvas} from 'qrcode.react';
 import { motion } from 'framer-motion';
 import BackgroundEffect from "@/components/home/BackgroundEffect";
@@ -71,22 +70,6 @@ export default function ContactProfilePage() {
     <>
 
       <Header />
-
-      <Helmet>
-        <title>Elvin Mazwi - Digital Business Card</title>
-
-        <meta property="og:title" content="Elvin Mazwi - Digital Business Card" />
-        <meta property="og:description" content="Engineer • Developer • Creator. Connect with me easily via phone, email, WhatsApp, and LinkedIn." />
-        <meta property="og:url" content="https://elvinmazwi.me/contact-profile-card" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://elvinmazwi.me/public/prof.jpg" />
-        <meta property="og:image:alt" content="Elvin Beyond's Digital Business Card" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Elvin Beyond - Digital Business Card" />
-        <meta name="twitter:description" content="Engineer • Developer • Creator. Connect with me easily via phone, email, WhatsApp, and LinkedIn." />
-        <meta name="twitter:image" content="https://elvinmazwi.me/public/prof.jpg" />
-      </Helmet>
 
       
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-300 p-4 md:pt-24">

@@ -36,6 +36,7 @@ import ResumePage from "./pages/ResumePage";
 import ServicesPage from "./pages/Services";
 
 import ChatbotButton from "@/components/home/ChatbotButton";
+import RouteSeo from "@/components/seo/RouteSeo";
 
 
 // Smooth scroll to top button
@@ -79,6 +80,7 @@ const ScrollToTop = () => {
 const Router = React.memo(() => (
   <div className="flex flex-col min-h-screen">
     {/* <Header /> */}
+    <RouteSeo />
 
     <div className="flex-grow">
       <Switch>

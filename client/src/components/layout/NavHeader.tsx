@@ -233,6 +233,19 @@ const Header: React.FC = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent2 transition-all duration-300 group-hover:w-full"></span>
             </div>
             
+            <div className="relative group">
+              <Link
+                href="/blog"
+                className={`flex items-center font-medium text-lg text-white hover:text-accent3 ${
+                  location.startsWith('/blog') || location.startsWith('/creative/blog') ? 'text-accent3' : ''
+                }`}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
+                Blog
+              </Link>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent3 transition-all duration-300 group-hover:w-full"></span>
+            </div>
+
             <div 
               className="relative group"
               onMouseEnter={() => setOpenMenu("biz")}
@@ -288,19 +301,6 @@ const Header: React.FC = () => {
               {/* Underline animation */}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent4 transition-all duration-300 group-hover:w-full"></span>
             </div>            
-
-            <div className="relative group">
-              <Link
-                href="/blog"
-                className={`flex items-center font-medium text-lg text-white hover:text-accent3 ${
-                  location.startsWith('/blog') || location.startsWith('/creative/blog') ? 'text-accent3' : ''
-                }`}
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              >
-                Blog
-              </Link>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent3 transition-all duration-300 group-hover:w-full"></span>
-            </div>
 
             <div 
               className="relative group"
@@ -359,7 +359,7 @@ const Header: React.FC = () => {
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
                     >
-                      Visual Designs
+                      Graphical
                     </Link>
                   </motion.div>
                 )}
