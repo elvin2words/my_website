@@ -1,7 +1,7 @@
 # Pages AddOns
 
-- Privacy policy
-- Terms of Service
+- ~~Privacy policy~~
+- ~~Terms of Service~~
 - ~~Contact - WA, Call,~~
 - Page for Code Circle - convert portfolio_cc
 

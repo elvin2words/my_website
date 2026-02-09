@@ -28,7 +28,7 @@ import CodeCircle from "./pages/CodeCircle";
 import ProjectDetail from "./pages/ProjectDetail";
 // import BizCircle from "./pages/BusinessCircle";
 // import DesCircle from "./pages/DesignCircle";
-// import ViewAll from "./pages/ProjectShowcase";
+import Showcase from "./pages/ProjectsShowcase";
 
 import ContactProfilePage from "./pages/ContactProfileCard";
 import ResumePage from "./pages/ResumePage";
@@ -106,7 +106,7 @@ const Router = React.memo(() => (
 
         <Route path="/codecircle/portfolio" component={CodeCircle} />
         <Route path="/codecircle/journey" component={CodeCircle} />
-        {/* <Route path="/projects" component={ViewAll} /> */}
+        <Route path="/projects" component={Showcase} />
         <Route path="/codecircle/portfolio/project/:id" component={ProjectDetail} />
         {/* <Route path="/bizcircle" component={BizCircle} /> */}
         {/* <Route path="/descircle" component={DesCircle} /> */}

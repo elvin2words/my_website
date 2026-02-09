@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, ExternalLink, Loader2, NotebookPen, RefreshCw } from "lucide-react";
+import { ArrowLeft, Camera, ExternalLink, Loader2, NotebookPen, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -84,15 +84,23 @@ const BlogWritingsPage: React.FC = () => {
                   Back to DesignCircle
                 </Button>
               </Link>
-              <a
-                href={linkedInFollowUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-md border border-blue-400/60 px-4 py-2 text-sm font-medium text-blue-200 hover:bg-blue-500/20 transition-colors"
-              >
-                Explore on LinkedIn
-                <ExternalLink className="h-4 w-4 ml-2" />
-              </a>
+              <div className="flex flex-wrap items-center gap-3">
+                <Link href="/creative/gallery" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                  <Button variant="outline" className="bg-transparent">
+                    <Camera className="h-4 w-4 mr-2" />
+                    Go to Gallery
+                  </Button>
+                </Link>
+                <a
+                  href={linkedInFollowUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-md border border-blue-400/60 px-4 py-2 text-sm font-medium text-blue-200 hover:bg-blue-500/20 transition-colors"
+                >
+                  Explore on LinkedIn
+                  <ExternalLink className="h-4 w-4 ml-2" />
+                </a>
+              </div>
             </div>
 
             <section className="mb-8">

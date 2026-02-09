@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, ExternalLink, Filter, Loader2, RefreshCw, X } from "lucide-react";
+import { ArrowLeft, ExternalLink, Filter, Loader2, NotebookPen, RefreshCw, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { StableMediaImage } from "@/components/ui/stable-media-image";
@@ -100,15 +100,23 @@ const GalleryPage: React.FC = () => {
                   Back to DesignCircle
                 </Button>
               </Link>
-              <a
-                href={InstagramFollowUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-md border border-blue-400/60 px-4 py-2 text-sm font-medium text-blue-200 hover:bg-blue-500/20 transition-colors"
-              >
-                Check out more on my Instagram
-                <ExternalLink className="h-4 w-4 ml-2" />
-              </a>
+              <div className="flex flex-wrap items-center gap-3">
+                <Link href="/creative/blog" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                  <Button variant="outline" className="bg-transparent">
+                    <NotebookPen className="h-4 w-4 mr-2" />
+                    Go to Blog
+                  </Button>
+                </Link>
+                <a
+                  href={InstagramFollowUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-md border border-blue-400/60 px-4 py-2 text-sm font-medium text-blue-200 hover:bg-blue-500/20 transition-colors"
+                >
+                  Check out more on my Instagram
+                  <ExternalLink className="h-4 w-4 ml-2" />
+                </a>
+              </div>
             </div>
 
             <section className="mb-6">
