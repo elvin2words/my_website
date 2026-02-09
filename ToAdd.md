@@ -14,7 +14,7 @@
   * Navigation Override Strategy
 
     * disable the default navigation in layout using a flag (`noNav: true`) in route metadata?
-    * create a `fullscreen` layout where `CodeCirclePage.tsx` uses its own nav?
+    * ~~create a `fullscreen` layout where `CodeCirclePage.tsx` uses its own nav?~~
   * If main layout includes navigation (`<Navbar />`), add a flag:
 
     * // In CodeCirclePage.tsx
@@ -27,15 +27,15 @@
       Typing animations,
       Scroll behavior,
       Preloader behavior, etc.)
-- Page for Design Circle
+- ~~Page for Design Circle~~
 - Page for Biz Circle
-- SeeMyWork Page - All Circles
+- ~~SeeMyWork Page - All Circles~~
 - 
 
 # Features
 
-- Search - AI powered referencing to the site and everything else
-- FAB Search AI for mobile
+- ~~Search - AI powered referencing to the site and everything else~~
+- ~~FAB Search AI for mobile~~
 - PortfolioCC Integration for CodeCircle Portfolio
 - ~~Make identity cards clickable anywhere~~
 - mutliprojectrepo integration into portfolio_cc

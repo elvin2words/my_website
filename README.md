@@ -4,7 +4,7 @@ Modern portfolio platform built with React + TypeScript on the client and Expres
 
 ## Overview
 
-This project powers a multi-circle personal brand site:
+This project powers my multi-circle personal brand site:
 
 - `EngCircle` (engineering)
 - `CodeCircle` (software projects)
@@ -87,7 +87,7 @@ kind: blog
 status: published
 tags: portfolio, systems
 collection: General
-link: https://example.com
+link: https://elvinmazwi.me
 coverImage: /gallery/Zz4/20250623_120419.jpg
 ---
 ```
@@ -134,18 +134,18 @@ The app now includes:
 - AI reindex endpoint: `POST /api/ai/reindex`
 - Referenced responses (site links + citations when available)
 
-### Eddy Backend Wiring (Optional)
+### Eddy Backend Wiring 
 
-To route AI responses to your Eddy backend, set:
+To route AI responses to my Eddy backend, we have the following template:
 
 ```bash
-EDDY_AI_BACKEND_URL="https://your-eddy-backend.example.com/v1/chat/completions"
-EDDY_AI_API_KEY="your-key"
+EDDY_AI_BACKEND_URL="https://eddy.iqal.me/v1/chat/completions"
+EDDY_AI_API_KEY="api-key"
 EDDY_AI_AUTH_HEADER="Authorization"
-EDDY_AI_MODEL="your-model-id"
+EDDY_AI_MODEL="eddy-model-id"
 EDDY_AI_MODE="openai" # or "generic"
 EDDY_AI_TIMEOUT_MS="20000"
-EDDY_AI_SYSTEM_PROMPT="Your assistant behavior instructions"
+EDDY_AI_SYSTEM_PROMPT="Assistant behavior instructions"
 ```
 
 If `EDDY_AI_BACKEND_URL` is not set, APIs fall back to local site-index retrieval and still return referenced results.
@@ -200,4 +200,4 @@ npm run start
 ## Notes
 
 - Some large chunk warnings may appear in production builds due to rich UI dependencies.
-- If folder content is updated while app is open, use in-page refresh buttons on gallery/design/writings pages.
+- If folder content is updated while app is open, need to use in-page refresh buttons on gallery/design/writings pages.
