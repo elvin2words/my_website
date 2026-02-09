@@ -36,18 +36,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       ],
     },
     {
-      id: "design",
-      label: "DesignCircle",
+      id: "blog",
+      label: "Blog",
       accentClass: "text-accent3",
       links: [
-        { label: "Creatives", href: "/creative/portfolio", matchPrefixes: ["/creative/portfolio"] },
-        { label: "Gallery", href: "/creative/gallery", matchPrefixes: ["/creative/gallery"] },
-        { label: "Blog + Writings", href: "/creative/blog", matchPrefixes: ["/creative/blog"] },
-        {
-          label: "Visual Designs",
-          href: "/creative/journey",
-          matchPrefixes: ["/creative/journey", "/creative/visual-designs"],
-        },
+        { label: "Blog + Writings", href: "/blog", matchPrefixes: ["/blog", "/creative/blog"] },
       ],
     },
     {
@@ -57,6 +50,20 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       links: [
         { label: "Portfolio", href: "/biz/portfolio", matchPrefixes: ["/biz/portfolio"] },
         { label: "Journey", href: "/biz/journey", matchPrefixes: ["/biz/journey"] },
+      ],
+    },
+    {
+      id: "design",
+      label: "DesignCircle",
+      accentClass: "text-accent3",
+      links: [
+        { label: "Creatives", href: "/creative/portfolio", matchPrefixes: ["/creative/portfolio"] },
+        { label: "Gallery", href: "/creative/gallery", matchPrefixes: ["/creative/gallery"] },
+        {
+          label: "Visual Designs",
+          href: "/creative/journey",
+          matchPrefixes: ["/creative/journey", "/creative/visual-designs"],
+        },
       ],
     },
   ];

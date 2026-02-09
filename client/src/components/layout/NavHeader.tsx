@@ -289,6 +289,19 @@ const Header: React.FC = () => {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent4 transition-all duration-300 group-hover:w-full"></span>
             </div>            
 
+            <div className="relative group">
+              <Link
+                href="/blog"
+                className={`flex items-center font-medium text-lg text-white hover:text-accent3 ${
+                  location.startsWith('/blog') || location.startsWith('/creative/blog') ? 'text-accent3' : ''
+                }`}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
+                Blog
+              </Link>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent3 transition-all duration-300 group-hover:w-full"></span>
+            </div>
+
             <div 
               className="relative group"
               onMouseEnter={() => setOpenMenu("des")}
@@ -337,16 +350,6 @@ const Header: React.FC = () => {
                       }}
                     >
                       Gallery
-                    </Link>
-                    <Link
-                      href="/creative/blog"
-                      className="block px-4 py-2 text-white hover:text-accent3 hover:bg-white/10 rounded"
-                      onClick={() => {
-                        setOpenMenu(null);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
-                    >
-                      Blog + Writings
                     </Link>
                     <Link
                       href="/creative/journey"
