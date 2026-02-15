@@ -12,31 +12,49 @@ import React, { useRef, useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 
 import Home from "@/pages/Home";
+
 import Engineer from "@/pages/Engineer";
 import Developer from "@/pages/Developer";
 import CreativeTechnologist from "@/pages/Creative";
-import DesignCircle from "@/pages/DesignCircle";
-import GalleryPage from "@/pages/Gallery";
-import BlogWritingsPage from "@/pages/BlogWritings";
-import VisualDesignsPage from "@/pages/VisualDesigns";
-import PrivacyPolicyPage from "@/pages/PrivacyPolicy";
-import TermsOfServicePage from "@/pages/TermsOfService";
 import Technopreneur from "@/pages/Technopreneur";
 import JustElvin from "@/pages/JustElvin";
-import NotFound from "@/pages/not-found";
-import Admin from './pages/Admin';
+
+import EngCirclePortfolio from "@/pages/EngCirclePortfolio";
+import EngCircleJourney from "@/pages/EngCircleJourney";
+
 import CodeCircle from "./pages/CodeCircle";
+import CodeCircleJourney from "./pages/CodeCircleJourney";
 import ProjectDetail from "./pages/ProjectDetail";
-// import BizCircle from "./pages/BusinessCircle";
-// import DesCircle from "./pages/DesignCircle";
+
+import BlogWritingsPage from "@/pages/BlogWritings";
+
+import BizCirclePortfolio from "@/pages/BizCirclePortfolio";
+import BizCircleJourney from "@/pages/BizCircleJourney";
+
+import DesignCircle from "@/pages/DesignCircle";
+import GalleryPage from "@/pages/Gallery";
+import VisualDesignsPage from "@/pages/VisualDesigns";
+
+import PrivacyPolicyPage from "@/pages/PrivacyPolicy";
+import TermsOfServicePage from "@/pages/TermsOfService";
+
+import NotFound from "@/pages/not-found";
+
+import Admin from './pages/Admin';
+
 import Showcase from "./pages/ProjectsShowcase";
+import ServicesPage from "./pages/Services";
+import ResumePage from "./pages/ResumePage";
 
 import ContactProfilePage from "./pages/ContactProfileCard";
-import ResumePage from "./pages/ResumePage";
-import ServicesPage from "./pages/Services";
 
 import ChatbotButton from "@/components/home/ChatbotButton";
+
 import RouteSeo from "@/components/seo/RouteSeo";
+
+// import Header from "@/components/layout/NavHeader";
+// import Footer from "@/components/layout/Footer";
+
 
 
 // Smooth scroll to top button
@@ -79,41 +97,47 @@ const ScrollToTop = () => {
 // Memoized Router so layout does NOT re-mount
 const Router = React.memo(() => (
   <div className="flex flex-col min-h-screen">
+    
     {/* <Header /> */}
+
     <RouteSeo />
 
     <div className="flex-grow">
       <Switch>
         <Route path="/" component={Home} />
-        <Route path="/engineer" component={Engineer} />
-        <Route path="/engineer/portfolio" component={Engineer} />
-        <Route path="/engineer/journey" component={Engineer} />
-        <Route path="/creative" component={CreativeTechnologist} />
-        <Route path="/creative/journey" component={VisualDesignsPage} />
-        <Route path="/creative/visual-designs" component={VisualDesignsPage} />
-        <Route path="/creative/portfolio" component={DesignCircle} />
-        <Route path="/creative/gallery" component={GalleryPage} />
-        <Route path="/creative/blog" component={BlogWritingsPage} />
-        <Route path="/designcircle" component={DesignCircle} />
-        <Route path="/gallery" component={GalleryPage} />
+
+        <Route path="/engineer/portfolio" component={EngCirclePortfolio} />
+        <Route path="/engineer/journey" component={EngCircleJourney} />
+
+        <Route path="/codecircle/portfolio" component={CodeCircle} />
+        <Route path="/codecircle/journey" component={CodeCircleJourney} />
+        <Route path="/codecircle/portfolio/project/:id" component={ProjectDetail} />
+        
         <Route path="/blog" component={BlogWritingsPage} />
+
+        <Route path="/biz/portfolio" component={BizCirclePortfolio} />
+        <Route path="/biz/journey" component={BizCircleJourney} />
+
+        <Route path="/creative/portfolio" component={DesignCircle} />
+        <Route path="/creative/gallery" component={GalleryPage} />        
+        <Route path="/creative/visual-designs" component={VisualDesignsPage} />
+
         <Route path="/privacy-policy" component={PrivacyPolicyPage} />
         <Route path="/terms-of-service" component={TermsOfServicePage} />
+
+        <Route path="/engineer" component={Engineer} />
         <Route path="/developer" component={Developer} />
+        <Route path="/creative" component={CreativeTechnologist} />
         <Route path="/technopreneur" component={Technopreneur} />
         <Route path="/beyond" component={JustElvin} />
+
         <Route path="/admin" component={Admin} />
+
+        <Route path="/projects" component={Showcase} />
 
         <Route path="/contact-profile-card" component={ContactProfilePage} />
         <Route path="/resume" component={ResumePage} />
         <Route path="/hire" component={ServicesPage} />
-
-        <Route path="/codecircle/portfolio" component={CodeCircle} />
-        <Route path="/codecircle/journey" component={CodeCircle} />
-        <Route path="/projects" component={Showcase} />
-        <Route path="/codecircle/portfolio/project/:id" component={ProjectDetail} />
-        {/* <Route path="/bizcircle" component={BizCircle} /> */}
-        {/* <Route path="/descircle" component={DesCircle} /> */}
 
         <Route component={NotFound} />
       </Switch>
@@ -147,9 +171,9 @@ const AppPreloader: React.FC<{ exiting: boolean }> = ({ exiting }) => (
         <div className="absolute inset-[38%] rounded-full bg-foreground/80 shadow-[0_0_18px_rgba(51,65,85,0.45)] animate-pulse" />
       </div>
       <p className="text-sm md:text-base font-medium tracking-[0.14em] uppercase text-foreground/90">
-        Loading Portfolio
+        Finishing Up
       </p>
-      <p className="text-xs text-foreground/65">Preparing a smoother experience...</p>
+      <p className="text-xs text-foreground/65">Almost Done...</p>
     </div>
   </div>
 );

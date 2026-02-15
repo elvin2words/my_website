@@ -2,39 +2,24 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'wouter';
-import { ArrowLeft, Menu, Search, ChevronDown, Moon, Sun, QrCode, X } from 'lucide-react';
+import { ArrowLeft, Menu, Search, ChevronDown, QrCode, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from '@/hooks/use-theme';
 import ContactHoverWrapper from '@/pages/ContactHoverWrapper';
 import MobileMenu from './MobileMenu';
 import { QRCodeCanvas } from 'qrcode.react';
 import AISearchOverlay from "@/components/ai/AISearchOverlay";
+import HeaderThemeToggle from './HeaderThemeToggle';
+import { useBackNavigation } from '@/hooks/use-back-navigation';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [location, navigate] = useLocation();
+  const [location] = useLocation();
   const [showSearchBar, setShowSearchBar] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const goBack = useBackNavigation("/");
 
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-
-  // Track last visited page to enable "Back"
-  const lastPageRef = useRef<string | null>(null);
-
-  // useEffect(() => {
-  //   // Save previous page on navigation
-  //   return navigate((current) => {
-  //     if (current !== location) lastPageRef.current = location;
-  //     return current;
-  //   });
-  // }, [location]);
-
-  const goBack = () => {
-    if (lastPageRef.current) navigate(lastPageRef.current);
-    else navigate('/');
-  };
 
   const qrDialogRef = useRef<HTMLDialogElement>(null);
   const openQrDialog = () => qrDialogRef.current?.showModal();
@@ -60,6 +45,11 @@ const Header: React.FC = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleSearchBar = () => setShowSearchBar(!showSearchBar);  
+  const isBlogRoute =
+    location === "/blog" ||
+    location.startsWith("/blog/") ||
+    location.startsWith("/creative/blog") ||
+    location.startsWith("/blog-writings");
 
   return (
     <>
@@ -79,14 +69,7 @@ const Header: React.FC = () => {
           </button>
 
           <div className="flex items-center space-x-2">
-            <Button
-              onClick={toggleTheme}
-              className="text-white dark:text-gray-200 p-3 hover:bg-white/10 rounded"
-              aria-label="Toggle theme"
-              title="Toggle light/dark mode"
-            >
-              {theme === 'light' ? <Moon /> : <Sun />}
-            </Button>
+            <HeaderThemeToggle buttonClassName="text-white dark:text-gray-200 p-3 hover:bg-white/10 rounded" />
 
             <Button
               variant="ghost"
@@ -187,7 +170,7 @@ const Header: React.FC = () => {
                 onClick={() => setOpenMenu(openMenu === "code" ? null : "code")}
                 className="flex items-center font-medium text-lg text-white hover:text-accent2 focus:outline-none"
               >
-                <span className={location === '/codecircle/portfolio' ? 'text-accent2' : ''}>
+                <span className={location.startsWith('/codecircle') ? 'text-accent2' : ''}>
                   CodeCircle
                 </span>
                 <ChevronDown 
@@ -237,13 +220,17 @@ const Header: React.FC = () => {
               <Link
                 href="/blog"
                 className={`flex items-center font-medium text-lg text-white hover:text-accent3 ${
-                  location.startsWith('/blog') || location.startsWith('/creative/blog') ? 'text-accent3' : ''
+                  isBlogRoute ? "text-accent3 font-semibold" : ""
                 }`}
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               >
                 Blog
               </Link>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent3 transition-all duration-300 group-hover:w-full"></span>
+              <span
+                className={`absolute -bottom-1 left-0 h-0.5 bg-accent3 transition-all duration-300 ${
+                  isBlogRoute ? "w-full" : "w-0 group-hover:w-full"
+                }`}
+              ></span>
             </div>
 
             <div 
@@ -256,7 +243,7 @@ const Header: React.FC = () => {
                 onClick={() => setOpenMenu(openMenu === "biz" ? null : "biz")}
                 className="flex items-center font-medium text-lg text-white hover:text-accent4 focus:outline-none"
               >
-                <span className={location === '/biz' ? 'text-accent4' : ''}>
+                <span className={location.startsWith('/biz') ? 'text-accent4' : ''}>
                   BizCircle
                 </span>
                 <ChevronDown 
@@ -286,7 +273,7 @@ const Header: React.FC = () => {
                       Portfolio
                     </Link>
                     <Link 
-                      href="/biz/portfolio"
+                      href="/biz/journey"
                       className="block px-4 py-2 text-white hover:text-accent4 hover:bg-white/10 rounded"
                       onClick={() => {
                         setOpenMenu(null);
@@ -352,14 +339,14 @@ const Header: React.FC = () => {
                       Gallery
                     </Link>
                     <Link
-                      href="/creative/journey"
+                      href="/creative/visual-designs"
                       className="block px-4 py-2 text-white hover:text-accent3 hover:bg-white/10 rounded"
                       onClick={() => {
                         setOpenMenu(null);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
                     >
-                      Graphical
+                      VisualDes
                     </Link>
                   </motion.div>
                 )}
@@ -374,9 +361,7 @@ const Header: React.FC = () => {
             <Button className="text-white p-2 hover:bg-white/10 rounded" onClick={openQrDialog}>
               <QrCode />
             </Button>
-            <Button className="text-white p-2 hover:bg-white/10 rounded" onClick={toggleTheme}>
-              {theme === 'light' ? <Moon /> : <Sun />}
-            </Button>
+            <HeaderThemeToggle buttonClassName="text-white p-2 hover:bg-white/10 rounded" />
             <ContactHoverWrapper />
             <Button 
               variant="ghost" 

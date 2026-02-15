@@ -43,7 +43,7 @@ export const coreCapabilities = {
     "AI & Automation Platforms: Intelligent systems that analyze, predict, and optimize real-world operations — from transit networks to industrial workflows.",
     "Speculative Tech & Experiential Products: Immersive travel experiences, IoT-enabled networks, and exploratory R&D in communications and connectivity.",
     "Digital Product Infrastructure: Internal tools, workflow engines, and AI-assisted systems for operations teams.",
-    "Venture Studio Execution: Building parallel prototypes with shared technical primitives and go-to-market loops.",
+    // "Venture Studio Execution: Building parallel prototypes with shared technical primitives and go-to-market loops.",
   ],
 };
 
@@ -54,13 +54,13 @@ export const leadershipAndTech = {
     "Systems Thinking - Interdependencies & workflow optimization",
     "R&D - Feasibility Studies, Prototyping, Iterative testing & operational scaling",
     "Program Management Across Cross-Functional Teams",
-    "Stakeholder Communication for Investors, Partners, and Operations",
+    // "Stakeholder Communication for Investors, Partners, and Operations",
   ],
   technicalExpertise: [
     "Embedded Systems, FPGA, & Automation",
     "EV Systems, BMS, and Energy Platforms",
     "AI-Driven Analytics & Control Systems",
-    "Cloud/Edge Integration for Smart Grids",
+    // "Cloud/Edge Integration for Smart Grids",
     "Data Product Architecture and Workflow Automation",
     "Technical Discovery, Scoping, and Deployment Planning",
   ],
@@ -80,7 +80,7 @@ export const ventures = [
       weblink:"https://www.iqal.co.zw"
   },
   {
-    title: "Telqon Technologies",
+    title: "AmaSaiSai",
     description:
       "Exploratory R&D lab targeting next-gen communications, connectivity frameworks in IoT/IIoT, edge computing, and network-aware AI networks for industrial, residential, decentralised and autonomous  systems with secure, scalable conncectivity in both urban and rural innovation ecosystems.",
     weblink:"https://www.telqon.co.zw"
@@ -97,12 +97,12 @@ export const ventures = [
       "Co-led youth-centered innovation projects fostering sustainable tech, social entrepreneurship, and community transformation through hands-on initiatives.",
     weblink: "https://enactus.org",
   },
-  {
-    title: "UtilityOps Initiative",
-    description:
-      "An operations-focused initiative to improve field deployment and fault-response workflows by combining structured playbooks, digital tooling, and telemetry-aware task management.",
-    weblink: "https://example.com/utilityops",
-  },
+  // {
+  //   title: "UtilityOps Initiative",
+  //   description:
+  //     "An operations-focused initiative to improve field deployment and fault-response workflows by combining structured playbooks, digital tooling, and telemetry-aware task management.",
+  //   weblink: "https://example.com/utilityops",
+  // },
 ];
 
 export const notableProjects = [

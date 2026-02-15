@@ -2,14 +2,12 @@
 
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Link, useLocation } from "wouter";
-import { ArrowLeft, ChevronDown, Sun, Moon, Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
-import MobileMenu from './MobileMenu';
-import { useTheme  } from '@/hooks/use-theme';
+import { ArrowLeft, Menu, X } from "lucide-react";
+import HeaderThemeToggle from "./HeaderThemeToggle";
+import { useBackNavigation } from "@/hooks/use-back-navigation";
 
 
 interface StickyHeaderProps {
@@ -26,14 +24,7 @@ export default function PortfolioNav() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [location, navigate] = useLocation();
-  const { theme, toggleTheme } = useTheme(); 
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
-  
-  // Track last visited page to enable "Back"
-  const lastPageRef = useRef<string | null>(null);
+  const goBack = useBackNavigation("/");
 
   // ---- Scroll Tracking ----
   useEffect(() => {
@@ -78,13 +69,9 @@ export default function PortfolioNav() {
   };
 
   const handleBackClick = () => {
-    if (lastPageRef.current) navigate(lastPageRef.current);
-    // if (window) window.history.back();
-    else navigate('/');
+    goBack();
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <motion.nav
@@ -140,8 +127,8 @@ export default function PortfolioNav() {
                 onClick={() => scrollToSection(sec)}
                 className={`text-sm transition-all duration-300 relative capitalize ${
                   activeSection === sec
-                    ? "text-white font-semibold"
-                    : "text-muted hover:text-accent2"
+                    ? "text-accent2 font-semibold"
+                    : "text-white hover:text-accent2"
                 }`}
                 data-testid={`link-${sec}`}
               >
@@ -160,12 +147,12 @@ export default function PortfolioNav() {
                 </AnimatePresence>
               </button>
             ))}
-            {/* <ThemeToggle /> */}
+            <HeaderThemeToggle buttonClassName="text-white hover:bg-white/10" align="end" />
           </div>
 
           {/* Mobile Toggle */}
           <div className="md:hidden flex items-center gap-2">
-            {/* <ThemeToggle /> */}
+            <HeaderThemeToggle buttonClassName="text-white hover:bg-white/10" align="end" />
             <Button
               variant="ghost"
               size="icon"

@@ -223,7 +223,7 @@ export const writingEntries: WritingEntry[] = [
       "Reflections on translating technical depth into narratives people can understand, trust, and act on.",
     tags: ["Communication", "Engineering", "Narrative"],
   },
-  {
+  { 
     id: "writing-03",
     title: "From Idea to Visual Prototype in One Sprint",
     kind: "blog",

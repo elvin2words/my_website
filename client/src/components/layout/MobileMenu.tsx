@@ -22,7 +22,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       label: "EngCircle",
       accentClass: "text-accent1",
       links: [
-        { label: "Portfolio", href: "/engineer/portfolio", matchPrefixes: ["/engineer"] },
+        {
+          label: "Portfolio",
+          href: "/engineer/portfolio",
+          matchPrefixes: ["/engineer/portfolio"],
+          exactPaths: ["/engineer"],
+        },
         { label: "Journey", href: "/engineer/journey", matchPrefixes: ["/engineer/journey"] },
       ],
     },
@@ -31,7 +36,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       label: "CodeCircle",
       accentClass: "text-accent2",
       links: [
-        { label: "Portfolio", href: "/codecircle/portfolio", matchPrefixes: ["/codecircle/portfolio"] },
+        {
+          label: "Portfolio",
+          href: "/codecircle/portfolio",
+          matchPrefixes: ["/codecircle/portfolio"],
+          exactPaths: ["/codecircle"],
+        },
         { label: "Journey", href: "/codecircle/journey", matchPrefixes: ["/codecircle/journey"] },
       ],
     },
@@ -40,7 +50,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       label: "Blog",
       accentClass: "text-accent3",
       links: [
-        { label: "Blog + Writings", href: "/blog", matchPrefixes: ["/blog", "/creative/blog"] },
+        { label: "Blog + Writings", href: "/blog", matchPrefixes: ["/blog"] },
       ],
     },
     {
@@ -61,15 +71,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
         { label: "Gallery", href: "/creative/gallery", matchPrefixes: ["/creative/gallery"] },
         {
           label: "Visual Designs",
-          href: "/creative/journey",
-          matchPrefixes: ["/creative/journey", "/creative/visual-designs"],
+          href: "/creative/visual-designs",
+          matchPrefixes: ["/creative/visual-designs", "/creative/visual-designs"],
         },
       ],
     },
   ];
 
-  const isLinkActive = (prefixes: string[]) => {
-    return prefixes.some((prefix) => location.startsWith(prefix));
+  const isLinkActive = (prefixes: string[], exactPaths: string[] = []) => {
+    return exactPaths.includes(location) || prefixes.some((prefix) => location.startsWith(prefix));
   };
   
   useEffect(() => {
@@ -113,7 +123,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
 
               <div className="grid gap-2">
                 {section.links.map((item) => {
-                  const active = isLinkActive(item.matchPrefixes);
+                  const active = isLinkActive(item.matchPrefixes, item.exactPaths ?? []);
                   return (
                     <Link
                       key={item.href}

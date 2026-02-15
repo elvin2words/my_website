@@ -14,12 +14,12 @@ export const CODECIRCLE_CATEGORIES = ["all", "corporate", "ecommerce", "dashboar
 export const projects: Project[] = [
   {
     id: "1",
-    title: "CodeBlue",
+    title: "UtilityOps",
     description:
-      "Modern corporate website with 9 color themes, responsive design, and portfolio showcase.",
+      "XXXX",
     fullDescription:
-      "CodeBlue is a comprehensive corporate website solution featuring a dynamic theme system that allows users to personalize their experience with 9 distinct color schemes. Built with modern web technologies, it provides a fully responsive design that adapts seamlessly across devices.",
-    image: "/projects/codecircle.png",
+      "YYY",
+    image: "/projects/utilityops.png",
     gallery: [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -46,7 +46,7 @@ export const projects: Project[] = [
   },
   {
     id: "2",
-    title: "PremiumCars",
+    title: "padheni",
     description:
       "Comprehensive car dealership platform with inventory management and contact integration.",
     fullDescription:
@@ -78,7 +78,7 @@ export const projects: Project[] = [
   },
   {
     id: "3",
-    title: "BuildCorp",
+    title: "TutorKonnekt",
     description:
       "Professional construction company website with project galleries and service showcases.",
     fullDescription:
@@ -110,7 +110,7 @@ export const projects: Project[] = [
   },
   {
     id: "4",
-    title: "DataFlow",
+    title: "VisionSecSys",
     description:
       "IoT and analytics platform with real-time data visualization and industry solution patterns.",
     fullDescription:
@@ -142,7 +142,7 @@ export const projects: Project[] = [
   },
   {
     id: "5",
-    title: "AdminPro",
+    title: "NetcommMS",
     description:
       "Professional admin dashboard with multiple themes and comprehensive management features.",
     fullDescription:
@@ -174,7 +174,7 @@ export const projects: Project[] = [
   },
   {
     id: "6",
-    title: "Personal Portfolio",
+    title: "EddyAI",
     description: "Personal portfolio website with blog system and project showcase.",
     fullDescription:
       "A modern personal portfolio built with Gatsby featuring a blog system, project showcases, and progressive web app capabilities.",
@@ -202,6 +202,80 @@ export const projects: Project[] = [
     outcome:
       "Consistently high Lighthouse scores with globally fast content delivery through CDN.",
     liveDemo: "https://elvin2words.github.io",
+    githubUrl: "https://github.com/elvin2words",
+  },
+  {
+    id: "7",
+    title: "Microgrid Stability and Protection Study",
+    description:
+      "Engineering study portfolio demonstrating modeling, protection coordination, and layout planning artifacts.",
+    fullDescription:
+      "A technical project package focused on microgrid behavior under variable loading and fault scenarios. The showcase combines simulation artifacts, design layouts, and supporting technical reports so stakeholders can review both engineering process and outcomes.",
+    image: "/project-assets/engineering/microgrid-simulink-overview.png",
+    gallery: [
+      "/project-assets/engineering/microgrid-simulink-overview.png",
+      "/project-assets/engineering/microgrid-autocad-layout.png",
+      "/project-assets/engineering/etap-loadflow-summary.png",
+    ],
+    technologies: ["MATLAB", "Simulink", "ETAP", "AutoCAD Electrical"],
+    category: "portfolio",
+    badges: ["Engineering", "Simulation", "Power Systems"],
+    status: "r-and-d",
+    source: "manual",
+    features: [
+      "System-level dynamic model setup and validation workflow",
+      "Protection coordination and load-flow scenario documentation",
+      "Electrical layout artifacts prepared for review handoff",
+      "Consolidated report package for non-technical stakeholders",
+    ],
+    challenges:
+      "Keeping simulation outputs, design documentation, and review-ready visuals synchronized across tools with different file formats.",
+    outcome:
+      "Produced a single project narrative where reviewers can inspect assumptions, diagrams, and outputs without leaving the portfolio.",
+    environment: {
+      context: "Local engineering workstation + controlled simulation toolchain",
+      tools: ["MATLAB R2024a", "Simulink", "ETAP 22.x", "AutoCAD Electrical"],
+      platforms: ["Windows 11", "Vercel-hosted artifact previews"],
+      methods: ["Load flow studies", "Protection checks", "Scenario simulation", "Design export reviews"],
+    },
+    artifacts: [
+      {
+        id: "mg-simulink-overview",
+        title: "Simulink Model Overview",
+        domain: "simulink",
+        format: "PNG Export",
+        description: "High-level block diagram snapshot exported for web review.",
+        previewUrl: "/project-assets/engineering/microgrid-simulink-overview.png",
+        downloadUrl: "/project-assets/engineering/microgrid-simulink-overview.png",
+      },
+      {
+        id: "mg-autocad-layout",
+        title: "AutoCAD Single-Line Layout",
+        domain: "autocad",
+        format: "PNG Export",
+        description: "Layout sheet preview used for architecture walkthroughs.",
+        previewUrl: "/project-assets/engineering/microgrid-autocad-layout.png",
+        downloadUrl: "/project-assets/engineering/microgrid-autocad-layout.png",
+      },
+      {
+        id: "mg-etap-summary",
+        title: "ETAP Load-Flow Summary",
+        domain: "etap",
+        format: "PNG Export",
+        description: "Load-flow and system state snapshot prepared for fast inspection.",
+        previewUrl: "/project-assets/engineering/etap-loadflow-summary.png",
+        downloadUrl: "/project-assets/engineering/etap-loadflow-summary.png",
+      },
+      {
+        id: "mg-design-report",
+        title: "Engineering Report Pack",
+        domain: "report",
+        format: "PDF",
+        description: "Supporting report bundle suitable for review and archival.",
+        previewUrl: "/project-assets/engineering/microgrid-design-report.pdf",
+        downloadUrl: "/project-assets/engineering/microgrid-design-report.pdf",
+      },
+    ],
     githubUrl: "https://github.com/elvin2words",
   },
 ];

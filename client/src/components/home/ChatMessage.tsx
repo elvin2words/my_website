@@ -19,6 +19,7 @@ export default function ChatMessage({
   pending = false,
 }: ChatMessageProps) {
   const isUser = from === "user";
+  const hasText = text.trim().length > 0;
 
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
@@ -29,10 +30,12 @@ export default function ChatMessage({
             : "bg-gray-200 text-gray-800 rounded-bl-none"
         }`}
       >
-        <p>{text}</p>
+        {hasText && <p>{text}</p>}
 
         {pending && (
-          <p className="mt-2 text-xs text-gray-500 animate-pulse">Thinking...</p>
+          <p className={`${hasText ? "mt-2" : ""} text-xs text-gray-500 animate-pulse`}>
+            Thinking...
+          </p>
         )}
 
         {actions && actions.length > 0 && (

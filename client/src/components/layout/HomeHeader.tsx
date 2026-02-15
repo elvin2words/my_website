@@ -4,16 +4,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'wouter';
 import MobileMenu from './MobileMenu';
-import { Menu, Search, ChevronDown, Moon, Sun, Cat, X } from 'lucide-react';
+import { Menu, Search, ChevronDown, Cat, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { useTheme  } from '@/hooks/use-theme';
 import ContactPopup from '@/pages/ContactPopup';
 import ContactHoverWrapper from '@/pages/ContactHoverWrapper';
 import { QrCode } from 'lucide-react';
 import { QRCodeCanvas } from 'qrcode.react';
 import { motion, AnimatePresence } from "framer-motion";
 import AISearchOverlay from "@/components/ai/AISearchOverlay";
+import HeaderThemeToggle from "./HeaderThemeToggle";
 
 
 const Header: React.FC = () => {
@@ -29,8 +28,6 @@ const Header: React.FC = () => {
   const qrDialogRef = useRef<HTMLDialogElement>(null);
 
   const [location] = useLocation();
-  const { theme, toggleTheme } = useTheme(); 
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,6 +91,11 @@ const Header: React.FC = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleSearchBar = () => setShowSearchBar(!showSearchBar);
+  const isBlogRoute =
+    location === "/blog" ||
+    location.startsWith("/blog/") ||
+    location.startsWith("/creative/blog") ||
+    location.startsWith("/blog-writings");
 
   const openQrDialog = () => {
     if (qrDialogRef.current) {
@@ -186,22 +188,15 @@ const Header: React.FC = () => {
           
           {/* Menu toggle and theme button */}
           <div className="flex items-center space-x-2">
-            <Button
-              onClick={toggleTheme}
-              className="text-white dark:text-gray-200 p-3 hover:bg-white/10 rounded"
-              aria-label="Toggle theme"
-              title="Toggle light/dark mode"
-            >
-              {theme === 'light' ? <Moon/> : <Sun/>}
-            </Button>
-            <Button
+            <HeaderThemeToggle buttonClassName="text-white dark:text-gray-200 p-3 hover:bg-white/10 rounded" />
+            {/* <Button
               variant="ghost"
               size="icon"
               className="text-white dark:text-gray-200 hover:bg-white/10 rounded"
               onClick={toggleSearchBar}
             >
               <Search className="w-5 h-5" />
-            </Button>
+            </Button> */}
             <Button 
               variant="ghost" 
               size="icon" 
@@ -258,7 +253,7 @@ const Header: React.FC = () => {
               active={location.includes("creative")}
               links={[
                 { href: "/creative/portfolio", label: "Portfolio" },
-                { href: "/creative/journey", label: "Visual Designs" },
+                { href: "/creative/visual-designs", label: "Visual Designs" },
               ]}
             />
           </nav> */}
@@ -330,7 +325,7 @@ const Header: React.FC = () => {
                 onClick={() => setOpenMenu(openMenu === "code" ? null : "code")}
                 className="flex items-center font-medium text-lg text-white hover:text-accent2 focus:outline-none"
               >
-                <span className={location === '/codecircle/portfolio' ? 'text-accent2' : ''}>
+                <span className={location.startsWith('/codecircle') ? 'text-accent2' : ''}>
                   CodeCircle
                 </span>
                 <ChevronDown 
@@ -380,13 +375,17 @@ const Header: React.FC = () => {
               <Link
                 href="/blog"
                 className={`flex items-center font-medium text-lg text-white hover:text-accent3 ${
-                  location.startsWith('/blog') || location.startsWith('/creative/blog') ? 'text-accent3' : ''
+                  isBlogRoute ? "text-accent3 font-semibold" : ""
                 }`}
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               >
                 Blog
               </Link>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent3 transition-all duration-300 group-hover:w-full"></span>
+              <span
+                className={`absolute -bottom-1 left-0 h-0.5 bg-accent3 transition-all duration-300 ${
+                  isBlogRoute ? "w-full" : "w-0 group-hover:w-full"
+                }`}
+              ></span>
             </div>
 
 
@@ -400,7 +399,7 @@ const Header: React.FC = () => {
                 onClick={() => setOpenMenu(openMenu === "biz" ? null : "biz")}
                 className="flex items-center font-medium text-lg text-white hover:text-accent4 focus:outline-none"
               >
-                <span className={location === '/biz/portfolio' ? 'text-accent4' : ''}>
+                <span className={location.startsWith('/biz') ? 'text-accent4' : ''}>
                   BizCircle
                 </span>
                 <ChevronDown 
@@ -497,14 +496,14 @@ const Header: React.FC = () => {
                       Gallery
                     </Link>
                     <Link
-                      href="/creative/journey"
+                      href="/creative/visual-designs"
                       className="block px-4 py-2 text-white hover:text-accent3 hover:bg-white/10 rounded"
                       onClick={() => {
                         setOpenMenu(null);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
                     >
-                      Graphical
+                      VisualDes
                     </Link>
                   </motion.div>
                 )}
@@ -524,14 +523,7 @@ const Header: React.FC = () => {
             >
               <QrCode className="text-gray-300" />
             </Button>
-            <Button
-              onClick={toggleTheme}
-              className="text-white dark:text-gray-200 p-2 hover:bg-white/10 rounded"
-              aria-label="Toggle theme"
-              title="Toggle light/dark mode"
-            >
-              {theme === 'light' ? <Moon/> : <Sun/>}
-            </Button>
+            <HeaderThemeToggle buttonClassName="text-white dark:text-gray-200 p-2 hover:bg-white/10 rounded" />
             <ContactHoverWrapper />
             <Button 
               variant="ghost" 

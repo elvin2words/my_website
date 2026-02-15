@@ -40,10 +40,15 @@ const GalleryPage: React.FC = () => {
         setIsLoading(true);
       }
       setError(null);
-      const response = await fetch("/api/content/gallery", {
-        cache: "no-store",
-        headers: { "cache-control": "no-cache" },
-      });
+      const response = await fetch(
+        "/api/content/gallery",
+        refresh
+          ? {
+              cache: "no-store",
+              headers: { "cache-control": "no-cache", pragma: "no-cache" },
+            }
+          : undefined,
+      );
       if (!response.ok) {
         throw new Error(`Failed to load gallery content (${response.status})`);
       }
@@ -97,17 +102,17 @@ const GalleryPage: React.FC = () => {
               <Link href="/creative/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                 <Button variant="ghost" className="text-accent3 hover:text-accent3">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back to DesignCircle
+                  Creatives Portfolio Home
                 </Button>
               </Link>
               <div className="flex flex-wrap items-center gap-3">
-                <Link href="/creative/blog" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                <Link href="/blog" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                   <Button variant="outline" className="bg-transparent">
                     <NotebookPen className="h-4 w-4 mr-2" />
                     Go to Blog
                   </Button>
                 </Link>
-                <Link href="/creative/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                <Link href="/creative/visual-designs" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                   <Button variant="outline" className="bg-transparent">
                     <Brush className="h-4 w-4 mr-2" />
                     Visual Designs
@@ -137,7 +142,7 @@ const GalleryPage: React.FC = () => {
                 it larger.
               </p>
 
-              <div className="mt-4">
+              {/* <div className="mt-4">
                 <Button
                   variant="outline"
                   className="bg-transparent"
@@ -151,8 +156,14 @@ const GalleryPage: React.FC = () => {
                   )}
                   Refresh Gallery
                 </Button>
-              </div>
+              </div> */}
             </section>
+
+
+
+
+
+
 
             {isLoading && (
               <div className="mb-10 rounded-xl border border-white/15 bg-white/5 p-6 flex items-center gap-3">
@@ -258,13 +269,6 @@ const GalleryPage: React.FC = () => {
                 )}
               </>
             )}
-
-
-
-
-
-
-
 
 
             <section className="mb-8">

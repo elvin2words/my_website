@@ -87,10 +87,15 @@ const DesignCircle: React.FC = () => {
         setIsLoading(true);
       }
       setError(null);
-      const response = await fetch("/api/content/designs", {
-        cache: "no-store",
-        headers: { "cache-control": "no-cache" },
-      });
+      const response = await fetch(
+        "/api/content/designs",
+        refresh
+          ? {
+              cache: "no-store",
+              headers: { "cache-control": "no-cache", pragma: "no-cache" },
+            }
+          : undefined,
+      );
       if (!response.ok) {
         throw new Error(`Failed to load design content (${response.status})`);
       }
@@ -127,7 +132,7 @@ const DesignCircle: React.FC = () => {
               <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                 <Button variant="ghost" className="text-accent3 hover:text-accent3">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Home
+                  Go Home
                 </Button>
               </Link>
             </div>
@@ -138,20 +143,7 @@ const DesignCircle: React.FC = () => {
                 <span className="text-sm text-white/90">Creatives</span>
                 <Sparkles className="h-4 w-4 text-accent3" />
               </div>
-              {/* <h1 className="text-3xl md:text-5xl font-bold mb-4">
-                Creative designs, visual studies, and future-ready assets
-              </h1>
-
-              <p className="text-white/75 text-base md:text-lg max-w-3xl mx-auto mb-4">
-                Add screenshots now, then scale into video and 3D assets later. Files inside
-                `client/public/{manifest.folder}` are auto-listed, and subfolders become concept
-                mini-showcases.
-              </p>
-
-              <p className="text-white/75 text-base md:text-lg max-w-3xl mx-auto mb-6">
-                This keeps room for Blender, Adobe, Canva, and richer design workflows as your
-                portfolio grows.
-              </p> */}
+              
 
               <h1 className="text-3xl md:text-5xl font-bold mb-4">
                 Creative work across design, visuals, and storytelling
@@ -163,7 +155,7 @@ const DesignCircle: React.FC = () => {
               </p>
               
 
-              <div className="mb-6">
+              {/* <div className="mb-6">
                 <Button
                   variant="outline"
                   className="bg-transparent"
@@ -177,9 +169,37 @@ const DesignCircle: React.FC = () => {
                   )}
                   Refresh Creatives
                 </Button>
-              </div>
+              </div> */}
 
               <div className="flex flex-wrap justify-center gap-3">
+      
+                <Link href="/creative/gallery" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                  <Button className="bg-accent3 text-black hover:bg-accent3/80">
+                    <Camera className="h-4 w-4 mr-2" />
+                    Open Gallery
+                  </Button>
+                </Link>
+                <Link href="/blog" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                  <Button variant="outline" className="bg-transparent">
+                    <NotebookPen className="h-4 w-4 mr-2" />
+                    Blog + Writings
+                  </Button>
+                </Link>
+                <Link href="/creative/visual-designs" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                  <Button variant="outline" className="bg-transparent">
+                    <Brush className="h-4 w-4 mr-2" />
+                    Visual Designs
+                  </Button>
+                </Link>
+                {/* <a
+                  href={linkedInFollowUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-md border border-blue-400/60 px-4 py-2 text-sm font-medium text-blue-200 hover:bg-blue-500/20 transition-colors"
+                >
+                  Feed on LinkedIn
+                  <ExternalLink className="h-4 w-4 ml-2" />
+                </a> */}
                 <a
                   href={InstagramFollowUrl}
                   target="_blank"
@@ -189,35 +209,53 @@ const DesignCircle: React.FC = () => {
                   Creative Work on IG
                   <ExternalLink className="h-4 w-4 ml-2" />
                 </a>
-                <Link href="/creative/gallery" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-                  <Button className="bg-accent3 text-black hover:bg-accent3/80">
-                    <Camera className="h-4 w-4 mr-2" />
-                    Open Gallery
-                  </Button>
-                </Link>
-                <Link href="/creative/blog" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-                  <Button variant="outline" className="bg-transparent">
-                    <NotebookPen className="h-4 w-4 mr-2" />
-                    Blog + Writings
-                  </Button>
-                </Link>
-                <Link href="/creative/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-                  <Button variant="outline" className="bg-transparent">
-                    <Brush className="h-4 w-4 mr-2" />
-                    Visual Designs
-                  </Button>
-                </Link>
-                <a
-                  href={linkedInFollowUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-md border border-blue-400/60 px-4 py-2 text-sm font-medium text-blue-200 hover:bg-blue-500/20 transition-colors"
-                >
-                  Feed on LinkedIn
-                  <ExternalLink className="h-4 w-4 ml-2" />
-                </a>
               </div>
             </section>
+
+
+
+            <section className="mb-8">
+              <div className="flex items-center gap-2 mb-5">
+                <Brush className="h-5 w-5 text-accent3" />
+                <h2 className="text-2xl md:text-3xl font-semibold">General Creative Designs</h2>
+              </div>
+
+              {/* Implement a carousel or slideshow type of card for each designs type card
+               - which when clicked would open a modal shwowing the visuals in clear detail, with options to even get more */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {creativeDesigns.map((design) => (
+                  <Card
+                    key={design.id}
+                    className="bg-white/5 border-white/10 overflow-hidden hover:border-accent3/50 transition-colors"
+                  >
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        // src={design.image}
+                        alt={design.title}
+                        className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-lg">{design.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-sm text-white/75">{design.summary}</p>
+                      <div className="text-xs text-accent3">{design.focus}</div>
+                      <div className="flex flex-wrap gap-2">
+                        {design.tools.map((tool) => (
+                          <Badge key={tool} variant="secondary" className="bg-white/10 text-white">
+                            {tool}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </section>
+
+
 
             {isLoading && (
               <div className="mb-10 rounded-xl border border-white/15 bg-white/5 p-6 flex items-center gap-3">
@@ -289,7 +327,7 @@ const DesignCircle: React.FC = () => {
 
                 {visibleDesigns.length === 0 ? (
                   <div className="rounded-xl border border-white/15 bg-white/5 p-6 text-sm text-white/75">
-                    No design files found yet. Add screenshots into `client/public/{manifest.folder}`
+                    No design files found yet. Add arts into `client/public/{manifest.folder}`
                     and they will appear automatically.
                   </div>
                 ) : (
@@ -331,46 +369,7 @@ const DesignCircle: React.FC = () => {
                   </div>
                 )}
               </section>
-            )}
-
-            <section className="mb-8">
-              <div className="flex items-center gap-2 mb-5">
-                <Brush className="h-5 w-5 text-accent3" />
-                <h2 className="text-2xl md:text-3xl font-semibold">General Creative Designs</h2>
-              </div>
-
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {creativeDesigns.map((design) => (
-                  <Card
-                    key={design.id}
-                    className="bg-white/5 border-white/10 overflow-hidden hover:border-accent3/50 transition-colors"
-                  >
-                    <div className="aspect-video overflow-hidden">
-                      <img
-                        src={design.image}
-                        alt={design.title}
-                        className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                        loading="lazy"
-                      />
-                    </div>
-                    <CardHeader className="pb-3">
-                      <CardTitle className="text-lg">{design.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <p className="text-sm text-white/75">{design.summary}</p>
-                      <div className="text-xs text-accent3">{design.focus}</div>
-                      <div className="flex flex-wrap gap-2">
-                        {design.tools.map((tool) => (
-                          <Badge key={tool} variant="secondary" className="bg-white/10 text-white">
-                            {tool}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </section>
+            )}  
 
           </div>
         </main>
@@ -382,4 +381,3 @@ const DesignCircle: React.FC = () => {
 };
 
 export default DesignCircle;
-

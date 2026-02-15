@@ -134,7 +134,7 @@ The app now includes:
 - AI reindex endpoint: `POST /api/ai/reindex`
 - Referenced responses (site links + citations when available)
 
-### Eddy Backend Wiring 
+### Eddy Backend Wiring
 
 To route AI responses to my Eddy backend, we have the following template:
 
@@ -163,6 +163,7 @@ Footer links now route to those pages.
 
 ```bash
 npm run dev
+npm run dev:api
 npm run build
 npm run start
 ```
@@ -181,7 +182,13 @@ npm install
 npm run dev
 ```
 
-3. Open local URL shown by Vite/Express.
+3. Optional API-only mode (when running client Vite separately):
+
+```bash
+npm run dev:api
+```
+
+4. Open local URL shown by Express/Vite.
 
 ## Deployment
 

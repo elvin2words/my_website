@@ -1,9 +1,9 @@
 import { Moon, Sun, Monitor } from "lucide-react";
-import { useTheme } from "./theme-provider";
+import { useTheme } from "@/hooks/use-theme";
 import { useState } from "react";
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -14,8 +14,22 @@ export function ThemeToggle() {
         className="h-12 w-12 rounded-full bg-gradient-to-br from-primary to-chart-2 text-primary-foreground shadow-lg hover-elevate flex items-center justify-center transition-all duration-300 hover:shadow-xl relative"
         title="Toggle theme"
       >
-        <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-        <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        {theme === "system" ? (
+          <Monitor className="h-5 w-5" />
+        ) : (
+          <>
+            <Sun
+              className={`absolute h-5 w-5 transition-all ${
+                resolvedTheme === "light" ? "rotate-0 scale-100" : "rotate-90 scale-0"
+              }`}
+            />
+            <Moon
+              className={`absolute h-5 w-5 transition-all ${
+                resolvedTheme === "dark" ? "rotate-0 scale-100" : "-rotate-90 scale-0"
+              }`}
+            />
+          </>
+        )}
         <span className="sr-only">Toggle theme</span>
       </button>
       
@@ -48,8 +62,13 @@ export function ThemeToggle() {
             Dark
           </button>
           <button
-            disabled
-            className="w-full text-left px-4 py-3 flex items-center gap-2 text-muted-foreground cursor-not-allowed font-medium"
+            onClick={() => {
+              setTheme("system");
+              setShowMenu(false);
+            }}
+            className={`w-full text-left px-4 py-3 flex items-center gap-2 hover:bg-primary/10 transition-colors font-medium ${
+              theme === "system" ? "bg-primary/20 text-primary" : ""
+            }`}
             data-testid="button-theme-system"
           >
             <Monitor className="h-4 w-4" />

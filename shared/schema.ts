@@ -41,6 +41,34 @@ export const insertContactSchema = createInsertSchema(contactSubmissions).omit({
 export type InsertContact = z.infer<typeof insertContactSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
 
+export type ProjectArtifactDomain =
+  | "simulink"
+  | "autocad"
+  | "etap"
+  | "simulation"
+  | "report"
+  | "diagram"
+  | "media"
+  | "other";
+
+export interface ProjectArtifact {
+  id: string;
+  title: string;
+  domain: ProjectArtifactDomain;
+  format: string;
+  description?: string;
+  previewUrl?: string;
+  downloadUrl?: string;
+  sourceUrl?: string;
+}
+
+export interface ProjectEnvironment {
+  context?: string;
+  tools?: string[];
+  platforms?: string[];
+  methods?: string[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -60,6 +88,8 @@ export interface Project {
   features?: string[];
   challenges?: string;
   outcome?: string;
+  environment?: ProjectEnvironment;
+  artifacts?: ProjectArtifact[];
 }
 
 export interface Skill {

@@ -7,7 +7,7 @@ import { type Express } from "express";
 import { createServer as createViteServer, createLogger } from "vite";
 
 import viteConfig from "../vite.config";
-import runApp from "./app";
+import runApp from "./app_old";
 
 export async function setupVite(app: Express, server: Server) {
   const viteLogger = createLogger();

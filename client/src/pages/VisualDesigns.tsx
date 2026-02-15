@@ -33,10 +33,15 @@ const VisualDesignsPage: React.FC = () => {
       }
 
       setError(null);
-      const response = await fetch("/api/content/designs", {
-        cache: "no-store",
-        headers: { "cache-control": "no-cache" },
-      });
+      const response = await fetch(
+        "/api/content/designs",
+        refresh
+          ? {
+              cache: "no-store",
+              headers: { "cache-control": "no-cache", pragma: "no-cache" },
+            }
+          : undefined,
+      );
 
       if (!response.ok) {
         throw new Error(`Failed to load design content (${response.status})`);
@@ -101,7 +106,7 @@ const VisualDesignsPage: React.FC = () => {
               <Link href="/creative/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                 <Button variant="ghost" className="text-accent3 hover:text-accent3">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back to DesignCircle
+                  Creatives Portfolio Home
                 </Button>
               </Link>
 
@@ -111,7 +116,7 @@ const VisualDesignsPage: React.FC = () => {
                     Gallery
                   </Button>
                 </Link>
-                <Link href="/creative/blog" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                <Link href="/blog" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                   <Button variant="outline" className="bg-transparent">
                     Blog
                   </Button>

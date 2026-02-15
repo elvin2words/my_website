@@ -13,7 +13,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-import Header from "@/components/layout/NavHeader";
+import Header from "@/components/layout/NavHeader_Old";
 import Footer from "@/components/layout/Footer";
 
 
@@ -177,6 +177,9 @@ const ServicesPage: React.FC = () => {
                   <h3 className="font-semibold mb-3">Quick Links</h3>
                   <nav className="space-y-2 text-sm">
                     {services.map((s) => <a key={s.id} href={`#${s.id}`} className="block hover:underline">{s.title}</a>)}
+                  </nav>                    
+                  {/* Make the following be in a horizontal line, 3 columsn  */}
+                  <nav className="space-y-2 text-sm">
                     <Link to="/projects"><a className="block hover:underline">Projects</a></Link>
                     <Link to="/resume"><a className="block hover:underline">Resume / CV</a></Link>
                     <Link to="/contact-profile-card"><a className="block hover:underline">Contact</a></Link>
@@ -191,7 +194,7 @@ const ServicesPage: React.FC = () => {
                   </ul>
                   <div className="mt-4 flex flex-wrap gap-3">
                     <CTA to="/contact-profile-card">Let’s Work Together</CTA>
-                    <a href="mailto:youremail@example.com" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white"><Mail className="h-4 w-4" /> Email Me</a>
+                    <a href="mailto:elvinmazwimairi@gmail.com" className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-white"><Mail className="h-4 w-4" /> Email Me</a>
                   </div>
                 </div>
               </div>

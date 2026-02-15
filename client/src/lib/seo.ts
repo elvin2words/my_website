@@ -16,13 +16,12 @@ export interface SeoConfig {
 }
 
 const EXACT_ALIASES: Record<string, string> = {
-  "/engineer/portfolio": "/engineer",
-  "/engineer/journey": "/engineer",
+  "/engineer": "/engineer/portfolio",
+  "/codecircle": "/codecircle/portfolio",
   "/designcircle": "/creative/portfolio",
   "/gallery": "/creative/gallery",
   "/blog": "/creative/blog",
   "/creative/visual-designs": "/creative/journey",
-  "/codecircle/journey": "/codecircle/portfolio",
 };
 
 const PAGE_SEO: Record<string, Omit<SeoConfig, "path">> = {
@@ -34,11 +33,19 @@ const PAGE_SEO: Record<string, Omit<SeoConfig, "path">> = {
     type: "website",
     image: DEFAULT_OG_IMAGE,
   },
-  "/engineer": {
+  "/engineer/portfolio": {
     title: "Electrical Engineer Portfolio | Elvin Mazwimairi",
     description:
       "Electrical engineering portfolio featuring power systems, embedded control, renewable integration, and technical project delivery.",
     keywords: `${DEFAULT_KEYWORDS}, Power Systems, Electrical Engineering, Grid Optimization, BMS`,
+    type: "website",
+    image: DEFAULT_OG_IMAGE,
+  },
+  "/engineer/journey": {
+    title: "Engineering Journey | Elvin Mazwimairi",
+    description:
+      "Timeline of engineering growth across education, field execution, system design, and continuous technical development.",
+    keywords: `${DEFAULT_KEYWORDS}, Engineering Journey, Professional Timeline, Systems Engineering`,
     type: "website",
     image: DEFAULT_OG_IMAGE,
   },
@@ -103,6 +110,14 @@ const PAGE_SEO: Record<string, Omit<SeoConfig, "path">> = {
     description:
       "CodeCircle portfolio featuring full stack products, platform architecture, dashboards, and software delivery projects.",
     keywords: `${DEFAULT_KEYWORDS}, CodeCircle, Web Development, Product Engineering`,
+    type: "website",
+    image: DEFAULT_OG_IMAGE,
+  },
+  "/codecircle/journey": {
+    title: "CodeCircle Journey | Elvin Mazwimairi",
+    description:
+      "Journey across software architecture, product delivery, and AI-augmented development workflows.",
+    keywords: `${DEFAULT_KEYWORDS}, CodeCircle Journey, Software Engineering, Product Delivery`,
     type: "website",
     image: DEFAULT_OG_IMAGE,
   },

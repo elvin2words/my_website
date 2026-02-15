@@ -81,16 +81,42 @@ export default async function runApp(
   // the catch-all route doesn't interfere with the other routes
   await setup(app, server);
 
-  // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = parseInt(process.env.PORT || '5000', 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  // Prefer configured port, but in development automatically try the next ports
+  // when the requested one is already occupied.
+  const startPort = parseInt(process.env.PORT || "5000", 10);
+  const maxRetries = app.get("env") === "development" ? 20 : 0;
+
+  const listenOnPort = (port: number, retriesRemaining: number) => {
+    const cleanup = () => {
+      server.off("error", handleError);
+      server.off("listening", handleListening);
+    };
+
+    const handleListening = () => {
+      cleanup();
+      log(`serving on port ${port}`);
+    };
+
+    const handleError = (error: NodeJS.ErrnoException) => {
+      cleanup();
+
+      if (error.code === "EADDRINUSE" && retriesRemaining > 0) {
+        const nextPort = port + 1;
+        log(`port ${port} is in use, retrying on ${nextPort}`);
+        listenOnPort(nextPort, retriesRemaining - 1);
+        return;
+      }
+
+      throw error;
+    };
+
+    server.once("error", handleError);
+    server.once("listening", handleListening);
+    server.listen({
+      port,
+      host: "0.0.0.0",
+    });
+  };
+
+  listenOnPort(startPort, maxRetries);
 }

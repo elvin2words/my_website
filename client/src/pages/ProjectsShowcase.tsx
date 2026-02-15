@@ -21,6 +21,7 @@ import Header from "@/components/layout/HomeHeader";
 import Footer from "@/components/layout/Footer";
 import { projects as engineerProjects } from "@/data/engineer";
 import { projects as developerProjects } from "@/data/developer";
+import { useBackNavigation } from "@/hooks/use-back-navigation";
 
 type ProjectDomain = "Engineering" | "Developer";
 type ProjectFilter = "all" | ProjectDomain;
@@ -36,23 +37,25 @@ interface ShowcaseProject {
   sourceHref: string;
 }
 
-const engineeringProjectVisuals = [
-  "/gallery/Zz4/c74a1339e57e69ecf9d7bea55dc5c447.png",
-  "/gallery/Zz4/c14079459042483b6b4140885788a392.png",
-  "/gallery/Zz4/7110b2204f825e6877b5eae9f3bf36ab.png",
-  "/gallery/Zz4/68670673560bc8fd790f1086ed6312d9.png",
-  "/gallery/Zz4/20250628_204311.jpg",
-  "/gallery/Zz4/20240607_185944.jpg",
+const DEFAULT_PROJECT_VISUAL = "/projects/codecircle.png";
+
+const engineeringProjectVisuals: string[] = [
+  // "/gallery/Zz4/c74a1339e57e69ecf9d7bea55dc5c447.png",
+  // "/gallery/Zz4/c14079459042483b6b4140885788a392.png",
+  // "/gallery/Zz4/7110b2204f825e6877b5eae9f3bf36ab.png",
+  // "/gallery/Zz4/68670673560bc8fd790f1086ed6312d9.png",
+  // "/gallery/Zz4/20250628_204311.jpg",
+  // "/gallery/Zz4/20240607_185944.jpg",
 ];
 
-const developerProjectVisuals = [
-  "/projects/codecircle.png",
-  "/gallery/Zz3/f46057f7cefdc09387d135e73e2c33a2.png",
-  "/gallery/Zz3/Screenshot_20240825_122336_Instagram.jpg",
-  "/gallery/Zz3/Screenshot_20240619_135541_TikTok.jpg",
-  "/gallery/Zz1/Screenshot_20250226_233353_WhatsAppBusiness.jpg",
-  "/gallery/Zz1/Screenshot_20241016_192552_WhatsApp.jpg",
-  "/gallery/Zz4/20231015_141306.jpg",
+const developerProjectVisuals: string[] = [
+  // "/projects/codecircle.png",
+  // "/gallery/Zz3/f46057f7cefdc09387d135e73e2c33a2.png",
+  // "/gallery/Zz3/Screenshot_20240825_122336_Instagram.jpg",
+  // "/gallery/Zz3/Screenshot_20240619_135541_TikTok.jpg",
+  // "/gallery/Zz1/Screenshot_20250226_233353_WhatsAppBusiness.jpg",
+  // "/gallery/Zz1/Screenshot_20241016_192552_WhatsApp.jpg",
+  // "/gallery/Zz4/20231015_141306.jpg",
 ];
 
 function toTagList(raw: string, fallback: string[]) {
@@ -65,6 +68,13 @@ function toTagList(raw: string, fallback: string[]) {
   return parsed.length > 0 ? parsed : fallback;
 }
 
+function pickVisual(visuals: string[], index: number) {
+  if (visuals.length === 0) {
+    return DEFAULT_PROJECT_VISUAL;
+  }
+  return visuals[index % visuals.length];
+}
+
 const showcaseProjects: ShowcaseProject[] = [
   ...engineerProjects.map((project, index) => ({
     id: `engineering-${index + 1}`,
@@ -72,7 +82,8 @@ const showcaseProjects: ShowcaseProject[] = [
     summary: project.description,
     highlight: project.extra,
     domain: "Engineering" as const,
-    image: engineeringProjectVisuals[index % engineeringProjectVisuals.length],
+    image: pickVisual(engineeringProjectVisuals, index),
+    // image: project.visual,
     tags: toTagList(project.extra ?? "", ["Power Systems", "Control", "Embedded"]),
     sourceHref: "/engineer",
   })),
@@ -82,11 +93,13 @@ const showcaseProjects: ShowcaseProject[] = [
     summary: project.description,
     highlight: project.architecture.slice(0, 2).join(" • "),
     domain: "Developer" as const,
-    image: developerProjectVisuals[index % developerProjectVisuals.length],
+    image: pickVisual(developerProjectVisuals, index),
+    // image: project.visual,
     tags: project.tech.slice(0, 3),
     sourceHref: "/developer",
   })),
 ];
+
 
 const filterOptions: Array<{ key: ProjectFilter; label: string }> = [
   { key: "all", label: "All" },
@@ -97,7 +110,8 @@ const filterOptions: Array<{ key: ProjectFilter; label: string }> = [
 const ProjectsShowcase: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>("all");
   const [searchQuery, setSearchQuery] = useState("");
-
+  const goBack = useBackNavigation("/");
+  
   const stats = useMemo(() => {
     const engineeringCount = showcaseProjects.filter((project) => project.domain === "Engineering").length;
     const developerCount = showcaseProjects.filter((project) => project.domain === "Developer").length;
@@ -134,12 +148,15 @@ const ProjectsShowcase: React.FC = () => {
         <main className="pt-24 pb-16 px-4 md:px-6 flex flex-col items-center min-h-screen">
           <div className="container mx-auto max-w-7xl w-full">
             <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-              <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-                <Button variant="ghost" className="text-accent3 hover:text-accent3">
+              {/* <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}> */}
+                <Button 
+                  onClick={goBack}
+                  variant="ghost" 
+                  className="text-accent3 hover:text-accent3">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Home
+                  Go Back
                 </Button>
-              </Link>
+              {/* </Link> */}
 
               <div className="flex flex-wrap items-center gap-3">
                 <Link href="/creative/gallery" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
@@ -148,16 +165,16 @@ const ProjectsShowcase: React.FC = () => {
                     Gallery
                   </Button>
                 </Link>
-                <Link href="/creative/blog" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                <Link href="/blog" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                   <Button variant="outline" className="bg-transparent">
                     <NotebookPen className="h-4 w-4 mr-2" />
                     Blog
                   </Button>
                 </Link>
-                <Link href="/creative/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                <Link href="/creative/visual-designs" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                   <Button variant="outline" className="bg-transparent">
                     <Brush className="h-4 w-4 mr-2" />
-                    Visual Designs
+                    Visual Des
                   </Button>
                 </Link>
               </div>

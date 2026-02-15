@@ -2,18 +2,24 @@
 
 import React, { useRef, useState } from "react";
 import html2canvas from "html2canvas";
-import { Phone, Mail, Linkedin, MessageSquare, Share2, Download, QrCode } from "lucide-react";
+import { Phone, Mail, Linkedin, MessageSquare, Share2, Download, QrCode, X } from "lucide-react";
 import {QRCodeCanvas} from 'qrcode.react';
 import { motion } from 'framer-motion';
 import BackgroundEffect from "@/components/home/BackgroundEffect";
 
-import Header from "@/components/layout/NavHeader";
+import Header from "@/components/layout/NavHeader_Old";
 import Footer from "@/components/layout/Footer";
 
 
 export default function ContactProfilePage() {
   const cardRef = useRef(null);
   const [flipped, setFlipped] = useState(false);
+  const [showQrOverlay, setShowQrOverlay] = useState(false);
+  const qrValue =
+    typeof window !== "undefined"
+      ? window.location.href
+      : "https://www.elvinmazwi.me/contact-profile-card";
+  const qrSize = typeof window !== "undefined" && window.innerWidth < 768 ? 220 : 320;
 
   const handleDownloadImage = async () => {
     if (!cardRef.current) return;
@@ -80,7 +86,7 @@ export default function ContactProfilePage() {
               ref={cardRef}
               className="bg-accent5 shadow-xl rounded-2xl py-4 max-w-sm w-full relative overflow-hidden"
               style={{
-                backgroundImage: "linear-gradient(135deg, rgba(255,255,255,0.8), rgba(245,245,245,0.9)), url('/textures/paper.png')",
+                backgroundImage: "linear-gradient(135deg, rgba(255,255,255,0.8), rgba(245,245,245,0.9))",
                 backgroundSize: "cover",
                 border: "1px solid #ddd",
                 color: 'white',
@@ -156,6 +162,15 @@ export default function ContactProfilePage() {
                 >
                   <Download size={18} className="mr-1" /> Share Contact
                 </button>
+                <button
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    setShowQrOverlay(true);
+                  }}
+                  className="flex items-center justify-center bg-black text-white py-2 px-5 rounded-lg shadow hover:bg-slate-700 transition min-w-[400px]"
+                >
+                  <QrCode size={18} className="mr-1" /> Full-Screen QR
+                </button>
               </div>
           </motion.div> */}
           
@@ -164,7 +179,7 @@ export default function ContactProfilePage() {
               ref={cardRef}
               className="bg-accent5 shadow-xl rounded-2xl py-4 [transform-style:preserve-3d]  relative overflow-hidden"
               style={{
-                backgroundImage: "linear-gradient(135deg, rgba(255,255,255,0.8), rgba(245,245,245,0.9)), url('/textures/paper.png')",
+                backgroundImage: "linear-gradient(135deg, rgba(255,255,255,0.8), rgba(245,245,245,0.9))",
                 // background: 'linear-gradient(135deg, #0f172a, #1e293b)',
                 backgroundSize: "cover",
                 border: "1px solid #ddd",
@@ -306,7 +321,7 @@ export default function ContactProfilePage() {
               ref={cardRef}
               className="bg-accent5 shadow-xl rounded-2xl py-4 [transform-style:preserve-3d]  relative overflow-hidden"
               style={{
-                backgroundImage: "linear-gradient(135deg, rgba(255,255,255,0.8), rgba(245,245,245,0.9)), url('/textures/paper.png')",
+                backgroundImage: "linear-gradient(135deg, rgba(255,255,255,0.8), rgba(245,245,245,0.9))",
                 // background: 'linear-gradient(135deg, #0f172a, #1e293b)',
                 backgroundSize: "cover",
                 border: "1px solid #ddd",
@@ -439,6 +454,49 @@ export default function ContactProfilePage() {
           </motion.div>
         </div>
       </div>
+
+      {showQrOverlay && (
+        <div
+          className="fixed inset-0 z-[130] bg-black/90 backdrop-blur-md p-4 md:p-8 flex items-center justify-center"
+          onClick={() => setShowQrOverlay(false)}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.25 }}
+            className="w-full max-w-2xl rounded-2xl border border-white/20 bg-slate-950/90 p-5 md:p-8"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-center justify-between gap-4 mb-6">
+              <div>
+                <p className="text-white text-sm uppercase tracking-[0.14em]">Scan to Connect</p>
+                <h2 className="text-white text-xl md:text-2xl font-semibold">Elvin Contact QR</h2>
+              </div>
+              <button
+                onClick={() => setShowQrOverlay(false)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="relative mx-auto w-fit rounded-2xl border border-white/20 bg-white p-4 shadow-[0_20px_50px_rgba(0,0,0,0.45)]">
+              <QRCodeCanvas value={qrValue} size={qrSize} />
+              <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                <motion.div
+                  className="absolute left-2 right-2 h-[2px] bg-cyan-400/80"
+                  animate={{ y: [8, qrSize + 8, 8] }}
+                  transition={{ duration: 2.8, repeat: Infinity, ease: "linear" }}
+                />
+              </div>
+            </div>
+
+            <p className="mt-5 text-center text-sm text-slate-300">
+              Open camera, scan, and save the contact card instantly.
+            </p>
+          </motion.div>
+        </div>
+      )}
 
       <Footer />
     </>

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, Brush, Camera, ExternalLink, Loader2, NotebookPen, RefreshCw } from "lucide-react";
+import { ArrowLeft, Brush, Camera, ExternalLink, Loader2, NotebookPen, Paintbrush, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -35,10 +35,15 @@ const BlogWritingsPage: React.FC = () => {
         setIsLoading(true);
       }
       setError(null);
-      const response = await fetch("/api/content/writings", {
-        cache: "no-store",
-        headers: { "cache-control": "no-cache" },
-      });
+      const response = await fetch(
+        "/api/content/writings",
+        refresh
+          ? {
+              cache: "no-store",
+              headers: { "cache-control": "no-cache", pragma: "no-cache" },
+            }
+          : undefined,
+      );
       if (!response.ok) {
         throw new Error(`Failed to load writing content (${response.status})`);
       }
@@ -78,20 +83,26 @@ const BlogWritingsPage: React.FC = () => {
         <main className="pt-24 pb-16 px-4 md:px-6 flex flex-col items-center min-h-screen">
           <div className="container mx-auto max-w-7xl w-full">
             <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-              <Link href="/creative/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+              <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                 <Button variant="ghost" className="text-accent3 hover:text-accent3">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back to DesignCircle
+                  Go Home
                 </Button>
               </Link>
               <div className="flex flex-wrap items-center gap-3">
+                <Link href="/creative/portfolio" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                  <Button variant="outline" className="bg-transparent">
+                    <Paintbrush className="h-4 w-4 mr-2" />
+                    Creatives Portfolio
+                  </Button>
+                </Link>
                 <Link href="/creative/gallery" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                   <Button variant="outline" className="bg-transparent">
                     <Camera className="h-4 w-4 mr-2" />
                     Go to Gallery
                   </Button>
                 </Link>
-                <Link href="/creative/journey" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                <Link href="/creative/visual-designs" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                   <Button variant="outline" className="bg-transparent">
                     <Brush className="h-4 w-4 mr-2" />
                     Visual Designs
@@ -103,7 +114,7 @@ const BlogWritingsPage: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center rounded-md border border-blue-400/60 px-4 py-2 text-sm font-medium text-blue-200 hover:bg-blue-500/20 transition-colors"
                 >
-                  Explore on LinkedIn
+                  Explore more on LinkedIn
                   <ExternalLink className="h-4 w-4 ml-2" />
                 </a>
               </div>
@@ -121,7 +132,7 @@ const BlogWritingsPage: React.FC = () => {
                 Drop `.md`, `.markdown`, or `.txt` files into `client/public/{manifest.folder}`.
                 Subfolders become concept collections automatically.
               </p> */}
-              <div className="mt-4">
+              {/* <div className="mt-4">
                 <Button
                   variant="outline"
                   className="bg-transparent"
@@ -135,7 +146,7 @@ const BlogWritingsPage: React.FC = () => {
                   )}
                   Refresh Writings
                 </Button>
-              </div>
+              </div> */}
             </section>
 
             {isLoading && (

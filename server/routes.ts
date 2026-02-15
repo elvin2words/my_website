@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Response } from "express";
 import { createServer, type Server } from "http";
 import fs from "node:fs";
 import fsp from "node:fs/promises";
@@ -1597,6 +1597,21 @@ function referencesToActions(references: AiSearchReference[]) {
   }));
 }
 
+function setPublicApiCache(
+  res: Response,
+  sMaxAgeSeconds: number,
+  staleWhileRevalidateSeconds = 86400,
+) {
+  res.set(
+    "Cache-Control",
+    `public, max-age=0, s-maxage=${sMaxAgeSeconds}, stale-while-revalidate=${staleWhileRevalidateSeconds}`,
+  );
+}
+
+function setNoStoreCache(res: Response) {
+  res.set("Cache-Control", "no-store");
+}
+
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // For this portfolio site, we're using static file serving
@@ -1604,6 +1619,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Health check endpoint
   app.get('/api/health', (_req, res) => {
+    setNoStoreCache(res);
     res.status(200).json({ status: 'ok' });
   });
 
@@ -1618,10 +1634,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   };
 
   app.get('/api/content', (_req, res) => {
+    setNoStoreCache(res);
     res.json(siteContent);
   });
 
   app.post('/api/content', (req, res) => {
+    setNoStoreCache(res);
     siteContent = { ...siteContent, ...req.body };
     res.json({ success: true });
   });
@@ -1633,8 +1651,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         allowedExtensions: IMAGE_EXTENSIONS,
         inferMediaType: () => "image",
       });
+      setPublicApiCache(res, 600);
       res.json(manifest);
     } catch {
+      setNoStoreCache(res);
       res.status(500).json({ message: "Failed to load gallery content" });
     }
   });
@@ -1651,8 +1671,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         allowedExtensions: DESIGN_EXTENSIONS,
         inferMediaType: inferDesignMediaType,
       });
+      setPublicApiCache(res, 600);
       res.json(manifest);
     } catch {
+      setNoStoreCache(res);
       res.status(500).json({ message: "Failed to load design content" });
     }
   });
@@ -1666,13 +1688,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         "posts",
         "blog",
       ]);
+      setPublicApiCache(res, 600);
       res.json(manifest);
     } catch {
+      setNoStoreCache(res);
       res.status(500).json({ message: "Failed to load writing content" });
     }
   });
 
   app.post("/api/ai/search", async (req, res) => {
+    setNoStoreCache(res);
     try {
       const queryRaw = typeof req.body?.query === "string" ? req.body.query : "";
       const query = truncateText(normalizeText(queryRaw), 220);
@@ -1710,6 +1735,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post("/api/ai/chat", async (req, res) => {
+    setNoStoreCache(res);
     try {
       const messageRaw = typeof req.body?.message === "string" ? req.body.message : "";
       const message = truncateText(normalizeText(messageRaw), 1400);
@@ -1745,6 +1771,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post("/api/ai/reindex", async (_req, res) => {
+    setNoStoreCache(res);
     aiDocumentCache = null;
     try {
       const docs = await getAiSearchDocuments();
@@ -1855,6 +1882,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       return a.title.localeCompare(b.title);
     });
 
+    setPublicApiCache(res, 300);
     res.json({
       source: sourceMode,
       visibility: effectiveVisibility,
@@ -1871,6 +1899,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 
   app.post("/api/contact", async (req, res) => {
+    setNoStoreCache(res);
     try {
       const validatedData = insertContactSchema.parse(req.body);
       

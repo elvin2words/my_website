@@ -3,11 +3,46 @@ import { useRoute, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { ChevronLeft, ExternalLink, Github } from "lucide-react";
-import type { Project } from "../../../shared/schema";
+import { ChevronLeft, Download, ExternalLink, FileText, Github, Image as ImageIcon, Video } from "lucide-react";
+import type { Project, ProjectArtifact } from "../../../shared/schema";
 import { projects as fallbackProjects } from "../../../shared/projects";
 import type { CodeCircleProjectsResponse } from "@/types/projects";
 import { PROJECT_STATUS_CLASSNAMES, PROJECT_STATUS_LABELS } from "@/types/projects";
+
+const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif", ".svg"]);
+const VIDEO_EXTENSIONS = new Set([".mp4", ".webm", ".mov", ".m4v"]);
+
+type ArtifactPreviewKind = "image" | "video" | "pdf" | "none";
+
+function getFileExtension(value?: string) {
+  if (!value) return "";
+  const normalized = value.split("?")[0] ?? "";
+  const dotIndex = normalized.lastIndexOf(".");
+  if (dotIndex < 0) return "";
+  return normalized.slice(dotIndex).toLowerCase();
+}
+
+function getArtifactPreview(artifact: ProjectArtifact): { kind: ArtifactPreviewKind; url?: string } {
+  const candidate = artifact.previewUrl ?? artifact.downloadUrl;
+  if (!candidate) return { kind: "none" };
+
+  const extension = getFileExtension(candidate);
+  if (IMAGE_EXTENSIONS.has(extension)) return { kind: "image", url: candidate };
+  if (VIDEO_EXTENSIONS.has(extension)) return { kind: "video", url: candidate };
+  if (extension === ".pdf") return { kind: "pdf", url: candidate };
+  return { kind: "none" };
+}
+
+function artifactDomainLabel(domain: ProjectArtifact["domain"]) {
+  if (domain === "simulink") return "Simulink";
+  if (domain === "autocad") return "AutoCAD";
+  if (domain === "etap") return "ETAP";
+  if (domain === "simulation") return "Simulation";
+  if (domain === "report") return "Report";
+  if (domain === "diagram") return "Diagram";
+  if (domain === "media") return "Media";
+  return "Other";
+}
 
 export default function ProjectDetail() {
   const [, params] = useRoute("/codecircle/portfolio/project/:id");
@@ -23,13 +58,7 @@ export default function ProjectDetail() {
       setIsLoading(true);
       setLoadError(null);
       try {
-        const response = await fetch("/api/projects/codecircle?source=hybrid&visibility=public", {
-          cache: "no-store",
-          headers: {
-            "cache-control": "no-cache",
-            pragma: "no-cache",
-          },
-        });
+        const response = await fetch("/api/projects/codecircle?source=hybrid&visibility=public");
 
         if (!response.ok) {
           throw new Error(`Failed to load projects (${response.status})`);
@@ -202,6 +231,165 @@ export default function ProjectDetail() {
                 <CardContent className="pt-6">
                   <h2 className="text-2xl text-foreground font-bold mb-4">Outcome & Impact</h2>
                   <p className="text-lg leading-relaxed text-muted-foreground">{project.outcome}</p>
+                </CardContent>
+              </Card>
+            )}
+
+            {(project.environment || (project.artifacts && project.artifacts.length > 0)) && (
+              <Card className="mb-8 bg-card/70 border-border">
+                <CardContent className="pt-6">
+                  <h2 className="text-2xl text-foreground font-bold mb-4">
+                    Project Environment & Engineering Artifacts
+                  </h2>
+
+                  {project.environment && (
+                    <div className="mb-6 space-y-4">
+                      {project.environment.context && (
+                        <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                          {project.environment.context}
+                        </p>
+                      )}
+
+                      {project.environment.tools && project.environment.tools.length > 0 && (
+                        <div>
+                          <p className="text-xs uppercase tracking-[0.12em] text-muted-foreground mb-2">
+                            Tools
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {project.environment.tools.map((tool) => (
+                              <Badge key={tool} variant="secondary">
+                                {tool}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {project.environment.platforms && project.environment.platforms.length > 0 && (
+                        <div>
+                          <p className="text-xs uppercase tracking-[0.12em] text-muted-foreground mb-2">
+                            Platforms
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {project.environment.platforms.map((platform) => (
+                              <Badge key={platform} variant="outline">
+                                {platform}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {project.environment.methods && project.environment.methods.length > 0 && (
+                        <div>
+                          <p className="text-xs uppercase tracking-[0.12em] text-muted-foreground mb-2">
+                            Methods
+                          </p>
+                          <ul className="space-y-1 text-sm text-muted-foreground">
+                            {project.environment.methods.map((method) => (
+                              <li key={method}>- {method}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {project.artifacts && project.artifacts.length > 0 && (
+                    <div className="grid md:grid-cols-2 gap-5">
+                      {project.artifacts.map((artifact) => {
+                        const preview = getArtifactPreview(artifact);
+
+                        return (
+                          <div
+                            key={artifact.id}
+                            className="rounded-lg border border-border/60 bg-background/30 overflow-hidden"
+                          >
+                            <div className="aspect-video bg-black/40">
+                              {preview.kind === "image" && preview.url && (
+                                <img
+                                  src={preview.url}
+                                  alt={artifact.title}
+                                  className="h-full w-full object-cover"
+                                />
+                              )}
+                              {preview.kind === "video" && preview.url && (
+                                <video
+                                  src={preview.url}
+                                  controls
+                                  preload="metadata"
+                                  className="h-full w-full object-cover"
+                                />
+                              )}
+                              {preview.kind === "pdf" && preview.url && (
+                                <iframe
+                                  src={`${preview.url}#view=FitH`}
+                                  title={artifact.title}
+                                  className="h-full w-full border-0"
+                                />
+                              )}
+                              {preview.kind === "none" && (
+                                <div className="h-full w-full grid place-items-center text-muted-foreground">
+                                  <div className="flex flex-col items-center gap-2">
+                                    <FileText className="h-6 w-6" />
+                                    <p className="text-xs uppercase tracking-[0.12em]">
+                                      Download-only file
+                                    </p>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="p-4 space-y-3">
+                              <div className="flex flex-wrap gap-2">
+                                <Badge variant="secondary">{artifactDomainLabel(artifact.domain)}</Badge>
+                                <Badge variant="outline">{artifact.format}</Badge>
+                              </div>
+
+                              <h3 className="text-base font-semibold">{artifact.title}</h3>
+
+                              {artifact.description && (
+                                <p className="text-sm text-muted-foreground">{artifact.description}</p>
+                              )}
+
+                              <div className="flex flex-wrap gap-2">
+                                {artifact.previewUrl && (
+                                  <Button size="sm" variant="outline" asChild>
+                                    <a href={artifact.previewUrl} target="_blank" rel="noopener noreferrer">
+                                      {preview.kind === "video" ? (
+                                        <Video className="h-4 w-4 mr-2" />
+                                      ) : (
+                                        <ImageIcon className="h-4 w-4 mr-2" />
+                                      )}
+                                      Open Preview
+                                    </a>
+                                  </Button>
+                                )}
+
+                                {artifact.downloadUrl && (
+                                  <Button size="sm" asChild>
+                                    <a href={artifact.downloadUrl} target="_blank" rel="noopener noreferrer">
+                                      <Download className="h-4 w-4 mr-2" />
+                                      Download
+                                    </a>
+                                  </Button>
+                                )}
+
+                                {artifact.sourceUrl && (
+                                  <Button size="sm" variant="ghost" asChild>
+                                    <a href={artifact.sourceUrl} target="_blank" rel="noopener noreferrer">
+                                      <ExternalLink className="h-4 w-4 mr-2" />
+                                      Source
+                                    </a>
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             )}

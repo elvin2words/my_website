@@ -17,12 +17,6 @@ export const education = [
     details:
       "Honours with a concentration in Power Systems, Renewable Energy Integration, and Embedded Control Systems.",
   },
-  {
-    degree: "Applied Research Track in Embedded Intelligence",
-    school: "Independent + Industry Labs, 2023 – Present",
-    details:
-      "Focused on FPGA-based control, edge analytics, and reliability engineering for energy and automation use cases.",
-  },
 ];
 
 export const skills = [
@@ -32,10 +26,6 @@ export const skills = [
   "Programming & Data: Python, C/C++, TypeScript, React, Node.js",
   "Battery Management Systems (BMS) & Renewable Integration",
   "Project Execution: Technical Docs, Standards Compliance (IEEE/NEC)",
-  "Protection & Relay Coordination for Utility and Industrial Networks",
-  "SCADA/Telemetry Integration for Monitoring, Alerting, and Remote Operations",
-  "Site Engineering: Commissioning, Troubleshooting, and Root-Cause Diagnostics",
-  "Design Review: Safety Margins, Maintainability, and Lifecycle Cost Thinking",
 ];
 
 export const projects = [
@@ -62,18 +52,6 @@ export const projects = [
     description:
       "Vision-assisted FPGA controller for industrial packaging QA. Implemented real-time image processing and defect detection algorithms on a Xilinx FPGA platform.",
     extra: "Industrial automation meets embedded AI - FPGA processing, YOLOv5, and servo-based automation."
-  },
-  {
-    title: "Microgrid Dispatch and Load Prioritization Engine",
-    description:
-      "Developed a dispatch strategy for mixed-generation microgrids to prioritize critical loads, minimize instability, and improve runtime under constrained generation windows.",
-    extra: "Integrated forecast-informed control logic with practical operating constraints.",
-  },
-  {
-    title: "Telemetry Layer for Distributed Energy Sites",
-    description:
-      "Built a telemetry architecture for distributed energy deployments to stream inverter, battery, and fault events into operator dashboards for faster decision cycles.",
-    extra: "Improved observability and incident response through cleaner signal pathways and event structuring.",
   },
 ];
 
@@ -102,29 +80,13 @@ export const experience = [
     time: "Aug 2021 – Aug 2022",
     desc: "Led research and rapid prototyping efforts for sustainable community solutions, applying systems thinking to community-centered sustainable solutions.",
   },
-  {
-    title: "Independent Systems Consultant (Selected Engagements)",
-    org: "Energy + Automation Projects",
-    time: "2024 – Present",
-    desc: "Supporting concept-to-deployment execution across power architecture, controls, reliability assessments, and technical communication for implementation teams.",
-  },
 ];
 
 export const certifications = [
   {
-    title: "Certified LabVIEW Associate Developer (CLAD)",
-    issuer: "National Instruments",
-    date: "2023",
-  },
-  {
-    title: "MATLAB Fundamentals",
-    issuer: "MathWorks",
-    date: "2024",
-  },
-  {
     title: "Embedded Systems Design with STM32",
     issuer: "Coursera",
-    date: "2024",
+    date: "2025",
   },
   {
     title: "Power System Protection Fundamentals",
@@ -135,6 +97,16 @@ export const certifications = [
     title: "Energy Storage and Grid Integration",
     issuer: "Technical CPD Track",
     date: "2025",
+  },
+  {
+    title: "Certified LabVIEW Associate Developer (CLAD)",
+    issuer: "National Instruments",
+    date: "2025",
+  },
+  {
+    title: "MATLAB Fundamentals",
+    issuer: "MathWorks",
+    date: "2024",
   },
 ];
 
