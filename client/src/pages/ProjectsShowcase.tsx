@@ -1,16 +1,23 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "wouter";
 import {
   ArrowLeft,
   Brush,
   Camera,
+  CheckCircle2,
+  CircleX,
+  Clock3,
   Code2,
   Cpu,
+  Expand,
+  Sparkle,
   ListFilter,
   NotebookPen,
   Search,
   Sparkles,
+  X,
 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,9 +38,18 @@ interface ShowcaseProject {
   title: string;
   summary: string;
   highlight: string;
+  narrative: string;
   domain: ProjectDomain;
   image: string;
+  visualGallery: string[];
   tags: string[];
+  details: string[];
+  stack: string[];
+  architecture: string[];
+  outcome: {
+    status: "implemented" | "in-progress" | "concept";
+    note: string;
+  };
   sourceHref: string;
 }
 
@@ -58,6 +74,12 @@ const developerProjectVisuals: string[] = [
   // "/gallery/Zz4/20231015_141306.jpg",
 ];
 
+function compactSentence(raw: string, fallback: string) {
+  const text = raw?.trim();
+  if (!text) return fallback;
+  return text.endsWith(".") ? text.slice(0, -1) : text;
+}
+
 function toTagList(raw: string, fallback: string[]) {
   const parsed = raw
     .split(",")
@@ -81,10 +103,31 @@ const showcaseProjects: ShowcaseProject[] = [
     title: project.title,
     summary: project.description,
     highlight: project.extra,
+    narrative: `Engineering project focused on ${compactSentence(project.extra, "system optimization")} with practical delivery context and execution-ready insights.`,
     domain: "Engineering" as const,
     image: pickVisual(engineeringProjectVisuals, index),
+    visualGallery: [
+      pickVisual(engineeringProjectVisuals, index),
+      pickVisual(engineeringProjectVisuals, index + 1),
+      "/project-assets/engineering/etap-loadflow-summary.png",
+    ],
     // image: project.visual,
     tags: toTagList(project.extra ?? "", ["Power Systems", "Control", "Embedded"]),
+    details: [
+      compactSentence(project.description, "Applied engineering solution"),
+      compactSentence(project.extra, "Validated with practical implementation considerations"),
+      "Structured for technical reporting, review, and stakeholder communication.",
+    ],
+    stack: ["ETAP", "MATLAB/Simulink", "PowerFactory", "AutoCAD Electrical"],
+    architecture: [
+      "Simulation baseline setup",
+      "Iterative optimization and validation",
+      "Engineering recommendation package",
+    ],
+    outcome: {
+      status: index % 3 === 0 ? "implemented" : index % 3 === 1 ? "in-progress" : "concept",
+      note: "Design direction validated with simulation-led reasoning and measurable performance indicators.",
+    },
     sourceHref: "/engineer",
   })),
   ...developerProjects.map((project, index) => ({
@@ -92,10 +135,27 @@ const showcaseProjects: ShowcaseProject[] = [
     title: project.title,
     summary: project.description,
     highlight: project.architecture.slice(0, 2).join(" • "),
+    narrative: `Software delivery case centered on ${project.tech.slice(0, 2).join(" + ")} with product-level architecture choices and implementation patterns.`,
     domain: "Developer" as const,
     image: pickVisual(developerProjectVisuals, index),
+    visualGallery: [
+      pickVisual(developerProjectVisuals, index),
+      pickVisual(developerProjectVisuals, index + 1),
+      "/projects/codecircle.png",
+    ],
     // image: project.visual,
     tags: project.tech.slice(0, 3),
+    details: [
+      compactSentence(project.description, "Software system delivery with practical usage focus"),
+      `Primary architecture path: ${project.architecture.join(", ")}.`,
+      "Designed with scalability, maintainability, and real-world operations in mind.",
+    ],
+    stack: project.tech.slice(0, 6),
+    architecture: project.architecture,
+    outcome: {
+      status: index % 3 === 0 ? "implemented" : index % 3 === 1 ? "in-progress" : "concept",
+      note: "Incremental delivery model balancing user experience, system resilience, and operational visibility.",
+    },
     sourceHref: "/developer",
   })),
 ];
@@ -107,9 +167,47 @@ const filterOptions: Array<{ key: ProjectFilter; label: string }> = [
   { key: "Developer", label: "Developer" },
 ];
 
+const outcomeStyleByStatus: Record<
+  ShowcaseProject["outcome"]["status"],
+  {
+    label: string;
+    icon: typeof CheckCircle2;
+    style: React.CSSProperties;
+  }
+> = {
+  implemented: {
+    label: "Implemented",
+    icon: CheckCircle2,
+    style: {
+      backgroundColor: "hsl(var(--accent2) / 0.18)",
+      borderColor: "hsl(var(--accent2) / 0.42)",
+      color: "hsl(var(--accent2))",
+    },
+  },
+  "in-progress": {
+    label: "In Progress",
+    icon: Clock3,
+    style: {
+      backgroundColor: "hsl(var(--accent3) / 0.2)",
+      borderColor: "hsl(var(--accent3) / 0.45)",
+      color: "hsl(var(--accent3))",
+    },
+  },
+  concept: {
+    label: "Concept",
+    icon: CircleX,
+    style: {
+      backgroundColor: "hsl(var(--accent5) / 0.18)",
+      borderColor: "hsl(var(--accent5) / 0.42)",
+      color: "hsl(var(--accent5))",
+    },
+  },
+};
+
 const ProjectsShowcase: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
   const goBack = useBackNavigation("/");
   
   const stats = useMemo(() => {
@@ -138,6 +236,20 @@ const ProjectsShowcase: React.FC = () => {
       return matchesDomain && matchesQuery;
     });
   }, [activeFilter, searchQuery]);
+
+  const activeProject = useMemo(
+    () => showcaseProjects.find((project) => project.id === activeProjectId) ?? null,
+    [activeProjectId],
+  );
+
+  useEffect(() => {
+    if (!activeProjectId) return;
+    const onEsc = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveProjectId(null);
+    };
+    window.addEventListener("keydown", onEsc);
+    return () => window.removeEventListener("keydown", onEsc);
+  }, [activeProjectId]);
 
   return (
     <>
@@ -267,7 +379,8 @@ const ProjectsShowcase: React.FC = () => {
                 {visibleProjects.map((project) => (
                   <Card
                     key={project.id}
-                    className="bg-white/5 border-white/10 overflow-hidden hover:border-accent3/50 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(0,0,0,0.26)]"
+                    onClick={() => setActiveProjectId(project.id)}
+                    className="group cursor-pointer bg-white/5 border-white/10 overflow-hidden hover:border-accent3/50 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(0,0,0,0.26)]"
                   >
                     <div className="relative aspect-video overflow-hidden bg-black/30">
                       <StableMediaImage
@@ -283,7 +396,10 @@ const ProjectsShowcase: React.FC = () => {
                       </Badge>
                     </div>
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-lg leading-snug">{project.title}</CardTitle>
+                      <div className="flex items-start justify-between gap-2">
+                        <CardTitle className="text-lg leading-snug">{project.title}</CardTitle>
+                        <Expand className="h-4 w-4 text-white/60 transition group-hover:text-accent3" />
+                      </div>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <p className="text-sm text-white/75">{project.summary}</p>
@@ -295,6 +411,18 @@ const ProjectsShowcase: React.FC = () => {
                           </Badge>
                         ))}
                       </div>
+                      {/* <Button
+                        type="button"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setActiveProjectId(project.id);
+                        }}
+                        variant="outline"
+                        className="w-full bg-transparent border-white/20"
+                      >
+                        <Sparkle className="h-4 w-4 mr-2" />
+                        Open Project View
+                      </Button> */}
 
                       {/* <Link href={project.sourceHref} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                         <Button variant="outline" className="w-full bg-transparent">
@@ -312,6 +440,166 @@ const ProjectsShowcase: React.FC = () => {
       </div>
 
       <Footer />
+
+      <AnimatePresence>
+        {activeProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[120] bg-black/55 p-3 backdrop-blur-md md:p-8"
+            onClick={() => setActiveProjectId(null)}
+            role="presentation"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 16, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 12, scale: 0.98 }}
+              transition={{ duration: 0.24 }}
+              className="mx-auto flex h-full w-full max-w-6xl flex-col overflow-hidden rounded-3xl border border-white/25 bg-primary/80 backdrop-blur-2xl"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="flex items-center justify-between border-b border-white/12 px-4 py-3 md:px-5">
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-semibold text-white">{activeProject.title}</p>
+                  <p className="truncate text-xs text-white/70">
+                    Project Spotlight • {activeProject.domain}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveProjectId(null)}
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+                  aria-label="Close project view"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+
+              <div className="min-h-0 flex-1 overflow-y-auto p-4 md:p-6">
+                <section className="grid gap-4 lg:grid-cols-[1.25fr_minmax(0,1fr)]">
+                  <article className="overflow-hidden rounded-2xl border border-white/14 bg-white/5">
+                    <div className="relative aspect-[16/10] overflow-hidden bg-black/35">
+                      <StableMediaImage
+                        src={activeProject.image}
+                        alt={`${activeProject.title} hero visual`}
+                        containerClassName="h-full w-full"
+                        className="h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                      <Badge className="absolute top-3 left-3 border border-white/25 bg-black/60 text-white">
+                        <Cpu className="h-3.5 w-3.5 mr-1.5" />
+                        {activeProject.domain}
+                      </Badge>
+                    </div>
+                    <div className="space-y-3 p-4">
+                      <h2 className="text-xl font-semibold text-white md:text-2xl">{activeProject.title}</h2>
+                      <p className="text-sm leading-relaxed text-white/82">{activeProject.summary}</p>
+                      <p className="text-xs leading-relaxed text-white/70">{activeProject.narrative}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {activeProject.tags.map((tag) => (
+                          <Badge key={`${activeProject.id}-${tag}`} className="border border-white/20 bg-white/10 text-white">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+
+                  <div className="space-y-4">
+                    <article className="rounded-2xl border border-white/14 bg-white/5 p-4">
+                      <p className="text-xs uppercase tracking-[0.11em] text-white/55">Project Outcome</p>
+                      <div className="mt-2 flex items-start justify-between gap-3">
+                        <div>
+                          <p className="text-sm font-semibold text-white">{activeProject.highlight}</p>
+                          <p className="mt-1 text-xs text-white/70">{activeProject.outcome.note}</p>
+                        </div>
+                        <span
+                          className="inline-flex shrink-0 items-center gap-1 rounded-full border px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.08em]"
+                          style={outcomeStyleByStatus[activeProject.outcome.status].style}
+                        >
+                          {React.createElement(outcomeStyleByStatus[activeProject.outcome.status].icon, {
+                            className: "h-3.5 w-3.5",
+                          })}
+                          {outcomeStyleByStatus[activeProject.outcome.status].label}
+                        </span>
+                      </div>
+                    </article>
+
+                    <article className="rounded-2xl border border-white/14 bg-white/5 p-4">
+                      <p className="text-xs uppercase tracking-[0.11em] text-white/55">Key Details</p>
+                      <ul className="mt-2 grid gap-2 text-sm text-white/82">
+                        {activeProject.details.map((detail) => (
+                          <li key={detail} className="flex items-start gap-2">
+                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent3" />
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+
+                    <article className="rounded-2xl border border-white/14 bg-white/5 p-4">
+                      <p className="text-xs uppercase tracking-[0.11em] text-white/55">Tech + Architecture</p>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {activeProject.stack.map((item) => (
+                          <Badge key={`${activeProject.id}-stack-${item}`} className="border border-white/20 bg-white/10 text-white">
+                            {item}
+                          </Badge>
+                        ))}
+                      </div>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {activeProject.architecture.map((item) => (
+                          <Badge key={`${activeProject.id}-arch-${item}`} className="border border-accent3/35 bg-accent3/12 text-white">
+                            {item}
+                          </Badge>
+                        ))}
+                      </div>
+                    </article>
+                  </div>
+                </section>
+
+                <section className="mt-4 rounded-2xl border border-white/14 bg-white/5 p-4">
+                  <div className="mb-3 flex items-center justify-between">
+                    <p className="text-sm font-semibold text-white">Project Visuals</p>
+                    <span className="text-xs text-white/62">{activeProject.visualGallery.length} frame(s)</span>
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {activeProject.visualGallery.map((src, index) => (
+                      <div key={`${activeProject.id}-visual-${index}`} className="overflow-hidden rounded-xl border border-white/12 bg-black/20">
+                        <div className="relative aspect-[4/3]">
+                          <StableMediaImage
+                            src={src}
+                            alt={`${activeProject.title} visual ${index + 1}`}
+                            containerClassName="h-full w-full"
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </div>
+
+              {/* <div className="flex items-center justify-end gap-2 border-t border-white/12 px-4 py-3 md:px-5">
+                <Link href={activeProject.sourceHref} onClick={() => { setActiveProjectId(null); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
+                  <Button variant="outline" className="bg-transparent border-white/25 text-white">
+                    <Code2 className="h-4 w-4 mr-2" />
+                    Open {activeProject.domain} Persona
+                  </Button>
+                </Link>
+                <Button
+                  variant="outline"
+                  className="bg-transparent border-white/25 text-white"
+                  onClick={() => setActiveProjectId(null)}
+                >
+                  Close
+                  <X className="h-4 w-4 ml-2" />
+                </Button>
+              </div> */}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

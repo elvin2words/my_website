@@ -1,0 +1,3 @@
+
+
+The blog, i think we can split its filters into 3, Blog specifics, Other Misc, and LinkedIn posts  and we put these to the right of the search button... butmaybe also a checkout my podcast CTA there too, or checkout myTiktok. Then the Blog can have these posts which can show a visual and then some text, with dates and stuff right, which when clicked opens the full blog post popup, with next and prev buttons to navigate through th others in popup view. Then linke din posts, can also be almost like that, but also nice design for purely textual posts with links to check them out on Linked in.
