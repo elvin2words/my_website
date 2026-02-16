@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
+    "vercel-build": "npm run build",
     "build": "vite build",
     "preview": "vite preview",
     "check": "tsc --noEmit"
