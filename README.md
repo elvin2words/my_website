@@ -192,6 +192,23 @@ npm run dev:api
 
 ## Deployment
 
+### Vercel (Full Stack)
+
+- Deploy from repository root (not `client/`).
+- Static frontend is built to `client/dist`.
+- Express API is served as a Vercel function via `api/[...route].ts`.
+- Content manifests are generated at build time into `server/generated/content` so API content endpoints work in serverless mode.
+
+Build flow used on Vercel:
+
+```bash
+npm run vercel:build
+```
+
+Set required environment variables in Vercel for backend features (for example `DATABASE_URL`, SMTP settings, and Eddy AI variables if used).
+
+### Self-Hosted Node
+
 Production build bundles:
 
 - client assets to `dist/public`

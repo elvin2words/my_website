@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import type { InsertContact } from "@shared/schema";
+import type { InsertContact } from "../shared/schema";
 
 interface EmailConfig {
   host: string;

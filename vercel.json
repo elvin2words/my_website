@@ -1,9 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "installCommand": "cd client && npm install",
-  "buildCommand": "cd client && npm run build",
+  "installCommand": "npm install && npm run build:content-manifests",
+  "buildCommand": "npm run vercel:build",
   "outputDirectory": "client/dist",
+  "functions": {
+    "api/[...route].ts": {
+      "includeFiles": "server/generated/content/*.json",
+      "excludeFiles": "client/public/**",
+      "maxDuration": 30
+    }
+  },
   "redirects": [
     {
       "source": "/designcircle",

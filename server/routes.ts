@@ -4,8 +4,8 @@ import fs from "node:fs";
 import fsp from "node:fs/promises";
 import path from "node:path";
 import { contactStorage } from "./storage";
-import { insertContactSchema, type Project } from "@shared/schema";
-import { projects as manualProjects } from "@shared/projects";
+import { insertContactSchema, type Project } from "../shared/schema";
+import { projects as manualProjects } from "../shared/projects";
 import { sendContactEmail } from "./email";
 
 const IMAGE_EXTENSIONS = new Set([
@@ -89,6 +89,50 @@ interface WritingsManifest {
   folder: string;
   concepts: Array<{ id: string; key: string; name: string; count: number }>;
   entries: WritingEntry[];
+}
+
+type ContentManifestKey = "gallery" | "designs" | "writings";
+
+interface BuildMediaManifestOptions {
+  allowedExtensions?: Set<string>;
+  inferMediaType?: (extension: string) => MediaType;
+  prebuiltManifestKey?: ContentManifestKey;
+}
+
+interface BuildWritingsManifestOptions {
+  prebuiltManifestKey?: ContentManifestKey;
+}
+
+const PREBUILT_MANIFEST_FILENAMES: Record<ContentManifestKey, string> = {
+  gallery: "gallery.json",
+  designs: "designs.json",
+  writings: "writings.json",
+};
+
+const SHOULD_PREFER_PREBUILT_MANIFESTS =
+  process.env.VERCEL === "1" || process.env.CONTENT_MANIFEST_MODE === "prebuilt";
+
+function getPrebuiltManifestPathCandidates(fileName: string) {
+  return [
+    path.resolve(import.meta.dirname, "generated", "content", fileName),
+    path.resolve(import.meta.dirname, "..", "server", "generated", "content", fileName),
+    path.resolve(process.cwd(), "server", "generated", "content", fileName),
+    path.resolve(process.cwd(), "generated", "content", fileName),
+  ];
+}
+
+async function readPrebuiltManifest<T>(key: ContentManifestKey): Promise<T | null> {
+  const fileName = PREBUILT_MANIFEST_FILENAMES[key];
+  for (const candidatePath of getPrebuiltManifestPathCandidates(fileName)) {
+    try {
+      const raw = await fsp.readFile(candidatePath, "utf-8");
+      return JSON.parse(raw) as T;
+    } catch {
+      // Continue until a readable manifest path is found.
+    }
+  }
+
+  return null;
 }
 
 function toPosixPath(value: string) {
@@ -188,13 +232,23 @@ function conceptNameFromKey(key: string) {
 async function buildMediaManifest(
   publicRoot: string,
   folderCandidates: string[],
-  options?: {
-    allowedExtensions?: Set<string>;
-    inferMediaType?: (extension: string) => MediaType;
-  },
+  options?: BuildMediaManifestOptions,
 ): Promise<MediaManifest> {
+  if (options?.prebuiltManifestKey && SHOULD_PREFER_PREBUILT_MANIFESTS) {
+    const prebuilt = await readPrebuiltManifest<MediaManifest>(options.prebuiltManifestKey);
+    if (prebuilt) {
+      return prebuilt;
+    }
+  }
+
   const selectedFolder = resolveContentFolder(publicRoot, folderCandidates);
   if (!selectedFolder.exists) {
+    if (options?.prebuiltManifestKey) {
+      const prebuilt = await readPrebuiltManifest<MediaManifest>(options.prebuiltManifestKey);
+      if (prebuilt) {
+        return prebuilt;
+      }
+    }
     return { folder: selectedFolder.folder, concepts: [], items: [] };
   }
 
@@ -400,9 +454,23 @@ function parseTags(value: string | undefined) {
 async function buildWritingsManifest(
   publicRoot: string,
   folderCandidates: string[],
+  options?: BuildWritingsManifestOptions,
 ): Promise<WritingsManifest> {
+  if (options?.prebuiltManifestKey && SHOULD_PREFER_PREBUILT_MANIFESTS) {
+    const prebuilt = await readPrebuiltManifest<WritingsManifest>(options.prebuiltManifestKey);
+    if (prebuilt) {
+      return prebuilt;
+    }
+  }
+
   const selectedFolder = resolveContentFolder(publicRoot, folderCandidates);
   if (!selectedFolder.exists) {
+    if (options?.prebuiltManifestKey) {
+      const prebuilt = await readPrebuiltManifest<WritingsManifest>(options.prebuiltManifestKey);
+      if (prebuilt) {
+        return prebuilt;
+      }
+    }
     return { folder: selectedFolder.folder, concepts: [], entries: [] };
   }
 
@@ -1461,7 +1529,11 @@ async function buildAiSearchDocuments() {
   const docs: AiSearchDocument[] = [...staticDocs, ...projectDocs];
 
   try {
-    const writings = await buildWritingsManifest(publicRoot, ["writings", "blog-writings", "posts", "blog"]);
+    const writings = await buildWritingsManifest(
+      publicRoot,
+      ["writings", "blog-writings", "posts", "blog"],
+      { prebuiltManifestKey: "writings" },
+    );
     for (const entry of writings.entries.slice(0, 80)) {
       docs.push(
         createAiDocument({
@@ -1489,6 +1561,7 @@ async function buildAiSearchDocuments() {
     const gallery = await buildMediaManifest(publicRoot, ["gallery"], {
       allowedExtensions: IMAGE_EXTENSIONS,
       inferMediaType: () => "image",
+      prebuiltManifestKey: "gallery",
     });
 
     for (const concept of gallery.concepts) {
@@ -1511,6 +1584,7 @@ async function buildAiSearchDocuments() {
     const designs = await buildMediaManifest(publicRoot, ["creatives", "creative-designs", "designs", "creative-assets"], {
       allowedExtensions: DESIGN_EXTENSIONS,
       inferMediaType: inferDesignMediaType,
+      prebuiltManifestKey: "designs",
     });
 
     for (const concept of designs.concepts) {
@@ -1650,6 +1724,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const manifest = await buildMediaManifest(publicRoot, ["gallery"], {
         allowedExtensions: IMAGE_EXTENSIONS,
         inferMediaType: () => "image",
+        prebuiltManifestKey: "gallery",
       });
       setPublicApiCache(res, 600);
       res.json(manifest);
@@ -1670,6 +1745,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       ], {
         allowedExtensions: DESIGN_EXTENSIONS,
         inferMediaType: inferDesignMediaType,
+        prebuiltManifestKey: "designs",
       });
       setPublicApiCache(res, 600);
       res.json(manifest);
@@ -1687,7 +1763,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         "blog-writings",
         "posts",
         "blog",
-      ]);
+      ], {
+        prebuiltManifestKey: "writings",
+      });
       setPublicApiCache(res, 600);
       res.json(manifest);
     } catch {
