@@ -7,6 +7,7 @@
     "dev": "cross-env NODE_ENV=development node --env-file=.env --import ./server/dev-register.mjs ./server/index.ts",
     "dev:api": "cross-env NODE_ENV=development node --env-file=.env --import ./server/dev-register.mjs ./server/index-express.ts",
     "dev:full": "cross-env NODE_ENV=development node --env-file=.env --import ./server/dev-register.mjs ./server/index.ts",
+    "vercel-build": "npm run build",
     "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc",

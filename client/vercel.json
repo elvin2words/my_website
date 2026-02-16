@@ -1,15 +1,10 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "redirects": [
-    {
-      "source": "/engineer/portfolio",
-      "destination": "/engineer",
-      "permanent": true
-    },
-    {
-      "source": "/engineer/journey",
-      "destination": "/engineer",
-      "permanent": true
-    },
     {
       "source": "/designcircle",
       "destination": "/creative/portfolio",
@@ -21,17 +16,17 @@
       "permanent": true
     },
     {
-      "source": "/blog",
-      "destination": "/creative/blog",
+      "source": "/creative/blog",
+      "destination": "/blog",
       "permanent": true
     },
     {
-      "source": "/creative/visual-designs",
-      "destination": "/creative/journey",
+      "source": "/creative/journey",
+      "destination": "/creative/visual-designs",
       "permanent": true
     },
     {
-      "source": "/codecircle/journey",
+      "source": "/codecircle",
       "destination": "/codecircle/portfolio",
       "permanent": true
     }
@@ -97,7 +92,7 @@
   ],
   "rewrites": [
     {
-      "source": "/:path((?!api(?:/|$)|assets/|.*\\..*).*)",
+      "source": "/((?!api/|assets/|.*\\..*).*)",
       "destination": "/"
     }
   ]
