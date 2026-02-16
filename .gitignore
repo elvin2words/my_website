@@ -19,3 +19,4 @@ attached_assets
 
 # But do NOT ignore these specific ones
 !README.md
+!docs/eng-circle-portfolio-update-guide.md
