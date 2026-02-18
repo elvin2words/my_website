@@ -1,0 +1,20 @@
+---
+title: Monthly Retrospective: Wins, Bottlenecks, and Next Bets
+date: 2026-02-01
+kind: writing
+status: draft
+tags: retrospective, planning, execution, systems
+collection: Creator Misc
+excerpt: Draft retrospective structure for reviewing delivery quality, growth experiments, and process bottlenecks.
+---
+
+# Monthly Retrospective: Wins, Bottlenecks, and Next Bets
+
+This is a draft review template built around three questions:
+
+- what created leverage this month
+- what repeatedly slowed execution
+- what single bet should be tested next
+
+The final version will include scorecards for quality, speed, and sustainability.
+

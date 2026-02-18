@@ -1,0 +1,22 @@
+---
+title: Podcast Note: Systems Thinking in Real Client Work
+date: 2026-01-22
+kind: writing
+status: published
+tags: podcast, systems-thinking, delivery, clients
+collection: Creator Misc
+link: https://open.spotify.com/show/5fW6dummyPodcastExample
+coverImage: /gallery/Zz1/20250621_063837.jpg
+excerpt: Notes and highlights from a podcast episode focused on practical systems thinking for client delivery teams.
+---
+
+# Podcast Note: Systems Thinking in Real Client Work
+
+Episode highlights:
+
+- mapping dependencies before execution
+- reducing rework with tighter acceptance criteria
+- using quick feedback loops without losing quality
+
+The full conversation is available through the linked podcast page.
+

@@ -1,0 +1,21 @@
+---
+title: Site Commissioning Checklist for Hybrid Microgrids
+date: 2026-02-10
+kind: writing
+status: draft
+tags: commissioning, microgrid, checklist, quality
+collection: Systems Lab
+excerpt: A draft checklist for reducing commissioning defects by standardizing verification, handoff, and safety sign-off.
+---
+
+# Site Commissioning Checklist for Hybrid Microgrids
+
+This draft captures a repeatable sequence for commissioning:
+
+- pre-energization verification
+- control logic validation
+- staged load handoff
+- post-handover telemetry baseline
+
+The goal is to reduce last-minute rework and preserve commissioning quality under schedule pressure.
+

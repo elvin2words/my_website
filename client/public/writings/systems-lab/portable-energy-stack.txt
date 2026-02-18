@@ -1,0 +1,24 @@
+---
+title: Portable Energy Stack for Field Teams
+date: 2026-02-14
+kind: blog
+status: published
+tags: energy, systems, field-ops, reliability
+collection: Systems Lab
+coverImage: /gallery/Zz4/20250623_120419.jpg
+link: https://example.com/portable-energy-stack
+excerpt: A practical stack for powering field devices with predictable uptime, low maintenance overhead, and clear escalation paths.
+---
+
+# Portable Energy Stack for Field Teams
+
+When the work happens outside controlled environments, power strategy must be explicit.
+
+Key design constraints:
+
+- variable weather windows
+- mixed device profiles and charging standards
+- limited replacement cycles
+
+This framework defines battery tiers, charging cadence, and monitoring checkpoints so field teams stay operational through long deployment cycles.
+

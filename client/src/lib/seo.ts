@@ -16,12 +16,12 @@ export interface SeoConfig {
 }
 
 const EXACT_ALIASES: Record<string, string> = {
-  "/engineer": "/engineer/portfolio",
   "/codecircle": "/codecircle/portfolio",
   "/designcircle": "/creative/portfolio",
   "/gallery": "/creative/gallery",
-  "/blog": "/creative/blog",
-  "/creative/visual-designs": "/creative/journey",
+  "/creative/blog": "/blog",
+  "/blog-writings": "/blog",
+  "/creative/journey": "/creative/visual-designs",
 };
 
 const PAGE_SEO: Record<string, Omit<SeoConfig, "path">> = {
@@ -38,6 +38,14 @@ const PAGE_SEO: Record<string, Omit<SeoConfig, "path">> = {
     description:
       "Electrical engineering portfolio featuring power systems, embedded control, renewable integration, and technical project delivery.",
     keywords: `${DEFAULT_KEYWORDS}, Power Systems, Electrical Engineering, Grid Optimization, BMS`,
+    type: "website",
+    image: DEFAULT_OG_IMAGE,
+  },
+  "/engineer": {
+    title: "Electrical Engineer | Elvin Mazwimairi",
+    description:
+      "Electrical engineer profile focused on systems design, field execution, and practical engineering leadership.",
+    keywords: `${DEFAULT_KEYWORDS}, Electrical Engineer, Systems Design, Field Engineering`,
     type: "website",
     image: DEFAULT_OG_IMAGE,
   },
@@ -81,7 +89,7 @@ const PAGE_SEO: Record<string, Omit<SeoConfig, "path">> = {
     type: "website",
     image: DEFAULT_OG_IMAGE,
   },
-  "/creative/blog": {
+  "/blog": {
     title: "Blog and Writings | Elvin Mazwimairi",
     description:
       "Blog posts and writings on systems thinking, engineering, design, innovation, and creative practice.",
@@ -89,11 +97,27 @@ const PAGE_SEO: Record<string, Omit<SeoConfig, "path">> = {
     type: "article",
     image: DEFAULT_OG_IMAGE,
   },
-  "/creative/journey": {
+  "/creative/visual-designs": {
     title: "Visual Designs | Elvin Mazwimairi",
     description:
       "Visual design showcase for logos, flyers, banners, and other graphical design work presented as image collections.",
     keywords: `${DEFAULT_KEYWORDS}, Visual Design, Logos, Flyers, Banners, Graphic Design`,
+    type: "website",
+    image: DEFAULT_OG_IMAGE,
+  },
+  "/biz/portfolio": {
+    title: "BizCircle Portfolio | Elvin Mazwimairi",
+    description:
+      "BizCircle portfolio covering ventures, products, and systems built through business experimentation and execution.",
+    keywords: `${DEFAULT_KEYWORDS}, BizCircle, Ventures, Portfolio, Business Systems`,
+    type: "website",
+    image: DEFAULT_OG_IMAGE,
+  },
+  "/biz/journey": {
+    title: "BizCircle Journey | Elvin Mazwimairi",
+    description:
+      "Journey through BizCircle experiments, scaling stages, and strategic execution milestones.",
+    keywords: `${DEFAULT_KEYWORDS}, BizCircle Journey, Strategy, Venture Building, Execution`,
     type: "website",
     image: DEFAULT_OG_IMAGE,
   },

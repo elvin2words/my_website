@@ -1,0 +1,23 @@
+---
+title: UI Architecture Playbook for Scalable Portfolio Pages
+date: 2026-02-12
+kind: blog
+status: published
+tags: frontend, architecture, react, ux
+collection: Build Notes
+coverImage: /gallery/TidbitsWithElvin1/3.jpg
+excerpt: A practical playbook for structuring component systems that scale cleanly from MVP to production polish.
+---
+
+# UI Architecture Playbook for Scalable Portfolio Pages
+
+A good interface is easier to scale when structure is deliberate from day one.
+
+Core choices in this playbook:
+
+- content-first data contracts
+- reusable card and modal patterns
+- filter logic isolated from rendering
+
+This improves maintainability and keeps styling changes from breaking behavior.
+

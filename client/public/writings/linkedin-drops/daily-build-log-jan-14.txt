@@ -1,0 +1,23 @@
+---
+title: LinkedIn Drop: Daily Build Log - Jan 14
+date: 2026-01-14
+kind: writing
+status: published
+tags: linkedin, build-log, systems, shipping
+collection: LinkedIn Drops
+link: https://www.linkedin.com/feed/update/urn:li:activity:7291401000000000001/
+excerpt: Shared a short log on how I reduced friction in my weekly shipping flow by tightening task sizing and review cadence.
+---
+
+# LinkedIn Drop: Daily Build Log - Jan 14
+
+Short-format note published on LinkedIn.
+
+Focus:
+
+- tighter review loops
+- fewer context switches
+- clearer definition of done
+
+Open the LinkedIn link for the full thread and comments.
+

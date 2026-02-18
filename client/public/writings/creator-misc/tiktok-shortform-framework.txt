@@ -1,0 +1,22 @@
+---
+title: Short-Form Framework for TikTok Technical Storytelling
+date: 2026-01-30
+kind: writing
+status: published
+tags: tiktok, short-form, storytelling, content-systems
+collection: Creator Misc
+link: https://www.tiktok.com/@young_mazwi/video/7298888000000000000
+coverImage: /gallery/Zz3/Screenshot_20240619_135541_TikTok.jpg
+excerpt: A simple framework for turning technical topics into short-form videos that stay accurate and engaging.
+---
+
+# Short-Form Framework for TikTok Technical Storytelling
+
+The framework has three steps:
+
+- translate complexity into one core message
+- anchor the message with one practical example
+- end with one clear next action
+
+This keeps the content concise without flattening technical truth.
+

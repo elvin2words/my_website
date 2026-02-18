@@ -308,7 +308,7 @@ const VisualDesignsPage: React.FC = () => {
                   LinkedIn Feed
                   <ExternalLink className="h-4 w-4 ml-2" />
                 </a>
-                <Link href="/creative/blog" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                <Link href="/blog" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                   <Button variant="outline" className="bg-transparent">
                     <NotebookPen className="h-4 w-4 mr-2" />
                     Go to Blog

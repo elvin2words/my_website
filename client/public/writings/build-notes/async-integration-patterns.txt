@@ -1,0 +1,23 @@
+---
+title: Async Integration Patterns for Content-Driven UIs
+date: 2026-02-09
+kind: writing
+status: in-progress
+tags: async, api, resilience, frontend
+collection: Build Notes
+link: https://example.com/async-integration-patterns
+excerpt: In-progress notes on building UI flows that remain stable when content APIs are slow, partial, or unavailable.
+---
+
+# Async Integration Patterns for Content-Driven UIs
+
+Network variability is normal. The interface has to be robust by design.
+
+Working patterns:
+
+- loading and empty states are explicit
+- fallback content paths are documented
+- refresh paths are intentional, not accidental
+
+Next version will add retry policy and stale cache behavior examples.
+

@@ -120,7 +120,8 @@ Core routes include:
 - `/developer`
 - `/creative/portfolio`
 - `/creative/gallery`
-- `/creative/blog`
+- `/creative/visual-designs`
+- `/blog`
 - `/technopreneur`
 - `/privacy-policy`
 - `/terms-of-service`

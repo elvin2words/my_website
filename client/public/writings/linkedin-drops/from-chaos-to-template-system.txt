@@ -1,0 +1,21 @@
+---
+title: LinkedIn Drop: From Chaos to Template System
+date: 2026-01-27
+kind: blog
+status: published
+tags: linkedin, templates, workflow, creator-ops
+collection: LinkedIn Drops
+link: https://www.linkedin.com/feed/update/urn:li:activity:7295902000000000002/
+excerpt: A concise LinkedIn post on moving from ad-hoc posting to a reusable template system across writing, visuals, and planning.
+---
+
+# LinkedIn Drop: From Chaos to Template System
+
+This post covers a small system change that created measurable consistency:
+
+- one template for ideation
+- one template for publishing
+- one template for post-performance review
+
+The outcome was fewer missed publish windows and faster content turnaround.
+

@@ -11,6 +11,16 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.elvinmazwi.me/engineer/portfolio</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.elvinmazwi.me/engineer/journey</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.elvinmazwi.me/developer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -31,14 +41,14 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.elvinmazwi.me/creative/blog</loc>
+    <loc>https://www.elvinmazwi.me/creative/visual-designs</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.elvinmazwi.me/creative/journey</loc>
+    <loc>https://www.elvinmazwi.me/blog</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.elvinmazwi.me/projects</loc>
@@ -49,6 +59,21 @@
     <loc>https://www.elvinmazwi.me/codecircle/portfolio</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.elvinmazwi.me/codecircle/journey</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.elvinmazwi.me/biz/portfolio</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.elvinmazwi.me/biz/journey</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://www.elvinmazwi.me/technopreneur</loc>
