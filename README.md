@@ -200,6 +200,21 @@ npm run dev:api
 - Express API is served as a Vercel function via `api/[...route].ts`.
 - Content manifests are generated at build time into `server/generated/content` so API content endpoints work in serverless mode.
 
+If this project was previously configured as a client-only app on Vercel, update Project Settings:
+
+- `Root Directory`: set to repository root (`.`), not `client`
+- `Framework Preset`: `Other` (or leave unset and allow `vercel.json` to drive build behavior)
+- `Build Command`: clear any override (or set to `npm run vercel:build`)
+- `Output Directory`: clear any override (or set to `client/dist`)
+- `Install Command`: clear any override (or set to `npm install && npm run build:content-manifests`)
+- `Node.js Version`: use `20.x`+
+- Save settings, then trigger a new deployment
+
+Important:
+
+- This repository now uses only the root `vercel.json`.
+- Do not keep a second `vercel.json` in `client/`.
+
 Build flow used on Vercel:
 
 ```bash
