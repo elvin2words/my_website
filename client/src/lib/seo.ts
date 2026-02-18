@@ -199,6 +199,13 @@ const PAGE_SEO: Record<string, Omit<SeoConfig, "path">> = {
     type: "website",
     image: DEFAULT_OG_IMAGE,
   },
+  "/data-handling": {
+    title: "Data Handling | Elvin Mazwimairi",
+    description: "Data handling practices for the Elvin Mazwimairi portfolio website.",
+    keywords: `${DEFAULT_KEYWORDS}, Data Handling, Data Protection`,
+    type: "website",
+    image: DEFAULT_OG_IMAGE,
+  },
   "/admin": {
     title: "Admin | Elvin Mazwimairi Portfolio",
     description: "Administration interface.",

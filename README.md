@@ -157,8 +157,46 @@ Added:
 
 - `Privacy Policy` page
 - `Terms of Service` page
+- `Data Handling` page
 
 Footer links now route to those pages.
+
+## SEO + Indexing Setup
+
+The site includes:
+
+- `client/public/robots.txt`
+- `client/public/sitemap.xml`
+- route-level SEO tags through `client/src/components/seo/RouteSeo.tsx`
+- env-driven verification meta tags for Google and Bing via `client/src/components/seo/RouteSeo.tsx`
+- IndexNow API endpoints:
+  - `GET /api/indexnow/key`
+  - `POST /api/indexnow/submit`
+
+Set these environment variables in local `.env` and in Vercel:
+
+```bash
+VITE_GOOGLE_SITE_VERIFICATION="google-verification-token"
+VITE_BING_SITE_VERIFICATION="bing-verification-token"
+PUBLIC_SITE_URL="https://www.elvinmazwi.me"
+INDEXNOW_KEY="your-indexnow-key"
+INDEXNOW_KEY_PATH="/api/indexnow/key" # optional
+INDEXNOW_ENDPOINTS="https://api.indexnow.org/indexnow,https://www.bing.com/indexnow" # optional
+```
+
+Example IndexNow submission:
+
+```bash
+curl -X POST https://www.elvinmazwi.me/api/indexnow/submit \
+  -H "Content-Type: application/json" \
+  -d "{\"urls\":[\"https://www.elvinmazwi.me/\",\"https://www.elvinmazwi.me/projects\"]}"
+```
+
+After deploy, complete account-side steps:
+
+- verify site in Google Search Console
+- verify site in Bing Webmaster Tools
+- submit `https://www.elvinmazwi.me/sitemap.xml` in both consoles
 
 ## Scripts
 

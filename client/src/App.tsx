@@ -37,6 +37,7 @@ import VisualDesignsPage from "@/pages/VisualDesigns";
 
 import PrivacyPolicyPage from "@/pages/PrivacyPolicy";
 import TermsOfServicePage from "@/pages/TermsOfService";
+import DataHandlingPage from "@/pages/DataHandling";
 
 import NotFound from "@/pages/not-found";
 
@@ -124,6 +125,7 @@ const Router = React.memo(() => (
 
         <Route path="/privacy-policy" component={PrivacyPolicyPage} />
         <Route path="/terms-of-service" component={TermsOfServicePage} />
+        <Route path="/data-handling" component={DataHandlingPage} />
 
         <Route path="/engineer" component={Engineer} />
         <Route path="/developer" component={Developer} />

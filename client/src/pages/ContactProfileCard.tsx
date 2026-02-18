@@ -215,7 +215,7 @@ export default function ContactProfilePage() {
               </Button>
             </div>
 
-            <section className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
+            <section className="space-y-6">
               <motion.div
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}

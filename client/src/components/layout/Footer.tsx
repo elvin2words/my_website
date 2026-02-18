@@ -138,6 +138,10 @@ const Footer: React.FC = () => {
                 Terms of Service
               </Link> 
 
+              <Link href="/data-handling" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-white text-opacity-50 text-sm hover:text-opacity-70 transition">
+                Data Handling
+              </Link>
+
               <Link
                   href="#"
                   onClick={(e) => {

@@ -15,6 +15,8 @@ const RouteSeo: React.FC = () => {
   const seo = useMemo(() => getSeoConfig(location), [location]);
   const canonicalUrl = toAbsoluteUrl(seo.path);
   const imageUrl = toAbsoluteUrl(seo.image || DEFAULT_OG_IMAGE);
+  const googleSiteVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION?.trim();
+  const bingSiteVerification = import.meta.env.VITE_BING_SITE_VERIFICATION?.trim();
 
   const robots = seo.noindex
     ? "noindex,nofollow,noarchive"
@@ -67,6 +69,10 @@ const RouteSeo: React.FC = () => {
       <meta name="author" content="Elvin Mazwimairi" />
       <meta name="robots" content={robots} />
       <link rel="canonical" href={canonicalUrl} />
+      {googleSiteVerification ? (
+        <meta name="google-site-verification" content={googleSiteVerification} />
+      ) : null}
+      {bingSiteVerification ? <meta name="msvalidate.01" content={bingSiteVerification} /> : null}
 
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:locale" content="en_US" />

@@ -51,7 +51,18 @@ const PrivacyPolicyPage: React.FC = () => {
                 </section>
 
                 <section>
-                  <h2 className="font-semibold text-white mb-2">3. Cookies and Analytics</h2>
+                  <h2 className="font-semibold text-white mb-2">3. Data Handling Overview</h2>
+                  <p>
+                    Operational handling details are documented on the
+                    <Link href="/data-handling" className="ml-1 text-accent2 hover:underline">
+                      Data Handling page
+                    </Link>
+                    .
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="font-semibold text-white mb-2">4. Cookies and Analytics</h2>
                   <p>
                     Basic browser storage and similar technologies may be used for functionality like
                     theme preference and performance insights.
@@ -59,7 +70,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 </section>
 
                 <section>
-                  <h2 className="font-semibold text-white mb-2">4. Third-Party Links</h2>
+                  <h2 className="font-semibold text-white mb-2">5. Third-Party Links</h2>
                   <p>
                     External links (for example social platforms) are provided for convenience. Their
                     privacy practices are governed by their own policies.
@@ -67,7 +78,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 </section>
 
                 <section>
-                  <h2 className="font-semibold text-white mb-2">5. Data Retention</h2>
+                  <h2 className="font-semibold text-white mb-2">6. Data Retention</h2>
                   <p>
                     Contact submissions are retained only as needed for communication and record
                     purposes, and are not sold.
@@ -75,7 +86,25 @@ const PrivacyPolicyPage: React.FC = () => {
                 </section>
 
                 <section>
-                  <h2 className="font-semibold text-white mb-2">6. Contact</h2>
+                  <h2 className="font-semibold text-white mb-2">7. GDPR and Regional Privacy Rights</h2>
+                  <p>
+                    If you are located in regions with data protection laws (including the EEA, UK, or
+                    similar jurisdictions), you may request access, rectification, deletion, objection,
+                    restriction, or portability for personal data submitted through this site.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="font-semibold text-white mb-2">8. Legal Basis and Transfers</h2>
+                  <p>
+                    Processing is based on legitimate interest and consent where applicable. Data may be
+                    processed through service providers operating in different jurisdictions with
+                    reasonable safeguards.
+                  </p>
+                </section>
+
+                <section>
+                  <h2 className="font-semibold text-white mb-2">9. Contact</h2>
                   <p>
                     For privacy-related requests, use the contact section on this website or email:
                     <a href="mailto:elvinmazwimairi@gmail.com" className="ml-1 text-accent2 hover:underline">

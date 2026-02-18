@@ -1686,6 +1686,123 @@ function setNoStoreCache(res: Response) {
   res.set("Cache-Control", "no-store");
 }
 
+const INDEXNOW_DEFAULT_SITE_URL = "https://www.elvinmazwi.me";
+const INDEXNOW_DEFAULT_KEY_PATH = "/api/indexnow/key";
+const INDEXNOW_DEFAULT_ENDPOINTS = ["https://api.indexnow.org/indexnow"];
+const INDEXNOW_MAX_URLS = 10000;
+
+function parseHttpUrl(value: string) {
+  try {
+    const parsed = new URL(value);
+    if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+      return null;
+    }
+    parsed.hash = "";
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function getIndexNowSiteUrl() {
+  const configured =
+    process.env.PUBLIC_SITE_URL?.trim() ||
+    process.env.SITE_URL?.trim() ||
+    INDEXNOW_DEFAULT_SITE_URL;
+  return parseHttpUrl(configured) ?? new URL(INDEXNOW_DEFAULT_SITE_URL);
+}
+
+function normalizeIndexNowEndpoints(rawValue: string | undefined) {
+  const defaults = [...INDEXNOW_DEFAULT_ENDPOINTS];
+  if (!rawValue) return defaults;
+
+  const cleaned = rawValue
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  if (cleaned.length === 0) return defaults;
+
+  const normalized = new Set<string>();
+  for (const endpoint of cleaned) {
+    const parsed = parseHttpUrl(endpoint);
+    if (parsed) {
+      normalized.add(parsed.toString());
+    }
+  }
+
+  return normalized.size > 0 ? Array.from(normalized) : defaults;
+}
+
+function buildIndexNowConfig() {
+  const key = process.env.INDEXNOW_KEY?.trim();
+  if (!key) {
+    return null;
+  }
+
+  const siteUrl = getIndexNowSiteUrl();
+  const keyPathRaw = process.env.INDEXNOW_KEY_PATH?.trim() || INDEXNOW_DEFAULT_KEY_PATH;
+  const keyLocation =
+    parseHttpUrl(keyPathRaw)?.toString() ??
+    new URL(keyPathRaw.startsWith("/") ? keyPathRaw : `/${keyPathRaw}`, siteUrl).toString();
+
+  return {
+    key,
+    siteUrl,
+    keyLocation,
+    endpoints: normalizeIndexNowEndpoints(process.env.INDEXNOW_ENDPOINTS),
+  };
+}
+
+function toIndexNowUrl(candidate: string, siteUrl: URL) {
+  const value = candidate.trim();
+  if (!value) return null;
+
+  const parsed = /^https?:\/\//i.test(value)
+    ? parseHttpUrl(value)
+    : parseHttpUrl(new URL(value.startsWith("/") ? value : `/${value}`, siteUrl).toString());
+
+  if (!parsed) return null;
+  if (parsed.host !== siteUrl.host) return null;
+
+  return `${parsed.origin}${parsed.pathname}${parsed.search}`;
+}
+
+function collectIndexNowUrls(payload: unknown, siteUrl: URL) {
+  if (!payload || typeof payload !== "object") {
+    return [] as string[];
+  }
+
+  const body = payload as Record<string, unknown>;
+  const candidates: string[] = [];
+
+  if (typeof body.url === "string") candidates.push(body.url);
+  if (typeof body.path === "string") candidates.push(body.path);
+  if (Array.isArray(body.urls)) {
+    for (const value of body.urls) {
+      if (typeof value === "string") candidates.push(value);
+    }
+  }
+  if (Array.isArray(body.paths)) {
+    for (const value of body.paths) {
+      if (typeof value === "string") candidates.push(value);
+    }
+  }
+
+  const normalized = new Set<string>();
+  for (const candidate of candidates) {
+    const url = toIndexNowUrl(candidate, siteUrl);
+    if (url) {
+      normalized.add(url);
+    }
+    if (normalized.size >= INDEXNOW_MAX_URLS) {
+      break;
+    }
+  }
+
+  return Array.from(normalized);
+}
+
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // For this portfolio site, we're using static file serving
@@ -1695,6 +1812,82 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get('/api/health', (_req, res) => {
     setNoStoreCache(res);
     res.status(200).json({ status: 'ok' });
+  });
+
+  app.get("/api/indexnow/key", (_req, res) => {
+    setNoStoreCache(res);
+    const indexNow = buildIndexNowConfig();
+    if (!indexNow) {
+      res.status(404).type("text/plain").send("IndexNow key is not configured.");
+      return;
+    }
+
+    res.type("text/plain").send(indexNow.key);
+  });
+
+  app.post("/api/indexnow/submit", async (req, res) => {
+    setNoStoreCache(res);
+    const indexNow = buildIndexNowConfig();
+    if (!indexNow) {
+      res.status(503).json({ message: "INDEXNOW_KEY is not configured." });
+      return;
+    }
+
+    const urls = collectIndexNowUrls(req.body, indexNow.siteUrl);
+    if (urls.length === 0) {
+      res.status(400).json({
+        message: "Provide URL values in one of: body.url, body.urls, body.path, body.paths.",
+      });
+      return;
+    }
+
+    const payload = {
+      host: indexNow.siteUrl.host,
+      key: indexNow.key,
+      keyLocation: indexNow.keyLocation,
+      urlList: urls,
+    };
+
+    const endpointResults = await Promise.all(
+      indexNow.endpoints.map(async (endpoint) => {
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          const responseText = await response.text();
+
+          return {
+            endpoint,
+            ok: response.ok,
+            status: response.status,
+            response: responseText.slice(0, 300),
+          };
+        } catch (error) {
+          return {
+            endpoint,
+            ok: false,
+            status: 0,
+            response: error instanceof Error ? error.message : "Request failed",
+          };
+        }
+      }),
+    );
+
+    const successCount = endpointResults.filter((result) => result.ok).length;
+    const failedCount = endpointResults.length - successCount;
+
+    res.status(successCount > 0 ? 200 : 502).json({
+      submittedUrls: urls.length,
+      successCount,
+      failedCount,
+      keyLocation: indexNow.keyLocation,
+      endpoints: endpointResults,
+    });
   });
 
   // Content management endpoints
