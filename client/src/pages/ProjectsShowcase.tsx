@@ -97,6 +97,12 @@ function pickVisual(visuals: string[], index: number) {
   return visuals[index % visuals.length];
 }
 
+function getOutcomeStatus(index: number): ShowcaseProject["outcome"]["status"] {
+  if (index % 3 === 0) return "implemented";
+  if (index % 3 === 1) return "in-progress";
+  return "concept";
+}
+
 const showcaseProjects: ShowcaseProject[] = [
   ...engineerProjects.map((project, index) => ({
     id: `engineering-${index + 1}`,
@@ -125,7 +131,7 @@ const showcaseProjects: ShowcaseProject[] = [
       "Engineering recommendation package",
     ],
     outcome: {
-      status: index % 3 === 0 ? "implemented" : index % 3 === 1 ? "in-progress" : "concept",
+      status: getOutcomeStatus(index),
       note: "Design direction validated with simulation-led reasoning and measurable performance indicators.",
     },
     sourceHref: "/engineer",
@@ -153,7 +159,7 @@ const showcaseProjects: ShowcaseProject[] = [
     stack: project.tech.slice(0, 6),
     architecture: project.architecture,
     outcome: {
-      status: index % 3 === 0 ? "implemented" : index % 3 === 1 ? "in-progress" : "concept",
+      status: getOutcomeStatus(index),
       note: "Incremental delivery model balancing user experience, system resilience, and operational visibility.",
     },
     sourceHref: "/developer",

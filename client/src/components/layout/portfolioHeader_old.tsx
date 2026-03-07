@@ -2,38 +2,18 @@
 
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Link, useLocation } from "wouter";
-import { ArrowLeft, ChevronDown, Sun, Moon, Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
-import MobileMenu from './MobileMenu';
-import { useTheme  } from '@/hooks/use-theme';
-
-
-interface StickyHeaderProps {
-  scrollY: number;
-  activeSection: string;
-  scrollToSection: (sectionId: string) => void;
-}
+import { useLocation } from "wouter";
+import { ArrowLeft, Menu, X } from "lucide-react";
 
 export default function PortfolioNav() {
-// const PortfolioNav: React.FC<StickyHeaderProps> = ({ scrollY, activeSection, scrollToSection }) => {
-//   const [shadowOpacity, setShadowOpacity] = useState(0);
-
   const [scrollY, setScrollY] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [location, navigate] = useLocation();
-  const { theme, toggleTheme } = useTheme(); 
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
-  
-  // Track last visited page to enable "Back"
-  const lastPageRef = useRef<string | null>(null);
+  const [, navigate] = useLocation();
 
   // ---- Scroll Tracking ----
   useEffect(() => {
@@ -68,6 +48,13 @@ export default function PortfolioNav() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -78,13 +65,13 @@ export default function PortfolioNav() {
   };
 
   const handleBackClick = () => {
-    if (lastPageRef.current) navigate(lastPageRef.current);
-    // if (window) window.history.back();
-    else navigate('/');
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      navigate("/");
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <motion.nav
@@ -185,39 +172,56 @@ export default function PortfolioNav() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-background/50 backdrop-blur-md md:hidden"
-          >
+          <div className="fixed inset-0 z-40 md:hidden">
             <motion.div
-              initial={{ y: 40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 40, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="h-full w-full flex flex-col items-center justify-center px-4 gap-8"
+              key="mobile-menu-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/45 backdrop-blur-sm"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <motion.aside
+              key="mobile-menu-panel"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="absolute right-0 top-0 flex h-full w-[86%] max-w-xs flex-col border-l border-border bg-primary/95 p-4 shadow-[0_16px_48px_rgba(2,6,23,0.35)]"
             >
-              {["about", "projects", "skills", "contact"].map((sec) => (
-                <button
-                  key={sec}
-                  onClick={() => {
-                    scrollToSection(sec);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`text-2xl font-semibold transition-all duration-300 text-center capitalize ${
-                    activeSection === sec
-                      ? "text-primary font-bold"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  data-testid={`mobile-${sec}`}
+              <div className="mb-6 flex items-center justify-between border-b border-border pb-3">
+                <p className="text-xs uppercase tracking-[0.12em] text-foreground/65">CodeCircle Menu</p>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Close menu"
                 >
-                  {sec}
-                </button>
-              ))}
-            </motion.div>
-          </motion.div>
+                  <X className="h-5 w-5" />
+                </Button>
+              </div>
+
+              <div className="space-y-2">
+                {["about", "projects", "skills", "contact"].map((sec) => (
+                  <button
+                    key={sec}
+                    onClick={() => {
+                      scrollToSection(sec);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`w-full rounded-lg border px-3 py-2 text-left text-sm capitalize transition ${
+                      activeSection === sec
+                        ? "border-transparent bg-card text-foreground"
+                        : "border-border bg-background/45 text-foreground/75 hover:bg-background/70"
+                    }`}
+                    data-testid={`mobile-${sec}`}
+                  >
+                    {sec}
+                  </button>
+                ))}
+              </div>
+            </motion.aside>
+          </div>
         )}
       </AnimatePresence>
 

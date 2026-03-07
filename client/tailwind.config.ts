@@ -1,9 +1,20 @@
 import type { Config } from "tailwindcss";
 
+const contentGlobs = [
+  "./index.html",
+  "./src/**/*.{js,jsx,ts,tsx}",
+  "!./src/**/_archive/**",
+  "!./src/**/*_old.*",
+  "!./src/**/*_Old.*",
+  "!./src/**/*_guide.*",
+  "!./src/**/*.bak",
+  "!./src/pages/BizCirclePortfolio_Desigs.ts",
+  "!./src/pages/EngCirclePortfolio_Concepts.ts",
+];
+
 export default {
   darkMode: ["class"],
-  // content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
-  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  content: contentGlobs,
   theme: {
     extend: {
       borderRadius: {

@@ -375,6 +375,7 @@ export default function EngCirclePortfolio() {
   const [activeSectionId, setActiveSectionId] = useState("");
   const [preview, setPreview] = useState<Preview | null>(null);
   const [expandedView, setExpandedView] = useState<ExpandedView | null>(null);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   const domainOptions = useMemo(
     () => Array.from(new Set(engineeringCaseStudies.flatMap((study) => study.domainTags))).sort(),
@@ -490,6 +491,7 @@ export default function EngCirclePortfolio() {
     const next = filtered[activeIndex + delta];
     if (!next) return;
     setActiveId(next.id);
+    setMobileSidebarOpen(false);
     mainRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -535,7 +537,7 @@ export default function EngCirclePortfolio() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between gap-2 md:justify-end">
+              <div className="flex flex-wrap items-center justify-between gap-2 md:justify-end">
                 <Link
                   href="/engineer/journey"
                   onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -572,13 +574,25 @@ export default function EngCirclePortfolio() {
                   Next
                   <ChevronRight className="h-4 w-4" />
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setMobileSidebarOpen((prev) => !prev)}
+                  className="inline-flex h-9 items-center gap-1 rounded-xl border border-border px-3 text-xs text-foreground/82 transition hover:bg-background/60 lg:hidden"
+                >
+                  {mobileSidebarOpen ? "Hide Filters" : "Filters and Navigation"}
+                </button>
               </div>
             </div>
           </div>
 
           <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-6 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[340px_minmax(0,1fr)]">
-              <aside className="lg:sticky lg:top-[9.5rem] lg:h-[calc(100vh-11rem)] lg:overflow-hidden">
+              <aside
+                className={cx(
+                  "order-2 lg:order-1 lg:sticky lg:top-[9.5rem] lg:h-[calc(100vh-11rem)] lg:overflow-hidden",
+                  mobileSidebarOpen ? "block" : "hidden lg:block",
+                )}
+              >
                 <div className="space-y-4 lg:h-full lg:overflow-y-auto lg:pr-1">
                   <div className="rounded-2xl border border-border bg-card/80 p-4 backdrop-blur-sm">
                     <div className="flex items-center gap-2 rounded-xl border border-border bg-background/40 px-3 py-2">
@@ -660,6 +674,7 @@ export default function EngCirclePortfolio() {
                           type="button"
                           onClick={() => {
                             setActiveId(study.id);
+                            setMobileSidebarOpen(false);
                             mainRef.current?.scrollTo({ top: 0, behavior: "smooth" });
                           }}
                           className={cx(
@@ -708,6 +723,7 @@ export default function EngCirclePortfolio() {
                                 behavior: "smooth",
                                 block: "start",
                               });
+                              setMobileSidebarOpen(false);
                             }}
                             className={cx(
                               "flex items-center justify-between rounded-lg border px-2.5 py-2 text-left text-xs transition",
@@ -728,7 +744,7 @@ export default function EngCirclePortfolio() {
               </aside>
               <main
                 ref={mainRef}
-                className="space-y-5 lg:h-[calc(100vh-11rem)] lg:overflow-y-auto lg:pr-1"
+                className="order-1 space-y-5 lg:order-2 lg:h-[calc(100vh-11rem)] lg:overflow-y-auto lg:pr-1"
               >
                 {!active && (
                   <div className="rounded-2xl border border-border bg-card/80 p-6 text-sm text-foreground/70">

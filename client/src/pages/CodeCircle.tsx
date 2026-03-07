@@ -155,7 +155,7 @@ export default function CodeCircle() {
       <div className="min-h-screen">
         <PortfolioNav />
 
-        <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
+        <section id="hero" className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-20 sm:px-6">
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {Array.from({ length: 20 }).map((_, i) => (
               <div
@@ -172,18 +172,18 @@ export default function CodeCircle() {
           </div>
           {/* Title */}
           {/* <div className="max-w-3xl w-full text-center"> */}
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <h1 className="mb-6 text-center text-3xl font-bold sm:text-4xl md:text-6xl">
             Welcome to my <span className="text-accent2">CodeCircle</span>
           </h1>
 
           {/* Typing Effect */}
-          <p className="text-2xl md:text-3xl h-10 font-mono text-accent2 mb-8">
+          <p className="mb-8 h-10 text-center font-mono text-xl text-accent2 sm:text-2xl md:text-3xl">
             {displayedText}
             <span className="animate-pulse">|</span>
           </p>
 
           {/* Description */}
-          <p className="text-gray-300 text-lg mb-10 max-w-3xl leading-relaxed">
+          <p className="mb-10 max-w-3xl text-center text-base leading-relaxed text-gray-300 sm:text-lg">
             A space for systems development and technological creativity. Trying to leverage
             creative engineering and emerging technologies to drive impactful, sustainable 
             innovation in an evolving technical landscape. Explore my dev stack, processes, 
@@ -191,12 +191,12 @@ export default function CodeCircle() {
           </p>
 
           {/* CTA Button */}
-          <div className="flex flex-wrap gap-4 justify-center ">
+          <div className="flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-4">
             <Button 
               size="lg" 
               onClick={() => scrollToSection("projects")}
               data-testid="button-view-work"
-              className="hover:bg-accent2/80 transition px-6 py-3 rounded-lg"
+              className="w-full rounded-lg px-6 py-3 transition hover:bg-accent2/80 sm:w-auto"
             >
               {/* View My Work */}
               Dive Into Work
@@ -207,6 +207,7 @@ export default function CodeCircle() {
               size="lg" 
               // variant="outline"
               onClick={() => scrollToSection("contact")}
+              className="w-full sm:w-auto"
               data-testid="button-et-in-touch"
             >
               Get In Touch
@@ -346,11 +347,11 @@ export default function CodeCircle() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid gap-6 md:grid-cols-2 lg:gap-8 xl:grid-cols-3">
               {filteredProjects.map((project, index) => (
                 <div 
                   key={project.id}
-                  className="group relative h-full cursor-pointer transform transition-all duration-100 hover:scale-105"
+                  className="group relative h-full cursor-pointer transform transition-all duration-100 md:hover:scale-105"
                   style={{ animationDelay: `${index * 10}ms` }}
                 >
                   <Card 
@@ -371,7 +372,7 @@ export default function CodeCircle() {
                     {/* Image Container */}
                     <div className="relative overflow-hidden aspect-video bg-slate-700">
                       <img 
-                        // src={project.image} 
+                        src={project.image || "/default.jpg"}
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-100 group-hover:scale-125 group-hover:rotate-1"
                       />
@@ -379,18 +380,17 @@ export default function CodeCircle() {
                       
                       {/* Overlay Actions */}
                       {/* Exxpose these buttons such that each can be cicked */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10">
+                      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-black/30 opacity-100 transition-all duration-300 md:bg-transparent md:opacity-0 md:group-hover:opacity-100">
                         {project.liveDemo && (
-                          <Button 
-                            // onClick={() => {
-                            //   window.scrollTo(0, 0);
-                            //   setLocation(`/codecircle/portfolio/project/${project.id}`);
-                            // }}
-                            // Make the onclick navigate to foreign link
-                            size="sm" data-testid={`button-demo-${project.id}`} className="bg-primary/95 backdrop-blur"
+                          <a
+                            href={project.liveDemo}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            Live Demo
-                          </Button>
+                            <Button size="sm" data-testid={`button-demo-${project.id}`} className="bg-primary/95 backdrop-blur">
+                              Live Demo
+                            </Button>
+                          </a>
                         )}
                         <Button 
                           onClick={() => {

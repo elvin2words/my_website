@@ -2176,9 +2176,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const contactSubmission = await contactStorage.createContactSubmission(validatedData);
       
-      await sendContactEmail(validatedData);
+      const emailSent = await sendContactEmail(validatedData);
       
-      res.json({ success: true, data: contactSubmission });
+      res.json({ success: true, data: contactSubmission, emailSent });
     } catch (error: any) {
       if (error.name === "ZodError") {
         res.status(400).json({ 

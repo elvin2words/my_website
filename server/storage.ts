@@ -1,7 +1,7 @@
-import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import {
   users,
+  contactSubmissions,
   type User,
   type InsertUser,
   type ContactSubmission,
@@ -21,18 +21,48 @@ export interface IContactStorage {
   getAllContactSubmissions(): Promise<ContactSubmission[]>;
 }
 
+type DatabaseModule = typeof import("./db");
+
+let dbModulePromise: Promise<DatabaseModule> | null = null;
+let hasWarnedAboutContactFallback = false;
+
+function hasDatabaseUrl() {
+  return typeof process.env.DATABASE_URL === "string" && process.env.DATABASE_URL.trim().length > 0;
+}
+
+async function getDatabaseModule(): Promise<DatabaseModule> {
+  if (!hasDatabaseUrl()) {
+    throw new Error("DATABASE_URL must be set. Did you forget to provision a database?");
+  }
+
+  dbModulePromise ??= import("./db");
+  return dbModulePromise;
+}
+
+function warnAboutContactFallback(reason: string) {
+  if (hasWarnedAboutContactFallback) {
+    return;
+  }
+
+  console.warn(`Contact storage falling back to in-memory mode: ${reason}`);
+  hasWarnedAboutContactFallback = true;
+}
+
 export class DatabaseUserStorage implements IUserStorage {
   async getUser(id: number): Promise<User | undefined> {
+    const { db } = await getDatabaseModule();
     const [user] = await db.select().from(users).where(eq(users.id, id));
     return user ?? undefined;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
+    const { db } = await getDatabaseModule();
     const [user] = await db.select().from(users).where(eq(users.username, username));
     return user ?? undefined;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
+    const { db } = await getDatabaseModule();
     const [user] = await db
       .insert(users)
       .values(insertUser)
@@ -41,6 +71,25 @@ export class DatabaseUserStorage implements IUserStorage {
   }
 }
 
+export class DatabaseContactStorage implements IContactStorage {
+  async createContactSubmission(insertContact: InsertContact): Promise<ContactSubmission> {
+    const { db } = await getDatabaseModule();
+    const [submission] = await db
+      .insert(contactSubmissions)
+      .values(insertContact)
+      .returning();
+
+    return submission;
+  }
+
+  async getAllContactSubmissions(): Promise<ContactSubmission[]> {
+    const { db } = await getDatabaseModule();
+    return db
+      .select()
+      .from(contactSubmissions)
+      .orderBy(desc(contactSubmissions.submittedAt));
+  }
+}
 
 export class MemoryContactStorage implements IContactStorage {
   private contactSubmissions: Map<string, ContactSubmission>;
@@ -65,5 +114,40 @@ export class MemoryContactStorage implements IContactStorage {
   }
 }
 
+class ResilientContactStorage implements IContactStorage {
+  private readonly databaseStorage = new DatabaseContactStorage();
+  private readonly memoryStorage = new MemoryContactStorage();
+
+  async createContactSubmission(contact: InsertContact): Promise<ContactSubmission> {
+    if (!hasDatabaseUrl()) {
+      warnAboutContactFallback("DATABASE_URL is not configured.");
+      return this.memoryStorage.createContactSubmission(contact);
+    }
+
+    try {
+      return await this.databaseStorage.createContactSubmission(contact);
+    } catch (error) {
+      const reason = error instanceof Error ? error.message : "Unknown database error.";
+      warnAboutContactFallback(reason);
+      return this.memoryStorage.createContactSubmission(contact);
+    }
+  }
+
+  async getAllContactSubmissions(): Promise<ContactSubmission[]> {
+    if (!hasDatabaseUrl()) {
+      warnAboutContactFallback("DATABASE_URL is not configured.");
+      return this.memoryStorage.getAllContactSubmissions();
+    }
+
+    try {
+      return await this.databaseStorage.getAllContactSubmissions();
+    } catch (error) {
+      const reason = error instanceof Error ? error.message : "Unknown database error.";
+      warnAboutContactFallback(reason);
+      return this.memoryStorage.getAllContactSubmissions();
+    }
+  }
+}
+
 export const userStorage: IUserStorage = new DatabaseUserStorage();
-export const contactStorage: IContactStorage = new MemoryContactStorage();
+export const contactStorage: IContactStorage = new ResilientContactStorage();

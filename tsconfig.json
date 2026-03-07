@@ -1,6 +1,18 @@
 {
   "include": ["api/**/*", "client/src/**/*", "shared/**/*", "server/**/*", "misc.js"],
-  "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "**/*.test.ts",
+    "client/src/**/_archive/**",
+    "client/src/**/*_old.*",
+    "client/src/**/*_Old.*",
+    "client/src/**/*_guide.*",
+    "client/src/**/*.bak",
+    "client/src/pages/BizCirclePortfolio_Desigs.ts",
+    "client/src/pages/EngCirclePortfolio_Concepts.ts"
+  ],
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo",
