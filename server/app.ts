@@ -21,6 +21,8 @@ export function log(message: string, source = "express") {
 }
 
 export const app = express();
+let initializedServer: Server | null = null;
+let initializationPromise: Promise<Server> | null = null;
 
 declare module 'http' {
   interface IncomingMessage {
@@ -64,18 +66,39 @@ app.use((req, res, next) => {
   next();
 });
 
-export default async function runApp(
-  setup: (app: Express, server: Server) => Promise<void>,
-) {
-  const server = await registerRoutes(app);
-
+function attachErrorHandler() {
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
 
-    res.status(status).json({ message });
-    throw err;
+    if (!res.headersSent) {
+      res.status(status).json({ message });
+    }
+    console.error(err);
   });
+}
+
+export async function ensureAppReady() {
+  if (initializedServer) {
+    return initializedServer;
+  }
+
+  if (!initializationPromise) {
+    initializationPromise = (async () => {
+      const server = await registerRoutes(app);
+      attachErrorHandler();
+      initializedServer = server;
+      return server;
+    })();
+  }
+
+  return initializationPromise;
+}
+
+export default async function runApp(
+  setup: (app: Express, server: Server) => Promise<void>,
+) {
+  const server = await ensureAppReady();
 
   // importantly run the final setup after setting up all the other routes so
   // the catch-all route doesn't interfere with the other routes

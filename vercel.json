@@ -1,7 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "vite",
-  "installCommand": "npm ci && npm run build:content-manifests",
+  "installCommand": "npm ci",
   "buildCommand": "npm run vercel:build",
   "outputDirectory": "client/dist",
   "functions": {
@@ -100,7 +99,7 @@
   "rewrites": [
     {
       "source": "/((?!api/|assets/|.*\\..*).*)",
-      "destination": "/"
+      "destination": "/index.html"
     }
   ]
 }

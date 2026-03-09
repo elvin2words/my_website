@@ -241,10 +241,10 @@ npm run dev:api
 If this project was previously configured as a client-only app on Vercel, update Project Settings:
 
 - `Root Directory`: set to repository root (`.`), not `client`
-- `Framework Preset`: `Other` (or leave unset and allow `vercel.json` to drive build behavior)
+- `Framework Preset`: `Other` or clear any old `Vite` preset override
 - `Build Command`: clear any override (or set to `npm run vercel:build`)
 - `Output Directory`: clear any override (or set to `client/dist`)
-- `Install Command`: clear any override (or set to `npm install && npm run build:content-manifests`)
+- `Install Command`: clear any override (or set to `npm ci`)
 - `Node.js Version`: use `20.x`+
 - Save settings, then trigger a new deployment
 
@@ -252,6 +252,7 @@ Important:
 
 - This repository now uses only the root `vercel.json`.
 - Do not keep a second `vercel.json` in `client/`.
+- Static assets are built by Vite to `client/dist`, while API traffic is served separately by `api/[...route].ts`.
 
 Build flow used on Vercel:
 
