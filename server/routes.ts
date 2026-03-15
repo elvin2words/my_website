@@ -3,6 +3,9 @@ import { createServer, type Server } from "http";
 import fs from "node:fs";
 import fsp from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "url";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 import { contactStorage } from "./storage";
 import { insertContactSchema, type Project } from "../shared/schema";
 import { projects as manualProjects } from "../shared/projects";
@@ -114,8 +117,8 @@ const SHOULD_PREFER_PREBUILT_MANIFESTS =
 
 function getPrebuiltManifestPathCandidates(fileName: string) {
   return [
-    path.resolve(import.meta.dirname, "generated", "content", fileName),
-    path.resolve(import.meta.dirname, "..", "server", "generated", "content", fileName),
+    path.resolve(__dirname, "generated", "content", fileName),
+    path.resolve(__dirname, "..", "server", "generated", "content", fileName),
     path.resolve(process.cwd(), "server", "generated", "content", fileName),
     path.resolve(process.cwd(), "generated", "content", fileName),
   ];
@@ -164,8 +167,8 @@ function toPublicUrl(relativePath: string) {
 
 function resolvePublicRoot() {
   const candidates = [
-    path.resolve(import.meta.dirname, "..", "client", "public"),
-    path.resolve(import.meta.dirname, "public"),
+    path.resolve(__dirname, "..", "client", "public"),
+    path.resolve(__dirname, "public"),
   ];
 
   const existing = candidates.find((candidate) => fs.existsSync(candidate));
