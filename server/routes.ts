@@ -1808,13 +1808,41 @@ function collectIndexNowUrls(payload: unknown, siteUrl: URL) {
 
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // For this portfolio site, we're using static file serving
-  // No special API routes are required
-  
-  // Health check endpoint
+  // ── Startup diagnostics ────────────────────────────────────────────────────
+  // Log presence/absence of every env var the server depends on so that
+  // missing config is immediately visible in Vercel Function Logs.
+  const env = {
+    DATABASE_URL: !!process.env.DATABASE_URL,
+    SMTP_HOST: !!process.env.SMTP_HOST,
+    SMTP_USER: !!process.env.SMTP_USER,
+    SMTP_PASS: !!process.env.SMTP_PASS,
+    EMAIL_FROM: !!process.env.EMAIL_FROM,
+    EMAIL_TO: !!process.env.EMAIL_TO,
+    GITHUB_TOKEN: !!process.env.GITHUB_TOKEN,
+    GITHUB_USERNAME: !!process.env.GITHUB_USERNAME,
+    INDEXNOW_KEY: !!process.env.INDEXNOW_KEY,
+    EDDY_BACKEND_URL: !!process.env.EDDY_BACKEND_URL,
+    VERCEL: process.env.VERCEL,
+    NODE_ENV: process.env.NODE_ENV,
+  };
+  console.log("[routes] env-check:", JSON.stringify(env));
+
+  if (!env.DATABASE_URL) {
+    console.warn("[routes] DATABASE_URL not set — contact form will use in-memory storage (submissions lost on restart)");
+  }
+  if (!env.SMTP_HOST || !env.SMTP_USER || !env.SMTP_PASS) {
+    console.warn("[routes] SMTP credentials not set — contact form emails will not be sent");
+  }
+  if (!env.GITHUB_TOKEN) {
+    console.warn("[routes] GITHUB_TOKEN not set — only public GitHub repos will be visible");
+  }
+  // ──────────────────────────────────────────────────────────────────────────
+
+  // Health check — registered first so it is reachable even if later
+  // route registrations were to throw.
   app.get('/api/health', (_req, res) => {
     setNoStoreCache(res);
-    res.status(200).json({ status: 'ok' });
+    res.status(200).json({ status: 'ok', env });
   });
 
   app.get("/api/indexnow/key", (_req, res) => {

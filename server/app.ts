@@ -85,10 +85,20 @@ export async function ensureAppReady() {
 
   if (!initializationPromise) {
     initializationPromise = (async () => {
-      const server = await registerRoutes(app);
-      attachErrorHandler();
-      initializedServer = server;
-      return server;
+      console.log("[app] registerRoutes: starting");
+      try {
+        const server = await registerRoutes(app);
+        attachErrorHandler();
+        initializedServer = server;
+        console.log("[app] registerRoutes: complete");
+        return server;
+      } catch (err) {
+        // Reset so the next request can retry rather than returning the same
+        // rejected promise forever.
+        initializationPromise = null;
+        console.error("[app] registerRoutes: failed —", err);
+        throw err;
+      }
     })();
   }
 
