@@ -25,7 +25,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { SiGithub, SiWhatsapp } from "react-icons/si";
 import { FaLinkedinIn } from "react-icons/fa";
 import BackgroundEffect from "@/components/home/BackgroundEffect";
-
+ 
 
 export default function CodeCircle() {
   const [currentRole, setCurrentRole] = useState(0);

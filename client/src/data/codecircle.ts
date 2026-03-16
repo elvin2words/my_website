@@ -1,5 +1,7 @@
 import { ChevronDown, Mail, Phone, MapPin, Github, Code2, Database, Server, FileCode, GitBranch, Palette, Menu, X, Zap, Layers, Package, Twitter } from "lucide-react";
-import { SiReact, SiPython, SiNodedotjs, SiMongodb, SiPostgresql, SiGit, SiGithub, SiFigma, SiLinkedin, SiWhatsapp } from "react-icons/si";
+import { SiReact, SiPython, SiNodedotjs, SiMongodb, SiPostgresql, SiGit, SiGithub, SiFigma } from "react-icons/si";
+
+import { FaLinkedinIn } from "react-icons/fa";
 
 export const skills = {
   frontend: [
