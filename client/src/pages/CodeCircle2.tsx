@@ -9,7 +9,8 @@ import { projects as fallbackProjects } from "../../../shared/projects";
 import { useToast } from "@/hooks/use-toast";
 import { roles, skills } from "../data/codecircle";
 import PortfolioNav from "@/components/layout/portfolioHeader_old";
-import { SiGithub, SiLinkedin, SiWhatsapp } from "react-icons/si";
+import { SiGithub, SiWhatsapp } from "react-icons/si";
+import { FaLinkedinIn } from "react-icons/fa";
 import BackgroundEffect from "@/components/home/BackgroundEffect";
 import {
   type CodeCircleProjectsResponse,
@@ -307,7 +308,7 @@ export default function CodeCircle() {
                 <CardHeader><CardTitle className="text-lg">Connect With Me</CardTitle><CardDescription className="text-muted-foreground">Follow updates or reach out directly.</CardDescription></CardHeader>
                 <CardContent className="flex flex-wrap gap-3">
                   <a href="https://wa.me/263783074722" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-border bg-background/70 px-3 py-2 text-sm text-foreground" data-testid="link-whatsapp"><SiWhatsapp className="h-4 w-4 text-green-500" />WhatsApp</a>
-                  <a href="https://linkedin.com/in/elvin-mazwimairi" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-border bg-background/70 px-3 py-2 text-sm text-foreground" data-testid="link-linkedin"><SiLinkedin className="h-4 w-4 text-blue-500" />LinkedIn</a>
+                  <a href="https://linkedin.com/in/elvin-mazwimairi" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-border bg-background/70 px-3 py-2 text-sm text-foreground" data-testid="link-linkedin"><FaLinkedinIn className="h-4 w-4 text-blue-500" />LinkedIn</a>
                   <a href="https://twitter.com/young_mazwi" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-border bg-background/70 px-3 py-2 text-sm text-foreground" data-testid="link-twitter"><Twitter className="h-4 w-4 text-sky-500" />Twitter</a>
                   <a href="https://github.com/elvin2words" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-border bg-background/70 px-3 py-2 text-sm text-foreground" data-testid="link-github"><SiGithub className="h-4 w-4" />GitHub</a>
                 </CardContent>
@@ -321,7 +322,7 @@ export default function CodeCircle() {
             <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} <span className="text-foreground font-semibold">Elvin E. Mazwimairi</span>. All rights reserved.</p>
             <div className="flex gap-4">
               <a href="https://github.com/elvin2words" target="_blank" rel="noopener noreferrer" className="h-10 w-10 rounded-full border border-border bg-background/80 text-foreground flex items-center justify-center" data-testid="footer-link-github"><SiGithub className="h-5 w-5" /></a>
-              <a href="https://linkedin.com/in/elvin-mazwimairi" target="_blank" rel="noopener noreferrer" className="h-10 w-10 rounded-full border border-border bg-background/80 text-foreground flex items-center justify-center" data-testid="footer-link-linkedin"><SiLinkedin className="h-5 w-5 text-blue-500" /></a>
+              <a href="https://linkedin.com/in/elvin-mazwimairi" target="_blank" rel="noopener noreferrer" className="h-10 w-10 rounded-full border border-border bg-background/80 text-foreground flex items-center justify-center" data-testid="footer-link-linkedin"><FaLinkedinIn className="h-5 w-5 text-blue-500" /></a>
               <a href="https://twitter.com/elvinmazwi" target="_blank" rel="noopener noreferrer" className="h-10 w-10 rounded-full border border-border bg-background/80 text-foreground flex items-center justify-center" data-testid="footer-link-twitter"><Twitter className="h-5 w-5 text-sky-500" /></a>
               <a href="https://wa.me/263783074722" target="_blank" rel="noopener noreferrer" className="h-10 w-10 rounded-full border border-border bg-background/80 text-foreground flex items-center justify-center" data-testid="footer-link-whatsapp"><SiWhatsapp className="h-5 w-5 text-green-500" /></a>
             </div>

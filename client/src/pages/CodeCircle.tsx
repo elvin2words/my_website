@@ -22,7 +22,8 @@ import {roles, skills} from "../data/codecircle";
 import Header from "@/components/layout/NavHeader_Old";
 import PortfolioNav from "@/components/layout/portfolioHeader_old";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { SiGithub, SiLinkedin, SiWhatsapp } from "react-icons/si";
+import { SiGithub, SiWhatsapp } from "react-icons/si";
+import { FaLinkedinIn } from "react-icons/fa";
 import BackgroundEffect from "@/components/home/BackgroundEffect";
 
 
@@ -785,7 +786,7 @@ export default function CodeCircle() {
                         title="LinkedIn"
                         data-testid="link-linkedin"
                       >
-                        <SiLinkedin className="h-5 w-5" />
+                        <FaLinkedinIn className="h-5 w-5" />
                       </a>
                       <a
                         href="https://twitter.com/young_mazwi"
@@ -873,7 +874,7 @@ export default function CodeCircle() {
                     title="LinkedIn"
                     data-testid="footer-link-linkedin"
                   >
-                    <SiLinkedin className="h-5 w-5" />
+                    <FaLinkedinIn className="h-5 w-5" />
                   </a>
                   <a
                     href="https://twitter.com/elvinmazwi"
