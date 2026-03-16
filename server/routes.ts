@@ -1556,8 +1556,8 @@ async function buildAiSearchDocuments() {
         }),
       );
     }
-  } catch {
-    // Ignore dynamic writing indexing failures and keep static search available.
+  } catch (err) {
+    console.warn("[ai-index] writings indexing failed:", err);
   }
 
   try {
@@ -1579,8 +1579,8 @@ async function buildAiSearchDocuments() {
         }),
       );
     }
-  } catch {
-    // Ignore gallery indexing failures and keep static search available.
+  } catch (err) {
+    console.warn("[ai-index] gallery indexing failed:", err);
   }
 
   try {
@@ -1602,8 +1602,8 @@ async function buildAiSearchDocuments() {
         }),
       );
     }
-  } catch {
-    // Ignore design indexing failures and keep static search available.
+  } catch (err) {
+    console.warn("[ai-index] designs indexing failed:", err);
   }
 
   return dedupeAiDocuments(docs);
@@ -2151,7 +2151,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
           githubPortfolio = filteredRepos.map((repo) => mapGithubRepoToProject(repo, featuredRepos));
         } catch (error) {
-          githubError = error instanceof Error ? error.message : "GitHub sync failed";
+          console.error("[routes] GitHub sync error:", error);
+          githubError = "Failed to sync GitHub repositories";
           if (sourceMode === "github") {
             res.status(502).json({ message: githubError });
             return;

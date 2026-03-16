@@ -4,7 +4,7 @@ import { type Server } from "node:http";
 import { fileURLToPath } from "url";
 
 import express, { type Express } from "express";
-import runApp from "./app_old";
+import runApp from "./app";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 

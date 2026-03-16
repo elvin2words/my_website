@@ -6,8 +6,27 @@ import express, {
   Response,
   NextFunction,
 } from "express";
+import rateLimit from "express-rate-limit";
 
 import { registerRoutes } from "./routes";
+
+// AI endpoints: 30 requests per 15 minutes per IP
+const aiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many AI requests — please try again later." },
+});
+
+// Contact form: 5 submissions per hour per IP
+const contactLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many contact submissions — please try again later." },
+});
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -21,6 +40,11 @@ export function log(message: string, source = "express") {
 }
 
 export const app = express();
+
+// Rate limiters applied before routes are registered.
+app.use("/api/ai/", aiLimiter);
+app.use("/api/contact", contactLimiter);
+
 let initializedServer: Server | null = null;
 let initializationPromise: Promise<Server> | null = null;
 

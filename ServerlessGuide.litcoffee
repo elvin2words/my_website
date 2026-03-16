@@ -1,0 +1,9 @@
+Good catch — this is a server-side routing issue. Let me pull runtime logs and the deployment config simultaneously to diagnose it.Let me go directly to the source — I need your `vercel.json` and `package.json` to see exactly how routing and the server function are configured.The runtime logs API isn't cooperating, but I actually have enough from the build logs and commit history to diagnose this confidently — the pattern is very clear. Let me give you the full breakdown.This is a classic Vite + Express on Vercel architecture problem. The evidence is right there in the commit history — you've made multiple attempts at `vercel.json` rewrites over the past several builds, which tells me the routing config has been the persistent underlying issue all along, not just the `SiLinkedin` fix.
+
+The short version: **Vercel is not a traditional server host.** When Express tries to run as a persistent process and serve static files itself, it conflicts with how Vercel's serverless runtime works. The fix has three parts done in order:
+
+1. **Strip `express.static()` and `app.listen()`** from your server entry — Vercel's CDN handles static files, and Vercel manages the function lifecycle
+2. **Export the Express app** as a module default instead of starting it
+3. **Update `vercel.json`** with the catch-all rewrite so all non-API paths fall back to `index.html` and React Router takes over
+
+Can you share your current `vercel.json` and your server entry file (likely `server/index.ts` or `app.ts`)? If you paste them here I can write you the exact corrected versions ready to drop in — this is the kind of fix where getting the precise syntax right matters a lot.

@@ -16,9 +16,9 @@ export const projects: Project[] = [
     id: "1",
     title: "UtilityOps",
     description:
-      "XXXX",
+      "A versatile corporate website template featuring 9 customisable colour themes, responsive layout, and integrated portfolio and contact sections.",
     fullDescription:
-      "YYY",
+      "UtilityOps is a fully responsive corporate website template built with HTML5, CSS3, Bootstrap, and jQuery. It ships with 9 distinct colour themes, each meeting accessibility contrast standards, switchable at runtime without a page reload. The template includes a portfolio showcase section, smooth UI transitions, and a contact form — making it a ready-to-deploy foundation for business and agency sites.",
     image: "/projects/utilityops.png",
     gallery: [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
