@@ -8,7 +8,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { DragProvider } from "./context/DragContext";
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, Component, ErrorInfo, ReactNode } from 'react';
 import { ArrowUp } from 'lucide-react';
 
 import Home from "@/pages/Home";
@@ -57,6 +57,44 @@ import RouteSeo from "@/components/seo/RouteSeo";
 // import Footer from "@/components/layout/Footer";
 
 
+
+// Error boundary for the Router — catches render errors and shows a usable fallback
+class RouterErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(_: Error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, info: ErrorInfo) {
+    console.error("[ErrorBoundary] Render error:", error, info.componentStack);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-8 text-center">
+          <p className="text-lg font-semibold text-foreground">Something went wrong.</p>
+          <p className="text-sm text-foreground/60">Try refreshing the page.</p>
+          <button
+            type="button"
+            onClick={() => window.location.reload()}
+            className="mt-2 px-4 py-2 rounded-lg bg-accent2 text-white text-sm hover:opacity-90 transition"
+          >
+            Refresh
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 // Smooth scroll to top button
 const ScrollToTop = () => {
@@ -193,10 +231,15 @@ const App = () => {
 
     const beginExit = window.setTimeout(() => setPreloaderExiting(true), visibleMs);
     const hide = window.setTimeout(() => setShowPreloader(false), visibleMs + exitMs);
+    // Hard safety timeout — force-dismiss after 8 s no matter what
+    const hardExit = window.setTimeout(() => setPreloaderExiting(true), 8000);
+    const hardHide = window.setTimeout(() => setShowPreloader(false), 8000 + exitMs);
 
     return () => {
       window.clearTimeout(beginExit);
       window.clearTimeout(hide);
+      window.clearTimeout(hardExit);
+      window.clearTimeout(hardHide);
     };
   }, []);
 
@@ -215,7 +258,9 @@ const App = () => {
             <div className="bg-gradient-to-br from-primary to-secondary min-h-screen text-foreground transition-colors duration-300 overflow-x-hidden">
               {showPreloader && <AppPreloader exiting={preloaderExiting} />}
               <Toaster />
-              <Router />
+              <RouterErrorBoundary>
+                <Router />
+              </RouterErrorBoundary>
             </div>
           </DragProvider>
         </TooltipProvider>
